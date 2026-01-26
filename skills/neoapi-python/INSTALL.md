@@ -27,6 +27,7 @@ This folder contains a skill for AI coding assistants (Claude Code, Codex) that 
 - You have a `neoapi-python` folder (or zip) that contains `SKILL.md`
 - PowerShell (Windows) or Bash (macOS/Linux)
 - In this repo, the skill lives under `skills/` (not `.skills/`).
+- For other AI platforms, install the folder into that platform's skill/instruction directory.
 
 ### Step 1: Navigate to the skill folder (if using this repo)
 
