@@ -61,4 +61,4 @@ Source: `test_environment.zip` from the official SDK sample link.
 
 ## Validation (Local Smoke Test)
 
-- 2026-01-26: Login succeeded using sample certificate `41610792.pfx`, returned stock and futures accounts.
+- 2026-01-26: Python 3.12.12 + SDK 2.2.7, login succeeded using sample certificate `41610792.pfx`, returned stock and futures accounts.
