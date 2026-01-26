@@ -61,6 +61,22 @@ Use these tests to verify that an AI agent can apply the `neoapi-python` skill c
 
 - The agent mentions middle-office reference price lag and suggests using reference price first.
 
+## Test 5: Order Placement + Callback
+
+**Purpose:** Verify the agent can place a stock order in the test environment and handle order callbacks.
+
+**Steps:**
+
+1) Log in to the test environment with a stock account.
+2) Register callbacks: `set_on_order`, `set_on_order_changed`, `set_on_filled`.
+3) Place a stock order for `2881` (suggest `PriceType.Reference` first; fall back to `PriceType.Limit` with a reasonable price).
+4) Wait briefly and confirm callback messages are received.
+
+**Expected:**
+
+- `place_order` returns success (or a clear error if outside test hours).
+- At least one order-related callback prints a notification.
+
 ## How to Contribute New Tests
 
 When proposing a new test, include:
@@ -81,3 +97,5 @@ Keep tests small and focused. Prefer one concept per test.
   - Test 2: Pass (constructed SDK with both signatures using SDK 2.2.7)
   - Test 3: Pass (PyPI resolution fails; wheel install required)
   - Test 4: Pass (validated against official test-environment PDF notes)
+  - Test 5: Pass (order placed for 2881 with PriceType.Reference; order callback received; reference price returned 46)
+    - Note: user_def length over 10 triggers a warning and is truncated by the system.

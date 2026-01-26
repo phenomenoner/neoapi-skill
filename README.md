@@ -25,7 +25,7 @@ See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `ski
 
 ## Versioning
 
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.8` (Beta 1.0.0).
+The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.9` (Beta 1.0.0).
 
 ## Updating from GitHub
 
@@ -54,3 +54,4 @@ Example:
 - 2026-01-26: 1.0.0-beta.6 - Add SDK install quick note to SKILL.md.
 - 2026-01-26: 1.0.0-beta.7 - Add skill validation test cases and contribution guidance.
 - 2026-01-26: 1.0.0-beta.8 - Record skill test run results.
+- 2026-01-26: 1.0.0-beta.9 - Add order placement test results to skill tests.
