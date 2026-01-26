@@ -73,3 +73,11 @@ When proposing a new test, include:
 - **Artifacts**: logs, screenshots, or code snippets (if relevant)
 
 Keep tests small and focused. Prefer one concept per test.
+
+## Test Run Log (Local)
+
+- 2026-01-26:
+  - Test 1: Pass (login OK, accounts returned)
+  - Test 2: Pass (constructed SDK with both signatures using SDK 2.2.7)
+  - Test 3: Pass (PyPI resolution fails; wheel install required)
+  - Test 4: Pass (validated against official test-environment PDF notes)
