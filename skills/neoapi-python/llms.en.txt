@@ -1,0 +1,419 @@
+# 富邦新一代 API｜程式交易的新武器
+
+
+## TradeAPI
+
+- [SDK Download](https://www.fbs.com.tw/TradeAPI/en/docs/download/download-sdk.md): Latest version v2.2.7.
+- [API Key Application & Management](https://www.fbs.com.tw/TradeAPI/en/docs/key.md): Documentation for API Key Application & Management.
+- [Corporate Actions Capital Changes](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/corporate-actions/captital-changes.md): Capital changes data for listed and OTC stocks and ETFs (par value changes, capital reductions, splits)
+- [Corporate Actions Dividends](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/corporate-actions/dividends.md): Ex-dividend and ex-rights data (including capital increases)
+- [Corporate Actions Listing Applicants](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/corporate-actions/listing-applicants.md): Listing application data for TWSE- and TPEx-listed companies
+- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/getting-started.md): Fugle Market Web API provides developer-friendly API services. You can access data such as daily stock market information, snapshots, and historical market data for the Taiwan stock market。.
+- [Historical Candles](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/historical/candles.md): Retrieve historical stock prices within 1 year (query by stock number)）.
+- [Historical Stats](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/historical/stats.md): Retrieve recent 52-week stock price data (query by stock number).
+- [Intraday Candles](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/intraday/candles.md): Stock KLine（query by stock number）.
+- [Intraday Quote](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/intraday/quote.md): Real-time quotes (query by stock number).
+- [Intraday Ticker](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/intraday/ticker.md): Stock information (query by stock number).
+- [Intraday Tickers](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/intraday/tickers.md): Stock or index lists (query by conditions).
+- [Intraday Trades](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/intraday/trades.md): Stock trade details (query by stock number).
+- [Intraday Volumes](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/intraday/volumes.md): Stock price-volume data（query by stock number）.
+- [Snapshot Actives](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/snapshot/actives.md): Stock trading value ranking (by market type).
+- [Snapshot Movers](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/snapshot/movers.md): Stock Price Change Ranking (by market type).
+- [Snapshot Quotes](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/snapshot/quotes.md): Stock market snapshot (by market type).
+- [Technical Bbands](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/technical/bbands.md): Get Bollinger Bands for a specific stock within a specified time range.
+- [Technical KDJ](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/technical/kdj.md): Get Stochastic Indicator (KDJ) for a specific stock within a specified time range.
+- [Technical MACD](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/technical/macd.md): Get Moving Average Convergence Divergence (MACD) for a specific stock within a specified time range.
+- [Technical RSI](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/technical/rsi.md): Get Relative Strength Index (RSI) for a specific stock within a specified time range.
+- [Technical SMA](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/technical/sma.md): Get Simple Moving Average (SMA) for a specific stock within a specified time range.
+- [Fubon RealTime MarketData API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/intro.md): The real-time market data source includes the Taiwan Stock Exchange (TWSE), and the Taiwan Futures Exchange.
+- [Establish Connections](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/making-connection.md): The following example demonstrates how to establish five WebSocket connections for market data simultaneously.
+- [Rate Limit](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/rate-limit.md): Fubon market data provides Web API and Socket, with the following access restrictions.
+- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/getting-started.md): Fubon Market WebSocket API provides real-time stock market data services for Taiwan. Through the WebSocket API, you can fulfill your need for receiving real-time market data.
+- [Aggregates](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/aggregates.md): Subscribe to aggregated market data for stocks.
+- [Books](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/books.md): Subscribe to the latest top five bid and ask information for stocks.
+- [Candles](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/candles.md): Subscribe to the latest minute K-line data for stocks.
+- [Indices](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/indices.md): Subscribe to the latest index market data.
+- [Trades](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/trades.md): Subscribe to the latest stock trade information.
+- [Mode Switching](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/upgrade-guide.md): Applies to versions >= 1.0.4.
+- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/getting-started.md): Fugle Market Web API provides developer-friendly API services. You can access data such as daily Future / Option market information for the Taiwan future market。.
+- [Intraday Candles](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/candles.md): Contract K Line（Query by symbol）.
+- [Products List](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/products.md): Futures and Options Contract List（Query Based on Conditions）.
+- [Intraday Quote](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/quote.md): Real-time quotes (query by contract symbol).
+- [Intraday Ticker](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/ticker.md): Futures and Options product information（Query base on symbol）.
+- [Intraday Tickers](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/tickers.md): Futures and Options product list（Query base on condition）.
+- [Intraday Trades](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/trades.md): Contract trade details (query by contract code).
+- [Intraday Volumes](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/volumes.md): Futures and Options price-volume data（query by symbol）.
+- [Fubon RealTime MarketData API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/intro.md): The real-time market data source includes the Taiwan Stock Exchange (TWSE), and the Taiwan Futures Exchange.
+- [Establish Connections](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/making-connection.md): The following example demonstrates how to establish five WebSocket connections for market data simultaneously.
+- [Rate Limit](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/rate-limit.md): Fubon market data provides Web API and Socket, with the following access restrictions.
+- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/getting-started.md): Fubon Market WebSocket API provides real-time stock market data services for Taiwan. Through the WebSocket API, you can fulfill your need for receiving real-time market data.
+- [Aggregates](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/market-data-channels/aggregates.md): Subscribe to aggregated market data for futures or options.
+- [Books](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/market-data-channels/books.md): Subscribe to the latest top five bid and ask information for contract.
+- [Candles](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/market-data-channels/candles.md): Subscribe to the latest minute K-line data for contract.
+- [Trades](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/market-data-channels/trades.md): Subscribe to the latest contract trade information.
+- [Mode Switching](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/upgrade-guide.md): Applies to versions >= 1.3.1.
+- [TP & SL Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/advance/TPSL-introduce.md): Fubon Neo API supports TP & SL orders.
+- [Trail Profit Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/advance/TrailProfit-introduce.md): Fubon Neo API supports trail profit orders.
+- [條件單使用說明](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/Agreements.md): 本公司為服務投資人，提供網路下單客戶得預先設定下單條件之條件下單功能服務（以下簡稱本功能或本服務）。本服務不收取任何費用，但本公司保留得隨時調整、修正、暫停或終止此項服務之權利；為確保使用者權益及網路交易安全秩序，請投資人於啟用本功能前，詳細閱讀以下條款，以保障投資人的權利，在投資人點選本使用同意書下方之同意鈕，即視為已經詳閱並接受本同意書之內容。.
+- [Fubon Neo API Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/introduction.md): API reference for Introduction (-----).
+- [Cancel Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/CancelCondition.md): API reference for Cancel Condition Order (cancel_condition_orders).
+- [Get Day Trade Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/daytrade/GetDayTradeConditionById.md): API reference for Get Day Trade Condition Order (get_condition_daytrade_by_id).
+- [Multi Condition Day Trade Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/daytrade/MultiConditionDayTrade.md): API reference for Multi Condition Day Trade Order (multi_conditions_day_trade).
+- [Single Condition Day Trade Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/daytrade/SingleConditionDayTrade.md): API reference for Single Condition Day Trade Order (single_condition_day_trade).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/EnumMatrix.md): API reference for Enumerations (Class).
+- [Get Condition Order By ID](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/GetConditionById.md): API reference for Get Condition Order By ID (get_condition_order_by_id).
+- [Get Condition History](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/GetConditionHistory.md): API reference for Get Condition History (GetConditionHistory).
+- [Get Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/GetConditionOrder.md): API reference for Get Condition Order (get_condition_order).
+- [Multi Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/MultiCondition.md): API reference for Multi Condition Order (multi_condition).
+- [Multi-Condition Order with TP/SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/MultiConditionTPSL.md): API reference for Multi-Condition Order with TP/SL (multi_condition).
+- [Single Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/SingleCondition.md): API reference for Single Condition Order (single_condition).
+- [Single Condition Order with TP/SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/SingleConditionTPSL.md): API reference for Single Condition Order with TP/SL (single_condition).
+- [Get Time Slice Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/timeslice/GetTimeSliceOrder.md): API reference for Get Time Slice Order (get_time_slice_order).
+- [Time Slice Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/timeslice/TimeSliceOrder.md): API reference for Time Slice Order (time_slice_order).
+- [Get Historical Trail Profit Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/trailprofit/GetTrailHistory.md): API reference for Get Historical Trail Profit Order (get_trail_history).
+- [Get Trail Profit Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/trailprofit/GetTrailOrder.md): API reference for Get Trail Profit Order (get_trail_order).
+- [Trail Profit Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/trailprofit/TrailOrder.md): API reference for Trail Profit Order (trail_profit).
+- [Cancel Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/CancelCondition.md): API reference for Cancel Condition Order (CancelConditionOrder).
+- [Get Condition Daytrade](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/daytrade/GetConditionDayTradeId.md): API reference for Get Condition Daytrade (GetConditionDaytradeById).
+- [Multi-Condition with DayTrade](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/daytrade/MultiConditionDayTrade.md): API reference for Multi-Condition with DayTrade (MultiConditionDayTrade).
+- [Single Condition with DayTrade](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/daytrade/SingleConditionDayTrade.md): API reference for Single Condition with DayTrade (SingleCondition).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/EnumMatrix.md): API reference for Enumerations (Class).
+- [Get Condition Order By Guid](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/GetConditionById.md): API reference for Get Condition Order By Guid (GetConditionOrderById).
+- [Query Condition History](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/GetConditionHistory.md): API reference for Query Condition History (GetConditionHistory).
+- [Get Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/GetConditionOrder.md): API reference for Get Condition Order (GetConditionOrder).
+- [Multi-Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/MultiCondition.md): API reference for Multi-Condition (MultiCondition).
+- [Multi-Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/MultiConditionTPSL.md): API reference for Multi-Condition with TP & SL (MultiCondition).
+- [Single Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/SingleCondition.md): API reference for Single Condition (SingleCondition).
+- [Single Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/SingleConditionTPSL.md): API reference for Single Condition with TP & SL (SingleCondition).
+- [Get Time Slice Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/timeslice/GetTimeSliceOrder.md): API reference for Get Time Slice Order (GetTimeSliceOrder).
+- [Time Slice ConditionOrder](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/timeslice/TimeSliceOrder.md): API reference for Time Slice ConditionOrder (TimesliceCondition).
+- [Query Trail History](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/trailprofit/GetTrailHistory.md): API reference for Query Trail History (GetTrailHistory).
+- [Get Trail Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/trailprofit/GetTrailOrder.md): API reference for Get Trail Order (GetTrailOrder).
+- [Trail Profit Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/csharp/trailprofit/TrailOrder.md): API reference for Trail Profit Condition (TrailProfit).
+- [Cancel Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/CancelCondition.md): API reference for Cancel Condition Order (cancelConditionOrder).
+- [Get Condition Daytrade](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/daytrade/GetConditionDaytradeById.md): API reference for Get Condition Daytrade (getConditionDaytradeById).
+- [Multi-Condition with DayTrade](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/daytrade/MultiConditionDayTrade.md): API reference for Multi-Condition with DayTrade (multiConditionDayTrade).
+- [Single Condition with DayTrade](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/daytrade/SingleConditionDayTrade.md): API reference for Single Condition with DayTrade (singleConditionDayTrade).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/EnumMatrix.md): API reference for Enumerations (Class).
+- [Get Condition Order By Guid](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/GetConditionById.md): API reference for Get Condition Order By Guid (getConditionOrderById).
+- [Query Condition History](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/GetConditionHistory.md): API reference for Query Condition History (getConditionHistory).
+- [Get Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/GetConditionOrder.md): API reference for Get Condition Order (getConditionOrder).
+- [Multi-Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/MultiCondition.md): API reference for Multi-Condition (multiCondition).
+- [Multi-Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/MultiConditionTPSL.md): API reference for Multi-Condition with TP & SL (multiCondition).
+- [Single Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/SingleCondition.md): API reference for Single Condition (singleCondition).
+- [Single Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/SingleConditionTPSL.md): API reference for Single Condition with TP & SL (singleCondition).
+- [Get Time Slice Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/timeslice/GetTimeSliceOrder.md): API reference for Get Time Slice Order (getTimeSliceOrder).
+- [Time Slice COndition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/timeslice/TimeSliceOrder.md): API reference for Time Slice Condition (timesliceCondition).
+- [Query Trail HIstory](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/trailprofit/GetTrailHistory.md): API reference for Query Trail History (getTrailHistory).
+- [Get Trail Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/trailprofit/GetTrailOrder.md): API reference for Get Trail Order (getTrailOrder).
+- [Trail Profit Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/nodejs/trailprofit/TrailOrder.md): API reference for Trail Profit Condition (TrailProfit).
+- [Cancel Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/CancelCondition.md): API reference for Cancel Condition (cancel_condition).
+- [Get Condition Daytrade](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/daytrade/GetConditionById.md): API reference for Get Condition Daytrade (get_condition_daytrade_by_id).
+- [Multi-Condition with DayTrade](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/daytrade/MultiConditionDayTrade.md): API reference for Multi-Condition with DayTrade (multi_condition_day_trade).
+- [Single Condition with DayTrade](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/daytrade/SingleConditionDayTrade.md): API reference for Single Condition with DayTrade (single_condition_day_trade).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/EnumMatrix.md): API reference for Enumerations (Class).
+- [Get Condition Order By Guid](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/GetConditionById.md): API reference for Get Condition Order By Guid (get_condition_order_by_id).
+- [Get Condition History](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/GetConditionHistory.md): API reference for Get Condition History (get_condition_history).
+- [Get Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/GetConditionOrder.md): API reference for Get Condition Order (get_condition_order).
+- [Multi-Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/MultiCondition.md): API reference for Multi-Condition (multi_condition).
+- [Multi-Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/MultiConditionTPSL.md): API reference for Multi-Condition with TP & SL (multi_condition).
+- [Single Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/SingleCondition.md): API reference for Single Condition (single_condition).
+- [Single Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/SingleConditionTPSL.md): API reference for Single Condition with TP & SL (single_condition).
+- [Get Time Slice Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/timeslice/GetTimeSliceOrder.md): API reference for Get Time Slice Order (get_time_slice_order).
+- [Time Slice Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/timeslice/TimeSliceOrder.md): API reference for Time Slice Condition (timeslice_order).
+- [Get Trail History](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/trailprofit/GetTrailHistory.md): API reference for Get Trail History (get_trail_history).
+- [Get Trail Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/trailprofit/GetTrailOrder.md): API reference for Get Trail Order (get_trail_order).
+- [Trail Profit Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/python/trailprofit/TrailOrder.md): API reference for Trail Profit Condition (trail_profit).
+- [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/prepare.md): Before starting with the Fubon Neo Condition API, please read the user agreement carefully and complete signing the agreements.
+- [Emergency contingency](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/trobleshoot.md): In the event of force majeure or system abnormalities that prevent order placement or confirmation of order execution, please use other platforms as a backup.
+- [TP & SL Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/advance/TPSL-introduce.md): Fubon Neo API supports TP & SL orders.
+- [Trail Profit Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/advance/TrailProfit-introduce.md): Fubon Neo API supports trail profit orders.
+- [Condition Order Agreements](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/Agreements.md): 本公司為服務投資人，提供網路下單客戶得預先設定下單條件之條件下單功能服務（以下簡稱本功能或本服務）。本服務不收取任何費用，但本公司保留得隨時調整、修正、暫停或終止此項服務之權利；為確保使用者權益及網路交易安全秩序，請投資人於啟用本功能前，詳細閱讀以下條款，以保障投資人的權利，在投資人點選本使用同意書下方之同意鈕，即視為已經詳閱並接受本同意書之內容。.
+- [Fubon Neo API Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/introduction.md): API reference for Introduction (-----).
+- [Cancel Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/CancelCondition.md): API reference for Cancel Condition Order (CancelConditionOrder).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/EnumMatrix.md): API reference for Enumerations (Class).
+- [Get Condition Order By Guid](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/GetConditionById.md): API reference for Get Condition Order By Guid (GetConditionOrderById).
+- [Query Condition History](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/GetConditionHistory.md): API reference for Query Condition History (GetConditionHistory).
+- [Get Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/GetConditionOrder.md): API reference for Get Condition Order (GetConditionOrder).
+- [Multi-Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/MultiCondition.md): API reference for Multi-Condition (MultiCondition).
+- [Multi-Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/MultiConditionTPSL.md): API reference for Multi-Condition with TP & SL (MultiCondition).
+- [Single Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/SingleCondition.md): API reference for Single Condition (SingleCondition).
+- [Single Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/SingleConditionTPSL.md): API reference for Single Condition with TP & SL (SingleCondition).
+- [Get Time Slice Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/timeslice/GetTimeSliceOrder.md): API reference for Get Time Slice Order (GetTimeSliceOrder).
+- [Time Slice Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/timeslice/TimeSliceOrder.md): API reference for Time Slice Order (TimesliceCondition).
+- [Query Trail History](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/trailprofit/GetTrailHistory.md): API reference for Query Trail History (GetTrailHistory).
+- [Get Trail Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/trailprofit/GetTrailOrder.md): API reference for Get Trail Order (GetTrailOrder).
+- [Trail Profit Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/trailprofit/TrailOrder.md): API reference for Trail Profit Condition (TrailProfit).
+- [Cancel Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/CancelCondition.md): API reference for Cancel Condition Order (cancelConditionOrder).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/EnumMatrix.md): API reference for Enumerations (Class).
+- [Get Condition Order By Guid](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/GetConditionById.md): API reference for Get Condition Order By Guid (getConditionOrderById).
+- [Query Condition HIstory](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/GetConditionHistory.md): API reference for Query Condition History (getConditionHistory).
+- [Get Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/GetConditionOrder.md): API reference for Get Condition Order (getConditionOrder).
+- [Multi-Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/MultiCondition.md): API reference for Multi-Condition (multiCondition).
+- [Multi-Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/MultiConditionTPSL.md): API reference for Multi-Condition with TP & SL (multiCondition).
+- [Single Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/SingleCondition.md): API reference for Single Condition (singleCondition).
+- [Single Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/SingleConditionTPSL.md): API reference for Single Condition with TP & SL (singleCondition).
+- [Get Time Slice Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/timeslice/GetTimeSliceOrder.md): API reference for Get Time Slice Order (getTimeSliceOrder).
+- [Time Slice COndition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/timeslice/TimeSliceOrder.md): API reference for Time Slice Condition (timesliceCondition).
+- [Query Trail HIstory](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/trailprofit/GetTrailHistory.md): API reference for Query Trail History (getTrailHistory).
+- [Get Trail Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/trailprofit/GetTrailOrder.md): API reference for Get Trail Order (getTrailOrder).
+- [Trail Profit Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/nodejs/trailprofit/TrailOrder.md): API reference for Trail Profit Condition (TrailProfit).
+- [Cancel Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/CancelCondition.md): API reference for Cancel Condition (cancel_condition).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/EnumMatrix.md): API reference for Enumerations (Class).
+- [Get Condition Order By Guid](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/GetConditionById.md): API reference for Get Condition Order By Guid (get_condition_order_by_id).
+- [Get Condition History](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/GetConditionHistory.md): API reference for Get Condition History (get_condition_history).
+- [Get Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/GetConditionOrder.md): API reference for Get Condition Order (get_condition_order).
+- [Multi-Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/MultiCondition.md): API reference for Multi-Condition (multi_condition).
+- [Multi-Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/MultiConditionTPSL.md): API reference for Multi-Condition with TP & SL (multi_condition).
+- [Single Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/SingleCondition.md): API reference for Single Condition (single_condition).
+- [Single Condition with TP & SL](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/SingleConditionTPSL.md): API reference for Single Condition with TP & SL (single_condition).
+- [Get Time Slice Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/timeslice/GetTimeSliceOrder.md): API reference for Get Time Slice Order (get_time_slice_order).
+- [Time Slice Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/timeslice/TimeSliceOrder.md): API reference for Time Slice Condition (timeslice_order).
+- [Get Trail History](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/trailprofit/GetTrailHistory.md): API reference for Get Trail History (get_trail_history).
+- [Get Trail Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/trailprofit/GetTrailOrder.md): API reference for Get Trail Order (get_trail_order).
+- [Trail Profit Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/python/trailprofit/TrailOrder.md): API reference for Trail Profit Condition (trail_profit).
+- [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/prepare.md): Before starting with the Fubon Neo Condition API, you must complete agreement signature.
+- [Emergency contingency](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/trobleshoot.md): In the event of force majeure or system abnormalities that prevent order placement or confirmation of order execution, please use other platforms as a backup.
+- [API Key Introduction](https://www.fbs.com.tw/TradeAPI/en/docs/trading/api-key-apply.md): Available since v2.2.7.
+- [以 LLM 輔助 SDK 串接開發](https://www.fbs.com.tw/TradeAPI/en/docs/trading/build-with-llm.md): 利用大型語言模型協助完成 SDK 的整合與實作。
+- [Accounting](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/account_example.md): API reference for Accounting (------).
+- [Unblock Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/asyn_order.md): First, let's begin by understanding the concepts of block and unblock.
+- [Websocket Notification Examples（Co-lo Version）](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/callback/callback_example_dt3.md): Co-lo service is a premium service for high-frequency customers. To apply, please contact your broker agent for more information.
+- [Websocket Notification Examples（Standard Version）](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/callback/callback_example_standard.md): The following are examples of websocket notifications for trading requests. The listed cases includes non-async (unblock=False) and async (unblock=True) functions.
+- [WebSocket Parameter Setting](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/ping_pong.md): FubonNeo API SDK leverages WebSocket to connect with Fubon servers, the standard ping/pong control frame mechanism is adopted and implemented. By default, a ping frame would be sent to the server every 30 seconds, and if pong response is not received for two cconsecutive attempts, the connection quality is judged to be weak and the connection would be dropped.
+- [Python Callback Exception Handling](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/python_callback_decorator.md): When using Python callback functions, because they run in a separate thread, if an error occurs during the execution, the error message will not be automatically thrown back, which may cause obstacles in debugging.
+- [Reconnect](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/reconnect.md): The following is a simple demonstration that automatically reconnects the trading socket when a disconnection event is detected using a callback:.
+- [Event/Notification Callback](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/report_example.md): API reference for Event/Notification Callback (--------).
+- [Trade](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/trade_example.md): API reference for Trade (--------).
+- [Fubon Neo API](https://www.fbs.com.tw/TradeAPI/en/docs/trading/introduction.md): API reference for Introduce (-----).
+- [Bank Balance Inquiry](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/accountManagement/Balance.md): API reference for Bank Balance Inquiry (BankRemain).
+- [Inventory Inquiry](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/accountManagement/Inventories.md): API reference for Inventory Inquiry (inventories).
+- [Maintenance Ratio Inquiry](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/accountManagement/Maintenance.md): API reference for Maintenance Ratio Inquiry (Maintenance).
+- [Settlement Inquiry](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/accountManagement/QuerySettlement.md): API reference for Settlement Inquiry (QuerySettlement).
+- [Realized P&L Detail Inquiry](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/accountManagement/RealizedPnLDetail.md): API reference for Realized P&L Detail Inquiry (realized_gains_and_loses).
+- [Realized P&L Summary](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/accountManagement/RealizedPnLSum.md): API reference for Realized P&L Summary (realized_gains_and_loses_summary).
+- [Unrealized P&L Detail Inquiry](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/accountManagement/UnrealizedPnLDetail.md): API reference for Unrealized P&L Detail Inquiry (unrealized_gains_and_loses).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/EnumMatrix.md): API reference for Enumerations (Class).
+- [API Key Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/login/login_apikey.md): API reference for API Key Login (apikey_login).
+- [Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/login/login_password.md): API reference for Login (login).
+- [Batch Cancel Orders](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/batchOrder/BatchCancelOrder.md): API reference for Batch Cancel Orders (batch_cancel_order).
+- [Batch Modify Order Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/batchOrder/BatchModifyPrice.md): API reference for Batch Modify Order Price (batch_modify_price).
+- [Batch Modify Order Quantity](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/batchOrder/BatchModifyQuantity.md): API reference for Batch Modify Order Quantity (batch_modify_quantity).
+- [Get Batch Order Detail](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/batchOrder/BatchOrderDetail.md): API reference for Get Batch Order Detail (batch_order_detail).
+- [Get Batch Order List](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/batchOrder/BatchOrderList.md): API reference for Get Batch Order List (batch_order_lists).
+- [Create Batch Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/batchOrder/BatchPlaceOrder.md): API reference for Create Batch Order (batch_place_order).
+- [Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/CancelOrder.md): API reference for Cancel Order (cancel_order).
+- [Query Day Trade Quota](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/DaytradeAndStockInfo.md): API reference for Query Day Trade Quota (daytrade_and_stock_info).
+- [Query Historical Fills](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/FilledHistory.md): API reference for Query Historical Fills (filled_history).
+- [Get Order Results](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/GetOrderResults.md): API reference for Get Order Results (get_order_results).
+- [Get Order Results (Include Detail)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/GetOrderResultsDetail.md): API reference for Get Order Results (Include Detail) (get_order_results_detail).
+- [Query Margin Quota](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/MarginQuota.md): API reference for Query Margin Quota (margin_quota).
+- [Modify Order Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/ModifyPrice.md): API reference for Modify Order Price (modify_price).
+- [Modify Order Quantity](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/ModifyQuantity.md): API reference for Modify Order Quantity (modify_quantity).
+- [Query Historical Orders](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/OrderHistory.md): API reference for Query Historical Orders (order_history).
+- [Create Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/PlaceOrder.md): API reference for Create Order (place_order).
+- [Query Stock Quote](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/QuerySymbolQuote.md): API reference for Query Stock Quote (query_symbol_quote).
+- [Query Market Snapshot](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/cpp/trade/QuerySymbolSnapshot.md): API reference for Query Market Snapshot (query_symbol_snapshot).
+- [Query bank remains](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/accountManagement/Balance.md): API reference for Bank Remains (BankRemain).
+- [Inventories](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/accountManagement/Inventories.md): API reference for Inventories (Inventories).
+- [Maintenance](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/accountManagement/Maintenance.md): API reference for Maintenance (Maintenance).
+- [Query Settlemet](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/accountManagement/QuerySettlement.md): API reference for Query Settlemet (QuerySettlement).
+- [Realized Gain and Loss](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/accountManagement/RealizedPnLDetail.md): API reference for Realized Gains and Loses (RealizedGainsAndLoses).
+- [Realized Gains and Loses Summary](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/accountManagement/RealizedPnLSum.md): API reference for Realized Gains and Loses Summary (RealizedGainsAndLosesSummary).
+- [Unrealized Gain and Loses](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/accountManagement/UnrealizedPnLDetail.md): API reference for Unrealized Gains and Loses (UnrealizedGainsAndLoses).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/EnumMatrix.md): API reference for Enumerations (Class).
+- [API Key Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/login/loginAPIKey.md): API reference for API Key Login (ApikeyLogin).
+- [Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/login/loginPassword.md): API reference for Login (login).
+- [Logout](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/logout.md): API reference for Logout (logout).
+- [Batch Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/batchOrder/BatchCancelOrder.md): API reference for Batch Cancel Order (BatchCancelOrder).
+- [Batch Modify Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/batchOrder/BatchModifyPrice.md): API reference for Batch Modify Price (BatchModifyPrice).
+- [Batch Modify Quantity](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/batchOrder/BatchModifyQuantity.md): API reference for Batch Modify Quantity (BatchModifyPrice).
+- [Get Batch Order Detail](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/batchOrder/BatchOrderDetail.md): API reference for Get Batch Order Detail (BatchOrderDetail).
+- [Get Batch Order List](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/batchOrder/BatchOrderList.md): API reference for Get Batch Order List (BatchOrderLists).
+- [Place Batch Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/batchOrder/BatchPlaceOrder.md): API reference for Place Batch Order (BatchPlaceOrder).
+- [Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/CancelOrder.md): API reference for Cancel Order (CancelOrder).
+- [Get Daytrade Quota and Precollect Information](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/DaytradeAndStockInfo.md): API reference for Get Daytrade Quota (DaytradeAndStockInfo).
+- [Get Historical Filled](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/FilledHistory.md): API reference for Get Historical  Filled (FilledHistory).
+- [Get Order Results](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/GetOrderResults.md): API reference for Get Order Results (GetOrderResult).
+- [Get Order Results (Include Detail)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/GetOrderResultsDetail.md): API reference for Get Order Results (Include Detail) (GetOrderResultDetail).
+- [Get Margin Quota](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/MarginQuota.md): API reference for Get Margin Quota (MarginQuota).
+- [Modify Order Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/ModifyPrice.md): API reference for Modify Order Price (ModifyPrice).
+- [Modify Order Quantity](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/ModifyQuantity.md): API reference for Modify Order Quantity (ModifyQuantity).
+- [Get Historical Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/OrderHistory.md): API reference for Get Historical Order (OrderHistory).
+- [PlaceOrder](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/PlaceOrder.md): API reference for Place Order (PlaceOrder).
+- [Query Stock Quote Information (Single)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/QuerySymbolQuote.md): API reference for Query Stock Quote Information (Single)） (QuerySymbolQuote).
+- [Query Stock Quote Information (Batch)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/QuerySymbolSnapshot.md): API reference for Query Stock Quote Information (Batch) (QuerySymbolSnapshot).
+- [Version Upgrade Guide](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/upgrade-guide.md): This document will guide you through upgrading your existing FubonNeo API version 1.0.4 to versions >= 1.3.1.
+- [Bank Balance Query](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/accountManagement/Balance.md): API reference for Bank Balance Query (BankRemain).
+- [Inventory Query](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/accountManagement/Inventories.md): API reference for Inventory Query (Inventories).
+- [Maintenance Ratio Query](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/accountManagement/Maintenance.md): API reference for Maintenance Ratio Query (Maintenance).
+- [Settlement Query](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/accountManagement/QuerySettlement.md): API reference for Settlement Query (QuerySettlement).
+- [Realized P&L Query](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/accountManagement/RealizedPnLDetail.md): API reference for Realized P&L Query (RealizedGainsAndLoses).
+- [Realized P&L Summary](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/accountManagement/RealizedPnLSum.md): API reference for Realized P&L Summary (RealizedGainsAndLosesSummary).
+- [Unrealized P&L Query](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/accountManagement/UnrealizedPnLDetail.md): API reference for Unrealized P&L Query (UnrealizedGainsAndLoses).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/EnumMatrix.md): API reference for Enumerations (Class).
+- [API Key Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/login/loginAPIKey.md): API reference for API Key Login (ApikeyLogin).
+- [Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/login/loginPassword.md): API reference for Login (login).
+- [Logout](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/logout.md): API reference for Logout (Logout).
+- [Batch Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/batchOrder/BatchCancelOrder.md): API reference for Batch Cancel Order (BatchCancelOrder).
+- [Batch Modify Order Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/batchOrder/BatchModifyPrice.md): API reference for Batch Modify Order Price (BatchModifyPrice).
+- [Batch Modify Order Quantity](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/batchOrder/BatchModifyQuantity.md): API reference for Batch Modify Order Quantity (BatchModifyQuantity).
+- [Get Batch Order Detail](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/batchOrder/BatchOrderDetail.md): API reference for Get Batch Order Detail (BatchOrderDetail).
+- [Get Batch Order List](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/batchOrder/BatchOrderList.md): API reference for Get Batch Order List (BatchOrderLists).
+- [Batch Place Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/batchOrder/BatchPlaceOrder.md): API reference for Batch Place Order (BatchPlaceOrder).
+- [Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/CancelOrder.md): API reference for Cancel Order (CancelOrder).
+- [Day Trade Stock Info Query](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/DaytradeAndStockInfo.md): API reference for Day Trade Stock Info Query (DaytradeAndStockInfo).
+- [Query Filled History](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/FilledHistory.md): API reference for Query Filled History (FilledHistory).
+- [Get Order Results](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/GetOrderResults.md): API reference for Get Order Results (GetOrderResults).
+- [Get Order Results (With Changing Logs)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/GetOrderResultsDetail.md): API reference for Get Order Results (With Changing Logs) (GetOrderResultsDetail).
+- [Margin Quota Query](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/MarginQuota.md): API reference for Margin Quota Query (MarginQuota).
+- [Modify Order Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/ModifyPrice.md): API reference for Modify Order Price (ModifyPrice).
+- [Modify Order Quantity](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/ModifyQuantity.md): API reference for Modify Order Quantity (ModifyQuantity).
+- [Query Order History](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/OrderHistory.md): API reference for Query Order History (OrderHistory).
+- [Place Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/PlaceOrder.md): API reference for Place Order (PlaceOrder).
+- [Query Symbol Quote (Single)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/QuerySymbolQuote.md): API reference for Query Symbol Quote (Single) (query_symbol_quote).
+- [Query Symbol Snapshot (Batch)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/trade/QuerySymbolSnapshot.md): API reference for Query Symbol Snapshot (Batch) (query_symbol_snapshot).
+- [Query bank remains](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/accountManagement/Balance.md): API reference for Bank Remains (bankRemain).
+- [Inventories](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/accountManagement/Inventories.md): API reference for Inventories (inventories).
+- [Maintenance](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/accountManagement/Maintenance.md): API reference for Maintenance (maintenance).
+- [Query Settlemet](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/accountManagement/QuerySettlement.md): API reference for Query Settlemet (querySettlement).
+- [Realized Gains and Loses(Detail)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/accountManagement/RealizedPnLDetail.md): API reference for Realized Gains and Loses (realizedGainsAndLoses).
+- [Realized Gains and Loses Summary](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/accountManagement/RealizedPnLSum.md): API reference for Realized Gains and Loses Summary (realizedGainsAndLosesSummary).
+- [Unrealized Gains and Loses](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/accountManagement/UnrealizedPnLDetail.md): API reference for Unrealized Gains and Loses (unrealizedGainsAndLoses).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/EnumMatrix.md): API reference for Enumerations (Class).
+- [API Key Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/login/loginAPIKey.md): API reference for API Key Login (apikeyLogin).
+- [Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/login/loginPassword.md): API reference for Login (login).
+- [Logout](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/logout.md): API reference for Logout (logout).
+- [Batch Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/batchOrder/BatchCancelOrder.md): API reference for Batch Cancel Order (batchCancelOrder).
+- [Batch Modify Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/batchOrder/BatchModifyPrice.md): API reference for Batch Modify Price (batchModifyPrice).
+- [Batch Modify Quantity](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/batchOrder/BatchModifyQuantity.md): API reference for Batch Modify Quantity (batchModifyQuantity).
+- [Get Batch Order Detail](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/batchOrder/BatchOrderDetail.md): API reference for Get Batch Order Detail (batchOrderDetail).
+- [Get Batch Order List](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/batchOrder/BatchOrderList.md): API reference for Get Batch Order List (batchOrderLists).
+- [Place Batch Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/batchOrder/BatchPlaceOrder.md): API reference for Place Batch Order (batchPlaceOrder).
+- [Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/CancelOrder.md): API reference for Cancel Order (cancelOrder).
+- [Get Daytrade Quota and Precollect Information](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/DaytradeAndStockInfo.md): API reference for Get Daytrade Quota (daytradeAndStockInfo).
+- [Get Historical Filled](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/FilledHistory.md): API reference for Get Historical Filled (filledHistory).
+- [Get Order Results](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/GetOrderResults.md): API reference for Get Order Results (getOrderResults).
+- [Get Order Results (Include Detail)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/GetOrderResultsDetail.md): API reference for Get Order Results (Include Detail) (getOrderResultsDetail).
+- [Get Margin Quota](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/MarginQuota.md): API reference for Get Margin Quota (marginQuota).
+- [Modify Order Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/ModifyPrice.md): API reference for Modify Order Price (modifyPrice).
+- [Modify Order Quantity](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/ModifyQuantity.md): API reference for Modify Order Quantity (modifyQuantity).
+- [Get Historical Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/OrderHistory.md): API reference for Get Historical Order (orderHistory).
+- [PlaceOrder](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/PlaceOrder.md): API reference for PlaceOrder (placeOrder).
+- [Query Stock Quote Information (Single)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/QuerySymbolQuote.md): API reference for Query Stock Quote Information (Single) (querySymbolQuote).
+- [Query Stock Quote Information (Batch)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/QuerySymbolSnapshot.md): API reference for Query Stock Quote Information (Batch) (querySymbolSnapshot).
+- [Query bank remains](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/accountManagement/Balance.md): API reference for Bank Remains (bank_remain).
+- [Inventories](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/accountManagement/Inventories.md): API reference for Inventories (inventories).
+- [Maintenance](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/accountManagement/Maintenance.md): API reference for Maintenance (maintenance).
+- [Query Settlemet](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/accountManagement/QuerySettlement.md): API reference for Query Settlemet (query_settlement).
+- [Realized Gains and Loses(Detail)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/accountManagement/RealizedPnLDetail.md): API reference for Realized Gains and Loses (realized_gains_and_loses).
+- [Realized Gains and Loses Summary](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/accountManagement/RealizedPnLSum.md): API reference for Realized Gains and Loses Summary (realized_gains_and_loses_summary).
+- [Unrealized Gains and Loses](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/accountManagement/UnrealizedPnLDetail.md): API reference for Unrealized Gains and Loses (unrealized_gains_and_loses).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/EnumMatrix.md): API reference for Enumerations (Class).
+- [API Key Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/login/loginAPIKey.md): API reference for API Key Login (apikey_login).
+- [Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/login/loginPassword.md): API reference for Login (login).
+- [Logout](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/logout.md): API reference for Logout (logout).
+- [Batch Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/batchOrder/BatchCancelOrder.md): API reference for Batch Cancel Order (batch_cancel_Order).
+- [Batch Modify Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/batchOrder/BatchModifyPrice.md): API reference for Batch Modify Price (batch_modify_price).
+- [Batch Modify Quantity](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/batchOrder/BatchModifyQuantity.md): API reference for Batch Modify Quantity (batch_modify_quantity).
+- [Get Batch Order Detail](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/batchOrder/BatchOrderDetail.md): API reference for Get Batch Order Detail (batch_order_detail).
+- [Get Batch Order List](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/batchOrder/BatchOrderList.md): API reference for Get Batch Order List (batch_order_lists).
+- [Place Batch Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/batchOrder/BatchPlaceOrder.md): API reference for Place Batch Order (batch_place_order).
+- [Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/CancelOrder.md): API reference for Cancel Order (cancel_order).
+- [Get Daytrade Quota and Precollect Information](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/DaytradeAndStockInfo.md): API reference for Get Daytrade Quota (daytrade_and_stock_info).
+- [Get Historical Filled](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/FilledHistory.md): API reference for Get Historical Filled (filled_history).
+- [Get Order Results](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/GetOrderResults.md): API reference for Get Order Results (get_order_results).
+- [Get Order Results (Include Detail)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/GetOrderResultsDetail.md): API reference for Get Order Results (Include Detail) (get_order_results_detail).
+- [Get Margin Quota](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/MarginQuota.md): API reference for Get Margin Quota (margin_quota).
+- [Modify Order Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/ModifyPrice.md): API reference for Modify Order Price (modify_price).
+- [Modify Order Quantity](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/ModifyQuantity.md): API reference for Modify Order Quantity (modify_quantity).
+- [Get Historical Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/OrderHistory.md): API reference for Get Historical Order (order_history).
+- [PlaceOrder](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/PlaceOrder.md): API reference for PlaceOrder (place_order).
+- [Query Stock Quote Information (Single)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/QuerySymbolQuote.md): API reference for Query Stock Quote Information (Single) (query_symbol_quote).
+- [Query Stock Quote Information (Batch)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/trade/QuerySymbolSnapshot.md): API reference for Query Stock Quote Information (Batch) (query_symbol_snapshot).
+- [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/trading/prepare.md): Before starting with the Fubon Neo API, you must complete the following steps:.
+- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/trading/quickstart.md): Please refer to the Preparation first and complete the application for the API Agreements and certificate download。.
+- [Rate Limit](https://www.fbs.com.tw/TradeAPI/en/docs/trading/trade-rate-limit.md): When the connection exceeds the limit, you will receive the following message during login:.
+- [Accounting](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/account_example.md): API reference for Accounting (------).
+- [Unblock Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/advance/asyn_order.md): First, let's begin by understanding the concepts of block and unblock.
+- [Python Callback Exception Handling](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/advance/python_callback_decorator.md): When using Python callback functions, because they run in a separate thread, if an error occurs during the execution, the error message will not be automatically thrown back, which may cause obstacles in debugging.
+- [Reconnect](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/advance/reconnect.md): The following is a simple demonstration that automatically reconnects the trading socket when a disconnection event is detected using a callback:.
+- [Event/Notification Callback](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/report_example.md): API reference for Event/Notification Callback (--------).
+- [Trade](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/trade_example.md): API reference for Trade (--------).
+- [Fubon Neo API](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/introduction.md): API reference for Introduce (-----).
+- [Query Close Position](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/accountManagement/ClosePositionRecord.md): API reference for Query Close Position (QueryClosePosition).
+- [Hybrid Position](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/accountManagement/HybridPosition.md): API reference for Hybrid Position (QueryHybridPosition).
+- [Query Equity](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/accountManagement/QueryEquity.md): API reference for Query Equity (QueryMarginEquity).
+- [Query Single Position](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/accountManagement/SinglePosition.md): API reference for Query Single Position (QuerySinglePosition).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/EnumMatrix.md): API reference for Enumerations (Class).
+- [Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/login/loginAPIKey.md): API reference for Login with API Key (ApikeyLogin).
+- [Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/login/loginPassword.md): API reference for Login (login).
+- [Logout](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/logout.md): API reference for Logout (logout).
+- [Batch Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/batchOrder/BatchCancelOrder.md): API reference for Batch Cancel Order (BatchCancelOrder).
+- [Batch Modify Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/batchOrder/BatchModifyPrice.md): API reference for Batch Modify Price (BatchModifyPrice).
+- [Batch Modify Lot](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/batchOrder/BatchModifyQuantity.md): API reference for Batch Modify Lot (BatchModifyPrice).
+- [Get Batch Order Detail](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/batchOrder/BatchOrderDetail.md): API reference for Get Batch Order Detail (BatchOrderDetail).
+- [Get Batch Order List](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/batchOrder/BatchOrderList.md): API reference for Get Batch Order List (BatchOrderLists).
+- [Place Batch Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/batchOrder/BatchPlaceOrder.md): API reference for Place Batch Order (BatchPlaceOrder).
+- [Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/CancelOrder.md): API reference for Cancel Order (CancelOrder).
+- [Convert Symbol](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/ConvertSymbol.md): API reference for Convert Symbol (ConverSymbol).
+- [Query Estimate Margin](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/EstimateMargin.md): API reference for Query Estimate Margin (QueryEstimateMargin).
+- [Get Historical Filled](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/FilledHistory.md): API reference for Get Historical  Filled (FilledHistory).
+- [Get Order Results](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/GetOrderResults.md): API reference for Get Order Results (GetOrderResult).
+- [Get Order Results (Include Detail)](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/GetOrderResultsDetail.md): API reference for Get Order Results (Include Detail) (GetOrderResultDetail).
+- [Modify Order Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/ModifyPrice.md): API reference for Modify Order Price (ModifyPrice).
+- [Modify Order Lot](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/ModifyQuantity.md): API reference for Modify Order Lot (ModifyLot).
+- [Get Historical Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/OrderHistory.md): API reference for Get Historical Order (OrderHistory).
+- [PlaceOrder](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/csharp/trade/PlaceOrder.md): API reference for Place Order (PlaceOrder).
+- [Close Position Record](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/accountManagement/ClosePositionRecord.md): API reference for Close Position Record (closePositionRecord).
+- [Hybrid Position](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/accountManagement/HybridPosition.md): API reference for Hybrid Position (queryHybridPosition).
+- [Query Equity](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/accountManagement/QueryEquity.md): API reference for Query Equity (queryMarginEquity).
+- [Query Single Position](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/accountManagement/SinglePosition.md): API reference for Query Single Position (querySinglePosition).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/EnumMatrix.md): API reference for Enumerations (Class).
+- [Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/login/loginAPIKey.md): API reference for Login with API Key (apikeyLogin).
+- [Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/login/loginPassword.md): API reference for Login (login).
+- [Logout](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/logout.md): API reference for Logout (logout).
+- [Batch Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/batchOrder/BatchCancelOrder.md): API reference for Batch Cancel Order (batchCancelOrder).
+- [Batch Modify Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/batchOrder/BatchModifyPrice.md): API reference for Batch Modify Price (batchModifyPrice).
+- [Batch Modify Lot](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/batchOrder/BatchModifyQuantity.md): API reference for Batch Modify Lot (batchModifyLot).
+- [Get Batch Order Detail](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/batchOrder/BatchOrderDetail.md): API reference for Get Batch Order Detail (batchOrderDetail).
+- [Get Batch Order List](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/batchOrder/BatchOrderList.md): API reference for Get Batch Order List (batchOrderLists).
+- [Place Batch Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/batchOrder/BatchPlaceOrder.md): API reference for Place Batch Order (batchPlaceOrder).
+- [Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/CancelOrder.md): API reference for Cancel Order (cancelOrder).
+- [Convert Symbol](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/ConvertSymbol.md): API reference for Convert Symbol (converSymbol).
+- [Query Estimate Margin](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/EstimateMargin.md): API reference for Query Estimate Margin (queryEstimateMargin).
+- [Get Historical Filled](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/FilledHistory.md): API reference for Get Historical Filled (filledHistory).
+- [Get Order Results](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/GetOrderResults.md): API reference for Get Order Results (getOrderResults).
+- [Get Order Results (Include Detail)](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/GetOrderResultsDetail.md): API reference for Get Order Results (Include Detail) (getOrderResultsDetail).
+- [Modify Order Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/ModifyPrice.md): API reference for Modify Order Price (modifyPrice).
+- [Modify Order Lot](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/ModifyQuantity.md): API reference for Modify Order Lot (modifyLot).
+- [Get Historical Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/OrderHistory.md): API reference for Get Historical Order (orderHistory).
+- [PlaceOrder](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/nodejs/trade/PlaceOrder.md): API reference for PlaceOrder (placeOrder).
+- [Close Position Record](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/accountManagement/ClosePositionRecord.md): API reference for Close Position Record (close_position_record).
+- [Hybrid Position](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/accountManagement/HybridPosition.md): API reference for Hybrid Position (hybrid_position).
+- [Query Equity](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/accountManagement/QueryEquity.md): API reference for Query Equity (query_margin_equity).
+- [Query Single Position](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/accountManagement/SinglePosition.md): API reference for Query Single Position (query_single_position).
+- [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/EnumMatrix.md): API reference for Enumerations (Class).
+- [Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/login/loginAPIKey.md): API reference for Login with API Key (apikey_login).
+- [Login](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/login/loginPassword.md): API reference for Login (login).
+- [Logout](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/logout.md): API reference for Logout (logout).
+- [Batch Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/batchOrder/BatchCancelOrder.md): API reference for Batch Cancel Order (batch_cancel_Order).
+- [Batch Modify Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/batchOrder/BatchModifyPrice.md): API reference for Batch Modify Price (batch_modify_price).
+- [Batch Modify Lot](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/batchOrder/BatchModifyQuantity.md): API reference for Batch Modify Lot (batch_modify_lot).
+- [Get Batch Order Detail](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/batchOrder/BatchOrderDetail.md): API reference for Get Batch Order Detail (batch_order_detail).
+- [Get Batch Order List](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/batchOrder/BatchOrderList.md): API reference for Get Batch Order List (batch_order_lists).
+- [Place Batch Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/batchOrder/BatchPlaceOrder.md): API reference for Place Batch Order (batch_place_order).
+- [Cancel Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/CancelOrder.md): API reference for Cancel Order (cancel_order).
+- [Convert Symbol](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/ConvertSymbol.md): API reference for Convert Symbol (conver_symbol).
+- [Query Estimate Margin](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/EstimateMargin.md): API reference for Query Estimate Margin (query_estimate_margin).
+- [Get Historical Filled](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/FilledHistory.md): API reference for Get Historical Filled (filled_history).
+- [Get Order Results](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/GetOrderResults.md): API reference for Get Order Results (get_order_results).
+- [Get Order Results (Include Detail)](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/GetOrderResultsDetail.md): API reference for Get Order Results (Include Detail) (get_order_results_detail).
+- [Modify Order Price](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/ModifyPrice.md): API reference for Modify Order Price (modify_price).
+- [Modify Order Lot](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/ModifyQuantity.md): API reference for Modify Order Lot (modify_lot).
+- [Get Historical Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/OrderHistory.md): API reference for Get Historical Order (order_history).
+- [PlaceOrder](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/library/python/trade/PlaceOrder.md): API reference for PlaceOrder (place_order).
+- [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/prepare.md): Before starting with the Fubon Neo API, you must complete the following steps:".
+- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/quickstart.md): Please refer to the Preparation first and complete the application for the API Agreements and certificate download。.
+- [Rate Limit](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/trade-rate-limit.md): When the connection exceeds the limit, you will receive the following message during login:.
+- [FubonNeo API User Guide](https://www.fbs.com.tw/TradeAPI/en/docs/welcome.md): Before depart for your program trading journey, the following steps need to be completed.

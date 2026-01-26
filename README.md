@@ -1,0 +1,42 @@
+# Fubon NeoAPI Skill Refinement
+
+This repository is used to test and refine the `neoapi-python` skill bundle for AI coding assistants (Codex, Claude Code). The skill provides guidance for the Fubon Neo Python SDK, including trading and market data workflows.
+
+## Repo Layout
+
+- `skills/neoapi-python/` - The skill bundle (SKILL.md, references, llms*.txt, VERSION, INSTALL.md)
+- `update-skill.ps1` - Windows update helper (pulls from GitHub and installs to `~/.codex/skills/public/`)
+- `update-skill.sh` - macOS/Linux update helper
+
+## Compatibility
+
+The skill is packaged as plain files with a `SKILL.md` entry point. This keeps the bundle portable across AI platforms that accept local skill bundles or custom instruction folders. For non-Codex platforms, set the install destination to that platform’s skill/instruction folder (use the `INSTALL_DIR` parameter or env var in the update scripts).
+
+## Install
+
+See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `skills/` (no leading dot). End users install to:
+
+- Windows: `%USERPROFILE%\.codex\skills\public\neoapi-python`
+- macOS/Linux: `~/.codex/skills/public/neoapi-python`
+
+## Versioning
+
+The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.1` (Beta 1.0.0).
+
+## Updating from GitHub
+
+The update scripts download the repo zip from GitHub, copy `skills/neoapi-python` into the install location, and compare `VERSION` to skip if already up to date.
+
+Example:
+
+```powershell
+.\update-skill.ps1 -Repo yourorg/neoapi-skill
+```
+
+```bash
+./update-skill.sh yourorg/neoapi-skill
+```
+
+## Changelog
+
+- 2026-01-26: 1.0.0-beta.1 - Initial beta version, add update scripts, VERSION, and repo metadata.
