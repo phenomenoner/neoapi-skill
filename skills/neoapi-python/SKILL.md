@@ -53,6 +53,7 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 - Test credentials: ID from certificate; login password and cert password are `12345678`.
 - See `references/test-environment.md` for operational notes (trading hours, shared account caveats).
  - Python SDK is downloaded from the official site (not PyPI); install the wheel locally.
+ - Skill validation checklist: `references/skill-tests.md`.
 
 ## SDK Install (Quick Note)
 

@@ -1,0 +1,75 @@
+# Skill Validation Tests
+
+Use these tests to verify that an AI agent can apply the `neoapi-python` skill correctly after installation. Each test includes purpose, steps, and expected results. If a test fails, share the exact prompt, SDK version, Python version, and error output with the skill author.
+
+## Test 1: Test Environment Login (Smoke)
+
+**Purpose:** Confirm the agent can set up the test environment connection and log in.
+
+**Steps:**
+
+1) Install the SDK from the official wheel (not PyPI).
+2) Use the test environment URL and credentials:
+   - URL: `wss://neoapitest.fbs.com.tw/TASP/XCPXWS`
+   - ID: from test certificate (e.g., `41610792.pfx` → `41610792`)
+   - Login password: `12345678`
+   - Cert password: `12345678`
+3) Run a minimal script that logs in and prints accounts, then exits.
+
+**Expected:**
+
+- Login succeeds.
+- Account list includes at least stock + futopt accounts.
+
+## Test 2: Correct SDK Init Signature (Version Awareness)
+
+**Purpose:** Ensure the agent selects the correct `FubonSDK` constructor for v2.2.0 vs v2.2.1+.
+
+**Steps:**
+
+1) Ask the agent how to initialize the SDK for test environment.
+2) Verify it mentions both:
+   - v2.2.0 and earlier: `FubonSDK(url=...)`
+   - v2.2.1 and later: `FubonSDK(30, 2, url=...)`
+
+**Expected:**
+
+- The agent distinguishes the two signatures and explains when each applies.
+
+## Test 3: SDK Install Guidance (Wheel Only)
+
+**Purpose:** Confirm the agent does not recommend PyPI and points to the official wheel download.
+
+**Steps:**
+
+1) Ask: “How do I install the NeoAPI Python SDK?”
+
+**Expected:**
+
+- The agent says the SDK is not on PyPI.
+- It provides the official download URL and a local install example (e.g., `uv pip install <wheel>`).
+
+## Test 4: Market Data Reference Price Caveat
+
+**Purpose:** Ensure the agent understands the test environment’s reference price caveat.
+
+**Steps:**
+
+1) Ask: “Why is my order rejected in the test environment?”
+
+**Expected:**
+
+- The agent mentions middle-office reference price lag and suggests using reference price first.
+
+## How to Contribute New Tests
+
+When proposing a new test, include:
+
+- **Name**: short title
+- **Goal**: what the agent should do or explain
+- **Prereqs**: SDK version, Python version, required files
+- **Steps**: minimal, numbered
+- **Expected**: clear pass/fail criteria
+- **Artifacts**: logs, screenshots, or code snippets (if relevant)
+
+Keep tests small and focused. Prefer one concept per test.

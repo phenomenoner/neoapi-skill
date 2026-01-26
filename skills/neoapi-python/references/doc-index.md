@@ -82,6 +82,7 @@ Topics covered:
 ## Test Environment (Sandbox)
 
 - `references/test-environment.md` (summary from official PDF in the test bundle)
+ - `references/skill-tests.md` (validation checklist for skill consumers)
 
 ## Search Hints
 
