@@ -13,6 +13,8 @@ LLM-friendly outputs generated from the site build.
 - LLM full:
   - https://www.fbs.com.tw/TradeAPI/llms-full.txt
   - https://www.fbs.com.tw/TradeAPI/en/llms-full.txt
+- Test environment bundle (zip):
+  - https://www.fbs.com.tw/TradeAPI_SDK/sample_code/test_environment.zip
 
 Markdown access: append `.md` to any doc URL if the site publishes markdown endpoints.
 Example: https://www.fbs.com.tw/TradeAPI/docs/trading/prepare.md
@@ -74,6 +76,10 @@ Topics covered:
 - Async patterns for low-latency trading
 - FugleAPIError compatibility (old/new SDK)
 - Order placement and fill handling
+
+## Test Environment (Sandbox)
+
+- `references/test-environment.md` (summary from official PDF in the test bundle)
 
 ## Search Hints
 

@@ -44,6 +44,15 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 - Use `docs/market-data/http-api/getting-started.md` and `docs/market-data/websocket-api/getting-started.md`.
 - Mention connection setup and rate limits when relevant.
 
+## Testing / Sandbox
+
+- Official test bundle: `https://www.fbs.com.tw/TradeAPI_SDK/sample_code/test_environment.zip`
+- Use SDK v1.3.1+ and the test URL `wss://neoapitest.fbs.com.tw/TASP/XCPXWS`.
+- SDK v2.2.0 and earlier: `FubonSDK(url=...)`
+- SDK v2.2.1 and later: `FubonSDK(30, 2, url=...)` (30/2 are reference values).
+- Test credentials: ID from certificate; login password and cert password are `12345678`.
+- See `references/test-environment.md` for operational notes (trading hours, shared account caveats).
+
 ## Using llms.txt Outputs
 
 Prefer public URLs for external users. Use bundled files when the site endpoints are not available:
