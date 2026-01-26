@@ -54,6 +54,11 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 - See `references/test-environment.md` for operational notes (trading hours, shared account caveats).
  - Python SDK is downloaded from the official site (not PyPI); install the wheel locally.
 
+## SDK Install (Quick Note)
+
+- Python SDK is not on PyPI. Download the wheel from the official page and install locally.
+- SDK >= v2 works on Python 3.12–3.13 (avoid 3.14 for now).
+
 ## Using llms.txt Outputs
 
 Prefer public URLs for external users. Use bundled files when the site endpoints are not available:
