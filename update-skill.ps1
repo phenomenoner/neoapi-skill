@@ -1,5 +1,5 @@
 param(
-    [string]$Repo = "OWNER/REPO",
+    [string]$Repo = "phenomenoner/neoapi-skill",
     [string]$Branch = "main",
     [string]$SkillSubdir = "skills/neoapi-python",
     [string]$InstallDir = "$env:USERPROFILE\.codex\skills\public\neoapi-python",

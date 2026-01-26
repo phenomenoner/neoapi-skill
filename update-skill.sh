@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="${1:-OWNER/REPO}"
+REPO="${1:-phenomenoner/neoapi-skill}"
 BRANCH="${BRANCH:-main}"
 SKILL_SUBDIR="${SKILL_SUBDIR:-skills/neoapi-python}"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/.codex/skills/public/neoapi-python}"

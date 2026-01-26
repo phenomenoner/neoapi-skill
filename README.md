@@ -12,6 +12,10 @@ This repository is used to test and refine the `neoapi-python` skill bundle for 
 
 The skill is packaged as plain files with a `SKILL.md` entry point. This keeps the bundle portable across AI platforms that accept local skill bundles or custom instruction folders. For non-Codex platforms, set the install destination to that platform’s skill/instruction folder (use the `INSTALL_DIR` parameter or env var in the update scripts).
 
+## GitHub Repo
+
+- `https://github.com/phenomenoner/neoapi-skill`
+
 ## Install
 
 See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `skills/` (no leading dot). End users install to:
@@ -30,14 +34,15 @@ The update scripts download the repo zip from GitHub, copy `skills/neoapi-python
 Example:
 
 ```powershell
-.\update-skill.ps1 -Repo yourorg/neoapi-skill
+.\update-skill.ps1 -Repo phenomenoner/neoapi-skill
 ```
 
 ```bash
-./update-skill.sh yourorg/neoapi-skill
+./update-skill.sh phenomenoner/neoapi-skill
 ```
 
 ## Changelog
 
 - 2026-01-26: 1.0.0-beta.1 - Initial beta version, add update scripts, VERSION, and repo metadata.
 - 2026-01-26: 1.0.0-beta.1 - Clarify install paths and cross-platform compatibility notes.
+- 2026-01-26: 1.0.0-beta.1 - Initialize GitHub repo and set default update script repo.
