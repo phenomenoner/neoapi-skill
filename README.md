@@ -40,3 +40,4 @@ Example:
 ## Changelog
 
 - 2026-01-26: 1.0.0-beta.1 - Initial beta version, add update scripts, VERSION, and repo metadata.
+- 2026-01-26: 1.0.0-beta.1 - Clarify install paths and cross-platform compatibility notes.
