@@ -28,6 +28,7 @@ This folder contains a skill for AI coding assistants (Claude Code, Codex) that 
 - PowerShell (Windows) or Bash (macOS/Linux)
 - In this repo, the skill lives under `skills/` (not `.skills/`).
 - For other AI platforms, install the folder into that platform's skill/instruction directory.
+- Python SDK is distributed as a wheel from the official site (not PyPI).
 
 ### Step 1: Navigate to the skill folder (if using this repo)
 
@@ -84,6 +85,27 @@ ls ~/.codex/skills/public/neoapi-python/
 ### Step 4: Restart your AI assistant
 
 Restart Claude Code or Codex to load the new skill.
+
+---
+
+## SDK Install (Python)
+
+The NeoAPI Python SDK is **not** published on PyPI. Download the `.whl` from the official site (or use a user-provided wheel), then install locally.
+
+Official download page:
+
+- `https://www.fbs.com.tw/TradeAPI/docs/sdk/python/download?type=download`
+
+Example (Windows, using `uv`):
+
+```powershell
+uv venv .test\.venv
+uv pip install --python .test\.venv\Scripts\python.exe C:\path\to\fubon_neo-<version>-cp37-abi3-win_amd64.whl
+```
+
+Notes:
+
+- SDK >= v2 works on Python **3.12–3.13**; Python **3.14** is not supported yet.
 
 ---
 

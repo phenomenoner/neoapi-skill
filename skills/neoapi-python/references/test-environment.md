@@ -21,6 +21,7 @@ Source: `test_environment.zip` from the official SDK sample link.
 - Install into a virtual environment (recommended):
   - `uv venv .test\.venv`
   - `uv pip install --python .test\.venv\Scripts\python.exe <path-to-wheel>`
+- SDK >= v2 works with Python **3.12–3.13**; Python **3.14** is not supported yet.
 
 ## Credentials
 

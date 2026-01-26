@@ -7,7 +7,7 @@ description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused
 
 ## Overview
 
-Use this skill to answer questions or write code with the Fubon Neo Python SDK, prioritizing trading and market data. Keep solutions OS-agnostic (Windows/Linux/macOS) and align with Python ^3.12 and SDK ^2.2.7 unless the user specifies otherwise.
+Use this skill to answer questions or write code with the Fubon Neo Python SDK, prioritizing trading and market data. Keep solutions OS-agnostic (Windows/Linux/macOS) and align with Python 3.12–3.13 for SDK >= 2.x (avoid 3.14), and SDK ~2.2.7 unless the user specifies otherwise.
 
 ## Public Docs Access
 
