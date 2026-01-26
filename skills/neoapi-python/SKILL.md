@@ -52,6 +52,7 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 - SDK v2.2.1 and later: `FubonSDK(30, 2, url=...)` (30/2 are reference values).
 - Test credentials: ID from certificate; login password and cert password are `12345678`.
 - See `references/test-environment.md` for operational notes (trading hours, shared account caveats).
+ - Python SDK is downloaded from the official site (not PyPI); install the wheel locally.
 
 ## Using llms.txt Outputs
 

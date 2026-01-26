@@ -15,6 +15,8 @@ LLM-friendly outputs generated from the site build.
   - https://www.fbs.com.tw/TradeAPI/en/llms-full.txt
 - Test environment bundle (zip):
   - https://www.fbs.com.tw/TradeAPI_SDK/sample_code/test_environment.zip
+- Python SDK download page:
+  - https://www.fbs.com.tw/TradeAPI/docs/sdk/python/download?type=download
 
 Markdown access: append `.md` to any doc URL if the site publishes markdown endpoints.
 Example: https://www.fbs.com.tw/TradeAPI/docs/trading/prepare.md

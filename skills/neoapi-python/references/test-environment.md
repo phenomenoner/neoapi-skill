@@ -13,11 +13,21 @@ Source: `test_environment.zip` from the official SDK sample link.
   - C#/JS: `new FubonSDK(30, 2, "wss://neoapitest.fbs.com.tw/TASP/XCPXWS")`
   - Note: `30, 2` are reference values; adjust per official docs.
 
+## SDK Download & Install (Python)
+
+- The Python SDK is **not** published on PyPI; download the official wheel from:
+  - https://www.fbs.com.tw/TradeAPI/docs/sdk/python/download?type=download
+- Windows wheel example: `fubon_neo-2.2.7-cp37-abi3-win_amd64.whl`
+- Install into a virtual environment (recommended):
+  - `uv venv .test\.venv`
+  - `uv pip install --python .test\.venv\Scripts\python.exe <path-to-wheel>`
+
 ## Credentials
 
 - **Test account ID** = the ID shown on the test certificate.
 - **Login password** = `12345678`.
 - **Certificate password** = `12345678`.
+- In the sample bundle, the `.pfx` filenames are the IDs (e.g., `41610792.pfx`).
 
 ## Behavior Notes
 
@@ -48,3 +58,7 @@ Source: `test_environment.zip` from the official SDK sample link.
 ## Trading Session (Test)
 
 - Open hours: **09:30–19:00**.
+
+## Validation (Local Smoke Test)
+
+- 2026-01-26: Login succeeded using sample certificate `41610792.pfx`, returned stock and futures accounts.
