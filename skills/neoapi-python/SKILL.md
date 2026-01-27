@@ -18,7 +18,7 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
   - https://www.fbs.com.tw/TradeAPI/llms-full.txt
   - https://www.fbs.com.tw/TradeAPI/en/llms.txt
   - https://www.fbs.com.tw/TradeAPI/en/llms-full.txt
- - Note: The `.md` URL trick is no longer supported; rely on `llms.txt` and `llms-full.txt`.
+- Note: The `.md` URL trick is no longer supported; rely on `llms.txt` and `llms-full.txt`.
 
 ## Workflow Decision Tree
 
@@ -30,20 +30,20 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 
 ## Trading Workflow
 
-- Start from `docs/trading/prepare.mdx` and `docs/trading/quickstart.mdx` for setup.
+- Start from `docs/trading/prepare` and `docs/trading/quickstart` for setup.
 - Use Python library references under `docs/trading/library/python/` for exact function names, parameters, and return types.
 - Typical flow: login (password or API key) → place/modify/cancel order → query order/account info → logout.
-- Always mention rate limits when relevant (`docs/trading/trade-rate-limit.md`).
+- Always mention rate limits when relevant (`docs/trading/trade-rate-limit`).
 
 ## Market Data Workflow
 
 - Decide on **HTTP** vs **WebSocket**:
   - HTTP API for snapshots, intraday, historical.
   - WebSocket API for real-time streams.
-- Use `docs/market-data/http-api/getting-started.md` and `docs/market-data/websocket-api/getting-started.md`.
+- Use `docs/market-data/http-api/getting-started` and `docs/market-data/websocket-api/getting-started`.
 - Mention connection setup and rate limits when relevant.
 - To use `sdk.marketdata.rest_client`, call `sdk.init_realtime()` after login.
- - For limit-up/limit-down prices in market data, use `intraday.ticker` (not `intraday.quote`).
+- For limit-up/limit-down prices in market data, use `intraday.ticker` (not `intraday.quote`).
 
 ## Examples
 
