@@ -18,8 +18,7 @@ LLM-friendly outputs generated from the site build.
 - Python SDK download page:
   - https://www.fbs.com.tw/TradeAPI/docs/sdk/python/download?type=download
 
-Markdown access: append `.md` to any doc URL if the site publishes markdown endpoints.
-Example: https://www.fbs.com.tw/TradeAPI/docs/trading/prepare.md
+Markdown access via `.md` URL is no longer supported. Use `llms.txt` and `llms-full.txt` instead.
 
 ## Bundled (offline)
 

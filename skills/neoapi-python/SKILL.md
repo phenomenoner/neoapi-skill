@@ -13,13 +13,12 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 
 - Base site: https://www.fbs.com.tw/TradeAPI/
 - English locale: https://www.fbs.com.tw/TradeAPI/en/
-- Markdown pages: append `.md` to any doc URL if the site publishes markdown endpoints, for example:
-  - https://www.fbs.com.tw/TradeAPI/docs/trading/prepare.md
 - LLM indexes:
   - https://www.fbs.com.tw/TradeAPI/llms.txt
   - https://www.fbs.com.tw/TradeAPI/llms-full.txt
   - https://www.fbs.com.tw/TradeAPI/en/llms.txt
   - https://www.fbs.com.tw/TradeAPI/en/llms-full.txt
+ - Note: The `.md` URL trick is no longer supported; rely on `llms.txt` and `llms-full.txt`.
 
 ## Workflow Decision Tree
 
