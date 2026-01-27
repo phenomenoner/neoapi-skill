@@ -50,6 +50,15 @@ Source: `test_environment.zip` from the official SDK sample link.
 - You receive real-time quotes, but the **middle-office reference price** is not real-time.
 - Order price limits are enforced against the middle-office reference price.
 - To discover the reference price, place orders using the **reference price** first.
+- `intraday.quote` uses market data (prod) and may not match test environment prices.
+- For test environment limit prices, use `sdk.stock.query_symbol_quote(account, symbol)` and read `limitdown_price` / `limitup_price`.
+
+## Market Data Access (HTTP)
+
+- After login, call `sdk.init_realtime()` before using `sdk.marketdata.rest_client`.
+- Example:
+  - `sdk.init_realtime()`
+  - `reststock = sdk.marketdata.rest_client.stock`
 
 ## Trade Testing Tips
 

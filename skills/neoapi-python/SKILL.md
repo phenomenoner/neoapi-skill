@@ -42,6 +42,7 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
   - WebSocket API for real-time streams.
 - Use `docs/market-data/http-api/getting-started.md` and `docs/market-data/websocket-api/getting-started.md`.
 - Mention connection setup and rate limits when relevant.
+- To use `sdk.marketdata.rest_client`, call `sdk.init_realtime()` after login.
 
 ## Examples
 
@@ -57,6 +58,7 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 - See `references/test-environment.md` for operational notes (trading hours, shared account caveats).
  - Python SDK is downloaded from the official site (not PyPI); install the wheel locally.
  - Skill validation checklist: `references/skill-tests.md`.
+ - For limit-down/limit-up in test env, prefer `sdk.stock.query_symbol_quote` (test environment data). `intraday.quote` uses market data (prod) and may differ.
 
 ## SDK Install (Quick Note)
 

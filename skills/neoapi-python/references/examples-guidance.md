@@ -31,6 +31,7 @@ Match SDK calls to the official docs (via `references/doc-index.md`):
 - Stock orders: `docs/trading/library/python/trade/`
 - Account info: `docs/trading/library/python/accountManagement/`
 - Market data (HTTP/WS): `docs/market-data/http-api/*`, `docs/market-data/websocket-api/*`
+  - For HTTP market data, ensure `sdk.init_realtime()` is called before `sdk.marketdata.rest_client`.
 
 ## 5) Order Placement Checklist
 
@@ -58,6 +59,7 @@ Missing callbacks often look like “silent success” without notifications.
 - **Wrong account type** (stock vs futopt).
 - **Missing cert path / invalid cert password**.
 - **Price limits** in test env (use reference price first).
+- **Market data mismatch**: `intraday.quote` uses prod data; use `sdk.stock.query_symbol_quote` for test env limit prices.
 - **Trading hours** (test env 09:30–19:00).
 - **Python version**: SDK >= v2 supports 3.12–3.13, not 3.14.
 
