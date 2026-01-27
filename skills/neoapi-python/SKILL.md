@@ -44,6 +44,10 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 - Use `docs/market-data/http-api/getting-started.md` and `docs/market-data/websocket-api/getting-started.md`.
 - Mention connection setup and rate limits when relevant.
 
+## Examples
+
+- Use `references/examples-guidance.md` to map SDK calls to docs and avoid common modification pitfalls.
+
 ## Testing / Sandbox
 
 - Official test bundle: `https://www.fbs.com.tw/TradeAPI_SDK/sample_code/test_environment.zip`

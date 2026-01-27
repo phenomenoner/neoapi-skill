@@ -79,6 +79,10 @@ Topics covered:
 - FugleAPIError compatibility (old/new SDK)
 - Order placement and fill handling
 
+## Examples
+
+- `references/examples-guidance.md` (code reading + modification checklist)
+
 ## Test Environment (Sandbox)
 
 - `references/test-environment.md` (summary from official PDF in the test bundle)
