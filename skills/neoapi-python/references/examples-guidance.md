@@ -59,9 +59,10 @@ Missing callbacks often look like “silent success” without notifications.
 - **Wrong account type** (stock vs futopt).
 - **Missing cert path / invalid cert password**.
 - **Price limits** in test env (use reference price first).
-- **Market data mismatch**: `intraday.quote` uses prod data; use `sdk.stock.query_symbol_quote` for test env limit prices.
+- **Market data mismatch**: `intraday.quote` is trade data; use `intraday.ticker` for prod limit prices and `sdk.stock.query_symbol_quote` for test env limit prices.
 - **Trading hours** (test env 09:30–19:00).
 - **Python version**: SDK >= v2 supports 3.12–3.13, not 3.14.
+- **Order status**: canceled orders still appear in `get_order_results` with status `30`.
 
 ## 8) When Changing Examples
 

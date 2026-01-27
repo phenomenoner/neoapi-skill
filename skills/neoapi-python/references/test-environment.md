@@ -35,6 +35,7 @@ Source: `test_environment.zip` from the official SDK sample link.
 - You can test market data and order placement after login.
 - Because this is a shared test account, account balances are **not** real and may look incorrect.
 - Test inventory is pre-seeded and **resets daily** (no carry-over after trades).
+- Canceled orders remain visible in `get_order_results`; status `30` means the order is canceled.
 
 ## Pre-seeded Test Inventory
 
@@ -50,8 +51,8 @@ Source: `test_environment.zip` from the official SDK sample link.
 - You receive real-time quotes, but the **middle-office reference price** is not real-time.
 - Order price limits are enforced against the middle-office reference price.
 - To discover the reference price, place orders using the **reference price** first.
-- `intraday.quote` uses market data (prod) and may not match test environment prices.
-- For test environment limit prices, use `sdk.stock.query_symbol_quote(account, symbol)` and read `limitdown_price` / `limitup_price`.
+- `intraday.quote` is trade data and uses market data (prod); it may not match test environment prices.
+- For prod limit prices, use `intraday.ticker`. For test environment limit prices, use `sdk.stock.query_symbol_quote(account, symbol)` and read `limitdown_price` / `limitup_price`.
 
 ## Market Data Access (HTTP)
 

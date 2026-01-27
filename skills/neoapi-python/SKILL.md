@@ -43,6 +43,7 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 - Use `docs/market-data/http-api/getting-started.md` and `docs/market-data/websocket-api/getting-started.md`.
 - Mention connection setup and rate limits when relevant.
 - To use `sdk.marketdata.rest_client`, call `sdk.init_realtime()` after login.
+ - For limit-up/limit-down prices in market data, use `intraday.ticker` (not `intraday.quote`).
 
 ## Examples
 
