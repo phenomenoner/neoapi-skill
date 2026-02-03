@@ -3,8 +3,7 @@
 *.log
 .env
 .env.*
-TODO.md
-.test/
+.*/
 log/
 .DS_Store
 Thumbs.db

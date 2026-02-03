@@ -60,3 +60,6 @@ Example:
 - 2026-01-27: 1.0.0-beta.12 - Clarify market data init and test-vs-prod limit price guidance.
 - 2026-01-27: 1.0.0-beta.13 - Clarify intraday.ticker usage and order status behavior in test env.
 - 2026-01-27: 1.0.0-beta.14 - Update doc paths (no .md) and add integrated test result notes.
+- 2026-02-03: 1.0.0-beta.15 - Add Usage Cheat Sheet to SKILL.md (Quickstart, Enums) and Shioaji migration guide.
+- 2026-02-03: 1.0.0-beta.16 - Add "Crafting Migration Experience" log and "Agent Instruction for Migration" guide.
+- 2026-02-03: 1.0.0-beta.17 - Add Localization and Bilingual Terminology to SKILL.md.

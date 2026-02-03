@@ -11,14 +11,61 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 
 ## Public Docs Access
 
-- Base site: https://www.fbs.com.tw/TradeAPI/
-- English locale: https://www.fbs.com.tw/TradeAPI/en/
+- Base site: <https://www.fbs.com.tw/TradeAPI/>
+- English locale: <https://www.fbs.com.tw/TradeAPI/en/>
 - LLM indexes:
-  - https://www.fbs.com.tw/TradeAPI/llms.txt
-  - https://www.fbs.com.tw/TradeAPI/llms-full.txt
-  - https://www.fbs.com.tw/TradeAPI/en/llms.txt
-  - https://www.fbs.com.tw/TradeAPI/en/llms-full.txt
+  - <https://www.fbs.com.tw/TradeAPI/llms.txt>
+  - <https://www.fbs.com.tw/TradeAPI/llms-full.txt>
+  - <https://www.fbs.com.tw/TradeAPI/en/llms.txt>
+  - <https://www.fbs.com.tw/TradeAPI/en/llms-full.txt>
 - Note: The `.md` URL trick is no longer supported; rely on `llms.txt` and `llms-full.txt`.
+
+## Usage Cheat Sheet
+
+### Quickstart (Trading)
+
+```python
+from fubon_neo.sdk import FubonSDK, Order, Mode
+from fubon_neo.constant import BSAction, MarketType, PriceType, TimeInForce, OrderType
+
+# Init & Login
+sdk = FubonSDK()  # Use FubonSDK(30, 2) if on SDK 2.2.1+
+accounts = sdk.login("ID", "PWD", "C:/path/to/cert.pfx", "CertPWD")
+acc = accounts.data[0] # Pick stock account
+
+# Place Order (Buy 1000 shares of 2330 at Limit 580)
+order = Order(
+    BSAction.Buy, "2330", 1000,
+    MarketType.Common, PriceType.Limit, TimeInForce.ROD, OrderType.Stock,
+    price="580"
+)
+res = sdk.stock.place_order(acc, order)
+print(f"Order: {res.data.order_no}")
+```
+
+### Critical Constants
+
+| Category | Class | Common Values |
+| :--- | :--- | :--- |
+| **Action** | `BSAction` | `.Buy`, `.Sell` |
+| **Price** | `PriceType` | `.Limit` (限價), `.Market` (市價), `.Reference` (參考價) |
+| **Time** | `TimeInForce` | `.ROD` (當日有效), `.IOC` (立即成交否則取消), `.FOK` (全部成交否則取消) |
+| **Market** | `MarketType` | `.Common` (整股), `.IntradayOdd` (盤中零股), `.Odd` (盤後零股) |
+| **Order** | `OrderType` | `.Stock` (現股), `.MarginTrading` (融資), `.ShortSelling` (融券) |
+
+### Validating Prices
+
+Real-time quotes (`intraday.quote`) may differ from valid order prices (especially in Test Env).
+
+- **For Orders**: Always check `sdk.stock.query_symbol_quote(acc, symbol)`.
+  - Use `limit_up_price` / `limit_down_price` from this result for placing limit orders.
+  - This source reflects the *order system's* view of validity.
+- **For Display**: Use `sdk.marketdata.rest_client.stock.intraday.quote(symbol)`.
+
+### Rate Limits (Summary)
+
+- **REST**: 300 req/min (IP-based).
+- **WebSocket**: 200 subscriptions per connection.
 
 ## Workflow Decision Tree
 
@@ -57,9 +104,9 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 - SDK v2.2.1 and later: `FubonSDK(30, 2, url=...)` (30/2 are reference values).
 - Test credentials: ID from certificate; login password and cert password are `12345678`.
 - See `references/test-environment.md` for operational notes (trading hours, shared account caveats).
- - Python SDK is downloaded from the official site (not PyPI); install the wheel locally.
- - Skill validation checklist: `references/skill-tests.md`.
- - For limit-down/limit-up in test env, prefer `sdk.stock.query_symbol_quote` (test environment data). `intraday.quote` uses market data (prod) and may differ.
+- Python SDK is downloaded from the official site (not PyPI); install the wheel locally.
+- Skill validation checklist: `references/skill-tests.md`.
+- For limit-down/limit-up in test env, prefer `sdk.stock.query_symbol_quote` (test environment data). `intraday.quote` uses market data (prod) and may differ.
 
 ## SDK Install (Quick Note)
 
@@ -71,10 +118,10 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 Prefer public URLs for external users. Use bundled files when the site endpoints are not available:
 
 - Public:
-  - https://www.fbs.com.tw/TradeAPI/llms.txt
-  - https://www.fbs.com.tw/TradeAPI/llms-full.txt
-  - https://www.fbs.com.tw/TradeAPI/en/llms.txt
-  - https://www.fbs.com.tw/TradeAPI/en/llms-full.txt
+  - <https://www.fbs.com.tw/TradeAPI/llms.txt>
+  - <https://www.fbs.com.tw/TradeAPI/llms-full.txt>
+  - <https://www.fbs.com.tw/TradeAPI/en/llms.txt>
+  - <https://www.fbs.com.tw/TradeAPI/en/llms-full.txt>
 - Bundled (offline):
   - `llms.txt`
   - `llms-full.txt`
@@ -100,3 +147,19 @@ For production-tested patterns, see `references/implementation-practices.md`. Ke
 - **Source docs (maintainers)**: `docs/` and `i18n/en/docusaurus-plugin-content-docs/current`
 
 When code or docs need updating, mirror changes in the English localization if the content is user-facing.
+
+## Language & Localization
+
+- **Source of Truth**: The primary documentation `llms-full.txt` is in **Traditional Chinese**.
+- **Response Style**:
+  - If the user asks in Chinese, answer in Chinese with English code comments.
+  - If the user asks in English, answer in English but provide the Chinese Terminology in parenthesis for clarity (e.g., "ROD (當日有效)").
+- **Terminology Mapping**:
+  - **Limit Order**: 限價 (LMT)
+  - **Market Order**: 市價 (MKT)
+  - **ROD**: 當日有效
+  - **IOC**: 立即成交否則取消
+  - **FOK**: 全部成交否則取消
+  - **Margin Trading**: 融資
+  - **Short Selling**: 融券
+  - **Day Trade**: 當沖
