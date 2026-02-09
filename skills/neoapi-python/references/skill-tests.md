@@ -77,6 +77,32 @@ Use these tests to verify that an AI agent can apply the `neoapi-python` skill c
 - `place_order` returns success (or a clear error if outside test hours).
 - At least one order-related callback prints a notification.
 
+## Regression Suites (Local)
+
+Use the local runner for repeatable integration checks (kept in `.test/`, not published in the skill bundle):
+
+- Script: `.test/test_runner.py`
+- Output:
+  - text log: `.test/logs/test_runner_<suite>_<timestamp>.log`
+  - JSON summary: `.test/logs/test_runner_<suite>_<timestamp>.json`
+
+Recommended command:
+
+```powershell
+$env:NEOAPI_TEST_ID = "41610792"
+$env:NEOAPI_TEST_CERT_PATH = "D:\path\to\41610792.pfx"
+$env:NEOAPI_TEST_PASSWORD = "12345678"
+$env:NEOAPI_TEST_CERT_PASSWORD = "12345678"
+& .\.test\.venv\Scripts\python.exe .\.test\test_runner.py --suite all --symbol 2883
+```
+
+Suite intent:
+
+- `smoke`: login + basic market/trade path
+- `pre_1330`: emphasize realtime marketdata behavior
+- `post_1330`: tolerate stale marketdata after realtime close
+- `all`: full lifecycle (place/find/modify/cancel/verify + marketdata comparison)
+
 ## How to Contribute New Tests
 
 When proposing a new test, include:
@@ -99,3 +125,12 @@ Keep tests small and focused. Prefer one concept per test.
   - Test 4: Pass (validated against official test-environment PDF notes)
   - Test 5: Pass (order placed for 2881 with PriceType.Reference; order callback received; reference price returned 46)
     - Note: user_def length over 10 triggers a warning and is truncated by the system.
+- 2026-02-09:
+  - Runner: `.test/test_runner.py --suite all --symbol 2883`
+  - Result: Pass (16 pass / 0 fail / 0 skip)
+  - Log: `.test/logs/test_runner_all_20260209_131437.log`
+  - JSON: `.test/logs/test_runner_all_20260209_131437.json`
+  - Verified:
+    - `intraday.ticker` vs `query_symbol_quote` price limits may differ (expected in test env).
+    - Modify-below-limitdown is rejected with expected error path.
+    - Canceled order remains visible in `get_order_results` with status `30`.

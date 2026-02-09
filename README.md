@@ -25,7 +25,7 @@ See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `ski
 
 ## Versioning
 
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.20` (Beta 1.0.0).
+The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.21` (Beta 1.0.0).
 
 ## Multi-Agent Adapters
 
@@ -62,6 +62,11 @@ Example:
 ./update-skill.sh phenomenoner/neoapi-skill
 ```
 
+## Local Regression Testing
+
+- Local integrated runner: `.test/test_runner.py` (not included in published skill bundle).
+- Logs are written to `.test/logs/` as both text and JSON summaries.
+
 ## Changelog
 
 - 2026-01-26: 1.0.0-beta.1 - Initial beta version, add update scripts, VERSION, and repo metadata.
@@ -87,3 +92,4 @@ Example:
 - 2026-02-09: 1.0.0-beta.18 - Add Build-with-LLM links and prioritize online llms*.txt endpoints in skill docs.
 - 2026-02-09: 1.0.0-beta.19 - Refresh bundled llms*.txt from official endpoints and normalize doc paths to extensionless format.
 - 2026-02-09: 1.0.0-beta.20 - Add root adapters (CLAUDE.md, GEMINI.md, AGENTS.md) for multi-agent support.
+- 2026-02-09: 1.0.0-beta.21 - Add local regression suite documentation and record full-suite validation.

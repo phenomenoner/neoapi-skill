@@ -69,6 +69,7 @@ Source: `test_environment.zip` from the official SDK sample link.
 ## Trading Session (Test)
 
 - Open hours: **09:30–19:00**.
+- Marketdata realtime session commonly closes around **13:30**; after that, marketdata assertions should allow stale snapshots.
 
 ## Validation (Local Smoke Test)
 
@@ -77,3 +78,4 @@ Source: `test_environment.zip` from the official SDK sample link.
   - Placed 3000 units, modified qty to 2000, modified price to limit-down (8.89) using `query_symbol_quote`, then canceled (status 30).
   - `intraday.quote` returned prod data (reference 18.3) and no limit-down; `query_symbol_quote` returned test limits.
   - Canceled orders remain visible in `get_order_results` with status 30.
+- 2026-02-09: Local regression runner (`.test/test_runner.py`) full suite passed for symbol 2883.
