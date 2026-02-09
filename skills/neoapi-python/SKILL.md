@@ -13,6 +13,8 @@ Use this skill to answer questions or write code with the Fubon Neo Python SDK, 
 
 - Base site: <https://www.fbs.com.tw/TradeAPI/>
 - English locale: <https://www.fbs.com.tw/TradeAPI/en/>
+- Build with LLM (zh): <https://www.fbs.com.tw/TradeAPI/docs/welcome/build-with-llm>
+- Build with LLM (en): <https://www.fbs.com.tw/TradeAPI/en/docs/welcome/build-with-llm/>
 - LLM indexes:
   - <https://www.fbs.com.tw/TradeAPI/llms.txt>
   - <https://www.fbs.com.tw/TradeAPI/llms-full.txt>
@@ -115,7 +117,7 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 
 ## Using llms.txt Outputs
 
-Prefer public URLs for external users. Use bundled files when the site endpoints are not available:
+Prefer public URLs as the primary source. Use bundled files as offline fallback:
 
 - Public:
   - <https://www.fbs.com.tw/TradeAPI/llms.txt>

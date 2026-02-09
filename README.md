@@ -25,7 +25,18 @@ See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `ski
 
 ## Versioning
 
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.14` (Beta 1.0.0).
+The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.19` (Beta 1.0.0).
+
+## LLM Docs (Online)
+
+The official LLM-oriented pages and `llms*.txt` endpoints are available online and should be treated as primary references:
+
+- `https://www.fbs.com.tw/TradeAPI/docs/welcome/build-with-llm`
+- `https://www.fbs.com.tw/TradeAPI/en/docs/welcome/build-with-llm/`
+- `https://www.fbs.com.tw/TradeAPI/llms.txt`
+- `https://www.fbs.com.tw/TradeAPI/llms-full.txt`
+- `https://www.fbs.com.tw/TradeAPI/en/llms.txt`
+- `https://www.fbs.com.tw/TradeAPI/en/llms-full.txt`
 
 ## Updating from GitHub
 
@@ -63,3 +74,5 @@ Example:
 - 2026-02-03: 1.0.0-beta.15 - Add Usage Cheat Sheet to SKILL.md (Quickstart, Enums) and Shioaji migration guide.
 - 2026-02-03: 1.0.0-beta.16 - Add "Crafting Migration Experience" log and "Agent Instruction for Migration" guide.
 - 2026-02-03: 1.0.0-beta.17 - Add Localization and Bilingual Terminology to SKILL.md.
+- 2026-02-09: 1.0.0-beta.18 - Add Build-with-LLM links and prioritize online llms*.txt endpoints in skill docs.
+- 2026-02-09: 1.0.0-beta.19 - Refresh bundled llms*.txt from official endpoints and normalize doc paths to extensionless format.

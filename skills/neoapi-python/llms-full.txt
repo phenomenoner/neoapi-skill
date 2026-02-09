@@ -6,27 +6,35 @@
 
 ***
 
-info
+本頁重點
 
-最新版本 **v2.2.7**
+* 提供富邦新一代 API（Fubon Neo API）各語言 SDK 下載。
+* 最新版本為 **v2.2.8**，並提供[版本遷移資訊](#%E7%89%88%E6%9C%AC%E9%81%B7%E7%A7%BB%E8%B3%87%E8%A8%8A)。
+* API Key 登入支援 >= v2.2.7，網頁憑證匯出登入支援 >= v2.2.8。
+* 安裝步驟與相容性總覽請見[安裝與版本相容性](https://www.fbs.com.tw/TradeAPI/docs/install-compatibility.md)。
 
-支援語言：Python、C#、JavaScript、C++、Golang
+| 項目         | 說明                                                                       |
+| ------------ | -------------------------------------------------------------------------- |
+| 最新版本     | v2.2.8                                                                     |
+| 支援語言     | Python / C# / JavaScript (Node.js) / C++、Go（僅支援證券交易帳務及條件單） |
+| 支援平台     | 依語言提供 Windows / macOS / Linux 版本                                    |
+| API Key 登入 | >= v2.2.7                                                                  |
+| 憑證匯出登入 | >= v2.2.8                                                                  |
 
-[版本遷移資訊](#%E7%89%88%E6%9C%AC%E9%81%B7%E7%A7%BB%E8%B3%87%E8%A8%8A)
+相關資訊
 
-測試環境
+1. 新一代 API 提供測試環境，詳情請見 [快速上手](https://www.fbs.com.tw/TradeAPI/docs/welcome.md#%E6%B8%AC%E8%A9%A6%E7%92%B0%E5%A2%83) 頁面 <br />
+2. [網頁憑證匯出](https://www.fbs.com.tw/TradeAPI/docs/key.md)可用於API 登入 (版本要求 >= v2.2.8)
 
-新一代API提供測試環境，詳情請見 [快速上手](https://www.fbs.com.tw/TradeAPI/docs/welcome.md#%E6%B8%AC%E8%A9%A6%E7%92%B0%E5%A2%83) 頁面
+API Key 登入 >= v2.2.7
 
-API-KEY登入 >= v2.2.7
-
-* [API-Key說明](https://www.fbs.com.tw/TradeAPI/docs/trading/api-key-apply.md) <br />
-* [API-Key申請](https://www.fbs.com.tw/TradeAPI/docs/key.md)
+* [API Key 說明](https://www.fbs.com.tw/TradeAPI/docs/trading/api-key-apply.md) <br />
+* [API Key 申請](https://www.fbs.com.tw/TradeAPI/docs/key.md)
 
 版本注意事項 **>=2.2.4**
 
 1. 新增證券委託單 user\_def 欄位輸入規則檢核提醒 <br />
-   a. 僅可使用 ***ASCII 33-126*** 範圍中字元，最多 10 個字元 <br />
+   a. 僅可使用 ***大小寫英文字母及0~9數字***，最多 10 個字元 (***規則更新 >=2.2.8***) <br />
    b. 若字元合規但長度超過 10 字元，將自動縮減至 10 字元並帶入下單；交易 event callback 發送提醒訊息 <br />
    c. 若字元不合規，則自動將 user\_def 帶入空值；交易 event callback 發送提醒訊息 <br />
 
@@ -46,24 +54,24 @@ API-KEY登入 >= v2.2.7
 
 ##### Python[​](#python "Direct link to Python")
 
-支援 3.8、3.9、3.10、3.11 與 3.12版本，v2.0.1 後不支援 Python 3.7
+支援 3.8、3.9、3.10、3.11、3.12 與 3.13 版本，v2.0.1 後不支援 Python 3.7（目前不支援 3.14）
 
 **SDK:**
 
-* Windows 64 位元 [下載](https://www.fbs.com.tw/TradeAPI/xxxx/fubon_neo-0.0.11-cp37-abi3-win_amd64.whl.zip)
+* Windows 64 位元 [下載](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon_neo-2.2.8-cp37-abi3-win_amd64.zip)
 
 * MacOs
 
   <!-- -->
 
-  * Arm 64 位元 [下載](https://www.fbs.com.tw/TradeAPI/xxxx/fubon_neo-0.0.11-cp37-abi3-macosx_11_0_arm64.whl.zip)
-  * X86 64 位元 [下載](https://www.fbs.com.tw/TradeAPI/xxxx/fubon_neo-0.0.11-cp37-abi3-macosx_10_7_x86_64.whl.zip)
+  * Arm 64 位元 [下載](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon_neo-2.2.8-cp37-abi3-macosx_11_0_arm64.zip)
+  * X86 64 位元 [下載](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon_neo-2.2.8-cp37-abi3-macosx_10_12_x86_64.zip)
 
-* Linux 64 位元 [下載](https://www.fbs.com.tw/TradeAPI/xxxx/fubon_neo-0.0.11-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.zip)
+* Linux 64 位元 [下載](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon_neo-2.2.8-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.zip)
 
 info
 
-**範例程式碼：** [Python 範例程式碼](https://www.fbs.com.tw/TradeAPI/xxx) (.ipynb, Jupyter 互動開發格式, 需搭配 SDK 使用)
+**範例程式碼：** [Python 範例程式碼](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/python_sample_code.zip) (.ipynb, Jupyter 互動開發格式, 需搭配 SDK 使用)
 
 ##### JavaScript[​](#javascript "Direct link to JavaScript")
 
@@ -71,11 +79,11 @@ info
 
 **SDK:**
 
-* Fubon-Neo.tgz [下載](https://www.fbs.com.tw/TradeAPI/xxxx/fubon-neo-0.0.11.tgz.zip)
+* Fubon-Neo.tgz [下載](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon-neo-2.2.8.nodejs.zip)
 
 info
 
-**範例程式碼：** [JS 範例程式碼](https://www.fbs.com.tw/TradeAPI/xxxx/fubon-neo-0.0.11.tgz.zip) (.ipynb, Jupyter 互動開發格式, 需搭配 SDK 使用)
+**範例程式碼：** [JS 範例程式碼](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/js_sample_code.zip) (.ipynb, Jupyter 互動開發格式, 需搭配 SDK 使用)
 
 ##### C#[​](#c "Direct link to C#")
 
@@ -83,29 +91,46 @@ info
 
 **SDK:**
 
-* nupkg(64 位元) [下載](https://www.fbs.com.tw/TradeAPI/xxxx/FubonNeo.0.0.11.nupkg.zip)
+* nupkg(64 位元) [下載](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/FubonNeo.2.2.8.nupkg.zip)
 
 info
 
-**範例程式碼：** [C# 下單範例程式碼](https://www.fbs.com.tw/TradeAPI/xxxx/FubonNeo.0.0.11.nupkg.zip) (Visual Studio 專案範例 (WPF), 需搭配 SDK 使用)<br />**範例程式碼：** [C# 行情及帳務範例程式碼](https://www.fbs.com.tw/TradeAPI/aa.zip) (Visual Studio 專案範例 (Windows Forms), 需搭配 SDK 使用)
+**範例程式碼：** [C# 下單範例程式碼](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/fubondotnetsdkgui.zip) (Visual Studio 專案範例 (WPF), 需搭配 SDK 使用)<br />**範例程式碼：** [C# 行情及帳務範例程式碼](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/marketdata_n_accounting.zip) (Visual Studio 專案範例 (Windows Forms), 需搭配 SDK 使用)
 
 ##### C++[​](#c-1 "Direct link to C++")
 
 支援 C++ 20 及以上版本
 
-* [SDK及範例程式碼下載](https://www.fbs.com.tw/TradeAPI/xxx/西加加SDK大禮包.zip)
-* [說明文件下載](https://www.fbs.com.tw/TradeAPI/xxx/西加加說明書大禮包.zip)
+* [SDK及範例程式碼下載](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/FubonNeo.2.2.8_CppSDKPackage.zip)
 
 ##### Golang[​](#golang "Direct link to Golang")
 
-* [SDK及範例程式碼下載](https://www.fbs.com.tw/TradeAPI/xxx/勾欄SDK大禮包.zip)
-* [說明文件下載](https://www.fbs.com.tw/TradeAPI/xxx/勾欄說明書大禮包.zip)
+* [SDK及範例程式碼下載](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon-neo-2.2.8.golang.zip)
 
 #### 連線測試[​](#連線測試 "Direct link to 連線測試")
 
-**連線測試小幫手：** [程式下載](https://www.fbs.com.tw/TradeAPI/xxxx/FubonNeo_login_test.zip) (Windows平台使用)
+**連線測試小幫手：** [程式下載](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/API_Sign_Test.zip) (Windows平台使用)
 
 #### 版本遷移資訊[​](#版本遷移資訊 "Direct link to 版本遷移資訊")
+
+##### 2.2.8[​](#228 "Direct link to 2.2.8")
+
+* 證券
+
+  <!-- -->
+
+  1. 行情新增**股務事件**資料API
+  2. [歷史行情 Candles](https://www.fbs.com.tw/TradeAPI/docs/market-data/http-api/historical/candles.md)新增**還原股價**選項
+
+* 新增 [LLM 輔助開發](https://www.fbs.com.tw/TradeAPI/docs/welcome/build-with-llm.md) 頁面
+
+版本注意事項 **>=2.2.8**
+
+1. 新增證券委託單 user\_def 欄位輸入規則檢核提醒<br />a. 僅可使用 ***大小寫英文字母及0~9數字***，最多 10 個字元 (***規則更新 >=2.2.8***)<br />
+
+2. API Key 權限變更強制斷線機制，調整為僅限於受變更影響之 key<br />(例：使用key1、key2同時登入上線，刪除 key1 => key1 session 強制斷線； key2 session 不受影響)<br />
+
+3. [網頁憑證匯出](https://www.fbs.com.tw/TradeAPI/docs/key.md)可用於 API 登入
 
 ##### 2.2.7[​](#227 "Direct link to 2.2.7")
 
@@ -113,13 +138,13 @@ info
 
 info
 
-* [API-Key說明](https://www.fbs.com.tw/TradeAPI/docs/trading/api-key-apply.md) <br />
-* [API-Key申請](https://www.fbs.com.tw/TradeAPI/docs/key.md)
+* [API Key 說明](https://www.fbs.com.tw/TradeAPI/docs/trading/api-key-apply.md) <br />
+* [API Key 申請](https://www.fbs.com.tw/TradeAPI/docs/key.md)
 
 ##### 2.2.6[​](#226 "Direct link to 2.2.6")
 
 * SDK 新增 Golang 版本 (證券交易及帳務)
-* 證券 行情 Web API新增技術指標
+* 證券 行情 Web API 新增技術指標
 
 ##### 2.2.5[​](#225 "Direct link to 2.2.5")
 
@@ -203,18 +228,178 @@ info
 
 ---
 
+### 安裝與版本相容性
+
+本頁重點
+
+* 支援語言：Python / C# / JavaScript (Node.js) / C++、Go（僅支援證券交易帳務及條件單）。
+* 最低版本：Python 3.8–3.13（不含 3.14）、Node.js 16+、.NET Standard 2.0、C++20+、Go 1.19+。
+* SDK 下載位置：請見 [SDK 下載](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk.md)。
+* 本頁提供最小安裝步驟與版本相容性總覽。
+
+#### 支援環境與版本相容性[​](#支援環境與版本相容性 "Direct link to 支援環境與版本相容性")
+
+| 語言                 | 最低版本              | 支援 OS                 | 安裝方式        | 備註                                         |
+| -------------------- | --------------------- | ----------------------- | --------------- | -------------------------------------------- |
+| Python               | 3.8–3.13（v2.0.1 起） | Windows / macOS / Linux | `.whl`          | v2.0.1 起停止支援 Python 3.7；不支援 3.14    |
+| JavaScript (Node.js) | 16+                   | Windows / macOS / Linux | `.tgz` 本地依賴 | 以 Node.js 套件方式安裝                      |
+| C#                   | .NET Standard 2.0     | Windows                 | `.nupkg`        | 建議 .NET Core 3.1+ 或 .NET Framework 4.7.2+ |
+| C++                  | C++20+                | Windows / macOS / Linux | SDK 檔案        | 僅支援證券交易帳務及條件單                   |
+| Go                   | 1.19+                 | Windows / macOS / Linux | SDK 檔案        | 僅支援證券交易帳務及條件單                   |
+
+#### 安裝流程（精簡版）[​](#安裝流程精簡版 "Direct link to 安裝流程（精簡版）")
+
+##### Python[​](#python "Direct link to Python")
+
+1. 下載對應平台的 `.whl`。
+2. 安裝：
+
+```bash
+pip install fubon_neo-<version>-cp37-abi3-win_amd64.whl
+
+```
+
+##### JavaScript (Node.js)[​](#javascript-nodejs "Direct link to JavaScript (Node.js)")
+
+1. 下載 `.tgz` 並放入專案資料夾。
+2. `package.json` 加入：
+
+```json
+"dependencies": {
+  "fubon-neo": "file://<path-to-js-binary>/fubon-neo-<version>.tgz"
+}
+
+```
+
+3. 安裝：
+
+```bash
+npm install
+
+```
+
+##### C#[​](#c "Direct link to C#")
+
+1. 下載 `.nupkg`。
+2. Visual Studio 以 NuGet Package Manager 安裝，或使用本機 NuGet 來源。
+
+##### C++[​](#c-1 "Direct link to C++")
+
+1. 下載 C++ SDK 與範例程式碼。
+2. 依範例專案設定 include/lib 路徑。
+
+##### Go[​](#go "Direct link to Go")
+
+1. 下載 Go SDK 與範例程式碼（Go 1.19+）。
+2. 依範例專案設定 `go.mod` 及本地模組路徑。
+
+#### 檔名與安裝包說明[​](#檔名與安裝包說明 "Direct link to 檔名與安裝包說明")
+
+* `fubon_neo-<version>-cp37-abi3-win_amd64.whl`
+* `fubon-neo-<version>.tgz`
+* `FubonNeo.<version>.nupkg`
+
+#### 版本功能對照 / 重大變更[​](#版本功能對照--重大變更 "Direct link to 版本功能對照 / 重大變更")
+
+* API Key 登入：>= v2.2.7
+* 網頁憑證匯出登入：>= v2.2.8
+* Python 3.7：v2.0.1 起停止支援
+* Python 3.14：目前不支援
+
+更多版本資訊請見 [版本遷移資訊](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk.md#%E7%89%88%E6%9C%AC%E9%81%B7%E7%A7%BB%E8%B3%87%E8%A8%8A)。
+
+#### 常見問題（FAQ）[​](#常見問題faq "Direct link to 常見問題（FAQ）")
+
+**Q1：安裝後如何確認 SDK 可用？**<br /><!-- -->A：請先完成登入與連線測試，再嘗試呼叫任一 API。
+
+**Q2：Python 3.7 為什麼無法安裝？**<br /><!-- -->A：自 v2.0.1 起停止支援 Python 3.7。
+
+**Q3：Python 3.14 可以使用嗎？**<br /><!-- -->A：目前不支援，請使用 Python 3.8–3.13。
+
+**Q4：C++ / Go 為何不支援所有功能？**<br /><!-- -->A：目前僅提供證券交易帳務及條件單相關功能。
+
+#### 下一步[​](#下一步 "Direct link to 下一步")
+
+* [事前準備](https://www.fbs.com.tw/TradeAPI/docs/trading/prepare.md)
+* [快速開始](https://www.fbs.com.tw/TradeAPI/docs/trading/quickstart.md)
+* [API Key 申請](https://www.fbs.com.tw/TradeAPI/docs/key.md)
+
+
+---
+
 ### 金鑰申請及管理
 
-###
+版本限制
+
+2.2.7版本新增功能
+
+憑證匯出開放
+
+2.2.8版起可使用本頁登入後匯出之憑證登入API，加強跨平台支援
 
 <!-- -->
 
 金鑰申請及管理
 
+您仍可使用現有的帳號憑證登入並使用 API。<br />**API Key 是一個選擇性功能**，主要提供 **更高的安全性與靈活性**，適合有進階需求的使用者。
+
+##### 為什麼選擇 API Key？[​](#為什麼選擇-api-key "Direct link to 為什麼選擇 API Key？")
+
+* **細緻權限控管**：可限制金鑰僅能使用特定功能（例如僅查詢行情、不允許下單）。
+* **IP 白名單**：僅允許指定 IP 存取，降低外部風險。
+* **快速撤銷**：隨時停用金鑰，不影響主要帳號。
+
+此功能 **非強制**，但若您希望提升安全性或需要更彈性的整合方式，**建議啟用 API Key**。
+
+注意事項
+
+**請注意！** 當 API Key 列表有變動時（新增或移除），所有以 API Key 方式登入的 session 都會被強制登出
+
+機制調整 >= v2.2.8 (需使用新版SDK)
+
+API Key 權限變更強制斷線機制，調整為僅限於受變更影響之 key<br />(例：使用key1、key2同時登入上線，刪除 key1 => key1 session 強制斷線； key2 session 不受影響)<br />
+
+#### 申請憑證[​](#申請憑證 "Direct link to 申請憑證")
+
+申請 API Key 前，需先申請您的網頁憑證，即可進行 API Key 申請
+
+1. 輸入您的身分證字號、電子平台密碼 ![key\_login\_step2](/TradeAPI/assets/images/key_login_step2-516ea7a99d80eba338fd760b77a2bc93.png)
+
+2. 申請網頁版憑證，收取 OTP ![OTP](/TradeAPI/assets/images/OTP-3771c5ab5c12c603f48994c14e130c77.png)
+
+3. 申請完憑證後，即可進行憑證匯出與新增金鑰 ![key\_login\_step3](/TradeAPI/assets/images/key_login_step3-48c99a5a670c60ce55e5d09a4fb097eb.png)
+
+使用預設密碼憑證
+
+在系統提示輸入憑證密碼時，請使用您的登入 ID
+
+4. 進行金鑰申請
+
+   * 點擊新增金鑰<br />![add\_key](/TradeAPI/assets/images/add_key-ce15b3f601484f2a96499f2a85150398.png)
+
+   * 設置控制權限 ( IP或有效期限若不輸入，則為無限制 ) ![add\_key\_step2](/TradeAPI/assets/images/add_key_step2-ee688b483e6d020bb1ad988c42cd2325.png)
+
+   * 設置成功，顯示 Secret Key ( Secret Key 關閉後即不再顯示 ) ![add\_key\_step3](/TradeAPI/assets/images/add_key_step3-6913c4ffe9e7e563c740c6ae15f80cbe.png)
+
+5. 可檢視先前申請的 Key 內容或停用 ( Key 最多申請 30 把 ) ![key\_list](/TradeAPI/assets/images/key_list-7e65381ef6623e6c61a53a7cef01bf94.png)
+
+本頁重點
+
+* 本頁提供富邦新一代 API（Fubon Neo API）API Key 申請與管理入口。
+* API Key 可用於登入與權限控管（依版本支援情況）。
+* 完成申請後，可依需求調整權限或管理已建立的 Key。
+
+| 項目     | 說明                            |
+| -------- | ------------------------------- |
+| 功能     | API Key 申請與管理              |
+| 適用產品 | 富邦新一代 API（Fubon Neo API） |
+| 主要用途 | 登入驗證、權限控管              |
+| 相關頁面 | API Key 說明 / 申請流程         |
+
 
 ---
 
-### Corporate Actions Capital Changes
+### 資本變動資料
 
 取得上市櫃股票及 ETF 之資本變動資料（面額變更、減資、分割）
 
@@ -531,7 +716,7 @@ Response Body：
 
 ---
 
-### Corporate Actions Dividends
+### 除權息資料
 
 取得 上市櫃除權息資料（依日期查詢）
 
@@ -737,7 +922,7 @@ Response Body：
 
 ---
 
-### Corporate Actions Listing Applicants
+### 申請上市櫃公司
 
 取得 申請上市櫃公司資料
 
@@ -929,6 +1114,21 @@ Response Body：
 
 ### 開始使用
 
+本頁重點
+
+* 富邦行情 Web API（富邦新一代 API 行情服務）提供台股盤中、快照與歷史資料查詢。
+* 超過速率限制會回應 `429`，詳見速率限制說明。
+* 提供 Python / Node.js / C# SDK 範例。
+* 下一步可從功能列表選擇對應 API 端點。
+
+| 項目     | 說明                  |
+| -------- | --------------------- |
+| 介面     | Web API               |
+| 市場     | 台股                  |
+| 資料類型 | 盤中 / 快照 / 歷史    |
+| 速率限制 | 超過回應 `429`        |
+| SDK      | Python / Node.js / C# |
+
 富邦行情 Web API 提供開發者友善的 API 服務。您可以查詢台股的日內行情、行情快照與歷史行情等數據。
 
 #### 速率限制[​](#速率限制 "Direct link to 速率限制")
@@ -1023,6 +1223,7 @@ historical/candles/{symbol}
 | `from`      | string | 開始日期（格式：`yyyy-MM-dd`）                                                                                        |
 | `to`        | string | 結束日期（格式：`yyyy-MM-dd`）                                                                                        |
 | `timeframe` | string | Ｋ線週期，可選 `1` 1分Ｋ；`5` 5分Ｋ；`10` 10分Ｋ；`15` 15分Ｋ；`30` 30分Ｋ；`60` 60分Ｋ；`D` 日Ｋ；`W` 週Ｋ；`M` 月Ｋ |
+| `adjusted`  | string | 還原股價啟用，可選 `true`、`false` ***(v2.2.8 新增)***                                                                |
 | `fields`    | string | 欄位，可選：`open,high,low,close,volume,turnover,change`                                                              |
 | `sort`      | string | 時間排序，預設為 `desc` 降冪；可選 `asc` 升冪                                                                         |
 
@@ -3774,7 +3975,22 @@ Response Body：
 
 ---
 
-### 富邦行情 API
+### 富邦新一代 API 證券行情服務
+
+本頁重點
+
+* 富邦新一代 API（Fubon Neo API）證券行情服務提供台股即時與歷史資料。
+* 介面包含 Web API 與 WebSocket API。
+* 資料來源為交易所與資訊供應商，使用前請詳閱規範與聲明。
+* 下一步可從 [Web API](https://www.fbs.com.tw/TradeAPI/docs/market-data/http-api/getting-started.md) 或 [WebSocket API](https://www.fbs.com.tw/TradeAPI/docs/market-data/websocket-api/getting-started.md) 開始。
+
+| 項目     | 說明                                             |
+| -------- | ------------------------------------------------ |
+| 服務     | 新一代 API 證券行情服務                          |
+| 市場     | 台灣證券市場                                     |
+| 介面     | Web API / WebSocket API                          |
+| 資料來源 | 臺灣證券交易所、證券櫃檯買賣中心、臺灣期貨交易所 |
+| 規範     | 使用規範與聲明                                   |
 
 即時行情資料來源為臺灣證券交易所、證券櫃檯買賣中心、臺灣期貨交易所。請您詳閱相關使用[規範與聲明](#statement)。
 
@@ -3791,7 +4007,7 @@ Response Body：
 * 透過本服務取得之行情資料僅供參考，成交值及成交量不含零股及鉅額交易，使用者依本資料交易發生交易損失需自行負責。
 * 時報資訊與群馥科技對資料內容錯誤、更新延誤或傳輸中斷不負任何責任。您應對您所為之任何金融或投資決策自行負責。
 * 使用者應遵守[臺灣證券交易所股份有限公司交易資訊使用管理辦法](https://www.selaw.com.tw/Chinese/RegulatoryInformationResult/Article?isIntegratedSearch=True\&sysNumber=LW10809760\&searchString1=%E8%87%BA%E7%81%A3%E8%AD%89%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%E4%BA%A4%E6%98%93%E8%B3%87%E8%A8%8A%E4%BD%BF%E7%94%A8%E7%AE%A1%E7%90%86%E8%BE%A6%E6%B3%95)、[臺灣期貨交易所股份有限公司交易資訊使用管理辦法](https://www.selaw.com.tw/Chinese/RegulatoryInformationResult/Article?isIntegratedSearch=True\&sysNumber=LW10815483\&searchString1=%E8%87%BA%E7%81%A3%E6%9C%9F%E8%B2%A8%E4%BA%A4%E6%98%93%E6%89%80%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%E4%BA%A4%E6%98%93%E8%B3%87%E8%A8%8A%E4%BD%BF%E7%94%A8%E7%AE%A1%E7%90%86%E8%BE%A6%E6%B3%95)、[財團法人中華民國證券櫃檯買賣中心有價證券交易資訊使用管理辦法](https://www.selaw.com.tw/Chinese/RegulatoryInformationResult/Article?isIntegratedSearch=True\&sysNumber=LW10813063\&searchString1=%E8%B2%A1%E5%9C%98%E6%B3%95%E4%BA%BA%E4%B8%AD%E8%8F%AF%E6%B0%91%E5%9C%8B%E8%AD%89%E5%88%B8%E6%AB%83%E6%AA%AF%E8%B2%B7%E8%B3%A3%E4%B8%AD%E5%BF%83%E6%9C%89%E5%83%B9%E8%AD%89%E5%88%B8%E4%BA%A4%E6%98%93%E8%B3%87%E8%A8%8A%E4%BD%BF%E7%94%A8%E7%AE%A1%E7%90%86%E8%BE%A6%E6%B3%95)、各資訊來源提供者所定之資訊使用相關規範及智慧財產權相關法令，所有資訊以各資訊來源提供者公告資料為準。如有盜接 、轉接交易資訊，或以其他方式出售、出租、轉讓、再授權交易資訊，或將交易資訊另行取樣並編製指數、其他衍生性商品或將之傳送予第三人，應負違約及侵權之相關民、刑事責任。
-* 富邦行情 API 是由 [Fugle](https://www.fugle.tw/) 技術團隊開發提供。
+* 富邦新一代 API 行情服務由 [Fugle](https://www.fugle.tw/) 技術團隊開發提供。
 
 
 ---
@@ -3799,6 +4015,11 @@ Response Body：
 ### 建立連線
 
 ##### 建立行情連線[​](#建立行情連線 "Direct link to 建立行情連線")
+
+本頁重點
+
+* 示範如何同時建立多條 WebSocket 行情連線（上限 5 條）。
+* Web API 速率限制共用，WebSocket 每條連線可訂閱 200 檔。
 
 以下範例程式碼示範如何同時建立 5 條行情 WebSocket 連線。
 
@@ -3939,7 +4160,20 @@ foreach (var ws in websockets)
 
 ##### 速率限制[​](#速率限制 "Direct link to 速率限制")
 
-富邦行情提供了Web API 與 Socket 行情，並設定了以下存取的限制
+本頁重點
+
+* 本頁整理富邦新一代 API 行情服務的 Web API / WebSocket 速率限制。
+* 超過限制將回應 `429` 或訂閱錯誤訊息。
+* 若短時間內大量建立連線可能被判定為異常。
+
+| 項目      | 上限                                   |
+| --------- | -------------------------------------- |
+| 日內行情  | 300 / min                              |
+| 行情快照  | 300 / min                              |
+| 歷史行情  | 60 / min                               |
+| WebSocket | 單一連線 200 訂閱數；可同時開啟 5 連線 |
+
+富邦新一代 API 行情服務提供 Web API 與 WebSocket，並設定了以下存取的限制
 
 * 日內行情 : 300 / min
 * WebSocket : 單一連線 200 訂閱數；可同時開啟 5 連線
@@ -3974,6 +4208,21 @@ caution
 ---
 
 ### 開始使用
+
+本頁重點
+
+* 富邦行情 WebSocket API（富邦新一代 API 行情服務）提供台股即時行情訂閱。
+* 支援 `Speed` / `Normal` 兩種行情模式。
+* 需登入後建立行情連線並訂閱頻道。
+* 下一步可前往各頻道說明頁。
+
+| 項目     | 說明                  |
+| -------- | --------------------- |
+| 介面     | WebSocket API         |
+| 市場     | 台股                  |
+| 模式     | Speed / Normal        |
+| SDK      | Python / Node.js / C# |
+| 訂閱方式 | 連線後訂閱頻道        |
 
 富邦行情 WebSocket API 提供台股即時行情服務。透過 WebSocket API 可以滿足您想要接收即時行情的需求。
 
@@ -5321,7 +5570,22 @@ await stock.Connect();
 
 ### 開始使用
 
-富邦行情 Web API 提供開發者友善的 API 服務。您可以查詢日內行情、行情快照與歷史行情等數據。
+本頁重點
+
+* 富邦行情期貨 Web API（富邦新一代 API 期貨行情服務）提供期貨與期權日內資料查詢。
+* 超過速率限制會回應 `429`。
+* 提供 Python / Node.js / C# SDK 範例。
+* 下一步可從功能列表選擇對應 API 端點。
+
+| 項目     | 說明                  |
+| -------- | --------------------- |
+| 介面     | Web API               |
+| 市場     | 期貨 / 期權           |
+| 資料類型 | 日內                  |
+| 速率限制 | 超過回應 `429`        |
+| SDK      | Python / Node.js / C# |
+
+富邦行情 Web API 提供開發者友善的 API 服務。您可以查詢期貨與期權日內行情等數據。
 
 #### 速率限制[​](#速率限制 "Direct link to 速率限制")
 
@@ -6571,7 +6835,22 @@ Response Body：
 
 ---
 
-### 富邦行情 API
+### 富邦新一代 API 期貨行情服務
+
+本頁重點
+
+* 富邦新一代 API（Fubon Neo API）期貨行情服務提供期貨即時與日內資料。
+* 介面包含 Web API 與 WebSocket API。
+* 資料來源為交易所與資訊供應商，使用前請詳閱規範與聲明。
+* 下一步可從 [Web API](https://www.fbs.com.tw/TradeAPI/docs/market-data-future/http-api/getting-started.md) 或 [WebSocket API](https://www.fbs.com.tw/TradeAPI/docs/market-data-future/websocket-api/getting-started.md) 開始。
+
+| 項目     | 說明                                             |
+| -------- | ------------------------------------------------ |
+| 服務     | 新一代 API 期貨行情服務                          |
+| 市場     | 台灣期貨市場                                     |
+| 介面     | Web API / WebSocket API                          |
+| 資料來源 | 臺灣證券交易所、證券櫃檯買賣中心、臺灣期貨交易所 |
+| 規範     | 使用規範與聲明                                   |
 
 即時行情資料來源為臺灣證券交易所、證券櫃檯買賣中心、臺灣期貨交易所。請您詳閱相關使用[規範與聲明](#statement)。
 
@@ -6581,7 +6860,7 @@ Response Body：
 
 #### WebSocket API[​](#websocket-api "Direct link to WebSocket API")
 
-富邦行情 [WebSocket API](https://www.fbs.com.tw/TradeAPI/docs/market-data-future/websocket-api/getting-started.md) 提供台股即時行情服務。透過 WebSocket API 可以滿足您想要接收即時行情的需求。
+富邦行情 [WebSocket API](https://www.fbs.com.tw/TradeAPI/docs/market-data-future/websocket-api/getting-started.md) 提供期貨即時行情服務。透過 WebSocket API 可以滿足您想要接收即時行情的需求。
 
 #### 使用規範與聲明[​](#statement "Direct link to 使用規範與聲明")
 
@@ -6589,7 +6868,7 @@ Response Body：
 * 時報資訊與群馥科技對資料內容錯誤、更新延誤或傳輸中斷不負任何責任。您應對您所為之任何金融或投資決策自行負責。
 * 使用者應遵守[臺灣證券交易所股份有限公司交易資訊使用管理辦法](https://www.selaw.com.tw/Chinese/RegulatoryInformationResult/Article?isIntegratedSearch=True\&sysNumber=LW10809760\&searchString1=%E8%87%BA%E7%81%A3%E8%AD%89%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%E4%BA%A4%E6%98%93%E8%B3%87%E8%A8%8A%E4%BD%BF%E7%94%A8%E7%AE%A1%E7%90%86%E8%BE%A6%E6%B3%95)、[臺灣期貨交易所股份有限公司交易資訊使用管理辦法](https://www.selaw.com.tw/Chinese/RegulatoryInformationResult/Article?isIntegratedSearch=True\&sysNumber=LW10815483\&searchString1=%E8%87%BA%E7%81%A3%E6%9C%9F%E8%B2%A8%E4%BA%A4%E6%98%93%E6%89%80%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%E4%BA%A4%E6%98%93%E8%B3%87%E8%A8%8A%E4%BD%BF%E7%94%A8%E7%AE%A1%E7%90%86%E8%BE%A6%E6%B3%95)、[財團法人中華民國證券櫃檯買賣中心有價證券交易資訊使用管理辦法](https://www.selaw.com.tw/Chinese/RegulatoryInformationResult/Article?isIntegratedSearch=True\&sysNumber=LW10813063\&searchString1=%E8%B2%A1%E5%9C%98%E6%B3%95%E4%BA%BA%E4%B8%AD%E8%8F%AF%E6%B0%91%E5%9C%8B%E8%AD%89%E5%88%B8%E6%AB%83%E6%AA%AF%E8%B2%B7%E8%B3%A3%E4%B8%AD%E5%BF%83%E6%9C%89%E5%83%B9%E8%AD%89%E5%88%B8%E4%BA%A4%E6%98%93%E8%B3%87%E8%A8%8A%E4%BD%BF%E7%94%A8%E7%AE%A1%E7%90%86%E8%BE%A6%E6%B3%95)、各資訊來源提供者所定之資訊使用相關規範及智慧財產權相關法令，如有盜接、轉接交易資訊，或以其他方式出售、出租、轉讓、再授權交易資訊，或將交易資訊另行取樣並編製指數、其他衍生性商品或將之傳送予第三人，應負違約及侵權之相關民、刑事責任。
 * 使用者須遵守臺灣證券交易所「[交易資訊使用管理辦法](https://www.twse.com.tw/downloads/zh/products/regulation_use.pdf)」等交易資訊管理相關規定，所有資訊以臺灣證券交易所公告資料為準。
-* 富邦行情 API 是由 [Fugle](https://www.fugle.tw/) 技術團隊開發提供。
+* 富邦新一代 API 期貨行情服務由 [Fugle](https://www.fugle.tw/) 技術團隊開發提供。
 
 
 ---
@@ -6737,7 +7016,20 @@ foreach (var ws in websockets)
 
 ##### 速率限制[​](#速率限制 "Direct link to 速率限制")
 
-富邦行情提供了Web API 與 Socket 行情，並設定了以下存取的限制
+本頁重點
+
+* 本頁整理富邦新一代 API 期貨行情服務的 Web API / WebSocket 速率限制。
+* 超過限制將回應 `429` 或訂閱錯誤訊息。
+* 若短時間內大量建立連線可能被判定為異常。
+
+| 項目      | 上限                 |
+| --------- | -------------------- |
+| 日內行情  | 300 / min            |
+| 行情快照  | 300 / min            |
+| 歷史行情  | 60 / min             |
+| WebSocket | 200 訂閱數；5 連線數 |
+
+富邦新一代 API 期貨行情服務提供 Web API 與 WebSocket，並設定了以下存取的限制
 
 * 日內行情 : 300 / min
 * WebSocket : 200 訂閱數；5連線數
@@ -6773,7 +7065,22 @@ caution
 
 ### 開始使用
 
-富邦行情 WebSocket API 提供台股即時行情服務。透過 WebSocket API 可以滿足您想要接收即時行情的需求。
+本頁重點
+
+* 富邦行情期貨 WebSocket API（富邦新一代 API 期貨行情服務）提供期貨即時行情訂閱。
+* 支援 `Speed` / `Normal` 兩種行情模式。
+* 需登入後建立行情連線並訂閱頻道。
+* 下一步可前往各頻道說明頁。
+
+| 項目     | 說明                  |
+| -------- | --------------------- |
+| 介面     | WebSocket API         |
+| 市場     | 期貨 / 期權           |
+| 模式     | Speed / Normal        |
+| SDK      | Python / Node.js / C# |
+| 訂閱方式 | 連線後訂閱頻道        |
+
+富邦行情 WebSocket API 提供期貨即時行情服務。透過 WebSocket API 可以滿足您想要接收即時行情的需求。
 
 #### 使用 SDK[​](#使用-sdk "Direct link to 使用 SDK")
 
@@ -7930,7 +8237,7 @@ await futopt.Connect();
 
 ### 停損停利單
 
-富邦Neo API支援條件下單後的停損停利單，
+富邦新一代 API 支援條件下單後的停損停利單，
 
 停損停利運作機制 : 當觸發的條件單，觸發後，並委託成交，就會啟動停損停利的監控機制，而當停利條件達成時，停損就會失效；反之亦然 (同一般市面上常見OCO)
 
@@ -8114,7 +8421,7 @@ sdk.Stock.SingleCondition(account, "20240426", "20240430", StopSign.Full, condit
 
 ### 移動鎖利條件單
 
-富邦Neo API支援移動鎖利單，
+富邦新一代 API 支援移動鎖利單，
 
 移動鎖利運作機制 : 當基準條件觸發後，若設定的回檔幅度未達到，則不會觸發，當後續股價持續往上，則會使用新的價格作為基準，若此時回檔幅度到達設定值，則送出委託
 
@@ -8206,17 +8513,29 @@ sdk.Stock.TrailProfit(target_account, "20240427","20240516", StopSign.Full, trai
 
 ---
 
-### 富邦新一代API 條件單
+### 富邦新一代 API 條件單
 
-***
+本頁重點
+
+* 本頁介紹富邦新一代 API 條件單功能與支援範圍。
+* 提供多種條件單類型，適用自動化策略與風險管理。
+* 下一步建議先完成[事前準備](https://www.fbs.com.tw/TradeAPI/docs/smart-condition/prepare.md)。
+
+| 項目     | 說明                                                                       |
+| -------- | -------------------------------------------------------------------------- |
+| 產品     | 富邦新一代 API 條件單                                                      |
+| 主要功能 | 觸價/觸量、停損停利、分時分量                                              |
+| 平台     | Windows / macOS / Linux                                                    |
+| 語言     | Python / C# / JavaScript (Node.js) / C++、Go（僅支援證券交易帳務及條件單） |
+| 前置     | 需簽署條件單使用同意書                                                     |
 
 #### 概述[​](#概述 "Direct link to 概述")
 
-富邦新一代API條件單為您的程式交易，提供了更完善的功能，滿足每一位開發者達成條件下單。<br /><!-- -->提供用戶自由選擇主流開發語言( Python、C#、JavaScript)，在創建程式交易的過程中，輕易地取用API，使用API各種功能。
+富邦新一代 API 條件單為您的程式交易，提供了更完善的功能，滿足每一位開發者達成條件下單。<br /><!-- -->提供用戶自由選擇主流開發語言( Python、C#、JavaScript)，在創建程式交易的過程中，輕易地取用 API，使用 API 各種功能。
 
 #### 特色[​](#特色 "Direct link to 特色")
 
-支援跨平台：<br /><!-- -->新一代API 支援 Windows、MacOS、Linux。<br /><!-- -->新一代API 支援 Python、C#、JavaScript 主流語言。
+支援跨平台：<br /><!-- -->新一代 API 支援 Windows、MacOS、Linux。<br /><!-- -->新一代 API 支援 Python、C#、JavaScript（Node.js）、C++、Go 主流語言（C++、Go 僅支援證券交易帳務及條件單）。
 
 #### 主要功能[​](#主要功能 "Direct link to 主要功能")
 
@@ -8224,7 +8543,7 @@ sdk.Stock.TrailProfit(target_account, "20240427","20240516", StopSign.Full, trai
 
 #### 版本支援[​](#版本支援 "Direct link to 版本支援")
 
-Python 版本支援 : 目前支援 3.7 (~v1.3.2)、3.8、3.9、3.10、3.11 與 3.12 (v2.0.1~)。<br /><!-- -->Node.js 版本支援 : 目前支援Node.js 16以上的版本。<br /><!-- -->C# 使用.NET Standard 2.0開發，建議您使用 .netcoreapp 3.1 以上；如使用.NETFramework 建議您使用.NETFramework 4.7.2以上版本。
+Python 版本支援：3.7（~v1.3.2）、3.8–3.13（v2.0.1~，不含 3.14）。 Node.js 版本支援 : 目前支援Node.js 16以上的版本。 C# 使用.NET Standard 2.0開發，建議您使用 .netcoreapp 3.1 以上；如使用.NETFramework 建議您使用.NETFramework 4.7.2以上版本。
 
 
 ---
@@ -10871,7 +11190,7 @@ sdk.Stock.GetConditionDaytradeById(account,"8ff3472b-185a-488c-be5a-b478deda080c
 
 ```
 
-#### 回傳範例[​](#回傳範�例 "Direct link to 回傳範例")
+#### 回傳範例[​](#回傳範例 "Direct link to 回傳範例")
 
 ```cs
 
@@ -11471,7 +11790,7 @@ GetConditionOrderById
 | data      | List                | 條件單回傳資訊                   |
 | message   | string ? (optional) | 當isSuccess = false 回傳錯誤訊息 |
 
-##### 委託資訊 ConditionDetail 欄位[​](#��委託資訊-conditiondetail--欄位 "Direct link to 委託資訊 ConditionDetail  欄位")
+##### 委託資訊 ConditionDetail 欄位[​](#委託資訊-conditiondetail--欄位 "Direct link to 委託資訊 ConditionDetail  欄位")
 
 Return type : Object
 
@@ -12421,7 +12740,7 @@ sdk.Stock.SingleCondition(account, "20240426", "20240430", StopSign.Full, condit
 
 GetTimeSliceOrder
 
-#### 輸入參數[​](#輸入參數 "Direct link to 輸入參數")
+#### 輸入參數[​](#輸入參數 "Direct link to 輸入參��數")
 
 | 參數    | 類別                                                                                         | 說明             |
 | ------- | -------------------------------------------------------------------------------------------- | ---------------- |
@@ -12574,7 +12893,7 @@ sdk.Stock.GetTimeSliceOrder(account,"1234567");
 
 TimeSliceOrder
 
-#### 輸入參數[​](#輸入參數 "Direct link to 輸入參數")
+#### 輸入參數[​](#輸入參數 "Direct link to 輸入��參數")
 
 | 參數                  | 類別                                                                                                                             | 說明                                                                              |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
@@ -12601,7 +12920,7 @@ Return type : Object
 | ------- | ------ | ---------------- |
 | batchId | string | 分時分量條件單號 |
 
-#### 請求範例[​](#請求範例 "Direct link to 請求範��例")
+#### 請求範例[​](#請求範例 "Direct link to 請求範例")
 
 ```cs
 // 設計條件內容
@@ -16856,7 +17175,7 @@ Result {
 
 get\_time\_slice\_order
 
-#### 輸入參數[​](#輸入參數 "Direct link to 輸入參數")
+#### 輸入參數[​](#輸入參數 "Direct link to ��輸入參數")
 
 | 參數      | 類別                                                                                         | 說明             |
 | --------- | -------------------------------------------------------------------------------------------- | ---------------- |
@@ -17461,9 +17780,22 @@ Result {
 
 ### 事前準備
 
+本頁重點
+
+* 使用條件單前，需先閱讀使用說明並完成簽署。
+* SDK 版本需升級至 v1.3 以上。
+* 支援 Python / Node.js 條件單套件引入。
+
+| 項目     | 說明                                     |
+| -------- | ---------------------------------------- |
+| 產品     | 富邦新一代 API 條件單                    |
+| 必要前置 | 閱讀使用說明、簽署條件單同意書、升級 SDK |
+| 支援語言 | Python / C# / JavaScript (Node.js)       |
+| 套件引入 | 僅 Python / JS 需額外引入套件            |
+
 caution
 
-在開始富邦API條件單前，請先詳細閱讀 [**使用說明**](https://www.fbs.com.tw/TradeAPI/docs/smart-condition/Agreements.md) 並完成簽署條件單使用同意書
+在開始富邦新一代 API 條件單前，請先詳細閱讀 [**使用說明**](https://www.fbs.com.tw/TradeAPI/docs/smart-condition/Agreements.md) 並完成簽署條件單使用同意書
 
 #### 簽署條件單使用同意書[​](#簽署條件單使用同意書 "Direct link to 簽署條件單使用同意書")
 
@@ -17471,7 +17803,7 @@ caution
 
 1. 開啟您的富邦Online手機APP ，點選更多<br />![線上簽署1](/TradeAPI/assets/images/signagree1-344762a81c78861fa652f3bd8d11d735.png)
 
-2. 點選 `M櫃台`<br />![線�上簽署2](/TradeAPI/assets/images/signagree2-f228860054133c73f3f12e482545cc55.png)
+2. 點選 `M櫃台`<br />![線上簽署2](/TradeAPI/assets/images/signagree2-f228860054133c73f3f12e482545cc55.png)
 
 3. 點選條件單同意書<br />![線上簽署3](/TradeAPI/assets/images/signagree3-ea03b7b52731323e65fe28d393dd2432.png)
 
@@ -17527,7 +17859,7 @@ info
 
 ### 停損停利單
 
-富邦Neo API支援條件下單後的停損停利單，
+富邦新一代 API 支援條件下單後的停損停利單，
 
 停損停利運作機制 : 當觸發的條件單，觸發後，並委託成交，就會啟動停損停利的監控機制，而當停利條件達成時，停損就會失效；反之亦然 (同一般市面上常見OCO)
 
@@ -17696,7 +18028,7 @@ sdk.FutOpt.SingleCondition(account, "20240426", "20240430", StopSign.Full, condi
 
 ### 移動鎖利條件單
 
-富邦Neo API支援移動鎖利單，
+富邦新一代 API 支援移動鎖利單，
 
 移動鎖利運作機制 : 當基準條件觸發後，若設定的回檔幅度未達到，則不會觸發，當後續股價持續往上，則會使用新的價格作為基準，若此時回檔幅度到達設定值，則送出委託
 
@@ -17792,17 +18124,31 @@ sdk.FutOpt.TrailProfit(target_account, "20240427","20240516", StopSign.Full, tra
 
 ---
 
-### 富邦新一代API 期貨條件單
+### 富邦新一代 API 期貨條件單
 
 ***
 
+本頁重點
+
+* 本頁介紹富邦新一代 API 期貨條件單功能與支援範圍。
+* 提供多種條件單類型，適用期貨自動化策略與風險管理。
+* 下一步建議先完成[事前準備](https://www.fbs.com.tw/TradeAPI/docs/smart-condition-future/prepare.md)。
+
+| 項目     | 說明                                                                       |
+| -------- | -------------------------------------------------------------------------- |
+| 產品     | 富邦新一代 API 期貨條件單                                                  |
+| 主要功能 | 觸價/觸量、停損停利、分時分量                                              |
+| 平台     | Windows / macOS / Linux                                                    |
+| 語言     | Python / C# / JavaScript (Node.js) / C++、Go（僅支援證券交易帳務及條件單） |
+| 前置     | 需簽署條件單使用同意書                                                     |
+
 #### 概述[​](#概述 "Direct link to 概述")
 
-富邦新一代API條件單為您的程式交易，提供了更完善的功能，滿足每一位開發者達成條件下單。<br /><!-- -->提供用戶自由選擇主流開發語言( Python、C#、JavaScript)，在創建程式交易的過程中，輕易地取用API，使用API各種功能。
+富邦新一代 API 條件單為您的程式交易，提供了更完善的功能，滿足每一位開發者達成條件下單。<br /><!-- -->提供用戶自由選擇主流開發語言( Python、C#、JavaScript)，在創建程式交易的過程中，輕易地取用 API，使用 API 各種功能。
 
 #### 特色[​](#特色 "Direct link to 特色")
 
-支援跨平台：<br /><!-- -->新一代API 支援 Windows、MacOS、Linux。<br /><!-- -->新一代API 支援 Python、C#、JavaScript 主流語言。
+支援跨平台：<br /><!-- -->新一代 API 支援 Windows、MacOS、Linux。<br /><!-- -->新一代 API 支援 Python、C#、JavaScript（Node.js）、C++、Go 主流語言（C++、Go 僅支援證券交易帳務及條件單）。
 
 #### 主要功能[​](#主要功能 "Direct link to 主要功能")
 
@@ -17810,7 +18156,7 @@ sdk.FutOpt.TrailProfit(target_account, "20240427","20240516", StopSign.Full, tra
 
 #### 版本支援[​](#版本支援 "Direct link to 版本支援")
 
-Python 版本支援 : 目前支援3.7、3.8、3.9、3.10 與 3.11版本。<br /><!-- -->Node.js 版本支援 : 目前支援Node.js 16以上的版本。<br /><!-- -->C# 使用.NET Standard 2.0開發，建議您使用 .netcoreapp 3.1 以上；如使用.NETFramework 建議您使用.NETFramework 4.7.2以上版本。
+Python 版本支援：3.7（~v1.3.2）、3.8–3.13（v2.0.1~，不含 3.14）。<br /><!-- -->Node.js 版本支援 : 目前支援Node.js 16以上的版本。<br /><!-- -->C# 使用.NET Standard 2.0開發，建議您使用 .netcoreapp 3.1 以上；如使用.NETFramework 建議您使用.NETFramework 4.7.2以上版本。
 
 
 ---
@@ -19562,7 +19908,7 @@ Return type : Object
 | -------- | ------ | ------------ |
 | advisory | string | 回覆狀態內容 |
 
-#### 請求範例[​](#請求範例 "Direct link to 請求範�例")
+#### 請求範例[​](#請求範例 "Direct link to 請求範例")
 
 ```js
 sdk.FutOpt.cancelConditionOrders(account, "c9df498a-3b28-4b50-a6f2-f7bd524e96df", )
@@ -21241,7 +21587,7 @@ Return type : Object
 | -------- | ------ | ------------ |
 | advisory | string | 回覆狀態內容 |
 
-#### 請求範例[​](#請求範例 "Direct link to 請求範�例")
+#### 請求範例[​](#請求範例 "Direct link to 請求範例")
 
 ```py
 sdk.futopt.cancel_condition_orders(account, "c9df498a-3b28-4b50-a6f2-f7bd524e96df")
@@ -22400,7 +22746,7 @@ Return type : Object
 | >> status                    | string | 目前狀態         |
 | >> error\_message            | string | 目前狀態異常說明 |
 
-#### 請求範例[​](#請求範例 "Direct link to 請求��範例")
+#### 請求範例[​](#請求範例 "Direct link to 請求範例")
 
 ```py
 sdk.futopt.get_time_slice_order(account,"123456")
@@ -22860,7 +23206,7 @@ Result {
 
 caution
 
-在開始富邦API條件單前，您必須完成簽署條件單智慧單
+在開始富邦新一代 API 條件單前，您必須完成簽署條件單智慧單
 
 #### 簽署條件單風險預告書[​](#簽署條件單風險預告書 "Direct link to 簽署條件單風險預告書")
 
@@ -22934,6 +23280,10 @@ info
 
 **請注意！** 當 API Key 列表有變動時（新增或移除），所有以 API Key 方式登入的 session 都會被強制登出
 
+機制調整 >= v2.2.8 (需使用新版SDK)
+
+API Key 權限變更強制斷線機制，調整為僅限於受變更影響之 key<br />(例：使用key1、key2同時登入上線，刪除 key1 => key1 session 強制斷線； key2 session 不受影響)<br />
+
 #### 申請憑證[​](#申請憑證 "Direct link to 申請憑證")
 
 申請 API Key 前，需先申請您的網頁憑證，即可進行 API Key 申請
@@ -22961,28 +23311,6 @@ info
    * 設置成功，顯示 Secret Key ( Secret Key 關閉後即不再顯示 ) ![add\_key\_step3](/TradeAPI/assets/images/add_key_step3-6913c4ffe9e7e563c740c6ae15f80cbe.png)
 
 6. 可檢視先前申請的 Key 內容或停用 ( Key 最多申請 30 把 ) ![key\_list](/TradeAPI/assets/images/key_list-7e65381ef6623e6c61a53a7cef01bf94.png)
-
-
----
-
-### 以 LLM 輔助 SDK 串接開發
-
-你可以使用大型語言模型（LLMs）來協助建置富邦 Neo 的整合。<br /><!-- -->我們提供了以下應用，協助你在開發過程中使用 LLM。
-
-#### 純文字文件（Plain text docs）[​](#純文字文件plain-text-docs "Direct link to 純文字文件（Plain text docs）")
-
-你可以在任何網址後方加上 `.md`，即可取得該頁面的純文字 Markdown 版本。<br /><!-- -->例如，本頁的純文字版本可於 [build-with-llm.md](https://www.fbs.com.tw/TradeAPI/docs/trading/build-with-llm) 取得。<br /><!-- -->我們提供 [llms.txt](https://www.fbs.com.tw/TradeAPI/llms.txt) 檔案，用於指引 AI 工具與代理如何取得我們頁面的純文字版本。 `/llms.txt` 是一項新興標準，旨在讓網站與內容更容易被 LLM 存取與使用。
-
-* [llms.txt](https://www.fbs.com.tw/TradeAPI/llms.txt)
-* [llms-full.txt](https://www.fbs.com.tw/TradeAPI/llms-full.txt)
-
-#### Model Context Protocol（MCP）[​](#model-context-protocolmcp "Direct link to Model Context Protocol（MCP）")
-
-富邦 Neo 的 `Model Context Protocol（MCP）`定義許多應用，讓 AI Agent 能夠與富邦 Neo 互動，並搜尋我們的 Library。<br /><!-- -->在你與 Agent 協作的過程中，它可以使用這些工具來回答問題或完成任務。
-
-如果你正在使用 AI Agent 來協助建置富邦 Neo 整合，請將該 Agent 連接至 MCP 伺服器。
-
-[富邦 Neo MCP](https://github.com/fugle-dev/fugle-mcp-server)
 
 
 ---
@@ -29049,7 +29377,7 @@ info
 
   ```
 
-#### 成交主動回報[​](#成交主動回報 "Direct link to 成交主動回報")
+#### 成交主動回報[​](#�成交主動回報 "Direct link to 成交主動回報")
 
 成交主動回報包含委託書號 (order\_no) 及流水號 (seq\_no) 以供比對
 
@@ -29081,7 +29409,7 @@ FilledData {
 
 ### 連線參數修改
 
-新一代API SDK 使用 WebSocket 安全連線方式與富邦伺服器主機建立連線，使用標準的 ping/pong control frames 進行連線確認。預設每 30 秒發送 ping frame 給伺服器，若達連續兩次無收到伺服器 pong 回應即判斷連線品質較弱，並進行斷線與提示。
+新一代 API SDK 使用 WebSocket 安全連線方式與富邦伺服器主機建立連線，使用標準的 ping/pong control frames 進行連線確認。預設每 30 秒發送 ping frame 給伺服器，若達連續兩次無收到伺服器 pong 回應即判斷連線品質較弱，並進行斷線與提示。
 
 為能更廣泛適用於不同使用者場景，自 `2.2.1` 版以後，使用者可自行設定此部分參數。在建立連線時可選擇自定參數，例如設定每 300 秒發送 ping frame，並若連續三次無回應即斷線，則連線功能呼叫方式如下：
 
@@ -30595,17 +30923,29 @@ sdk.Stock.PlaceOrder(accounts.data[0],order);
 
 ---
 
-### 富邦新一代API
+### 富邦新一代 API
 
-***
+本頁重點
+
+* 本頁介紹富邦新一代 API 的交易與行情服務範圍。
+* 支援多語言與跨平台環境，適用程式交易開發。
+* 下一步建議先完成[事前準備](https://www.fbs.com.tw/TradeAPI/docs/trading/prepare.md)。
+
+| 項目 | 說明                                                                       |
+| ---- | -------------------------------------------------------------------------- |
+| 產品 | 富邦新一代 API（Fubon Neo API）                                            |
+| 服務 | 交易 / 行情                                                                |
+| 平台 | Windows / macOS / Linux                                                    |
+| 語言 | Python / C# / JavaScript (Node.js) / C++、Go（僅支援證券交易帳務及條件單） |
+| 登入 | 憑證登入（可搭配 API Key）                                                 |
 
 #### 概述[​](#概述 "Direct link to 概述")
 
-富邦新一代API為您的程式交易，提供了完善的交易與行情API，滿足每一位開發者的量化與自動化交易需求。<br /><!-- -->提供用戶自由選擇主流開發語言( Python、C#、JavaScript、C++、Go)，在創建程式交易的過程中，輕易地取用API，使用交易、行情服務。
+富邦新一代 API 為您的程式交易，提供了完善的交易與行情 API，滿足每一位開發者的量化與自動化交易需求。<br /><!-- -->提供用戶自由選擇主流開發語言( Python、C#、JavaScript、C++、Go)，在創建程式交易的過程中，輕易地取用 API，使用交易、行情服務。
 
 #### 特色[​](#特色 "Direct link to 特色")
 
-支援跨平台：<br /><!-- -->新一代API 支援 Windows、MacOS、Linux。<br /><!-- -->新一代API 支援 Python、C#、JavaScript、C++、Go 主流語言。<br /><!-- -->穩定的技術架構，直連交易所一觸即達。<br /><!-- -->客製化的行情解决方案。
+支援跨平台：<br /><!-- -->新一代 API 支援 Windows、MacOS、Linux。<br /><!-- -->新一代 API 支援 Python、C#、JavaScript（Node.js）、C++、Go 主流語言（C++、Go 僅支援證券交易帳務及條件單）。<br /><!-- -->穩定的技術架構，直連交易所一觸即達。<br /><!-- -->客製化的行情解决方案。
 
 #### 主要功能[​](#主要功能 "Direct link to 主要功能")
 
@@ -30613,7 +30953,7 @@ sdk.Stock.PlaceOrder(accounts.data[0],order);
 
 #### 版本支援[​](#版本支援 "Direct link to 版本支援")
 
-Python 版本支援 : 目前支援 3.7 (~v1.3.2)、3.8、3.9、3.10、3.11 與 3.12 (v2.0.1~)。<br /><!-- -->Node.js 版本支援 : 目前支援Node.js 16以上的版本。<br /><!-- -->C# 使用.NET Standard 2.0開發，建議您使用 .netcoreapp 3.1 以上；如使用.NETFramework 建議您使用.NETFramework 4.7.2以上版本。
+Python 版本支援：3.7（~v1.3.2）、3.8–3.13（v2.0.1~，不含 3.14）。 Node.js 版本支援 : 目前支援Node.js 16以上的版本。 C# 使用.NET Standard 2.0開發，建議您使用 .netcoreapp 3.1 以上；如使用.NETFramework 建議您使用.NETFramework 4.7.2以上版本。
 
 
 ---
@@ -30622,7 +30962,7 @@ Python 版本支援 : 目前支援 3.7 (~v1.3.2)、3.8、3.9、3.10、3.11 與 3
 
 BankRemain
 
-#### 輸入參數[​](#輸��入參數 "Direct link to 輸入參數")
+#### 輸入參數[​](#輸入參數 "Direct link to 輸入參數")
 
 | 參數    | 類別                                                                                      | 說明 |
 | ------- | ----------------------------------------------------------------------------------------- | ---- |
@@ -30805,7 +31145,7 @@ else {
 
 Maintenance
 
-#### 輸入參數[​](#輸入參�數 "Direct link to 輸入參數")
+#### 輸入參數[​](#輸入參數 "Direct link to 輸入參數")
 
 | 參數    | 類別                                                                                      | 說明 |
 | ------- | ----------------------------------------------------------------------------------------- | ---- |
@@ -33969,7 +34309,7 @@ query\_symbol\_quote
 | symbol       | String                                                                                                                       | 股票代碼                                                            |
 | market\_type | [MarketType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/cpp/EnumMatrix.md#markettype) (Optional)(default = Common) | 市場別 ： 支援 `Common` 整股，`IntradayOdd` 盤中零股、`Fixing` 定盤 |
 
-#### Result 回傳[​](#result-回傳 "Direct link to Result 回傳")
+#### Result 回傳[​](#result-回傳 "Direct link to Result 回��傳")
 
 | 參數      | 類別        | 說明                             |
 | --------- | ----------- | -------------------------------- |
@@ -34893,7 +35233,7 @@ lastTime 及 modifiedTime 時間格式： **HH:MM<!-- -->:SS<!-- -->.fff** 或 *
 
 關於價格旗標
 
-輕量風控版暫未開放使用價格旗標 (PriceType)
+輕量風控版**已**開放使用價格旗標 (PriceType)
 
 ##### ModifyQuantityObj[​](#modifyquantityobj "Direct link to ModifyQuantityObj")
 
@@ -35393,11 +35733,11 @@ BatchModifyPrice
 
 ##### 先使用 MakeModifyPriceObj 建立 ModifyPriceObj物件[​](#先使用-makemodifypriceobj-建立-modifypriceobj物件 "Direct link to 先使用 MakeModifyPriceObj 建立 ModifyPriceObj物件")
 
-| 參數        | 類別                                                                                                 | 說明                                                        |
-| ----------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/csharp/EnumMatrix.md#orderresult) | 預計修改的委託單                                            |
-| price       | string                                                                                               | 修改後的價格                                                |
-| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/csharp/EnumMatrix.md#pricetype)     | 修改後的價格旗標 (***註***: 輕量風控版暫未開放使用價格旗標) |
+| 參數        | 類別                                                                                                 | 說明                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/csharp/EnumMatrix.md#orderresult) | 預計修改的委託單                                              |
+| price       | string                                                                                               | 修改後的價格                                                  |
+| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/csharp/EnumMatrix.md#pricetype)     | 修改後的價格旗標 (***註***: 輕量風控版**已**開放使用價格旗標) |
 
 caution
 
@@ -36757,11 +37097,11 @@ ModifyPrice
 
 ##### 先使用 MakeModifyPriceObj 建立 ModifyPriceObj物件[​](#先使用-makemodifypriceobj-建立-modifypriceobj物件 "Direct link to 先使用 MakeModifyPriceObj 建立 ModifyPriceObj物件")
 
-| 參數        | 類別                                                                                                 | 說明                                                        |
-| ----------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/csharp/EnumMatrix.md#orderresult) | 預計修改的委託單                                            |
-| price       | string                                                                                               | 修改後的價格                                                |
-| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/csharp/EnumMatrix.md#pricetype)     | 修改後的價格旗標 (***註***: 輕量風控版暫未開放使用價格旗標) |
+| 參數        | 類別                                                                                                 | 說明                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/csharp/EnumMatrix.md#orderresult) | 預計修改的委託單                                              |
+| price       | string                                                                                               | 修改後的價格                                                  |
+| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/csharp/EnumMatrix.md#pricetype)     | 修改後的價格旗標 (***註***: 輕量風控版**已**開放使用價格旗標) |
 
 caution
 
@@ -37478,7 +37818,7 @@ sdk.stock.QuerySymbolSnapshot(accounts.data[0], MarketType.Common, [StockType.St
 
 ### 版本升級指南
 
-本文件將引導您將現有的FubonNeo API v1.0.4 版本升級至的 v1.3.1 以後版本。
+本文件將引導您將現有的Fubon Neo API v1.0.4 版本升級至的 v1.3.1 以後版本。
 
 #### 主要差異[​](#主要差異 "Direct link to 主要差異")
 
@@ -37541,7 +37881,7 @@ sdk.RegisterCallback(callback);
 
 ```
 
-#### 新的訂閱方法[​](#新的訂閱方法 "Direct link to 新的訂閱方�法")
+#### 新的訂閱方法[​](#新的訂閱方法 "Direct link to 新的訂閱方法")
 
 此次改版使用新的訂閱方法，透過以下方式訂閱， 新的方法，可依照想訂閱的類別再進行訂閱即可，不需每個方法都實作
 
@@ -37852,7 +38192,7 @@ Result{
 
 Maintenance
 
-#### 輸入參數[​](#輸入參數 "Direct link to 輸入參數")
+#### 輸入參數[​](#輸入參數 "Direct link to 輸入參��數")
 
 | 參數    | 類別                                                                                     | 說明 |
 | ------- | ---------------------------------------------------------------------------------------- | ---- |
@@ -37990,7 +38330,7 @@ Result{
 
 QuerySettlement
 
-#### 輸入參數[​](#輸入參數 "Direct link to 輸入參數")
+#### 輸入參數[​](#輸入參數 "Direct link to 輸入�參數")
 
 | 參數    | 類別                                                                                     | 說明                                            |
 | ------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------- |
@@ -39807,7 +40147,7 @@ CancelOrder
 | orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/go/EnumMatrix.md#orderresult) | 欲取消的委託單物件 |
 | unblock     | \*bool (optional) (default = false)                                                              | 是否採用非阻塞     |
 
-#### Result 回傳[​](#result-回傳 "Direct link to Result 回傳")
+#### Result 回傳[​](#result-回�傳 "Direct link to Result 回傳")
 
 | 參數      | 類別          | 說明                              |
 | --------- | ------------- | --------------------------------- |
@@ -42346,7 +42686,7 @@ lastTime 及 modifiedTime 時間格式： **HH:MM<!-- -->:SS<!-- -->.fff** 或 *
 
 關於價格旗標
 
-輕量風控版暫未開放使用價格旗標 (PriceType)
+輕量風控版**已**開放使用價格旗標 (PriceType)
 
 ##### ModifyQuantityObj[​](#modifyquantityobj "Direct link to ModifyQuantityObj")
 
@@ -42844,11 +43184,11 @@ batchModifyPrice
 
 ##### 先使用makeModifyPriceObj 建立 ModifyPriceObj 物件[​](#先使用makemodifypriceobj-建立-modifypriceobj-物件 "Direct link to 先使用makeModifyPriceObj 建立 ModifyPriceObj 物件")
 
-| 參數        | 類別                                                                                                 | 說明                                                        |
-| ----------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/nodejs/EnumMatrix.md#orderresult) | 預計修改的委託單                                            |
-| price       | string ?                                                                                             | 修改後的價格                                                |
-| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/nodejs/EnumMatrix.md#pricetype)?    | 修改後的價格旗標 (***註***: 輕量風控版暫未開放使用價格旗標) |
+| 參數        | 類別                                                                                                 | 說明                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/nodejs/EnumMatrix.md#orderresult) | 預計修改的委託單                                              |
+| price       | string ?                                                                                             | 修改後的價格                                                  |
+| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/nodejs/EnumMatrix.md#pricetype)?    | 修改後的價格旗標 (***註***: 輕量風控版**已**開放使用價格旗標) |
 
 將回傳的物件放入 BatchModifyPrice 的方法中
 
@@ -43521,7 +43861,7 @@ const batch_order_results = sdk.stock.batchPlaceOrder(account,orders);
 
 ```
 
-#### 回傳範例[​](#回傳範例 "Direct link to 回�傳範例")
+#### 回傳範例[​](#回傳範例 "Direct link to 回傳範例")
 
 ```js
 {
@@ -43922,7 +44262,8 @@ Return type : Object
 #### 請求範例[​](#請求範例 "Direct link to 請求範例")
 
 ```js
-const orders = sdk.stock.getOrderResults(accounts);
+var account = accounts.data[0];
+const orders = sdk.stock.getOrderResults(account);
 console.log(orders);
 
 ```
@@ -44048,7 +44389,8 @@ Return type : Object
 #### 請求範例[​](#請求範例 "Direct link to 請求範例")
 
 ```js
-const orders = sdk.stock.getOrderResultsDetail(accounts);
+var account = accounts.data[0];
+const orders = sdk.stock.getOrderResultsDetail(account);
 console.log(orders);
 
 ```
@@ -44188,11 +44530,11 @@ modifyPrice
 
 ##### 先使用makeModifyPriceObj 建立 ModifyPriceObj 物件[​](#先使用makemodifypriceobj-建立-modifypriceobj-物件 "Direct link to 先使用makeModifyPriceObj 建立 ModifyPriceObj 物件")
 
-| 參數        | 類別                                                                                                 | 說明                                                        |
-| ----------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/nodejs/EnumMatrix.md#orderresult) | 預計修改的委託單                                            |
-| price       | string?                                                                                              | 修改後的價格                                                |
-| priceType   | [priceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/nodejs/EnumMatrix.md#pricetype)?    | 修改後的價格旗標 (***註***: 輕量風控版暫未開放使用價格旗標) |
+| 參數        | 類別                                                                                                 | 說明                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/nodejs/EnumMatrix.md#orderresult) | 預計修改的委託單                                              |
+| price       | string?                                                                                              | 修改後的價格                                                  |
+| priceType   | [priceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/nodejs/EnumMatrix.md#pricetype)?    | 修改後的價格旗標 (***註***: 輕量風控版**已**開放使用價格旗標) |
 
 caution
 
@@ -44200,7 +44542,7 @@ caution
 
 將回傳的物件放入 modifyPrice 的方法中
 
-#### 輸入參數[​](#輸入參數 "Direct link to 輸入參��數")
+#### 輸入參數[​](#輸入參數 "Direct link to 輸入參數")
 
 | 參數            | 類別                                                                                                       | 說明           |
 | --------------- | ---------------------------------------------------------------------------------------------------------- | -------------- |
@@ -45587,7 +45929,7 @@ last\_time 及 modified\_time 時間格式： **HH:MM<!-- -->:SS<!-- -->.fff** �
 
 關於價格旗標
 
-輕量風控版暫未開放使用價格旗標 (PriceType)
+輕量風控版**已**開放使用價格旗標 (PriceType)
 
 ##### ModifyQuantityObj[​](#modifyquantityobj "Direct link to ModifyQuantityObj")
 
@@ -46140,11 +46482,11 @@ batch\_modify\_price
 
 ##### 先使用make\_modify\_price\_obj 建立 ModifyPriceObj 物件[​](#先使用make_modify_price_obj-建立-modifypriceobj-物件 "Direct link to 先使用make_modify_price_obj 建立 ModifyPriceObj 物件")
 
-| 參數        | 類別                                                                                                 | 說明                                                        |
-| ----------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| order       | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/python/EnumMatrix.md#orderresult) | 預計修改的委託單                                            |
-| price       | string                                                                                               | 修改後的價格                                                |
-| price\_type | [PriceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/python/EnumMatrix.md#pricetype)     | 修改後的價格旗標 (***註***: 輕量風控版暫未開放使用價格旗標) |
+| 參數        | 類別                                                                                                 | 說明                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| order       | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/python/EnumMatrix.md#orderresult) | 預計修改的委託單                                              |
+| price       | string                                                                                               | 修改後的價格                                                  |
+| price\_type | [PriceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/python/EnumMatrix.md#pricetype)     | 修改後的價格旗標 (***註***: 輕量風控版**已**開放使用價格旗標) |
 
 caution
 
@@ -46167,7 +46509,7 @@ caution
 | data        | List   | 回傳修改資訊                       |
 | message     | string | 當is\_success = false 回傳錯誤訊息 |
 
-##### 修改資訊 OrderResult 欄位[​](#修改資訊-orderresult-欄位 "Direct link to 修改資訊 OrderResult 欄位")
+##### 修改資訊 OrderResult 欄位[​](#修改資訊-orderresult-欄位 "Direct link to 修改��資訊 OrderResult 欄位")
 
 Return type : Object
 
@@ -46740,7 +47082,7 @@ batch\_order\_lists
 | data        | List   | 回傳批次單資訊                     |
 | message     | string | 當is\_success = false 回傳錯誤訊息 |
 
-##### 批次單 BatchResult 欄位[​](#批次單-batchresult-欄位 "Direct link to 批次單 BatchResult 欄位")
+##### 批次單 BatchResult 欄位[​](#批次單-batchresult-欄�位 "Direct link to 批次單 BatchResult 欄位")
 
 Return type : Object
 
@@ -47522,11 +47864,11 @@ modify\_price
 
 ##### 先使用make\_modify\_price\_obj 建立 ModifyPriceObj 物件[​](#先使用make_modify_price_obj-建立-modifypriceobj-物件 "Direct link to 先使用make_modify_price_obj 建立 ModifyPriceObj 物件")
 
-| 參數        | 類別                                                                                                 | 說明                                                        |
-| ----------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| order       | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/python/EnumMatrix.md#orderresult) | 預計修改的委託單                                            |
-| price       | string                                                                                               | 修改後的價格                                                |
-| price\_type | [PriceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/python/EnumMatrix.md#pricetype)     | 修改後的價格旗標 (***註***: 輕量風控版暫未開放使用價格旗標) |
+| 參數        | 類別                                                                                                 | 說明                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| order       | [OrderResult](https://www.fbs.com.tw/TradeAPI/docs/trading/library/python/EnumMatrix.md#orderresult) | 預計修改的委託單                                              |
+| price       | string                                                                                               | 修改後的價格                                                  |
+| price\_type | [PriceType](https://www.fbs.com.tw/TradeAPI/docs/trading/library/python/EnumMatrix.md#pricetype)     | 修改後的價格旗標 (***註***: 輕量風控版**已**開放使用價格旗標) |
 
 caution
 
@@ -47534,7 +47876,7 @@ caution
 
 將回傳的物件放入 modify\_price 的方法中
 
-#### 輸入參數[​](#輸入參數 "Direct link to 輸�入參數")
+#### 輸入參數[​](#輸入參數 "Direct link to 輸入參數")
 
 | 參數       | 類別                                                                                                       | 說明           |
 | ---------- | ---------------------------------------------------------------------------------------------------------- | -------------- |
@@ -48243,13 +48585,27 @@ Result {
 
 ### 事前準備
 
+本頁重點
+
+* 使用富邦新一代 API（Fubon Neo API）前，需完成開戶、憑證與 API 使用聲明。
+* 安裝方式與版本相容性請見[安裝與版本相容性](https://www.fbs.com.tw/TradeAPI/docs/install-compatibility.md)。
+* 下一步可前往[快速開始](https://www.fbs.com.tw/TradeAPI/docs/trading/quickstart.md)或[SDK 下載](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk.md)。
+
+| 項目     | 說明                                            |
+| -------- | ----------------------------------------------- |
+| 產品     | 富邦新一代 API（Fubon Neo API）                 |
+| 必要條件 | 富邦證券帳戶、數位憑證、API 使用聲明 + 連線測試 |
+| 主要平台 | Windows（憑證工具與連線測試程式）               |
+| 登入方式 | 憑證登入                                        |
+| 下一步   | 安裝與版本相容性 / 快速開始                     |
+
 caution
 
-在開始富邦API前，您必須完成以下步驟
+在開始富邦新一代 API 前，您必須完成以下步驟
 
 1. 準備好您的富邦證券帳戶 (若您還未擁有富邦證券帳戶，請點連結【[線上開戶](https://www.fubon.com/securities/open-now/)】)
 2. 申請憑證
-3. API風險使用聲明書簽署【[線上簽署SOP](https://www.fbs.com.tw/wcm/new_web/operate_manual/operate_manual_01/API-SignSOP_guide.pdf)】+ API連線測試【[連線測試小幫手](https://www.fbs.com.tw/TradeAPI/xxxx/FubonNeo_login_test.zip)】 (Windows)
+3. API 風險使用聲明書簽署【[線上簽署SOP](https://www.fbs.com.tw/wcm/new_web/operate_manual/operate_manual_01/API-SignSOP_guide.pdf)】+ API 連線測試【[連線測試小幫手](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/API_Sign_Test.zip)】 (Windows)
 
 #### 準備好富邦證券帳戶[​](#準備好富邦證券帳戶 "Direct link to 準備好富邦證券帳戶")
 
@@ -48271,199 +48627,23 @@ caution
 
 ![CertLocation](/TradeAPI/assets/images/ca_repo-829d506640c176e4a8fc1b84c13b2908.png)
 
-#### API使用風險暨聲明書簽署及測試[​](#api使用風險暨聲明書簽署及測試 "Direct link to API使用風險暨聲明書簽署及測試")
+#### API 使用風險暨聲明書簽署及測試[​](#api-使用風險暨聲明書簽署及測試 "Direct link to API 使用風險暨聲明書簽署及測試")
 
 ###### 線上簽署[​](#線上簽署 "Direct link to 線上簽署")
 
-依照下方說明連結分別進行API聲明書簽署、API連線測試 [線上簽署SOP說明書](https://www.fbs.com.tw/wcm/new_web/operate_manual/operate_manual_01/API-SignSOP_guide.pdf)
+依照下方說明連結分別進行API 聲明書簽署、API 連線測試 [線上簽署SOP說明書](https://www.fbs.com.tw/wcm/new_web/operate_manual/operate_manual_01/API-SignSOP_guide.pdf)
 
 [![線上簽署](/TradeAPI/assets/images/signSOP-6ed1317bfe2fb019c87930735dfc0f7d.png)](https://www.fbs.com.tw/wcm/new_web/operate_manual/operate_manual_01/API-SignSOP_guide.pdf)
 
 ###### 連線測試[​](#連線測試 "Direct link to 連線測試")
 
-下載使用連線測試程式 (for Windows), 或直接使用新一代API進行連線登入 [連線測試小幫手](https://www.fbs.com.tw/TradeAPI/xxxx/FubonNeo_login_test.zip)
+下載使用連線測試程式 (for Windows), 或直接使用新一代 API 進行連線登入 [連線測試小幫手](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/API_Sign_Test.zip)
 
-[![連線測試小幫手](/TradeAPI/assets/images/connection_test-e62eafe09e327f83f55844591ea812af.png)](https://www.fbs.com.tw/TradeAPI/xxxx/FubonNeo_login_test.zip)
+[![連線測試小幫手](/TradeAPI/assets/images/connection_test-e62eafe09e327f83f55844591ea812af.png)](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/API_Sign_Test.zip)
 
-#### 安裝套件[​](#安裝套件 "Direct link to 安裝套件")
+#### 安裝與版本相容性[​](#安裝與版本相容性 "Direct link to 安裝與版本相容性")
 
-至新一代API [SDK下載頁面](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk.md)下載相關套件
-
-* Python
-* Node.js
-* C#
-
-依以下指令安裝（請注意修改為實際下載之檔案名稱）
-
-```python
-pip install fubon_neo-<version>-cp37-abi3-win_amd64.whl
-
-```
-
-目前支援 3.7 (~v1.3.2)、3.8、3.9、3.10、3.11 與 3.12 (v2.0.1~)。
-
-首先先建立一個project資料夾，並利用下列指令初始化
-
-```bash
-npm init
-
-```
-
-官網下載回來的檔案會像是 fubon-neo-\<version>.tgz，並且把它放入剛剛建立的資料夾中
-
-把 node.js project 裡面的 package.json 增加一行
-
-```json
-"dependencies": {
-  ...
-  "fubon-neo": "file://<path-to-js-binary>/fubon-neo-<version>.tgz",
-  ...
-}
-
-```
-
-然後到命令行輸入以下指令
-
-```bash
-npm install
-
-```
-
-目前支援 Node.js 16 以上版本。
-
-官網下載回來的檔案會像是 FubonNeo.\<version>.nupkg
-
-* 使用方法一 : Visual Studio Nuget 套件管理員安裝( **以.NET 7為例** ) :
-
-  將套件放置在新增的專案下方後，點擊 `工具` -> `Nuget套件管理員` -> `套件管理員設定`
-
-  ![nugetset](/TradeAPI/assets/images/nugetset-dcd96ee20e4663a6c4b996264d1b962e.png)
-
-  跳出視窗後，
-
-  1. 點擊右上角的 `+`
-  2. 點擊下方的 `...` 選取套件存放位置
-  3. 將名稱更名
-  4. 點擊 `更新`
-  5. 按下確定 ![nugetsource](/TradeAPI/assets/images/nugetsource-8523418911907166548dd2f4afd61d1c.png)
-
-  點擊`工具` -> `Nuget套件管理員` -> `管理方案的Nuget套件`
-
-  ![nugetpackage](/TradeAPI/assets/images/nugetpackage-d71a41371e06f457ac161917ba1a0af6.png)
-
-  接者選取
-
-  1. 套件來源，選取前一個步驟命名的套件名稱
-  2. 點選瀏覽
-  3. 點擊套件
-  4. 選取專案
-  5. 安裝版本
-
-  ![nugetinstall](/TradeAPI/assets/images/nugetinstall-1cce8168b9c84304d8a20eaf103da69d.png)
-
-  安裝完成! 即可使用新一代SDK。
-
-***
-
-* 使用方法二 : Visual Studio Nuget 套件管理員安裝( **以.NETFramework 4.7.2為例**) :<br /><!-- -->將套件放置在新增的專案下方後，點擊 `工具` -> `Nuget套件管理員` -> `套件管理員設定`
-
-  ![nugetset](/TradeAPI/assets/images/nugetset-dcd96ee20e4663a6c4b996264d1b962e.png)
-
-  跳出視窗後，
-
-  1. 點擊右上角的 `+`
-  2. 點擊下方的 `...` 選取套件存放位置
-  3. 將名稱更名
-  4. 點擊 `更新`
-  5. 按下確定 ![nugetsource](/TradeAPI/assets/images/nugetsource-8523418911907166548dd2f4afd61d1c.png)
-
-  點擊右方方案總管中`在解決方案與可用檢視之間切換` (若找不到方案總管，可至上方檢視中開啟) ， 開啟資料夾後，找到.csproj檔案
-
-  ![csprojadd](/TradeAPI/assets/images/csprojadd-884ccdbfb9631160aff1fabfc80d6f80.png)
-
-  csproj 檔案裡面增加 sdk 的 reference (Version 內容再依版號填入)
-
-  ```xml
-
-  <ItemGroup>
-    ...
-    <PackageReference Include="FubonNeo" Version="1.0.0" />  
-    ...
-  </ItemGroup>
-  ...
-
-  ```
-
-  點擊檔案總管中的 `.sln`， 於專案名稱中點選右鍵，重新載入專案
-
-  ![csprojimport](/TradeAPI/assets/images/csprojimport-a4dfc02aa766b2640c3b75692978f535.png)
-
-  caution
-
-  目前套件僅支援 64 Bit，若您的開發環境預設為32 Bit，可照下方步驟調整
-
-  1. 點擊上方專案
-  2. 選取專案屬性
-  3. 點選左方建置，將平台目標改為x64
-
-  ![64bit](/TradeAPI/assets/images/64bit-b5e0de53211506491860e4f017fef7e9.png)
-
-***
-
-* 若不使用 Visual Studio Nuget套件管理員，可使用 Command Line如下
-
-  在 project 資料夾下面新增 nuget.config 檔案：
-
-  ```bash
-  cd /您的資料夾路徑/
-  cd .>nuget.config   #新增nuget.config
-
-  ```
-
-  並將下列內容貼至nuget.config
-
-  ```xml
-  <?xml version="1.0" encoding="utf-8"?>
-  <configuration>
-      <packageSources>
-          <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
-          <add key="local" value="./" />
-      </packageSources>
-      <config>
-          <add key="repositoryPath" value="./" />
-      </config>
-      <packageSourceMapping>
-          <!-- key value for <packageSource> should match key values from <packageSources> element -->
-          <packageSource key="nuget.org">
-              <package pattern="*" />
-          </packageSource>
-          <packageSource key="local">
-              <package pattern="FubonNeo*" />
-          </packageSource>
-      </packageSourceMapping>
-  </configuration>
-
-  ```
-
-  接著在 project 的 csproj 檔案裡面增加 sdk 的 reference (Version 內容再依版號填入)
-
-  ```xml
-    ...
-    <ItemGroup>
-      <PackageReference Include="FubonNeo" Version="1.0.0" />   
-    </ItemGroup>
-    ...
-
-  ```
-
-  接著
-
-  ```cs
-  dotnet restore
-
-  ```
-
-C# 使用.NET Standard 2.0開發，建議您使用 .netcoreapp 3.1 以上；如使用.NETFramework 建議您使用.NETFramework 4.7.2以上版本。
+請先閱讀[安裝與版本相容性](https://www.fbs.com.tw/TradeAPI/docs/install-compatibility.md)以確認各語言最低版本與安裝方式，並至[SDK 下載](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk.md)取得安裝檔。
 
 #### 開始拓展程式交易之旅[​](#開始拓展程式交易之旅 "Direct link to 開始拓展程式交易之旅")
 
@@ -48590,181 +48770,25 @@ Console.WriteLine(order_res);
 
 ### 快速開始
 
+本頁重點
+
+* 本頁提供富邦新一代 API（Fubon Neo API）登入與下單範例。
+* 開始前請先完成[事前準備](https://www.fbs.com.tw/TradeAPI/docs/trading/prepare.md)（開戶、憑證、聲明與連線測試）。
+* 安裝方式與版本相容性請見[安裝與版本相容性](https://www.fbs.com.tw/TradeAPI/docs/install-compatibility.md)。
+
+| 項目     | 說明                                                                       |
+| -------- | -------------------------------------------------------------------------- |
+| 前置條件 | 完成事前準備                                                               |
+| 支援語言 | Python / C# / JavaScript (Node.js) / C++、Go（僅支援證券交易帳務及條件單） |
+| 下載來源 | SDK 下載頁面                                                               |
+| 安裝方式 | 請見安裝與版本相容性                                                       |
+| 下一步   | 依語言完成登入與下單範例                                                   |
+
 請先參考[事前準備](https://www.fbs.com.tw/TradeAPI/docs/trading/prepare.md)完成風險預告書申請與憑證下載。
 
-若您還未安裝 SDK 套件，可至[SDK 下載頁面](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk.md)下載後，找到存放路徑，使用以下指令安裝：
+#### 安裝與版本相容性[​](#安裝與版本相容性 "Direct link to 安裝與版本相容性")
 
-#### 套件安裝[​](#套件安裝 "Direct link to 套件安裝")
-
-<!-- -->
-
-* Python
-* Node.js
-* C#
-
-```py
-pip install fubon_neo-<version>-cp37-abi3-win_amd64.whl
-
-```
-
-首先先建立一個project資料夾，並利用下列指令初始化
-
-```bash
-npm init
-
-```
-
-官網下載回來的檔案會像是 fubon-neo-\<version>.tgz，並且把它放入剛剛建立的資料夾中
-
-把 node.js project 裡面的 package.json 增加一行
-
-```json
-"dependencies": {
-  ...
-  "fubon-neo": "file://<path-to-js-binary>/fubon-neo-<version>.tgz",
-  ...
-}
-
-```
-
-然後到命令行輸入以下指令
-
-```bash
-npm install
-
-```
-
-官網下載回來的檔案會像是 FubonNeo.\<version>.nupkg
-
-* 使用方法一 : Visual Studio Nuget 套件管理員安裝( **以.NET 7為例** ) :
-
-  將套件放置在新增的專案下方後，點擊 `工具` -> `Nuget套件管理員` -> `套件管理員設定`
-
-  ![nugetset](/TradeAPI/assets/images/nugetset-dcd96ee20e4663a6c4b996264d1b962e.png)
-
-  跳出視窗後，
-
-  1. 點擊右上角的 `+`
-  2. 點擊下方的 `...` 選取套件存放位置
-  3. 將名稱更名
-  4. 點擊 `更新`
-  5. 按下確定 ![nugetsource](/TradeAPI/assets/images/nugetsource-8523418911907166548dd2f4afd61d1c.png)
-
-  點擊`工具` -> `Nuget套件管理員` -> `管理方案的Nuget套件`
-
-  ![nugetpackage](/TradeAPI/assets/images/nugetpackage-d71a41371e06f457ac161917ba1a0af6.png)
-
-  接者選取
-
-  1. 套件來源，選取前一個步驟命名的套件名稱
-  2. 點選瀏覽
-  3. 點擊套件
-  4. 選取專案
-  5. 安裝版本
-
-  ![nugetinstall](/TradeAPI/assets/images/nugetinstall-1cce8168b9c84304d8a20eaf103da69d.png)
-
-  安裝完成! 即可使用新一代SDK。
-
-***
-
-* 使用方法二 : Visual Studio Nuget 套件管理員安裝( **以.NETFramework 4.7.2為例**) :<br /><!-- -->將套件放置在新增的專案下方後，點擊 `工具` -> `Nuget套件管理員` -> `套件管理員設定`
-
-  ![nugetset](/TradeAPI/assets/images/nugetset-dcd96ee20e4663a6c4b996264d1b962e.png)
-
-  跳出視窗後，
-
-  1. 點擊右上角的 `+`
-  2. 點擊下方的 `...` 選取套件存放位置
-  3. 將名稱更名
-  4. 點擊 `更新`
-  5. 按下確定 ![nugetsource](/TradeAPI/assets/images/nugetsource-8523418911907166548dd2f4afd61d1c.png)
-
-  點擊右方方案總管中`在解決方案與可用檢視之間切換` (若找不到方案總管，可至上方檢視中開啟) ， 開啟資料夾後，找到.csproj檔案
-
-  ![csprojadd](/TradeAPI/assets/images/csprojadd-884ccdbfb9631160aff1fabfc80d6f80.png)
-
-  csproj 檔案裡面增加 sdk 的 reference (Version 內容再依版號填入)
-
-  ```xml
-
-  <ItemGroup>
-    ...
-    <PackageReference Include="FubonNeo" Version="1.0.0" />  
-    ...
-  </ItemGroup>
-  ...
-
-  ```
-
-  點擊檔案總管中的 `.sln`， 於專案名稱中點選右鍵，重新載入專案
-
-  ![csprojimport](/TradeAPI/assets/images/csprojimport-a4dfc02aa766b2640c3b75692978f535.png)
-
-  caution
-
-  目前套件僅支援 64 Bit，若您的開發環境預設為32 Bit，可照下方步驟調整
-
-  1. 點擊上方專案
-  2. 選取專案屬性
-  3. 點選左方建置，將平台目標改為x64
-
-  ![64bit](/TradeAPI/assets/images/64bit-b5e0de53211506491860e4f017fef7e9.png)
-
-***
-
-* 若不使用 Visual Studio Nuget套件管理員，可使用 Command Line如下
-
-  在 project 資料夾下面新增 nuget.config 檔案：
-
-  ```bash
-  cd /您的資料夾路徑/
-  cd .>nuget.config   #新增nuget.config
-
-  ```
-
-  並將下列內容貼至nuget.config
-
-  ```xml
-  <?xml version="1.0" encoding="utf-8"?>
-  <configuration>
-      <packageSources>
-          <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
-          <add key="local" value="./" />
-      </packageSources>
-      <config>
-          <add key="repositoryPath" value="./" />
-      </config>
-      <packageSourceMapping>
-          <!-- key value for <packageSource> should match key values from <packageSources> element -->
-          <packageSource key="nuget.org">
-              <package pattern="*" />
-          </packageSource>
-          <packageSource key="local">
-              <package pattern="FubonNeo*" />
-          </packageSource>
-      </packageSourceMapping>
-  </configuration>
-
-  ```
-
-  接著在 project 的 csproj 檔案裡面增加 sdk 的 reference (Version 內容再依版號填入)
-
-  ```xml
-    ...
-    <ItemGroup>
-      <PackageReference Include="FubonNeo" Version="1.0.0" />   
-    </ItemGroup>
-    ...
-
-  ```
-
-  接著
-
-  ```cs
-  dotnet restore
-
-  ```
+安裝步驟與最低版本需求請見[安裝與版本相容性](https://www.fbs.com.tw/TradeAPI/docs/install-compatibility.md)，下載 SDK 請至[SDK 下載頁面](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk.md)。
 
 #####
 
@@ -48829,7 +48853,7 @@ var acc = accounts.data[0];
 
 #### 送出委託，買入股票[​](#送出委託買入股票 "Direct link to 送出委託，買入股票")
 
-再將以下範例程式碼補上， 將示範如何使用富邦API送出一張以跌停價買入 富邦金(2881)的限價委託：
+再將以下範例程式碼補上， 將示範如何使用富邦新一代 API 送出一張以跌停價買入 富邦金(2881)的限價委託：
 
 * Python
 * Node.js
@@ -48889,6 +48913,19 @@ sdk.Stock.PlaceOrder(acc ,order); // 使用阻塞委託下單
 ---
 
 ### 速率限制
+
+本頁重點
+
+* 本頁整理富邦新一代 API（Fubon Neo API）連線與下單速率限制。
+* 連線數上限為 10；下單與查詢有每秒限制。
+* 超過上限時，會回傳錯誤訊息（如下方範例）。
+
+| 項目     | 上限    |
+| -------- | ------- |
+| 連線數   | 10      |
+| 下單     | 50 / 秒 |
+| 批次下單 | 10 / 秒 |
+| 帳務查詢 | 5 / 秒  |
 
 ##### 連線次數限制[​](#連線次數限制 "Direct link to 連線次數限制")
 
@@ -49074,7 +49111,7 @@ foreach (var detail in h_position.data)
 
 * 以下範例回傳僅擷取data內容
 
-#### 權益數查詢[​](#權益數查詢 "Direct link to 權益數查詢")
+#### 權益數查詢[​](#權益數查詢 "Direct link to 權益數查��詢")
 
 可以查詢帳務權益數，確認我們帳戶權益的狀況。
 
@@ -50338,17 +50375,31 @@ sdk.FutOpt.PlaceOrder(accounts.data[0],order);
 
 ---
 
-### 富邦新一代API
+### 富邦新一代 API
 
 ***
 
+本頁重點
+
+* 本頁介紹富邦新一代 API 期貨交易與行情服務範圍。
+* 支援多語言與跨平台環境，適用期貨程式交易開發。
+* 下一步建議先完成[事前準備](https://www.fbs.com.tw/TradeAPI/docs/trading-future/prepare.md)。
+
+| 項目 | 說明                                                                       |
+| ---- | -------------------------------------------------------------------------- |
+| 產品 | 富邦新一代 API（Fubon Neo API）                                            |
+| 服務 | 期貨交易 / 行情                                                            |
+| 平台 | Windows / macOS / Linux                                                    |
+| 語言 | Python / C# / JavaScript (Node.js) / C++、Go（僅支援證券交易帳務及條件單） |
+| 登入 | 憑證登入（可搭配 API Key）                                                 |
+
 #### 概述[​](#概述 "Direct link to 概述")
 
-富邦新一代API為您的程式交易，提供了完善的交易與行情API，滿足每一位開發者的量化與自動化交易需求。<br /><!-- -->提供用戶自由選擇主流開發語言( Python、C#、JavaScript)，在創建程式交易的過程中，輕易地取用API，使用交易、行情服務。
+富邦新一代 API 為您的程式交易，提供了完善的交易與行情 API，滿足每一位開發者的量化與自動化交易需求。<br /><!-- -->提供用戶自由選擇主流開發語言( Python、C#、JavaScript)，在創建程式交易的過程中，輕易地取用 API，使用交易、行情服務。
 
 #### 特色[​](#特色 "Direct link to 特色")
 
-支援跨平台：<br /><!-- -->新一代API 支援 Windows、MacOS、Linux。<br /><!-- -->新一代API 支援 Python、C#、JavaScript 主流語言。<br /><!-- -->穩定的技術架構，直連交易所一觸即達。<br /><!-- -->客製化的行情解决方案。
+支援跨平台：<br /><!-- -->新一代 API 支援 Windows、MacOS、Linux。<br /><!-- -->新一代 API 支援 Python、C#、JavaScript（Node.js）、C++、Go 主流語言（C++、Go 僅支援證券交易帳務及條件單）。<br /><!-- -->穩定的技術架構，直連交易所一觸即達。<br /><!-- -->客製化的行情解决方案。
 
 #### 主要功能[​](#主要功能 "Direct link to 主要功能")
 
@@ -50356,7 +50407,7 @@ sdk.FutOpt.PlaceOrder(accounts.data[0],order);
 
 #### 版本支援[​](#版本支援 "Direct link to 版本支援")
 
-Python 版本支援 : 目前支援 3.7 (~v1.3.2)、3.8、3.9、3.10、3.11 與 3.12 (v2.0.1~)。<br /><!-- -->Node.js 版本支援 : 目前支援Node.js 16以上的版本。<br /><!-- -->C# 使用.NET Standard 2.0開發，建議您使用 .netcoreapp 3.1 以上；如使用.NETFramework 建議您使用.NETFramework 4.7.2以上版本。
+Python 版本支援：3.7（~v1.3.2）、3.8–3.13（v2.0.1~，不含 3.14）。<br /><!-- -->Node.js 版本支援 : 目前支援Node.js 16以上的版本。<br /><!-- -->C# 使用.NET Standard 2.0開發，建議您使用 .netcoreapp 3.1 以上；如使用.NETFramework 建議您使用.NETFramework 4.7.2以上版本。
 
 
 ---
@@ -52208,7 +52259,7 @@ BatchOrderDetail
 | data      | List   | 回傳委託資訊                     |
 | message   | string | 當isSuccess = False 回傳錯誤訊息 |
 
-##### 委託資訊 FutOptOrderResult 欄位[​](#委託資訊-futoptorderresult-欄位 "Direct link to 委託資訊 FutOptOrderResult 欄位")
+##### 委託資訊 FutOptOrderResult 欄位[​](#委託資訊-futoptorderresult-�欄位 "Direct link to 委託資訊 FutOptOrderResult 欄位")
 
 Return type : Object
 
@@ -55797,7 +55848,7 @@ batchPlaceOrder
 | data      | Object              | 回傳委託資訊                     |
 | message   | string ? (optional) | 當isSuccess = false 回傳錯誤訊息 |
 
-##### 委託資訊 FutOptOrderResult 欄位[​](#委託資訊-futoptorderresult-欄位 "Direct link to 委託資訊 FutOptOrderResult 欄位")
+##### 委託資訊 FutOptOrderResult 欄位[​](#委託資��訊-futoptorderresult-欄位 "Direct link to 委託資訊 FutOptOrderResult 欄位")
 
 Return type : Object
 
@@ -56238,7 +56289,7 @@ Return type : Object
 | filledTime      | string                                                                                                                                             | 成交時間                                                    |
 | userDef         | string ?                                                                                                                                           | 用戶自定義 (只有主動回報才回傳此欄位)                       |
 
-#### 請求範例[​](#��請求範例 "Direct link to 請求範例")
+#### 請求範例[​](#請求範例 "Direct link to 請求範例")
 
 ```js
 const filledHistory = sdk.futopt.filledHistory(account,FutOptMarketType.Future,"20230921","20230922");
@@ -56467,7 +56518,8 @@ Return type : Object
 #### 請求範例[​](#請求範例 "Direct link to 請求範例")
 
 ```js
-const orders = sdk.futopt.getOrderResultsDetail(accounts);
+var account = accounts.data[0];
+const orders = sdk.futopt.getOrderResultsDetail(account);
 console.log(orders);
 
 ```
@@ -58350,7 +58402,7 @@ batch\_cancel\_order
 | data        | List   | 回傳修改資訊                       |
 | message     | string | 當is\_success = false 回傳錯誤訊息 |
 
-##### 修改資訊 FutOptOrderResult 欄位[​](#修改資訊-futoptorderresult-欄位 "Direct link to 修改資訊 FutOptOrderResult 欄位")
+##### 修改資訊 FutOptOrderResult 欄位[​](#修改資��訊-futoptorderresult-欄位 "Direct link to 修改資訊 FutOptOrderResult 欄位")
 
 Return type : Object
 
@@ -60792,10 +60844,10 @@ Result {   #複式回覆
 
 caution
 
-在開始富邦API前，您必須完成以下步驟
+在開始富邦新一代 API 前，您必須完成以下步驟
 
 1. 準備好您的富邦期貨帳戶 (若您還未擁有富邦期貨帳戶，請點連結[線上開戶](https://www.fubon.com/futures/home/account/e_open/e_open.html))
-2. 簽署API風險使用聲明書
+2. 簽署 API 風險使用聲明書
 3. 申請憑證
 
 #### 準備好富邦期貨帳戶[​](#準備好富邦期貨帳戶 "Direct link to 準備好富邦期貨帳戶")
@@ -60804,9 +60856,9 @@ caution
 
 ![富邦期貨帳號](/TradeAPI/assets/images/prepare_account-792b5d9a17005ebde0e7d7050b37bb5c.png)
 
-#### 簽署API使用風險暨聲明書[​](#簽署api使用風險暨聲明書 "Direct link to 簽署API使用風險暨聲明書")
+#### 簽署 API 使用風險暨聲明書[​](#簽署-api-使用風險暨聲明書 "Direct link to 簽署 API 使用風險暨聲明書")
 
-請使用手機`富邦e點通` 或 使用電腦版 `E+`進行API線上簽署
+請使用手機`富邦e點通` 或 使用電腦版 `E+`進行API 線上簽署
 
 ###### 完成簽署[​](#完成簽署 "Direct link to 完成簽署")
 
@@ -60826,183 +60878,9 @@ caution
 
 ![CertLocation](/TradeAPI/assets/images/ca_repo-829d506640c176e4a8fc1b84c13b2908.png)
 
-#### 安裝套件[​](#安裝套件 "Direct link to 安裝套件")
+#### 安裝與版本相容性[​](#安裝與版本相容性 "Direct link to 安裝與版本相容性")
 
-至官網下載相關套件
-
-* Python
-* Node.js
-* C#
-
-```python
-pip install fubon_neo-<version>-cp37-abi3-win_amd64.whl
-
-```
-
-目前支援 3.7 (~v1.3.2)、3.8、3.9、3.10、3.11 與 3.12 (v2.0.1~)。
-
-首先先建立一個project資料夾，並利用下列指令初始化
-
-```bash
-npm init
-
-```
-
-官網下載回來的檔案會像是 fubon-neo-\<version>.tgz，並且把它放入剛剛建立的資料夾中
-
-把 node.js project 裡面的 package.json 增加一行
-
-```json
-"dependencies": {
-  ...
-  "fubon-neo": "file://<path-to-js-binary>/fubon-neo-<version>.tgz",
-  ...
-}
-
-```
-
-然後到命令行輸入以下指令
-
-```bash
-npm install
-
-```
-
-目前支援 Node.js 16 以上版本。
-
-官網下載回來的檔案會像是 FubonNeo.\<version>.nupkg
-
-* 使用方法一 : Visual Studio Nuget 套件管理員安裝( **以.NET 7為例** ) :
-
-  將套件放置在新增的專案下方後，點擊 `工具` -> `Nuget套件管理員` -> `套件管理員設定`
-
-  ![nugetset](/TradeAPI/assets/images/nugetset-dcd96ee20e4663a6c4b996264d1b962e.png)
-
-  跳出視窗後，
-
-  1. 點擊右上角的 `+`
-  2. 點擊下方的 `...` 選取套件存放位置
-  3. 將名稱更名
-  4. 點擊 `更新`
-  5. 按下確定 ![nugetsource](/TradeAPI/assets/images/nugetsource-8523418911907166548dd2f4afd61d1c.png)
-
-  點擊`工具` -> `Nuget套件管理員` -> `管理方案的Nuget套件`
-
-  ![nugetpackage](/TradeAPI/assets/images/nugetpackage-d71a41371e06f457ac161917ba1a0af6.png)
-
-  接者選取
-
-  1. 套件來源，選取前一個步驟命名的套件名稱
-  2. 點選瀏覽
-  3. 點擊套件
-  4. 選取專案
-  5. 安裝版本
-
-  ![nugetinstall](/TradeAPI/assets/images/nugetinstall-1cce8168b9c84304d8a20eaf103da69d.png)
-
-  安裝完成! 即可使用新一代SDK。
-
-***
-
-* 使用方法二 : Visual Studio Nuget 套件管理員安裝( **以.NETFramework 4.7.2為例**) :<br /><!-- -->將套件放置在新增的專案下方後，點擊 `工具` -> `Nuget套件管理員` -> `套件管理員設定`
-
-  ![nugetset](/TradeAPI/assets/images/nugetset-dcd96ee20e4663a6c4b996264d1b962e.png)
-
-  跳出視窗後，
-
-  1. 點擊右上角的 `+`
-  2. 點擊下方的 `...` 選取套件存放位置
-  3. 將名稱更名
-  4. 點擊 `更新`
-  5. 按下確定 ![nugetsource](/TradeAPI/assets/images/nugetsource-8523418911907166548dd2f4afd61d1c.png)
-
-  點擊右方方案總管中`在解決方案與可用檢視之間切換` (若找不到方案總管，可至上方檢視中開啟) ， 開啟資料夾後，找到.csproj檔案
-
-  ![csprojadd](/TradeAPI/assets/images/csprojadd-884ccdbfb9631160aff1fabfc80d6f80.png)
-
-  csproj 檔案裡面增加 sdk 的 reference (Version 內容再依版號填入)
-
-  ```xml
-
-  <ItemGroup>
-    ...
-    <PackageReference Include="FubonNeo" Version="1.0.0" />  
-    ...
-  </ItemGroup>
-  ...
-
-  ```
-
-  點擊檔案總管中的 `.sln`， 於專案名稱中點選右鍵，重新載入專案
-
-  ![csprojimport](/TradeAPI/assets/images/csprojimport-a4dfc02aa766b2640c3b75692978f535.png)
-
-  caution
-
-  目前套件僅支援 64 Bit，若您的開發環境預設為32 Bit，可照下方步驟調整
-
-  1. 點擊上方專案
-  2. 選取專案屬性
-  3. 點選左方建置，將平台目標改為x64
-
-  ![64bit](/TradeAPI/assets/images/64bit-b5e0de53211506491860e4f017fef7e9.png)
-
-***
-
-* 若不使用 Visual Studio Nuget套件管理員，可使用 Command Line如下
-
-  在 project 資料夾下面新增 nuget.config 檔案：
-
-  ```bash
-  cd /您的資料夾路徑/
-  cd .>nuget.config   #新增nuget.config
-
-  ```
-
-  並將下列內容貼至nuget.config
-
-  ```xml
-  <?xml version="1.0" encoding="utf-8"?>
-  <configuration>
-      <packageSources>
-          <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
-          <add key="local" value="./" />
-      </packageSources>
-      <config>
-          <add key="repositoryPath" value="./" />
-      </config>
-      <packageSourceMapping>
-          <!-- key value for <packageSource> should match key values from <packageSources> element -->
-          <packageSource key="nuget.org">
-              <package pattern="*" />
-          </packageSource>
-          <packageSource key="local">
-              <package pattern="FubonNeo*" />
-          </packageSource>
-      </packageSourceMapping>
-  </configuration>
-
-  ```
-
-  接著在 project 的 csproj 檔案裡面增加 sdk 的 reference (Version 內容再依版號填入)
-
-  ```xml
-    ...
-    <ItemGroup>
-      <PackageReference Include="FubonNeo" Version="1.0.0" />   
-    </ItemGroup>
-    ...
-
-  ```
-
-  接著
-
-  ```cs
-  dotnet restore
-
-  ```
-
-C# 使用.NET Standard 2.0開發，建議您使用 .netcoreapp 3.1 以上；如使用.NETFramework 建議您使用.NETFramework 4.7.2以上版本。
+安裝步驟與最低版本需求請見[安裝與版本相容性](https://www.fbs.com.tw/TradeAPI/docs/install-compatibility.md)，下載 SDK 請至[SDK 下載頁面](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk.md)。
 
 #### 開始拓展程式交易之旅[​](#開始拓展程式交易之旅 "Direct link to 開始拓展程式交易之旅")
 
@@ -61131,179 +61009,9 @@ Console.WriteLine(order_res);
 
 請先參考[事前準備](https://www.fbs.com.tw/TradeAPI/docs/trading-future/prepare.md)完成風險預告書申請與憑證下載。
 
-若您還未安裝 SDK 套件，可至[SDK 下載頁面](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk.md)下載後，找到存放路徑，使用以下指令安裝：
+#### 安裝與版本相容性[​](#安裝與版本相容性 "Direct link to 安裝與版本相容性")
 
-#### 套件安裝[​](#套件安裝 "Direct link to 套件安裝")
-
-<!-- -->
-
-* Python
-* Node.js
-* C#
-
-```py
-pip install fubon_neo-<version>-cp37-abi3-win_amd64.whl
-
-```
-
-首先先建立一個project資料夾，並利用下列指令初始化
-
-```bash
-npm init
-
-```
-
-官網下載回來的檔案會像是 fubon-neo-\<version>.tgz，並且把它放入剛剛建立的資料夾中
-
-把 node.js project 裡面的 package.json 增加一行
-
-```json
-"dependencies": {
-  ...
-  "fubon-neo": "file://<path-to-js-binary>/fubon-neo-<version>.tgz",
-  ...
-}
-
-```
-
-然後到命令行輸入以下指令
-
-```bash
-npm install
-
-```
-
-官網下載回來的檔案會像是 FubonNeo.\<version>.nupkg
-
-* 使用方法一 : Visual Studio Nuget 套件管理員安裝( **以.NET 7為例** ) :
-
-  將套件放置在新增的專案下方後，點擊 `工具` -> `Nuget套件管理員` -> `套件管理員設定`
-
-  ![nugetset](/TradeAPI/assets/images/nugetset-dcd96ee20e4663a6c4b996264d1b962e.png)
-
-  跳出視窗後，
-
-  1. 點擊右上角的 `+`
-  2. 點擊下方的 `...` 選取套件存放位置
-  3. 將名稱更名
-  4. 點擊 `更新`
-  5. 按下確定 ![nugetsource](/TradeAPI/assets/images/nugetsource-8523418911907166548dd2f4afd61d1c.png)
-
-  點擊`工具` -> `Nuget套件管理員` -> `管理方案的Nuget套件`
-
-  ![nugetpackage](/TradeAPI/assets/images/nugetpackage-d71a41371e06f457ac161917ba1a0af6.png)
-
-  接者選取
-
-  1. 套件來源，選取前一個步驟命名的套件名稱
-  2. 點選瀏覽
-  3. 點擊套件
-  4. 選取專案
-  5. 安裝版本
-
-  ![nugetinstall](/TradeAPI/assets/images/nugetinstall-1cce8168b9c84304d8a20eaf103da69d.png)
-
-  安裝完成! 即可使用新一代SDK。
-
-***
-
-* 使用方法二 : Visual Studio Nuget 套件管理員安裝( **以.NETFramework 4.7.2為例**) :<br /><!-- -->將套件放置在新增的專案下方後，點擊 `工具` -> `Nuget套件管理員` -> `套件管理員設定`
-
-  ![nugetset](/TradeAPI/assets/images/nugetset-dcd96ee20e4663a6c4b996264d1b962e.png)
-
-  跳出視窗後，
-
-  1. 點擊右上角的 `+`
-  2. 點擊下方的 `...` 選取套件存放位置
-  3. 將名稱更名
-  4. 點擊 `更新`
-  5. 按下確定 ![nugetsource](/TradeAPI/assets/images/nugetsource-8523418911907166548dd2f4afd61d1c.png)
-
-  點擊右方方案總管中`在解決方案與可用檢視之間切換` (若找不到方案總管，可至上方檢視中開啟) ， 開啟資料夾後，找到.csproj檔案
-
-  ![csprojadd](/TradeAPI/assets/images/csprojadd-884ccdbfb9631160aff1fabfc80d6f80.png)
-
-  csproj 檔案裡面增加 sdk 的 reference (Version 內容再依版號填入)
-
-  ```xml
-
-  <ItemGroup>
-    ...
-    <PackageReference Include="FubonNeo" Version="1.0.0" />  
-    ...
-  </ItemGroup>
-  ...
-
-  ```
-
-  點擊檔案總管中的 `.sln`， 於專案名稱中點選右鍵，重新載入專案
-
-  ![csprojimport](/TradeAPI/assets/images/csprojimport-a4dfc02aa766b2640c3b75692978f535.png)
-
-  caution
-
-  目前套件僅支援 64 Bit，若您的開發環境預設為32 Bit，可照下方步驟調整
-
-  1. 點擊上方專案
-  2. 選取專案屬性
-  3. 點選左方建置，將平台目標改為x64
-
-  ![64bit](/TradeAPI/assets/images/64bit-b5e0de53211506491860e4f017fef7e9.png)
-
-***
-
-* 若不使用 Visual Studio Nuget套件管理員，可使用 Command Line如下
-
-  在 project 資料夾下面新增 nuget.config 檔案：
-
-  ```bash
-  cd /您的資料夾路徑/
-  cd .>nuget.config   #新增nuget.config
-
-  ```
-
-  並將下列內容貼至nuget.config
-
-  ```xml
-  <?xml version="1.0" encoding="utf-8"?>
-  <configuration>
-      <packageSources>
-          <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
-          <add key="local" value="./" />
-      </packageSources>
-      <config>
-          <add key="repositoryPath" value="./" />
-      </config>
-      <packageSourceMapping>
-          <!-- key value for <packageSource> should match key values from <packageSources> element -->
-          <packageSource key="nuget.org">
-              <package pattern="*" />
-          </packageSource>
-          <packageSource key="local">
-              <package pattern="FubonNeo*" />
-          </packageSource>
-      </packageSourceMapping>
-  </configuration>
-
-  ```
-
-  接著在 project 的 csproj 檔案裡面增加 sdk 的 reference (Version 內容再依版號填入)
-
-  ```xml
-    ...
-    <ItemGroup>
-      <PackageReference Include="FubonNeo" Version="1.0.0" />   
-    </ItemGroup>
-    ...
-
-  ```
-
-  接著
-
-  ```cs
-  dotnet restore
-
-  ```
+安裝步驟與最低版本需求請見[安裝與版本相容性](https://www.fbs.com.tw/TradeAPI/docs/install-compatibility.md)，下載 SDK 請至[SDK 下載頁面](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk.md)。
 
 #####
 
@@ -61368,7 +61076,7 @@ var acc = accounts.data[0];
 
 #### 送出委託，買入股票[​](#送出委託買入股票 "Direct link to 送出委託，買入股票")
 
-再將以下範例程式碼補上， 將示範如何使用富邦API送出一張以跌停價買入 富邦金(2881)的限價委託：
+再將以下範例程式碼補上， 將示範如何使用富邦新一代 API 送出一張以跌停價買入 富邦金(2881)的限價委託：
 
 * Python
 * Node.js
@@ -61467,15 +61175,30 @@ Result {
 
 ---
 
-### 富邦新一代API快速上手
+### 富邦新一代 API 快速上手
 
 ***
 
+本頁重點
+
+* 本頁提供富邦新一代 API（Fubon Neo API）快速上手流程與資源入口。
+* 開始前需完成：開戶、憑證申請、API 使用聲明與連線測試。
+* 提供 Python / C# / JavaScript 範例程式下載與社群資源。
+* 下一步請先完成[事前準備](https://www.fbs.com.tw/TradeAPI/docs/trading/prepare.md)。
+
+| 項目     | 說明                                                                       |
+| -------- | -------------------------------------------------------------------------- |
+| 產品     | 富邦新一代 API（Fubon Neo API）                                            |
+| 主要受眾 | 程式交易開發者                                                             |
+| 必要前置 | 開戶、憑證申請、API 使用聲明 + 連線測試                                    |
+| 支援語言 | Python / C# / JavaScript (Node.js) / C++、Go（僅支援證券交易帳務及條件單） |
+| 相關資源 | 範例程式、測試環境、社群                                                   |
+
 行前小提醒
 
-在開始新一代API的旅程之前，您必須完成以下步驟
+在開始新一代 API 的旅程之前，您必須完成以下步驟
 
-1. 至【[事前準備](https://www.fbs.com.tw/TradeAPI/docs/trading/prepare.md)】完成三步驟 **a. 開戶 b.電子交易憑證申請 c. 簽署API使用聲明+連線測試**
+1. 至【[事前準備](https://www.fbs.com.tw/TradeAPI/docs/trading/prepare.md)】完成三步驟 **a. 開戶 b.電子交易憑證申請 c. 簽署 API 使用聲明+連線測試**
 2. 選定欲使用的程式語言，並參考本頁對應之【[範例程式](#code_sample)】
 3. 加入【[Discord群組](https://discord.com/invite/M8Gv9yKfza)】獲取更多程式交易資源，解決您的疑難雜症
 
@@ -61495,38 +61218,38 @@ Result {
 
 PYTHON 範例程式碼
 
-* **API功能使用範例：**
+* **API 功能使用範例：**
 
-  * [Python 範例程式碼](https://www.fbs.com.tw/TradeAPI/xxx) (.ipynb, Jupyter 互動開發格式)
+  * [Python 範例程式碼](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/python_sample_code.zip) (.ipynb, Jupyter 互動開發格式)
 
 * **情境式範例：**
 
-  * [盤中搶漲停](https://www.fbs.com.tw/TradeAPI/a.zip)
-  * [盤前搶券](https://www.fbs.com.tw/TradeAPI/b.zip)
-  * [盤前限價單開盤轉市價](https://www.fbs.com.tw/TradeAPI/c.zip)
-  * [庫存停損停利](https://www.fbs.com.tw/TradeAPI/d.zip)
+  * [盤中搶漲停](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/win_for_limitup.zip)
+  * [盤前搶券](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/win_for_short_sell.zip)
+  * [盤前限價單開盤轉市價](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/limit_to_market.zip)
+  * [庫存停損停利](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/inventory_stop_loss.zip)
 
 C# 範例程式碼
 
-* **API功能使用範例：**
+* **API 功能使用範例：**
 
-  * [C# 範例程式碼](https://www.fbs.com.tw/TradeAPI/xxxx/FubonNeo.0.0.11.nupkg.zip) (WPF 專案)
-  * [C# 行情及帳務範例程式碼](https://www.fbs.com.tw/TradeAPI/aa.zip) (Windows Forms 專案)
+  * [C# 範例程式碼](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/fubondotnetsdkgui.zip) (WPF 專案)
+  * [C# 行情及帳務範例程式碼](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/marketdata_n_accounting.zip) (Windows Forms 專案)
 
 * **情境式範例：**
 
-  * [盤前限價單開盤轉市價 ](https://www.fbs.com.tw/TradeAPI/bb.zip)(Windows Forms 專案)
+  * [盤前限價單開盤轉市價 ](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/limit_to_market.zip)(Windows Forms 專案)
 
 JAVASCRIPT 範例程式碼
 
-* **API功能使用範例：**
-  * [JS 範例程式碼](https://www.fbs.com.tw/TradeAPI/xxxx/fubon-neo-0.0.11.tgz.zip) (.ipynb, Jupyter 互動開發格式)
+* **API 功能使用範例：**
+  * [JS 範例程式碼](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/js_sample_code.zip) (.ipynb, Jupyter 互動開發格式)
 
 #### 測試環境[​](#測試環境 "Direct link to 測試環境")
 
-新一代API開放使用測試環境，請下載測試環境說明包：
+新一代 API 開放使用測試環境，請下載測試環境說明包：
 
-[下載測試環境說明包](https://www.fbs.com.tw/TradeAPI/test_environment.zip)
+[下載測試環境說明包](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/test_environment.zip)
 
 <br />
 
@@ -61538,19 +61261,33 @@ JAVASCRIPT 範例程式碼
 
 富邦證券程式交易線上講座
 
-【[不定期線上講座報名](https://www.fbs.com.tw/Course/Main;areaID=F)】每月都會有不定期的程式交易線上講座，內容涵蓋選股到API交易程式開發
+【[不定期線上講座報名](https://www.fbs.com.tw/Course/Main;areaID=F)】每月都會有不定期的程式交易線上講座，內容涵蓋選股到API 交易程式開發
 
 GITHUB教學範例
 
-包含多種由新一代API Python開發的常見交易圖形化介面應用程式範例，歡迎參考【[GitHub教學範例](https://github.com/Tradepm/-API)】
+包含多種由新一代 API Python開發的常見交易圖形化介面應用程式範例，歡迎參考【[GitHub教學範例](https://github.com/Tradepm/-API)】
 
 YOUTUBE程式交易頻道
 
-新一代API的大小事及教學留影都在【[富邦證券YouTube](https://youtube.com/playlist?list=PLm7R8dzlvMHd6LonqpQHoIS6ga0d5fdpp\&si=NrJt2fEl0kgXS_NG)】程式交易頻道，幫您快速入門程式交易
+新一代 API 的大小事及教學留影都在【[富邦證券YouTube](https://youtube.com/playlist?list=PLm7R8dzlvMHd6LonqpQHoIS6ga0d5fdpp\&si=NrJt2fEl0kgXS_NG)】程式交易頻道，幫您快速入門程式交易
 
 DISCORD程式交易討論
 
 開發程式交易工具卡住了嗎？快到【[Discord](https://discord.com/invite/M8Gv9yKfza)】留言您的疑難雜症，從入門到進階都有專人幫忙
+
+
+---
+
+### 以 LLM 輔助開發
+
+你可以使用大型語言模型（LLMs）來協助建置富邦新一代 API 的整合。<br /><!-- -->我們提供了以下應用，協助你在開發過程中使用 LLM。
+
+#### 純文字文件（Plain text docs）[​](#純文字文件plain-text-docs "Direct link to 純文字文件（Plain text docs）")
+
+我們提供 [llms.txt](https://www.fbs.com.tw/TradeAPI/llms.txt) 檔案，用於指引 AI 工具與代理如何取得我們頁面的純文字版本。 `/llms.txt` 是一項新興標準，旨在讓網站與內容更容易被 LLM 存取與使用。
+
+* [llms.txt](https://www.fbs.com.tw/TradeAPI/llms.txt)
+* [llms-full.txt](https://www.fbs.com.tw/TradeAPI/llms-full.txt)
 
 
 ---

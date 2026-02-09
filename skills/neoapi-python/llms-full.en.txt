@@ -6,27 +6,34 @@
 
 ***
 
+Key takeaways
+
+* Download SDKs for the Fubon Neo API in multiple languages.
+* Latest version is **v2.2.8** with [migration notes](#version-migration-notes) below.
+* API Key login requires >= v2.2.7; web certificate export login requires >= v2.2.8.
+
+| Item                  | Details                                                                                                 |
+| --------------------- | ------------------------------------------------------------------------------------------------------- |
+| Latest version        | v2.2.8                                                                                                  |
+| Languages             | Python / C# / JavaScript (Node.js) / C++ & Go (securities trading accounting and condition orders only) |
+| Platforms             | Windows / macOS / Linux (by language)                                                                   |
+| API Key login         | >= v2.2.7                                                                                               |
+| Web cert export login | >= v2.2.8                                                                                               |
+
 info
 
-Latest version **v2.2.7**
+1. Test environment is available for Fubon Neo API. Please refer to [User Guide](https://www.fbs.com.tw/TradeAPI/en/docs/welcome.md#test-environment) for more detail. <br />
+2. [Web Certificate Export](https://www.fbs.com.tw/TradeAPI/en/docs/key.md) can be used for API login (version requirement: >= v2.2.8).
 
-Available in Python, C#, JavaScript, C++ and Golang
+API Key Login Feature (for version >= 2.2.7)
 
-[Version migration notes](#version-migration-notes)
-
-Test Environment is Available
-
-Test environment is available for FubonNeo API. Please refer to [User Guide](https://www.fbs.com.tw/TradeAPI/en/docs/welcome.md#test-environment) for more detail.
-
-API-Key Login Feature (for version >= 2.2.7)
-
-* [API-Key Introduction](https://www.fbs.com.tw/TradeAPI/en/docs/trading/api-key-apply.md) <br />
-* [Apply for API-Key](https://www.fbs.com.tw/TradeAPI/en/docs/key.md)
+* [API Key Introduction](https://www.fbs.com.tw/TradeAPI/en/docs/trading/api-key-apply.md) <br />
+* [Apply for API Key](https://www.fbs.com.tw/TradeAPI/en/docs/key.md)
 
 Notes for versions >=2.2.4
 
-1. Add a new rule verification reminder for the user\_def field in securities orders. <br />
-   a. Only characters in the ***ASCII range 33-126*** are accepted, with a maximum of 10 characters. <br />
+1. New rule verification reminder for the user\_def field in securities orders. <br />
+   a. Only ***uppercase and lowercase English letters and the numbers 0-9*** are accepted, with a maximum of 10 characters. (***Rule updated >=2.2.8***) <br />
    b. If the character string is legal but exceeds 10 characters, it will be automatically shortened to 10 characters and included in the order; the transaction event callback will send a reminder message. <br />
    c. If the character string is not legal, the user\_def field will be automatically filled with a null value; the transaction event callback will send a reminder message. <br />
 
@@ -46,24 +53,24 @@ Notes for versions >=2.2.0
 
 ##### Python[​](#python "Direct link to Python")
 
-Support Python 3.8、3.9、3.10、3.11 and 3.12. Cease the support for Python 3.7 since v2.0.1.
+Support Python 3.8, 3.9, 3.10, 3.11, 3.12 and 3.13. Python 3.7 is not supported since v2.0.1 (3.14 not supported).
 
 **SDK:**
 
-* Windows 64 Bit [download](https://www.fbs.com.tw/TradeAPI/en/xxxx/fubon_neo-0.0.11-cp37-abi3-win_amd64.whl.zip)
+* Windows 64 Bit [download](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon_neo-2.2.8-cp37-abi3-win_amd64.zip)
 
 * MacOs
 
   <!-- -->
 
-  * Arm 64 Bit [download](https://www.fbs.com.tw/TradeAPI/en/xxxx/fubon_neo-0.0.11-cp37-abi3-macosx_11_0_arm64.whl.zip)
-  * X86 64 Bit [download](https://www.fbs.com.tw/TradeAPI/en/xxxx/fubon_neo-0.0.11-cp37-abi3-macosx_10_7_x86_64.whl.zip)
+  * Arm 64 Bit [download](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon_neo-2.2.8-cp37-abi3-macosx_11_0_arm64.zip)
+  * X86 64 Bit [download](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon_neo-2.2.8-cp37-abi3-macosx_10_12_x86_64.zip)
 
-* Linux 64 Bit [download](https://www.fbs.com.tw/TradeAPI/en/xxxx/fubon_neo-0.0.11-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.zip)
+* Linux 64 Bit [download](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon_neo-2.2.8-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.zip)
 
 info
 
-**Code Example:** [Python example](https://www.fbs.com.tw/TradeAPI/en/xxx) (.ipynb, Jupyter. Need to install the SDK before use.)
+**Code Example:** [Python example](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/python_sample_code.zip) (.ipynb, Jupyter. Need to install the SDK before use.)
 
 ##### JavaScript[​](#javascript "Direct link to JavaScript")
 
@@ -71,11 +78,11 @@ Support Node.js 16 and above
 
 **SDK:**
 
-* Fubon-Neo.tgz [download](https://www.fbs.com.tw/TradeAPI/en/xxxx/fubon-neo-0.0.11.tgz.zip)
+* Fubon-Neo.tgz [download](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon-neo-2.2.8.nodejs.zip)
 
 info
 
-**Code Example:** [JS example](https://www.fbs.com.tw/TradeAPI/en/xxxx/fubon-neo-0.0.11.tgz.zip) (.ipynb, Jupyter. Need to install the SDK before use.)
+**Code Example:** [JS example](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/js_sample_code.zip) (.ipynb, Jupyter. Need to install the SDK before use.)
 
 ##### C#[​](#c "Direct link to C#")
 
@@ -83,29 +90,46 @@ Developed with .NET Standard 2.0, Suggest using .netcoreapp 3.1 and above or .NE
 
 **SDK:**
 
-* nupkg(64 Bit) [download](https://www.fbs.com.tw/TradeAPI/en/xxxx/FubonNeo.0.0.11.nupkg.zip)
+* nupkg(64 Bit) [download](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/FubonNeo.2.2.8.nupkg.zip)
 
 info
 
-**Code Example:** [C# example (Trade)](https://www.fbs.com.tw/TradeAPI/en/xxxx/FubonNeo.0.0.11.nupkg.zip) (Visual Studio project (WPF). Need to install the SDK before use.)<br />**Code Example:** [C# example (Market Data and Accounting)](https://www.fbs.com.tw/TradeAPI/en/aa.zip) (Visual Studio project (Windows Forms). Need to install the SDK before use.)
+**Code Example:** [C# example (Trade)](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/fubondotnetsdkgui.zip) (Visual Studio project (WPF). Need to install the SDK before use.)<br />**Code Example:** [C# example (Market Data and Accounting)](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/marketdata_n_accounting.zip) (Visual Studio project (Windows Forms). Need to install the SDK before use.)
 
 ##### C++[​](#c-1 "Direct link to C++")
 
 For C++ 20 and above
 
-* [SDK and Example Code](https://www.fbs.com.tw/TradeAPI/en/xxx/西加加SDK大禮包.zip)
-* [Documents](https://www.fbs.com.tw/TradeAPI/en/xxx/西加加說明書大禮包.zip)
+* [SDK and Example Code](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/FubonNeo.2.2.8_CppSDKPackage.zip)
 
 ##### Golang[​](#golang "Direct link to Golang")
 
-* [SDK and Example Code](https://www.fbs.com.tw/TradeAPI/en/xxx/勾欄SDK大禮包.zip)
-* [Documents](https://www.fbs.com.tw/TradeAPI/en/xxx/勾欄說明書大禮包.zip)
+* [SDK and Example Code](https://www.fbs.com.tw/TradeAPI_SDK/fubon_binary/fubon-neo-2.2.8.golang.zip)
 
 #### Connection Test[​](#connection-test "Direct link to Connection Test")
 
-**Connection Test Helper：** [download](https://www.fbs.com.tw/TradeAPI/en/xxxx/FubonNeo_login_test.zip) (for Windows)
+**Connection Test Helper：** [download](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/API_Sign_Test.zip) (for Windows)
 
 #### Version migration notes.[​](#version-migration-notes "Direct link to Version migration notes.")
+
+##### 2.2.8[​](#228 "Direct link to 2.2.8")
+
+* New feature: (Securities)
+
+  <!-- -->
+
+  1. Added a **Stock Affairs** data API to Market Data.
+  2. Added an **Adjusted Price** option to [Historical Candles](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/historical/candles.md).
+
+* Added page [Building with LLMs](https://www.fbs.com.tw/TradeAPI/en/docs/welcome/build-with-llm.md)
+
+Version Notes **>=2.2.8**
+
+1. New rule verification reminder for the user\_def field in securities orders.<br />a. Only ***uppercase/lowercase English letters and digits 0–9*** are allowed, up to 10 characters (***rule updated >=2.2.8***)<br />
+
+2. The forced disconnect mechanism triggered by API Key permission changes has been adjusted to apply only to the keys affected by the change (Example: logged in simultaneously with key1 and key2; delete key1 => key1 session is forcibly disconnected; key2 session is not affected)<br />
+
+3. [Certificates exported](https://www.fbs.com.tw/TradeAPI/en/docs/key.md) from the web page can be used for API login
 
 ##### 2.2.7[​](#227 "Direct link to 2.2.7")
 
@@ -113,8 +137,8 @@ For C++ 20 and above
 
 info
 
-* [API-Key Introduction](https://www.fbs.com.tw/TradeAPI/en/docs/trading/api-key-apply.md) <br />
-* [Apply for API-Key](https://www.fbs.com.tw/TradeAPI/en/docs/key.md)
+* [API Key Introduction](https://www.fbs.com.tw/TradeAPI/en/docs/trading/api-key-apply.md) <br />
+* [Apply for API Key](https://www.fbs.com.tw/TradeAPI/en/docs/key.md)
 
 ##### 2.2.6[​](#226 "Direct link to 2.2.6")
 
@@ -203,13 +227,173 @@ Notes for versions >=2.2.0
 
 ---
 
+### Install & Compatibility
+
+Key takeaways
+
+* Languages: Python / C# / JavaScript (Node.js) / C++ & Go (securities trading accounting and condition orders only).
+* Minimum versions: Python 3.8–3.13 (3.14 not supported), Node.js 16+, .NET Standard 2.0, C++20+, Go 1.19+.
+* SDK downloads: see [SDK Download](https://www.fbs.com.tw/TradeAPI/en/docs/download/download-sdk.md).
+* This page summarizes the minimal install steps and compatibility.
+
+#### Supported environments & compatibility[​](#supported-environments--compatibility "Direct link to Supported environments & compatibility")
+
+| Language             | Minimum version         | Supported OS            | Install type | Notes                                                        |
+| -------------------- | ----------------------- | ----------------------- | ------------ | ------------------------------------------------------------ |
+| Python               | 3.8–3.13 (since v2.0.1) | Windows / macOS / Linux | `.whl`       | Python 3.7 is not supported since v2.0.1; 3.14 not supported |
+| JavaScript (Node.js) | 16+                     | Windows / macOS / Linux | local `.tgz` | Install as a local Node.js package                           |
+| C#                   | .NET Standard 2.0       | Windows                 | `.nupkg`     | Recommended: .NET Core 3.1+ or .NET Framework 4.7.2+         |
+| C++                  | C++20+                  | Windows / macOS / Linux | SDK files    | Securities trading accounting and condition orders only      |
+| Go                   | 1.19+                   | Windows / macOS / Linux | SDK files    | Securities trading accounting and condition orders only      |
+
+#### Minimal installation steps[​](#minimal-installation-steps "Direct link to Minimal installation steps")
+
+##### Python[​](#python "Direct link to Python")
+
+1. Download the platform-specific `.whl`.
+2. Install:
+
+```bash
+pip install fubon_neo-<version>-cp37-abi3-win_amd64.whl
+
+```
+
+##### JavaScript (Node.js)[​](#javascript-nodejs "Direct link to JavaScript (Node.js)")
+
+1. Download the `.tgz` and place it in your project folder.
+2. Add to `package.json`:
+
+```json
+"dependencies": {
+  "fubon-neo": "file://<path-to-js-binary>/fubon-neo-<version>.tgz"
+}
+
+```
+
+3. Install:
+
+```bash
+npm install
+
+```
+
+##### C#[​](#c "Direct link to C#")
+
+1. Download the `.nupkg`.
+2. Install via Visual Studio NuGet Package Manager or a local NuGet source.
+
+##### C++[​](#c-1 "Direct link to C++")
+
+1. Download the C++ SDK and sample code.
+2. Configure include/lib paths based on the sample project.
+
+##### Go[​](#go "Direct link to Go")
+
+1. Download the Go SDK and sample code (Go 1.19+).
+2. Configure `go.mod` and local module paths based on the sample project.
+
+#### Package naming[​](#package-naming "Direct link to Package naming")
+
+* `fubon_neo-<version>-cp37-abi3-win_amd64.whl`
+* `fubon-neo-<version>.tgz`
+* `FubonNeo.<version>.nupkg`
+
+#### Version highlights[​](#version-highlights "Direct link to Version highlights")
+
+* API Key login: >= v2.2.7
+* Web certificate export login: >= v2.2.8
+* Python 3.7: not supported since v2.0.1
+* Python 3.14: not supported
+
+For full version notes, see [Version Migration](https://www.fbs.com.tw/TradeAPI/en/docs/download/download-sdk.md#version-migration-notes).
+
+#### FAQ[​](#faq "Direct link to FAQ")
+
+**Q1: How do I verify the SDK works after installation?**<br /><!-- -->A: Complete login and connection testing, then call any API method.
+
+**Q2: Why can’t I install on Python 3.7?**<br /><!-- -->A: Python 3.7 is not supported since v2.0.1.
+
+**Q3: Is Python 3.14 supported?**<br /><!-- -->A: Not at the moment; use Python 3.8–3.13.
+
+**Q4: Why are C++ / Go features limited?**<br /><!-- -->A: They currently support securities trading accounting and condition orders only.
+
+#### Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/trading/prepare.md)
+* [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/trading/quickstart.md)
+* [API Key Application](https://www.fbs.com.tw/TradeAPI/en/docs/key.md)
+
+
+---
+
 ### API Key Application & Management
 
-###
+Version Support
+
+Available since v2.2.7
+
+Web Certificate Export
+
+Starting from v2.2.8, exporting credentials after logging in on this page can be used to login API.
 
 <!-- -->
 
 API Key Application & Management
+
+You can still log in and use the API with your existing account credentials.<br />**API Key is an optional feature** that provides **enhanced security and flexibility**, ideal for advanced users.
+
+##### Why Choose API Key?[​](#why-choose-api-key "Direct link to Why Choose API Key?")
+
+* **Granular Access Control**: Restrict keys to specific functions (e.g., market data only, no order placement).
+* **IP Whitelisting**: Allow access only from trusted IP addresses to reduce external risks.
+* **Quick Revocation**: Disable a key instantly without affecting your main account.
+
+This feature is **not mandatory**, but if you want to improve security or need more flexible integration, **we recommend enabling API Key**.
+
+Important Notice
+
+**Please note!** When there are changes to the API Key list (such as adding or removing keys), all sessions logged in using an API Key will be forcibly logged out.
+
+Mechanism Change since v2.2.8 (with SDK update)
+
+The forced disconnect mechanism triggered by API Key permission changes has been adjusted to apply only to the keys affected by the change (Example: logged in simultaneously with key1 and key2; delete key1 => key1 session is forcibly disconnected; key2 session is not affected).
+
+#### Apply for a Certificate[​](#apply-for-a-certificate "Direct link to Apply for a Certificate")
+
+Before applying for an API Key, you must first apply for your web certificate. Once that's done, you can proceed with the API Key application.
+
+1. Enter your ID number and corresponding password ![key\_login\_step2](/TradeAPI/en/assets/images/key_login_step2-e8aa8f122ec1bd5960ba14bd4b0491eb.png)
+
+2. Apply for a web certificate and receive the OTP ![OTP](/TradeAPI/en/assets/images/OTP-3771c5ab5c12c603f48994c14e130c77.png)
+
+3. After completing the certificate application, you can export the certificate and add a new key ![key\_login\_step3](/TradeAPI/en/assets/images/key_login_step3-add15e5759914e12519b00657532f988.png)
+
+CA Certificate with a Default Password
+
+Use your login ID when prompted to enter the certificate password.
+
+4. Apply for a key
+
+   * Click `Add API Key `![add\_key](/TradeAPI/en/assets/images/add_key-5ca3ffea5b0e4c620d916dc950914d40.png)
+
+   * Set control permissions ( Leave IP or date blank if you do not want to set corresponding controls ) ![add\_key\_step2](/TradeAPI/en/assets/images/add_key_step2-569f33ff9a7763a3a75e1611a83b3c47.png)
+
+   * After successful setup, the Secret Key will be displayed ( **Once the Secret Key is closed, it will no longer be shown** ) ![add\_key\_step3](/TradeAPI/en/assets/images/add_key_step3-2d2331bc6aadbb61ee743ebc4d2ff3fd.png)
+
+5. You can view previously applied keys or deactivate them ( You can activate for up to 30 keys at the same time ) ![key\_list](/TradeAPI/en/assets/images/key_list-65170f1813ace159f2ac109b2287d624.png)
+
+Key takeaways
+
+* Apply for and manage API Keys for the Fubon Neo API.
+* API Keys can be used for login and permission control.
+* After creation, you can review, update, or revoke keys.
+
+| Item          | Details                                  |
+| ------------- | ---------------------------------------- |
+| Feature       | API Key application and management       |
+| Product       | Fubon Neo API                            |
+| Primary use   | Login and permission control             |
+| Related pages | API Key Introduction / Apply for API Key |
 
 
 ---
@@ -924,7 +1108,21 @@ Response Body：
 
 ### Quick Start
 
-Fugle Market Web API provides developer-friendly API services. You can access data such as daily stock market information, snapshots, and historical market data for the Taiwan stock market。
+Key takeaways
+
+* Fubon Market Data Web API provides intraday, snapshot, and historical data for Taiwan equities.
+* Exceeding limits returns status code `429`.
+* SDK examples are available for Python, Node.js, and C#.
+
+| Item       | Details                          |
+| ---------- | -------------------------------- |
+| Interface  | Web API                          |
+| Market     | Taiwan equities                  |
+| Data types | Intraday / Snapshot / Historical |
+| Rate limit | `429` on exceed                  |
+| SDK        | Python / Node.js / C#            |
+
+Fubon Market Data Web API provides developer-friendly services. You can access intraday, snapshot, and historical market data for Taiwan equities.
 
 #### Rate Limit[​](#rate-limit "Direct link to Rate Limit")
 
@@ -948,7 +1146,7 @@ API are categorized based on data types into **intraday（盤中行情）**、**
 
 #### Using SDK[​](#using-sdk "Direct link to Using SDK")
 
-Fugle Market Web API offers Python 、 Node.js and C# SDKs. You can access the API through the following methods:
+Fubon Market Data Web API offers Python, Node.js, and C# SDKs. You can access the API through the following methods:
 
 * Python
 * Node.js
@@ -1018,9 +1216,10 @@ historical/candles/{symbol}
 | `symbol`\*  | string | Stock Number                                                                                                |
 | `from`      | string | Start Date（Format：`yyyy-MM-dd`）                                                                          |
 | `to`        | string | End Date（Format：`yyyy-MM-dd`）                                                                            |
-| `timeframe` | string | KLine TimeFrame，offer `1` 1m；`5` 5m；`10` 10m；`15` 15m；`30` 30m；`60` 60m；`D` day；`W` week；`M` month |
-| `fields`    | string | Fields，offer：`open,high,low,close,volume,turnover,change`                                                 |
-| `sort`      | string | Sorting，default `desc` descent, Also offer `asc` ascent                                                    |
+| `timeframe` | string | KLine TimeFrame, offer `1` 1m；`5` 5m；`10` 10m；`15` 15m；`30` 30m；`60` 60m；`D` day；`W` week；`M` month |
+| `adjusted`  | string | Adjusted stock price, Option: `true`、`false` ***(Available >= v2.2.8)***                                   |
+| `fields`    | string | Fields, offer：`open,high,low,close,volume,turnover,change`                                                 |
+| `sort`      | string | Sorting, default `desc` descent, Also offer `asc` ascent                                                    |
 
 caution
 
@@ -3768,24 +3967,38 @@ Response Body：
 
 ---
 
-### Fubon RealTime MarketData API
+### Fubon Neo API Securities Market Data
+
+Key takeaways
+
+* Fubon Neo API Securities Market Data provides real-time and historical data for Taiwan markets.
+* Interfaces include Web API and WebSocket API.
+* Data sources are official exchanges and vendors; please follow usage regulations.
+* Next step: [Web API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/getting-started.md) or [WebSocket API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/getting-started.md).
+
+| Item         | Details                  |
+| ------------ | ------------------------ |
+| Service      | Securities Market Data   |
+| Markets      | Taiwan securities market |
+| Interfaces   | Web API / WebSocket API  |
+| Data sources | TWSE, TPEx, TAIFEX       |
 
 The real-time market data source includes the Taiwan Stock Exchange (TWSE), and the Taiwan Futures Exchange.<br /><!-- -->Please refer to the relevant [regulations and statements](#statement) for more information.
 
 #### Web API[​](#web-api "Direct link to Web API")
 
-Fubon MarketData [WEB API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/getting-started.md) We provide developer-friendly API services. You can access data such as daily stock market information, snapshots, and historical market data for the Taiwan stock market；The data source is from the Infotimes and Fugle Technology.
+Fubon Market Data [Web API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/getting-started.md) provides developer-friendly services. You can access intraday data, snapshots, and historical market data for the Taiwan stock market. Data sources are Infotimes and Fugle.
 
 #### WebSocket API[​](#websocket-api "Direct link to WebSocket API")
 
-Fubon MarketData [WebSocket API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/getting-started.md) We offer real-time stock market data services for the Taiwan stock market. You can achieve your real-time market data needs through our WebSocket API。
+Fubon Market Data [WebSocket API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/getting-started.md) provides real-time stock market data for Taiwan. Use the WebSocket API to receive real-time data.
 
 #### Usage regulations and statements[​](#statement "Direct link to Usage regulations and statements")
 
 * The market data obtained through this service is for reference only. It does not include odd-lot or block trades in the transaction value and volume. Users are responsible for any trading losses incurred based on this data。
 * Fubon is not responsible for data content errors, delays in updates, or transmission interruptions. You are solely responsible for any financial or investment decisions you make。
 * Users are required to follow the [Regulations on the Use of Trading Information of Taiwan Stock Exchange Corporation](https://www.selaw.com.tw/English/LawArticle?sysNumber=LW10809760\&releaseDate=2021-12-24&__RequestVerificationToken=CfDJ8AGrSuSD6ZtEvZ_SapDxtQSkUGuPSgl5XdBmvh4pfksZDSCPO97cowzuq2kozOK-jcEsrQLo0zV7piJ2v-0_Iu0T59qkMYtXhtWTHqd_tx99cczJ-iz2jNYx0wjaCIZTYDYTsJtarx1wUtmCH2y7hZs)、[Regulations on the Use of Trading Information of Taiwan Futures Exchange Corporation](https://www.selaw.com.tw/English/LawArticle?sysNumber=LW10815483\&releaseDate=2020-02-13&__RequestVerificationToken=CfDJ8AGrSuSD6ZtEvZ_SapDxtQRBdJkoAtEZZLAng4diPK7D2b226xLMNWc93GlTy5KWHc25EhHhnPDU9iJRdDvbu7cldj7dJMTv9vZoFF4brLW6KY3MFCc-KIzRZueu2MFWP01PaDehsVdaM0YPBB_ZJGI)、[Regulations on the Use of Trading Information of the Taiwan Securities Association](https://www.selaw.com.tw/English/LawArticle?sysNumber=LW10813063\&releaseDate=2024-01-23&__RequestVerificationToken=CfDJ8AGrSuSD6ZtEvZ_SapDxtQQis8j2jnRvWRu6TJnh7JHmOGCfonv9gz0Q6ez38d3M_-Em3KcMbA7v6qUbziRLV83yyombkIWengQFc1Bgtz23kCC-y2GvB5YVrS2h4b1v5c8JSKvjZsEkwSQKCPI3SmQ)、Users are required to comply with the information usage regulations established by each information source provider, as well as relevant intellectual property laws. All information is subject to the data officially announced by each information source provider. Any unauthorized interception, retransmission of trading information, or any other form of selling, renting, transferring, or re-authorizing trading information, or resampling trading information to create indices, other derivative products, or transmitting it to third parties may result in legal consequences, including civil and criminal liability for breach of contract and infringement。
-* The Fubon Market API is developed and provided by the [Fugle](https://www.fugle.tw/) technology team。
+* Fubon Neo API Market Data is developed and provided by the [Fugle](https://www.fugle.tw/) technology team。
 
 
 ---
@@ -3793,6 +4006,11 @@ Fubon MarketData [WebSocket API](https://www.fbs.com.tw/TradeAPI/en/docs/market-
 ### Establish Connections
 
 ##### Establish Market Data Connections[​](#establish-market-data-connections "Direct link to Establish Market Data Connections")
+
+Key takeaways
+
+* Demonstrates how to establish multiple WebSocket connections (limit 5).
+* Web API rate limits are shared; WebSocket limit is 200 subscriptions per connection.
 
 The following example demonstrates how to establish five WebSocket connections for market data simultaneously.
 
@@ -3934,7 +4152,20 @@ foreach (var ws in websockets)
 
 ##### Rate Limit[​](#rate-limit "Direct link to Rate Limit")
 
-Fubon market data provides Web API and Socket, with the following access restrictions.
+Key takeaways
+
+* This page lists Web API and WebSocket rate limits for Fubon Neo API Market Data.
+* Exceeding limits returns `429` or WebSocket subscription errors.
+* Rapid connection bursts may be blocked.
+
+| Item       | Limit                                           |
+| ---------- | ----------------------------------------------- |
+| Intraday   | 300 / min                                       |
+| Snapshot   | 300 / min                                       |
+| Historical | 60 / min                                        |
+| WebSocket  | 200 subscriptions per connection; 5 connections |
+
+Fubon Neo API Market Data provides Web API and WebSocket with the following access restrictions.
 
 * Intraday : 300 / min
 * WebSocket : 200 Subscription；5 Connection
@@ -3970,11 +4201,25 @@ If a large number of Socket connections are established within a short period, t
 
 ### Quick Start
 
-Fubon Market WebSocket API provides real-time stock market data services for Taiwan. Through the WebSocket API, you can fulfill your need for receiving real-time market data
+Key takeaways
+
+* Fubon Market Data WebSocket API provides real-time market data subscriptions.
+* Supports `Speed` and `Normal` modes.
+* Login is required before subscribing to channels.
+
+| Item         | Details                            |
+| ------------ | ---------------------------------- |
+| Interface    | WebSocket API                      |
+| Market       | Taiwan equities                    |
+| Modes        | Speed / Normal                     |
+| SDK          | Python / Node.js / C#              |
+| Subscription | Connect then subscribe to channels |
+
+Fubon Market Data WebSocket API provides real-time stock market data services for Taiwan. Use WebSocket to receive real-time market data.
 
 #### Using SDK[​](#using-sdk "Direct link to Using SDK")
 
-Fubon Market WebSocket API provides Python 、 Node.js and C# SDKs. You can access the WebSocket API through the following methods：
+Fubon Market Data WebSocket API provides Python, Node.js, and C# SDKs. You can access the WebSocket API through the following methods:
 
 And subscribe webSocket callback method to receive the callback messages below.
 
@@ -4135,7 +4380,7 @@ The WebSocket Server will respond with the following message (if `ping` was sent
 
 #### Channels[​](#channels "Direct link to Channels")
 
-The Fubon Market WebSocket API currently provides the following subscribable channels：
+The Fubon Market Data WebSocket API currently provides the following subscribable channels:
 
 * `trades` - [Subscribe to the latest stock trade information](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/trades.md)
 * `books` - [Subscribe to the latest top five bid and ask information for stocks](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/books.md)
@@ -5323,7 +5568,21 @@ await stock.Connect();
 
 ### Quick Start
 
-Fugle Market Web API provides developer-friendly API services. You can access data such as daily Future / Option market information for the Taiwan future market。
+Key takeaways
+
+* Fubon Futures Market Data Web API provides intraday futures/options data for Taiwan.
+* Exceeding limits returns status code `429`.
+* SDK examples are available for Python, Node.js, and C#.
+
+| Item       | Details                  |
+| ---------- | ------------------------ |
+| Interface  | Web API                  |
+| Market     | Taiwan futures / options |
+| Data types | Intraday                 |
+| Rate limit | `429` on exceed          |
+| SDK        | Python / Node.js / C#    |
+
+Fubon Futures Market Data Web API provides developer-friendly services for Taiwan futures and options.
 
 #### Rate Limit[​](#rate-limit "Direct link to Rate Limit")
 
@@ -5342,7 +5601,7 @@ Web API are categorized based on data types:
 
 #### Using SDK[​](#using-sdk "Direct link to Using SDK")
 
-Fugle Market Web API offers Python 、 Node.js and C# SDKs. You can access the API through the following methods:
+Fubon Futures Market Data Web API offers Python, Node.js, and C# SDKs. You can access the API through the following methods:
 
 * Python
 * Node.js
@@ -6548,24 +6807,38 @@ Response Body：
 
 ---
 
-### Fubon RealTime MarketData API
+### Fubon Neo API Futures Market Data
+
+Key takeaways
+
+* Fubon Neo API Futures Market Data provides real-time futures data for Taiwan.
+* Interfaces include Web API and WebSocket API.
+* Data sources are official exchanges and vendors; please follow usage regulations.
+* Next step: [Web API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/getting-started.md) or [WebSocket API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/getting-started.md).
+
+| Item         | Details                  |
+| ------------ | ------------------------ |
+| Service      | Futures Market Data      |
+| Markets      | Taiwan futures / options |
+| Interfaces   | Web API / WebSocket API  |
+| Data sources | TWSE, TPEx, TAIFEX       |
 
 The real-time market data source includes the Taiwan Stock Exchange (TWSE), and the Taiwan Futures Exchange.<br /><!-- -->Please refer to the relevant [regulations and statements](#statement) for more information.
 
 #### Web API[​](#web-api "Direct link to Web API")
 
-Fubon Future MarketData [WEB API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/getting-started.md) We provide developer-friendly API services. You can access data such as daily future market information for the Taiwan future market；The data source is from the Infotimes and Fugle Technology.
+Fubon Futures Market Data [Web API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/getting-started.md) provides developer-friendly services. You can access intraday futures data for Taiwan. Data sources are Infotimes and Fugle.
 
 #### WebSocket API[​](#websocket-api "Direct link to WebSocket API")
 
-Fubon MarketData [WebSocket API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/getting-started.md) We offer real-time future market data services for the Taiwan future market. You can achieve your real-time market data needs through our WebSocket API。
+Fubon Futures Market Data [WebSocket API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/getting-started.md) provides real-time futures market data for Taiwan. Use the WebSocket API to receive real-time data.
 
 #### Usage regulations and statements[​](#statement "Direct link to Usage regulations and statements")
 
 * The market data obtained through this service is for reference only. It does not include odd-lot or block trades in the transaction value and volume. Users are responsible for any trading losses incurred based on this data。
 * Fubon is not responsible for data content errors, delays in updates, or transmission interruptions. You are solely responsible for any financial or investment decisions you make。
 * Users are required to follow the [Regulations on the Use of Trading Information of Taiwan Stock Exchange Corporation](https://www.selaw.com.tw/English/LawArticle?sysNumber=LW10809760\&releaseDate=2021-12-24&__RequestVerificationToken=CfDJ8AGrSuSD6ZtEvZ_SapDxtQSkUGuPSgl5XdBmvh4pfksZDSCPO97cowzuq2kozOK-jcEsrQLo0zV7piJ2v-0_Iu0T59qkMYtXhtWTHqd_tx99cczJ-iz2jNYx0wjaCIZTYDYTsJtarx1wUtmCH2y7hZs)、[Regulations on the Use of Trading Information of Taiwan Futures Exchange Corporation](https://www.selaw.com.tw/English/LawArticle?sysNumber=LW10815483\&releaseDate=2020-02-13&__RequestVerificationToken=CfDJ8AGrSuSD6ZtEvZ_SapDxtQRBdJkoAtEZZLAng4diPK7D2b226xLMNWc93GlTy5KWHc25EhHhnPDU9iJRdDvbu7cldj7dJMTv9vZoFF4brLW6KY3MFCc-KIzRZueu2MFWP01PaDehsVdaM0YPBB_ZJGI)、[Regulations on the Use of Trading Information of the Taiwan Securities Association](https://www.selaw.com.tw/English/LawArticle?sysNumber=LW10813063\&releaseDate=2024-01-23&__RequestVerificationToken=CfDJ8AGrSuSD6ZtEvZ_SapDxtQQis8j2jnRvWRu6TJnh7JHmOGCfonv9gz0Q6ez38d3M_-Em3KcMbA7v6qUbziRLV83yyombkIWengQFc1Bgtz23kCC-y2GvB5YVrS2h4b1v5c8JSKvjZsEkwSQKCPI3SmQ)、Users are required to comply with the information usage regulations established by each information source provider, as well as relevant intellectual property laws. All information is subject to the data officially announced by each information source provider. Any unauthorized interception, retransmission of trading information, or any other form of selling, renting, transferring, or re-authorizing trading information, or resampling trading information to create indices, other derivative products, or transmitting it to third parties may result in legal consequences, including civil and criminal liability for breach of contract and infringement。
-* The Fubon Market API is developed and provided by the [Fugle](https://www.fugle.tw/) technology team。
+* Fubon Neo API Futures Market Data is developed and provided by the [Fugle](https://www.fugle.tw/) technology team。
 
 
 ---
@@ -6714,7 +6987,20 @@ foreach (var ws in websockets)
 
 ##### Rate Limit[​](#rate-limit "Direct link to Rate Limit")
 
-Fubon market data provides Web API and Socket, with the following access restrictions.
+Key takeaways
+
+* This page lists Web API and WebSocket rate limits for Fubon Neo API Futures Market Data.
+* Exceeding limits returns `429` or WebSocket subscription errors.
+* Rapid connection bursts may be blocked.
+
+| Item       | Limit                            |
+| ---------- | -------------------------------- |
+| Intraday   | 300 / min                        |
+| Snapshot   | 300 / min                        |
+| Historical | 60 / min                         |
+| WebSocket  | 200 subscriptions; 5 connections |
+
+Fubon Neo API Futures Market Data provides Web API and WebSocket with the following access restrictions.
 
 * Intraday : 300 / min
 * WebSocket : 200 Subscription；5 Connection
@@ -6750,11 +7036,25 @@ If a large number of Socket connections are established within a short period, t
 
 ### Quick Start
 
-Fubon Market WebSocket API provides real-time stock market data services for Taiwan. Through the WebSocket API, you can fulfill your need for receiving real-time market data.
+Key takeaways
+
+* Fubon Futures Market Data WebSocket API provides real-time futures subscriptions.
+* Supports `Speed` and `Normal` modes.
+* Login is required before subscribing to channels.
+
+| Item         | Details                            |
+| ------------ | ---------------------------------- |
+| Interface    | WebSocket API                      |
+| Market       | Taiwan futures / options           |
+| Modes        | Speed / Normal                     |
+| SDK          | Python / Node.js / C#              |
+| Subscription | Connect then subscribe to channels |
+
+Fubon Futures Market Data WebSocket API provides real-time futures market data for Taiwan.
 
 #### Using SDK[​](#using-sdk "Direct link to Using SDK")
 
-Fubon Market WebSocket API provides Python 、 Node.js and C# SDKs. You can access the WebSocket API through the following methods：
+Fubon Futures Market Data WebSocket API provides Python, Node.js, and C# SDKs. You can access the WebSocket API through the following methods:
 
 And subscribe webSocket callback method to receive the callback messages below.
 
@@ -6907,7 +7207,7 @@ The WebSocket Server will respond with the following message (if ping was sent, 
 
 #### Channels[​](#channels "Direct link to Channels")
 
-The Fubon Market WebSocket API currently provides the following subscribable channels：
+The Fubon Futures Market Data WebSocket API currently provides the following subscribable channels:
 
 * `trades` - [Subscribe to the latest future trade information](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/market-data-channels/trades.md)
 * `books` - [Subscribe to the latest top five bid and ask information for stocks](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/market-data-channels/books.md)
@@ -8188,6 +8488,20 @@ sdk.Stock.TrailProfit(target_account, "20240427","20240516", StopSign.Full, trai
 
 ***
 
+Key takeaways
+
+* Overview of Fubon Neo API condition orders.
+* Supports multiple order types for automated strategies and risk control.
+* Next step: [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/prepare.md).
+
+| Item         | Details                                                                                                 |
+| ------------ | ------------------------------------------------------------------------------------------------------- |
+| Product      | Fubon Neo API Condition Orders                                                                          |
+| Functions    | Trigger, TP/SL, time-slice                                                                              |
+| Platforms    | Windows / macOS / Linux                                                                                 |
+| Languages    | Python / C# / JavaScript (Node.js) / C++ & Go (securities trading accounting and condition orders only) |
+| Prerequisite | Agreement signature required                                                                            |
+
 #### Overview[​](#overview "Direct link to Overview")
 
 Fubon Neo API provides comprehensive trading and market APIs for your programmatic trading needs, catering to every developer's quantitative and automated trading requirements. Our API allows users to freely choose from mainstream programming languages (Python, C#, JavaScript) and easily access the API during the process of creating programmatic trades, utilizing trading and market services.
@@ -8202,7 +8516,7 @@ Direct trade management: Create MIT (market-if-touched) orders , TP (Take Profit
 
 #### Version Support[​](#version-support "Direct link to Version Support")
 
-Python Support : 3.7 (~v1.3.2)、3.8、3.9、3.10、3.11 and 3.12 (v2.0.1~).<br /><!-- -->Node.js Support : 16 and above.<br /><!-- -->C# develop .NET Standard 2.0 for the base ， Suggest using .netcoreapp 3.1 and above； If using .NETFramework，suggest using .NETFramework 4.7.2 and above.
+Python support: 3.7 (~v1.3.2) and 3.8–3.13 (v2.0.1~, 3.14 not supported).<br /><!-- -->Node.js Support : 16 and above.<br /><!-- -->C# develop .NET Standard 2.0 for the base ， Suggest using .netcoreapp 3.1 and above； If using .NETFramework，suggest using .NETFramework 4.7.2 and above.
 
 
 ---
@@ -17551,6 +17865,19 @@ sdk.stock.trail_profit(target_account, "20240427","20240516", StopSign.Full, tra
 
 ### Preparation
 
+Key takeaways
+
+* Read the usage guide and sign the agreement before using condition orders.
+* Upgrade SDK to v1.3 or later.
+* Import condition order packages for Python / Node.js.
+
+| Item          | Details                                 |
+| ------------- | --------------------------------------- |
+| Product       | Fubon Neo API Condition Order           |
+| Prerequisites | Read guide, Sign agreement, Upgrade SDK |
+| Languages     | Python / C# / JavaScript (Node.js)      |
+| Import        | Extra import required for Python / JS   |
+
 caution
 
 Before starting with the Fubon Neo Condition API, please read the [**user agreement**](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/Agreements.md) carefully and complete signing the agreements.
@@ -17886,6 +18213,20 @@ sdk.FutOpt.TrailProfit(target_account, "20240427","20240516", StopSign.Full, tra
 
 ***
 
+Key takeaways
+
+* Overview of Fubon Neo API futures condition orders.
+* Supports multiple order types for automated strategies and risk control.
+* Next step: [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/prepare.md).
+
+| Item         | Details                                                                                                 |
+| ------------ | ------------------------------------------------------------------------------------------------------- |
+| Product      | Fubon Neo API Futures Condition Orders                                                                  |
+| Functions    | Trigger, TP/SL, time-slice                                                                              |
+| Platforms    | Windows / macOS / Linux                                                                                 |
+| Languages    | Python / C# / JavaScript (Node.js) / C++ & Go (securities trading accounting and condition orders only) |
+| Prerequisite | Agreement signature required                                                                            |
+
 #### Overview[​](#overview "Direct link to Overview")
 
 Fubon Neo API provides comprehensive trading and market APIs for your programmatic trading needs, catering to every developer's quantitative and automated trading requirements. Our API allows users to freely choose from mainstream programming languages (Python, C#, JavaScript) and easily access the API during the process of creating programmatic trades, utilizing trading and market services.
@@ -17900,7 +18241,7 @@ Direct trade management: Create MIT (market-if-touched) orders , TP (Take Profit
 
 #### Version Support[​](#version-support "Direct link to Version Support")
 
-Python Support : 3.7、3.8、3.9、3.10 and 3.11.<br /><!-- -->Node.js Support : 16 and above.<br /><!-- -->C# develop .NET Standard 2.0 for the base ， Suggest using .netcoreapp 3.1 and above； If using .NETFramework，suggest using .NETFramework 4.7.2 and above.
+Python support: 3.7 (~v1.3.2) and 3.8–3.13 (v2.0.1~, 3.14 not supported).<br /><!-- -->Node.js Support : 16 and above.<br /><!-- -->C# develop .NET Standard 2.0 for the base ， Suggest using .netcoreapp 3.1 and above； If using .NETFramework，suggest using .NETFramework 4.7.2 and above.
 
 
 ---
@@ -23020,6 +23361,10 @@ Important Notice
 
 **Please note!** When there are changes to the API Key list (such as adding or removing keys), all sessions logged in using an API Key will be forcibly logged out.
 
+Mechanism Change since v2.2.8 (with SDK update)
+
+The forced disconnect mechanism triggered by API Key permission changes has been adjusted to apply only to the keys affected by the change (Example: logged in simultaneously with key1 and key2; delete key1 => key1 session is forcibly disconnected; key2 session is not affected).
+
 #### Apply for a Certificate[​](#apply-for-a-certificate "Direct link to Apply for a Certificate")
 
 Before applying for an API Key, you must first apply for your web certificate. Once that's done, you can proceed with the API Key application.
@@ -23047,28 +23392,6 @@ Use your login ID when prompted to enter the certificate password.
    * After successful setup, the Secret Key will be displayed ( **Once the Secret Key is closed, it will no longer be shown** ) ![add\_key\_step3](/TradeAPI/en/assets/images/add_key_step3-2d2331bc6aadbb61ee743ebc4d2ff3fd.png)
 
 6. You can view previously applied keys or deactivate them ( You can activate for up to 30 keys at the same time ) ![key\_list](/TradeAPI/en/assets/images/key_list-65170f1813ace159f2ac109b2287d624.png)
-
-
----
-
-### 以 LLM 輔助 SDK 串接開發
-
-你可以使用大型語言模型（LLMs）來協助建置富邦 Neo 的整合。<br /><!-- -->我們提供了以下應用，協助你在開發過程中使用 LLM。
-
-#### 純文字文件（Plain text docs）[​](#純文字文件plain-text-docs "Direct link to 純文字文件（Plain text docs）")
-
-你可以在任何網址後方加上 `.md`，即可取得該頁面的純文字 Markdown 版本。<br /><!-- -->例如，本頁的純文字版本可於 [build-with-llm.md](https://www.fbs.com.tw/TradeAPI/en/docs/trading/build-with-llm) 取得。<br /><!-- -->我們提供 [llms.txt](https://www.fbs.com.tw/TradeAPI/en/llms.txt) 檔案，用於指引 AI 工具與代理如何取得我們頁面的純文字版本。 `/llms.txt` 是一項新興標準，旨在讓網站與內容更容易被 LLM 存取與使用。
-
-* [llms.txt](https://www.fbs.com.tw/TradeAPI/en/llms.txt)
-* [llms-full.txt](https://www.fbs.com.tw/TradeAPI/en/llms-full.txt)
-
-#### Model Context Protocol（MCP）[​](#model-context-protocolmcp "Direct link to Model Context Protocol（MCP）")
-
-富邦 Neo 的 `Model Context Protocol（MCP）`定義許多應用，讓 AI Agent 能夠與富邦 Neo 互動，並搜尋我們的 Library。<br /><!-- -->在你與 Agent 協作的過程中，它可以使用這些工具來回答問題或完成任務。
-
-如果你正在使用 AI Agent 來協助建置富邦 Neo 整合，請將該 Agent 連接至 MCP 伺服器。
-
-[富邦 Neo MCP](https://github.com/fugle-dev/fugle-mcp-server)
 
 
 ---
@@ -29220,7 +29543,7 @@ FilledData {
 
 ### WebSocket Parameter Setting
 
-FubonNeo API SDK leverages WebSocket to connect with Fubon servers, the standard ping/pong control frame mechanism is adopted and implemented. By default, a ping frame would be sent to the server every 30 seconds, and if pong response is not received for two cconsecutive attempts, the connection quality is judged to be weak and the connection would be dropped.
+Fubon Neo API SDK leverages WebSocket to connect with Fubon servers, the standard ping/pong control frame mechanism is adopted and implemented. By default, a ping frame would be sent to the server every 30 seconds, and if pong response is not received for two cconsecutive attempts, the connection quality is judged to be weak and the connection would be dropped.
 
 To accomodate different usage scenarios, since version `2.2.1`, users can set this part of the parameters by themselves. When establishing a connection, you can specify the relevant parameters. For example, if you want to have a ping frame sent every 300 seconds, and drop the connection if three consecutive attempts failed, the corresponding method call would be:
 
@@ -30721,6 +31044,20 @@ sdk.Stock.PlaceOrder(accounts.data[0],order); //  To place an block order
 
 ***
 
+Key takeaways
+
+* Overview of Fubon Neo API trading and market services.
+* Supports multiple languages and cross-platform development.
+* Next step: [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/trading/prepare.md).
+
+| Item      | Details                                                                                                 |
+| --------- | ------------------------------------------------------------------------------------------------------- |
+| Product   | Fubon Neo API                                                                                           |
+| Services  | Trading / Market Data                                                                                   |
+| Platforms | Windows / macOS / Linux                                                                                 |
+| Languages | Python / C# / JavaScript (Node.js) / C++ & Go (securities trading accounting and condition orders only) |
+| Login     | Certificate login (API Key optional)                                                                    |
+
 #### Overview[​](#overview "Direct link to Overview")
 
 Fubon Neo API provides comprehensive trading and market APIs for your programmatic trading needs, catering to every developer's quantitative and automated trading requirements. Our API allows users to freely choose from mainstream programming languages (Python, C#, JavaScript) and easily access the API during the process of creating programmatic trades, utilizing trading and market services.
@@ -30735,7 +31072,7 @@ Direct trade management: Create orders, modify or cancel orders, and inquire abo
 
 #### Version Support[​](#version-support "Direct link to Version Support")
 
-Python Support : 3.7 (~v1.3.2)、3.8、3.9、3.10、3.11 and 3.12 (v2.0.1~).<br /><!-- -->Node.js Support : 16 and above.<br /><!-- -->C# develop .NET Standard 2.0 for the base ， Suggest using .netcoreapp 3.1 and above； If using .NETFramework，suggest using .NETFramework 4.7.2 and above.
+Python support: 3.7 (~v1.3.2) and 3.8–3.13 (v2.0.1~, 3.14 not supported).<br /><!-- -->Node.js Support : 16 and above.<br /><!-- -->C# develop .NET Standard 2.0 for the base ， Suggest using .netcoreapp 3.1 and above； If using .NETFramework，suggest using .NETFramework 4.7.2 and above.
 
 
 ---
@@ -34360,7 +34697,7 @@ Modified Price Object
 
 About Price Type
 
-The Co-lo version has not yet enabled the use of PriceType.
+The Co-lo version **has** enabled the use of PriceType.
 
 ##### ModifyQuantityObj[​](#modifyquantityobj "Direct link to ModifyQuantityObj")
 
@@ -34858,11 +35195,11 @@ BatchModifyPrice
 
 ##### First, using 'MakeModifyPriceObj' create a 'ModifyPriceObj' object[​](#first-using-makemodifypriceobj-create-a-modifypriceobj-object "Direct link to First, using 'MakeModifyPriceObj' create a 'ModifyPriceObj' object")
 
-| Parameter   | Type                                                                                                    | Meaning                                                                                                      |
-| ----------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                              |
-| price       | string                                                                                                  | The price after modification                                                                                 |
-| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/EnumMatrix.md#pricetype)     | The price type after modification (***Note.***: The Co-lo version has not yet enabled the use of PriceType.) |
+| Parameter   | Type                                                                                                    | Meaning                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                          |
+| price       | string                                                                                                  | The price after modification                                                                             |
+| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/EnumMatrix.md#pricetype)     | The price type after modification (***Note.***: The Co-lo version **has** enabled the use of PriceType.) |
 
 caution
 
@@ -36224,11 +36561,11 @@ ModifyPrice
 
 ##### First, using 'MakeModifyPriceObj' create a 'ModifyPriceObj' object[​](#first-using-makemodifypriceobj-create-a-modifypriceobj-object "Direct link to First, using 'MakeModifyPriceObj' create a 'ModifyPriceObj' object")
 
-| Parameter   | Type                                                                                                    | Meaning                                                                                                      |
-| ----------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                              |
-| price       | string                                                                                                  | The price after modification                                                                                 |
-| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/EnumMatrix.md#pricetype)     | The price type after modification (***Note.***: The Co-lo version has not yet enabled the use of PriceType.) |
+| Parameter   | Type                                                                                                    | Meaning                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                          |
+| price       | string                                                                                                  | The price after modification                                                                             |
+| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/EnumMatrix.md#pricetype)     | The price type after modification (***Note.***: The Co-lo version **has** enabled the use of PriceType.) |
 
 caution
 
@@ -36946,7 +37283,7 @@ sdk.stock.QuerySymbolSnapshot(accounts.data[0], MarketType.Common, [StockType.St
 
 ### Version Upgrade Guide
 
-This document will guide you through upgrading your existing FubonNeo API version 1.0.4 to versions >= 1.3.1
+This document will guide you through upgrading your existing Fubon Neo API version 1.0.4 to versions >= 1.3.1
 
 #### Main differences[​](#main-differences "Direct link to Main differences")
 
@@ -41728,7 +42065,7 @@ When spot short selling common stocks, orderType should be DayTrade, buySell is 
 
 ##### OrderResult[​](#orderresult "Direct link to OrderResult")
 
-OrderResult; You can use [getOrderResults(accounts)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/GetOrderResults.md) to get data.
+OrderResult; You can use [getOrderResults](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/trade/GetOrderResults.md) to get data.
 
 | Parameter       | Type                                               | Meaning                                                                                                                                                  |
 | --------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -41800,7 +42137,7 @@ Modified Price Object
 
 About Price Type
 
-The Co-lo version has not yet enabled the use of PriceType.
+The Co-lo version **has** enabled the use of PriceType.
 
 ##### ModifyQuantityObj[​](#modifyquantityobj "Direct link to ModifyQuantityObj")
 
@@ -42289,11 +42626,11 @@ batchModifyPrice
 
 ##### First, using 'makeModifyPriceObj' create a 'ModifyPriceObj' object[​](#first-using-makemodifypriceobj-create-a-modifypriceobj-object "Direct link to First, using 'makeModifyPriceObj' create a 'ModifyPriceObj' object")
 
-| Parameter   | Type                                                                                                    | Meaning                                                                                                      |
-| ----------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                              |
-| price       | string?                                                                                                 | The price after modification                                                                                 |
-| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/EnumMatrix.md#pricetype)?    | The price type after modification (***Note.***: The Co-lo version has not yet enabled the use of PriceType.) |
+| Parameter   | Type                                                                                                    | Meaning                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                          |
+| price       | string?                                                                                                 | The price after modification                                                                             |
+| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/EnumMatrix.md#pricetype)?    | The price type after modification (***Note.***: The Co-lo version **has** enabled the use of PriceType.) |
 
 caution
 
@@ -43611,11 +43948,11 @@ modifyPrice
 
 ##### First, using 'makeModifyPriceObj' create a 'ModifyPriceObj' object[​](#first-using-makemodifypriceobj-create-a-modifypriceobj-object "Direct link to First, using 'makeModifyPriceObj' create a 'ModifyPriceObj' object")
 
-| Parameter   | Type                                                                                                    | Meaning                                                                                                      |
-| ----------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                              |
-| price       | string?                                                                                                 | The price after modification                                                                                 |
-| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/EnumMatrix.md#pricetype)?    | The price type after modification (***Note.***: The Co-lo version has not yet enabled the use of PriceType.) |
+| Parameter   | Type                                                                                                    | Meaning                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| orderResult | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                          |
+| price       | string?                                                                                                 | The price after modification                                                                             |
+| priceType   | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/nodejs/EnumMatrix.md#pricetype)?    | The price type after modification (***Note.***: The Co-lo version **has** enabled the use of PriceType.) |
 
 caution
 
@@ -45014,7 +45351,7 @@ Modified Price Object
 
 About Price Type
 
-The Co-lo version has not yet enabled the use of PriceType.
+The Co-lo version **has** enabled the use of PriceType.
 
 ##### ModifyQuantityObj[​](#modifyquantityobj "Direct link to ModifyQuantityObj")
 
@@ -45570,11 +45907,11 @@ batch\_modify\_price
 
 ##### First, using 'make\_modify\_price\_obj' create a 'make\_modify\_price\_obj' object[​](#first-using-make_modify_price_obj-create-a-make_modify_price_obj-object "Direct link to First, using 'make_modify_price_obj' create a 'make_modify_price_obj' object")
 
-| Parameter   | Type                                                                                                    | Meaning                                                                                                      |
-| ----------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| order       | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                              |
-| price       | string                                                                                                  | The price after modification                                                                                 |
-| price\_type | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/EnumMatrix.md#pricetype)     | The price type after modification (***Note.***: The Co-lo version has not yet enabled the use of PriceType.) |
+| Parameter   | Type                                                                                                    | Meaning                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| order       | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                          |
+| price       | string                                                                                                  | The price after modification                                                                             |
+| price\_type | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/EnumMatrix.md#pricetype)     | The price type after modification (***Note.***: The Co-lo version **has** enabled the use of PriceType.) |
 
 caution
 
@@ -46947,11 +47284,11 @@ modify\_price
 
 ##### First, using 'make\_modify\_price\_obj' create a 'make\_modify\_price\_obj' object[​](#first-using-make_modify_price_obj-create-a-make_modify_price_obj-object "Direct link to First, using 'make_modify_price_obj' create a 'make_modify_price_obj' object")
 
-| Parameter   | Type                                                                                                    | Meaning                                                                                                      |
-| ----------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| order       | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                              |
-| price       | string                                                                                                  | The price after modification                                                                                 |
-| price\_type | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/EnumMatrix.md#pricetype)     | The price type after modification (***Note.***: The Co-lo version has not yet enabled the use of PriceType.) |
+| Parameter   | Type                                                                                                    | Meaning                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| order       | [OrderResult](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/EnumMatrix.md#orderresult) | The intended order result object to be modified                                                          |
+| price       | string                                                                                                  | The price after modification                                                                             |
+| price\_type | [PriceType](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/python/EnumMatrix.md#pricetype)     | The price type after modification (***Note.***: The Co-lo version **has** enabled the use of PriceType.) |
 
 caution
 
@@ -47674,13 +48011,27 @@ Result {
 
 ### Preparation
 
+Key takeaways
+
+* Complete account setup, certificate, and API agreement before using the Fubon Neo API.
+* Run the connection test before development.
+* Next step: [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/trading/quickstart.md) or [SDK Download](https://www.fbs.com.tw/TradeAPI/en/docs/download/download-sdk.md).
+
+| Item         | Details                                               |
+| ------------ | ----------------------------------------------------- |
+| Product      | Fubon Neo API                                         |
+| Requirements | Account, certificate, API agreement + connection test |
+| Platforms    | Windows (certificate tool / connection test helper)   |
+| Login        | Certificate login (API Key optional)                  |
+| Next step    | SDK install and quick start                           |
+
 caution
 
 Before starting with the Fubon Neo API, you must complete the following steps:
 
 1. Have your Fubon Securities account ready. (If you don't already have a Fubon Securities account, please click the link: [Open Account](https://www.fubon.com/securities/open-now/)
 2. Apply the digital certificate
-3. Sign the API agreements: [Guide to Signing API Agreements and Connection Test](https://www.fbs.com.tw/wcm/new_web/operate_manual/operate_manual_01/API-SignSOP_guide.pdf) + Complete the connection test: [Connection Test Helper](https://www.fbs.com.tw/TradeAPI/en/xxxx/FubonNeo_login_test.zip) (Windows)
+3. Sign the API agreements: [Guide to Signing API Agreements and Connection Test](https://www.fbs.com.tw/wcm/new_web/operate_manual/operate_manual_01/API-SignSOP_guide.pdf) + Complete the connection test: [Connection Test Helper](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/API_Sign_Test.zip) (Windows)
 
 #### Get Started[​](#get-started "Direct link to Get Started")
 
@@ -47712,9 +48063,9 @@ Follow the example provided in the link below<br />[Guide to Signing API Agreeme
 
 ###### Connection Test[​](#connection-test "Direct link to Connection Test")
 
-Use the [connection test helper](https://www.fbs.com.tw/TradeAPI/en/xxxx/FubonNeo_login_test.zip) (for Windows), or directly use FubonNeo API for connection and login.
+Use the [connection test helper](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/API_Sign_Test.zip) (for Windows), or directly use Fubon Neo API for connection and login.
 
-[![Connection Test Helper](/TradeAPI/en/assets/images/connection_test-e62eafe09e327f83f55844591ea812af.png)](https://www.fbs.com.tw/TradeAPI/en/xxxx/FubonNeo_login_test.zip)
+[![Connection Test Helper](/TradeAPI/en/assets/images/connection_test-e62eafe09e327f83f55844591ea812af.png)](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/API_Sign_Test.zip)
 
 #### Install the SDK package[​](#install-the-sdk-package "Direct link to Install the SDK package")
 
@@ -47729,7 +48080,7 @@ pip install fubon_neo-<version>-cp37-abi3-win_amd64.whl
 
 ```
 
-Support Python version 3.7 (~v1.3.2)、3.8、3.9、3.10、3.11 and 3.12 (v2.0.1~)
+Support Python version 3.7 (~v1.3.2) and 3.8–3.13 (v2.0.1~, 3.14 not supported)
 
 First, create a folder named 'project' and initialize it using the following command:
 
@@ -48020,6 +48371,19 @@ Congratulations <!-- -->🎊<!-- --> after placing your order, you will be able 
 ---
 
 ### Quick Start
+
+Key takeaways
+
+* This page shows how to install the SDK and begin using the Fubon Neo API.
+* Complete [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/trading/prepare.md) before installation.
+* SDK packages are available on the [SDK download page](https://www.fbs.com.tw/TradeAPI/en/docs/download/download-sdk.md).
+
+| Item          | Details                                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------------------- |
+| Prerequisites | Preparation completed                                                                                   |
+| Languages     | Python / C# / JavaScript (Node.js) / C++ & Go (securities trading accounting and condition orders only) |
+| Package types | `.whl` / `.tgz` / `.nupkg`                                                                              |
+| Next step     | Run login and order examples                                                                            |
 
 Please refer to the [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/trading/prepare.md) first and complete the application for the API Agreements and certificate download。
 
@@ -48322,6 +48686,19 @@ sdk.Stock.PlaceOrder(acc ,order);
 ---
 
 ### Rate Limit
+
+Key takeaways
+
+* This page lists connection and order rate limits for the Fubon Neo API.
+* Connection limit is 10; order and query limits are per second.
+* Exceeding limits returns error messages shown below.
+
+| Item            | Limit    |
+| --------------- | -------- |
+| Connections     | 10       |
+| Orders          | 50 / sec |
+| Batch orders    | 10 / sec |
+| Account queries | 5 / sec  |
 
 ##### Connection Limit[​](#connection-limit "Direct link to Connection Limit")
 
@@ -49769,6 +50146,20 @@ sdk.FutOpt.PlaceOrder(accounts.data[0],order); //  To place an block order
 
 ***
 
+Key takeaways
+
+* Overview of Fubon Neo API futures trading and market services.
+* Supports multiple languages and cross-platform development.
+* Next step: [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/prepare.md).
+
+| Item      | Details                                                                                                 |
+| --------- | ------------------------------------------------------------------------------------------------------- |
+| Product   | Fubon Neo API                                                                                           |
+| Services  | Futures Trading / Market Data                                                                           |
+| Platforms | Windows / macOS / Linux                                                                                 |
+| Languages | Python / C# / JavaScript (Node.js) / C++ & Go (securities trading accounting and condition orders only) |
+| Login     | Certificate login (API Key optional)                                                                    |
+
 #### Overview[​](#overview "Direct link to Overview")
 
 Fubon Neo API provides comprehensive trading and market APIs for your programmatic trading needs, catering to every developer's quantitative and automated trading requirements. Our API allows users to freely choose from mainstream programming languages (Python, C#, JavaScript) and easily access the API during the process of creating programmatic trades, utilizing trading and market services.
@@ -49783,7 +50174,7 @@ Direct trade management: Create orders, modify or cancel orders, and inquire abo
 
 #### Version Support[​](#version-support "Direct link to Version Support")
 
-Python Support : 3.7 (~v1.3.2)、3.8、3.9、3.10、3.11 and 3.12 (v2.0.1~).<br /><!-- -->Node.js Support : 16 and above.<br /><!-- -->C# develop .NET Standard 2.0 for the base ， Suggest using .netcoreapp 3.1 and above； If using .NETFramework，suggest using .NETFramework 4.7.2 and above.
+Python support: 3.7 (~v1.3.2) and 3.8–3.13 (v2.0.1~, 3.14 not supported).<br /><!-- -->Node.js Support : 16 and above.<br /><!-- -->C# develop .NET Standard 2.0 for the base ， Suggest using .netcoreapp 3.1 and above； If using .NETFramework，suggest using .NETFramework 4.7.2 and above.
 
 
 ---
@@ -59904,7 +60295,7 @@ pip install fubon_neo-<version>-cp37-abi3-win_amd64.whl
 
 ```
 
-Support Python version 3.7 (~v1.3.2)、3.8、3.9、3.10、3.11 and 3.12 (v2.0.1~)
+Support Python version 3.7 (~v1.3.2) and 3.8–3.13 (v2.0.1~, 3.14 not supported)
 
 First, create a folder named 'project' and initialize it using the following command:
 
@@ -60537,9 +60928,23 @@ Result {
 
 ---
 
-### FubonNeo API User Guide
+### Fubon Neo API User Guide
 
 ***
+
+Key takeaways
+
+* This page is the entry point for getting started with the Fubon Neo API.
+* Complete account setup, certificate, and API agreement before development.
+* Sample code is available for Python, C#, and JavaScript.
+* Next step: [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/trading/prepare.md).
+
+| Item          | Details                                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------------------- |
+| Product       | Fubon Neo API                                                                                           |
+| Prerequisites | Account, certificate, API agreement + connection test                                                   |
+| Languages     | Python / C# / JavaScript (Node.js) / C++ & Go (securities trading accounting and condition orders only) |
+| Resources     | Sample code, test environment, community                                                                |
 
 Before you started
 
@@ -60566,35 +60971,35 @@ The follows are source code only. SDK need to be installed separately.
 PYTHON Sample Code
 
 * **API Function Demo：**
-  * [Python sample code](https://www.fbs.com.tw/TradeAPI/en/xxx) (.ipynb, Jupyter file)
+  * [Python sample code](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/python_sample_code.zip) (.ipynb, Jupyter file)
 
 * **Application Example：**
 
-  * [Trigger buy when seeing the limit-up price](https://www.fbs.com.tw/TradeAPI/en/a.zip)
-  * [Short-sell limit order before market open](https://www.fbs.com.tw/TradeAPI/en/b.zip)
-  * [Convert unfilled limit order to market order when market open](https://www.fbs.com.tw/TradeAPI/en/c.zip)
-  * [Inventory stop-loss/take-profit](https://www.fbs.com.tw/TradeAPI/en/d.zip)
+  * [Trigger buy when seeing the limit-up price](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/win_for_limitup.zip)
+  * [Short-sell limit order before market open](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/win_for_short_sell.zip)
+  * [Convert unfilled limit order to market order when market open](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/limit_to_market.zip)
+  * [Inventory stop-loss/take-profit](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/inventory_stop_loss.zip)
 
 C# Sample Code
 
 * **API Function Demo：**
 
-  * [C# sample code (Trade)](https://www.fbs.com.tw/TradeAPI/en/xxxx/FubonNeo.0.0.11.nupkg.zip) (WPF)
-  * [C# sample code (Market Data and Accounting)](https://www.fbs.com.tw/TradeAPI/en/aa.zip) (Windows Forms)
+  * [C# sample code (Trade)](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/fubondotnetsdkgui.zip) (WPF)
+  * [C# sample code (Market Data and Accounting)](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/marketdata_n_accounting.zip) (Windows Forms)
 
 * **Application Example：**
-  * [Convert unfilled limit order to market order when market open ](https://www.fbs.com.tw/TradeAPI/en/bb.zip)(Windows Forms)
+  * [Convert unfilled limit order to market order when market open ](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/limit_to_market.zip)(Windows Forms)
 
 JAVASCRIPT Sample Code
 
 * **API Function Demo：**
-  * [JS sample code](https://www.fbs.com.tw/TradeAPI/en/xxxx/fubon-neo-0.0.11.tgz.zip) (.ipynb, Jupyter file)
+  * [JS sample code](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/js_sample_code.zip) (.ipynb, Jupyter file)
 
 #### Test Environment[​](#test-environment "Direct link to Test Environment")
 
-Test Environment is available for FubonNeo API. Please download the following instruction package:
+Test Environment is available for Fubon Neo API. Please download the following instruction package:
 
-[Download the instruction package](https://www.fbs.com.tw/TradeAPI/en/test_environment.zip)
+[Download the instruction package](https://www.fbs.com.tw/TradeAPI_SDK/sample_code/test_environment.zip)
 
 <br />
 
@@ -60610,15 +61015,29 @@ Fubon Securities Program Trading Online Seminar
 
 GITHUB Sample Code
 
-Contains a variety of common trading graphical interface application examples developed with FubonNeo API Python:【[GitHub Sample Code](https://github.com/Tradepm/-API)】
+Contains a variety of common trading graphical interface application examples developed with Fubon Neo API Python:【[GitHub Sample Code](https://github.com/Tradepm/-API)】
 
 YOUTUBE Program Trading Channel
 
-All about FubonNeo API and program trading videos:【[Fubon Securities YouTube](https://youtube.com/playlist?list=PLm7R8dzlvMHd6LonqpQHoIS6ga0d5fdpp\&si=NrJt2fEl0kgXS_NG)】program trading channel
+All about Fubon Neo API and program trading videos:【[Fubon Securities YouTube](https://youtube.com/playlist?list=PLm7R8dzlvMHd6LonqpQHoIS6ga0d5fdpp\&si=NrJt2fEl0kgXS_NG)】program trading channel
 
 DISCORD Program Trading Community
 
 Need idea for developing program trading tools? Join our【[Discord Community](https://discord.com/invite/M8Gv9yKfza)】! From rookie to veteran, all sorts of questions are discussed here.
+
+
+---
+
+### Building with LLMs
+
+You can use large language models (LLMs) to help build Fubon Neo API integrations. We provide the following applications to support your use of LLMs throughout the development process.
+
+#### Plain text docs[​](#plain-text-docs "Direct link to Plain text docs")
+
+We provide an [llms.txt](https://www.fbs.com.tw/TradeAPI/en/llms.txt) file to guide AI tools and agents on how to retrieve the plain-text versions of our pages. `/llms.txt` is an emerging standard designed to make websites and content easier for LLMs to access and use.
+
+* [llms.txt](https://www.fbs.com.tw/TradeAPI/en/llms.txt)
+* [llms-full.txt](https://www.fbs.com.tw/TradeAPI/en/llms-full.txt)
 
 
 ---

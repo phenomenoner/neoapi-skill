@@ -27,7 +27,7 @@ Use this guide to help an AI agent understand existing NeoAPI Python code and ma
 
 Match SDK calls to the official docs (via `references/doc-index.md`):
 
-- Login/logout: `docs/trading/library/python/login/`, `docs/trading/library/python/logout.md`
+- Login/logout: `docs/trading/library/python/login/`, `docs/trading/library/python/logout`
 - Stock orders: `docs/trading/library/python/trade/`
 - Account info: `docs/trading/library/python/accountManagement/`
 - Market data (HTTP/WS): `docs/market-data/http-api/*`, `docs/market-data/websocket-api/*`

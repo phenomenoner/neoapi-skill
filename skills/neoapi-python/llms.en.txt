@@ -3,12 +3,13 @@
 
 ## TradeAPI
 
-- [SDK Download](https://www.fbs.com.tw/TradeAPI/en/docs/download/download-sdk.md): Latest version v2.2.7.
+- [SDK Download](https://www.fbs.com.tw/TradeAPI/en/docs/download/download-sdk.md): Latest version v2.2.8
+- [Install & Compatibility](https://www.fbs.com.tw/TradeAPI/en/docs/install-compatibility.md): SDK installation and minimum version requirements.
 - [API Key Application & Management](https://www.fbs.com.tw/TradeAPI/en/docs/key.md): Documentation for API Key Application & Management.
 - [Corporate Actions Capital Changes](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/corporate-actions/captital-changes.md): Capital changes data for listed and OTC stocks and ETFs (par value changes, capital reductions, splits)
 - [Corporate Actions Dividends](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/corporate-actions/dividends.md): Ex-dividend and ex-rights data (including capital increases)
 - [Corporate Actions Listing Applicants](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/corporate-actions/listing-applicants.md): Listing application data for TWSE- and TPEx-listed companies
-- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/getting-started.md): Fugle Market Web API provides developer-friendly API services. You can access data such as daily stock market information, snapshots, and historical market data for the Taiwan stock market。.
+- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/getting-started.md): Fubon Market Data Web API provides developer-friendly services for Taiwan market data.
 - [Historical Candles](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/historical/candles.md): Retrieve historical stock prices within 1 year (query by stock number)）.
 - [Historical Stats](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/historical/stats.md): Retrieve recent 52-week stock price data (query by stock number).
 - [Intraday Candles](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/intraday/candles.md): Stock KLine（query by stock number）.
@@ -25,17 +26,17 @@
 - [Technical MACD](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/technical/macd.md): Get Moving Average Convergence Divergence (MACD) for a specific stock within a specified time range.
 - [Technical RSI](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/technical/rsi.md): Get Relative Strength Index (RSI) for a specific stock within a specified time range.
 - [Technical SMA](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/http-api/technical/sma.md): Get Simple Moving Average (SMA) for a specific stock within a specified time range.
-- [Fubon RealTime MarketData API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/intro.md): The real-time market data source includes the Taiwan Stock Exchange (TWSE), and the Taiwan Futures Exchange.
+- [Fubon Neo API Securities Market Data](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/intro.md): Real-time market data sources include the Taiwan Stock Exchange (TWSE) and the Taiwan Futures Exchange.
 - [Establish Connections](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/making-connection.md): The following example demonstrates how to establish five WebSocket connections for market data simultaneously.
-- [Rate Limit](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/rate-limit.md): Fubon market data provides Web API and Socket, with the following access restrictions.
-- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/getting-started.md): Fubon Market WebSocket API provides real-time stock market data services for Taiwan. Through the WebSocket API, you can fulfill your need for receiving real-time market data.
+- [Rate Limit](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/rate-limit.md): Fubon Neo API Market Data provides Web API and WebSocket with the following limits.
+- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/getting-started.md): Fubon Market Data WebSocket API provides real-time stock market data services for Taiwan.
 - [Aggregates](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/aggregates.md): Subscribe to aggregated market data for stocks.
 - [Books](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/books.md): Subscribe to the latest top five bid and ask information for stocks.
 - [Candles](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/candles.md): Subscribe to the latest minute K-line data for stocks.
 - [Indices](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/indices.md): Subscribe to the latest index market data.
 - [Trades](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/market-data-channels/trades.md): Subscribe to the latest stock trade information.
 - [Mode Switching](https://www.fbs.com.tw/TradeAPI/en/docs/market-data/websocket-api/upgrade-guide.md): Applies to versions >= 1.0.4.
-- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/getting-started.md): Fugle Market Web API provides developer-friendly API services. You can access data such as daily Future / Option market information for the Taiwan future market。.
+- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/getting-started.md): Fubon Futures Market Data Web API provides developer-friendly services for Taiwan futures.
 - [Intraday Candles](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/candles.md): Contract K Line（Query by symbol）.
 - [Products List](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/products.md): Futures and Options Contract List（Query Based on Conditions）.
 - [Intraday Quote](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/quote.md): Real-time quotes (query by contract symbol).
@@ -43,10 +44,10 @@
 - [Intraday Tickers](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/tickers.md): Futures and Options product list（Query base on condition）.
 - [Intraday Trades](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/trades.md): Contract trade details (query by contract code).
 - [Intraday Volumes](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/http-api/intraday/volumes.md): Futures and Options price-volume data（query by symbol）.
-- [Fubon RealTime MarketData API](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/intro.md): The real-time market data source includes the Taiwan Stock Exchange (TWSE), and the Taiwan Futures Exchange.
+- [Fubon Neo API Futures Market Data](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/intro.md): Real-time futures market data sources include the Taiwan Futures Exchange (TAIFEX).
 - [Establish Connections](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/making-connection.md): The following example demonstrates how to establish five WebSocket connections for market data simultaneously.
-- [Rate Limit](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/rate-limit.md): Fubon market data provides Web API and Socket, with the following access restrictions.
-- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/getting-started.md): Fubon Market WebSocket API provides real-time stock market data services for Taiwan. Through the WebSocket API, you can fulfill your need for receiving real-time market data.
+- [Rate Limit](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/rate-limit.md): Fubon Neo API Futures Market Data provides Web API and WebSocket with the following limits.
+- [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/getting-started.md): Fubon Futures Market Data WebSocket API provides real-time futures market data for Taiwan.
 - [Aggregates](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/market-data-channels/aggregates.md): Subscribe to aggregated market data for futures or options.
 - [Books](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/market-data-channels/books.md): Subscribe to the latest top five bid and ask information for contract.
 - [Candles](https://www.fbs.com.tw/TradeAPI/en/docs/market-data-future/websocket-api/market-data-channels/candles.md): Subscribe to the latest minute K-line data for contract.
@@ -175,12 +176,11 @@
 - [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/prepare.md): Before starting with the Fubon Neo Condition API, you must complete agreement signature.
 - [Emergency contingency](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/trobleshoot.md): In the event of force majeure or system abnormalities that prevent order placement or confirmation of order execution, please use other platforms as a backup.
 - [API Key Introduction](https://www.fbs.com.tw/TradeAPI/en/docs/trading/api-key-apply.md): Available since v2.2.7.
-- [以 LLM 輔助 SDK 串接開發](https://www.fbs.com.tw/TradeAPI/en/docs/trading/build-with-llm.md): 利用大型語言模型協助完成 SDK 的整合與實作。
 - [Accounting](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/account_example.md): API reference for Accounting (------).
 - [Unblock Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/asyn_order.md): First, let's begin by understanding the concepts of block and unblock.
 - [Websocket Notification Examples（Co-lo Version）](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/callback/callback_example_dt3.md): Co-lo service is a premium service for high-frequency customers. To apply, please contact your broker agent for more information.
 - [Websocket Notification Examples（Standard Version）](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/callback/callback_example_standard.md): The following are examples of websocket notifications for trading requests. The listed cases includes non-async (unblock=False) and async (unblock=True) functions.
-- [WebSocket Parameter Setting](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/ping_pong.md): FubonNeo API SDK leverages WebSocket to connect with Fubon servers, the standard ping/pong control frame mechanism is adopted and implemented. By default, a ping frame would be sent to the server every 30 seconds, and if pong response is not received for two cconsecutive attempts, the connection quality is judged to be weak and the connection would be dropped.
+- [WebSocket Parameter Setting](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/ping_pong.md): Fubon Neo API SDK leverages WebSocket to connect with Fubon servers, the standard ping/pong control frame mechanism is adopted and implemented. By default, a ping frame would be sent to the server every 30 seconds, and if pong response is not received for two cconsecutive attempts, the connection quality is judged to be weak and the connection would be dropped.
 - [Python Callback Exception Handling](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/python_callback_decorator.md): When using Python callback functions, because they run in a separate thread, if an error occurs during the execution, the error message will not be automatically thrown back, which may cause obstacles in debugging.
 - [Reconnect](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/reconnect.md): The following is a simple demonstration that automatically reconnects the trading socket when a disconnection event is detected using a callback:.
 - [Event/Notification Callback](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/report_example.md): API reference for Event/Notification Callback (--------).
@@ -243,7 +243,7 @@
 - [PlaceOrder](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/PlaceOrder.md): API reference for Place Order (PlaceOrder).
 - [Query Stock Quote Information (Single)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/QuerySymbolQuote.md): API reference for Query Stock Quote Information (Single)） (QuerySymbolQuote).
 - [Query Stock Quote Information (Batch)](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/trade/QuerySymbolSnapshot.md): API reference for Query Stock Quote Information (Batch) (QuerySymbolSnapshot).
-- [Version Upgrade Guide](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/upgrade-guide.md): This document will guide you through upgrading your existing FubonNeo API version 1.0.4 to versions >= 1.3.1.
+- [Version Upgrade Guide](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/csharp/upgrade-guide.md): This document will guide you through upgrading your existing Fubon Neo API version 1.0.4 to versions >= 1.3.1.
 - [Bank Balance Query](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/accountManagement/Balance.md): API reference for Bank Balance Query (BankRemain).
 - [Inventory Query](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/accountManagement/Inventories.md): API reference for Inventory Query (Inventories).
 - [Maintenance Ratio Query](https://www.fbs.com.tw/TradeAPI/en/docs/trading/library/go/accountManagement/Maintenance.md): API reference for Maintenance Ratio Query (Maintenance).
@@ -416,4 +416,5 @@
 - [Preparation](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/prepare.md): Before starting with the Fubon Neo API, you must complete the following steps:".
 - [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/quickstart.md): Please refer to the Preparation first and complete the application for the API Agreements and certificate download。.
 - [Rate Limit](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/trade-rate-limit.md): When the connection exceeds the limit, you will receive the following message during login:.
-- [FubonNeo API User Guide](https://www.fbs.com.tw/TradeAPI/en/docs/welcome.md): Before depart for your program trading journey, the following steps need to be completed.
+- [Fubon Neo API User Guide](https://www.fbs.com.tw/TradeAPI/en/docs/welcome.md): Before depart for your program trading journey, the following steps need to be completed.
+- [Building with LLMs](https://www.fbs.com.tw/TradeAPI/en/docs/welcome/build-with-llm.md): Use large language models to help complete SDK integration and implementation.

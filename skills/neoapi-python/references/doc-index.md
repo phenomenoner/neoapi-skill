@@ -7,6 +7,10 @@ LLM-friendly outputs generated from the site build.
 
 - Base site: https://www.fbs.com.tw/TradeAPI/
 - English locale: https://www.fbs.com.tw/TradeAPI/en/
+- Build with LLM (zh):
+  - https://www.fbs.com.tw/TradeAPI/docs/welcome/build-with-llm
+- Build with LLM (en):
+  - https://www.fbs.com.tw/TradeAPI/en/docs/welcome/build-with-llm/
 - LLM index:
   - https://www.fbs.com.tw/TradeAPI/llms.txt
   - https://www.fbs.com.tw/TradeAPI/en/llms.txt
@@ -40,28 +44,28 @@ search in `llms-full.txt` for the exact parameters and return types.
 ## Trading (Python)
 
 - Setup & onboarding:
-  - `docs/trading/prepare.mdx`
-  - `docs/trading/quickstart.mdx`
-  - `docs/trading/trade-rate-limit.md`
+  - `docs/trading/prepare`
+  - `docs/trading/quickstart`
+  - `docs/trading/trade-rate-limit`
 - Python SDK reference:
   - `docs/trading/library/python/login/`
   - `docs/trading/library/python/trade/`
   - `docs/trading/library/python/accountManagement/`
-  - `docs/trading/library/python/logout.md`
+  - `docs/trading/library/python/logout`
 
 ## Market Data
 
 - Overview:
-  - `docs/market-data/intro.mdx`
+  - `docs/market-data/intro`
 - HTTP API:
-  - `docs/market-data/http-api/getting-started.md`
-  - `docs/market-data/http-api/rate-limit.md`
+  - `docs/market-data/http-api/getting-started`
+  - `docs/market-data/http-api/rate-limit`
   - `docs/market-data/http-api/intraday/`
   - `docs/market-data/http-api/snapshot/`
   - `docs/market-data/http-api/historical/`
   - `docs/market-data/http-api/technical/`
 - WebSocket API:
-  - `docs/market-data/websocket-api/getting-started.md`
+  - `docs/market-data/websocket-api/getting-started`
   - `docs/market-data/websocket-api/market-data-channels/`
 
 ## Implementation Practices
@@ -85,7 +89,7 @@ Topics covered:
 ## Test Environment (Sandbox)
 
 - `references/test-environment.md` (summary from official PDF in the test bundle)
- - `references/skill-tests.md` (validation checklist for skill consumers)
+- `references/skill-tests.md` (validation checklist for skill consumers)
 
 ## Search Hints
 
