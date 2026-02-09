@@ -108,6 +108,10 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 - See `references/test-environment.md` for operational notes (trading hours, shared account caveats).
 - Python SDK is downloaded from the official site (not PyPI); install the wheel locally.
 - Skill validation checklist: `references/skill-tests.md`.
+- Local integrated runner (maintainer/local): `.test/test_runner.py`
+  - `--suite smoke`: basic login + market/trade sanity checks
+  - `--suite complex`: multi-symbol marketdata + dual-order lifecycle + callback coverage
+  - `--suite all`: full coverage (includes complex checks)
 - For limit-down/limit-up in test env, prefer `sdk.stock.query_symbol_quote` (test environment data). `intraday.quote` uses market data (prod) and may differ.
 
 ## SDK Install (Quick Note)

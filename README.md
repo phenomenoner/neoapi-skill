@@ -25,7 +25,7 @@ See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `ski
 
 ## Versioning
 
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.21` (Beta 1.0.0).
+The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.22` (Beta 1.0.0).
 
 ## Multi-Agent Adapters
 
@@ -66,6 +66,10 @@ Example:
 
 - Local integrated runner: `.test/test_runner.py` (not included in published skill bundle).
 - Logs are written to `.test/logs/` as both text and JSON summaries.
+- Suites:
+  - `smoke`: basic login + market/trade sanity checks
+  - `complex`: multi-symbol marketdata matrix + dual-order lifecycle
+  - `all`: full coverage (includes complex checks)
 
 ## Changelog
 
@@ -93,3 +97,4 @@ Example:
 - 2026-02-09: 1.0.0-beta.19 - Refresh bundled llms*.txt from official endpoints and normalize doc paths to extensionless format.
 - 2026-02-09: 1.0.0-beta.20 - Add root adapters (CLAUDE.md, GEMINI.md, AGENTS.md) for multi-agent support.
 - 2026-02-09: 1.0.0-beta.21 - Add local regression suite documentation and record full-suite validation.
+- 2026-02-09: 1.0.0-beta.22 - Add advanced integrated test documentation (dual-order lifecycle, multi-symbol marketdata matrix, invalid symbol rejection) and record successful runs for 2883/2881.

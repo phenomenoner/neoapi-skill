@@ -79,3 +79,8 @@ Source: `test_environment.zip` from the official SDK sample link.
   - `intraday.quote` returned prod data (reference 18.3) and no limit-down; `query_symbol_quote` returned test limits.
   - Canceled orders remain visible in `get_order_results` with status 30.
 - 2026-02-09: Local regression runner (`.test/test_runner.py`) full suite passed for symbol 2883.
+- 2026-02-09: Complex integrated suite passed for symbol 2883:
+  - Place/find/modify/cancel lifecycle repeated across two orders.
+  - Price modify path validated from test limit-down to test limit-up.
+  - Invalid symbol (`ZZZZ`) rejected by `query_symbol_quote` (`is_success=False`).
+- 2026-02-09: Full suite passed for symbol 2881 with the same advanced lifecycle checks.
