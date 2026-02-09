@@ -1,45 +1,47 @@
-# Fubon NeoAPI Skill Refinement
+# Fubon NeoAPI Skill 精煉專案
 
-This repository is used to test and refine the `neoapi-python` skill bundle for AI coding assistants (Codex, Claude Code). The skill provides guidance for the Fubon Neo Python SDK, including trading and market data workflows.
+此儲存庫用於測試與持續優化 `neoapi-python` skill bundle，供 AI 編碼代理（如 Codex、Claude Code、Gemini）正確使用富邦新一代（Fubon Neo）Python SDK，涵蓋交易與行情工作流程。
 
-## Repo Layout
+- English supplementary README: [README.en.md](README.en.md)
 
-- `skills/neoapi-python/` - The skill bundle (SKILL.md, references, llms*.txt, VERSION, INSTALL.md)
-- `update-skill.ps1` - Windows update helper (pulls from GitHub and installs to `~/.codex/skills/public/`)
-- `update-skill.sh` - macOS/Linux update helper
+## Repo 結構
 
-## Compatibility
+- `skills/neoapi-python/` - Skill 主體（`SKILL.md`、`references/`、`llms*.txt`、`VERSION`、`INSTALL.md`）
+- `update-skill.ps1` - Windows 更新腳本（從 GitHub 下載後安裝到 `~/.codex/skills/public/`）
+- `update-skill.sh` - macOS/Linux 更新腳本
 
-The skill is packaged as plain files with a `SKILL.md` entry point. This keeps the bundle portable across AI platforms that accept local skill bundles or custom instruction folders. For non-Codex platforms, set the install destination to that platform’s skill/instruction folder (use the `INSTALL_DIR` parameter or env var in the update scripts).
+## 相容性
+
+本 skill 以純檔案形式（入口為 `SKILL.md`）發佈，方便跨平台與跨代理使用。若非 Codex 平台，請將安裝路徑改為目標代理的 skill/instruction 目錄（可透過更新腳本的 `INSTALL_DIR` 參數或環境變數調整）。
 
 ## GitHub Repo
 
 - `https://github.com/phenomenoner/neoapi-skill`
 
-## Install
+## 安裝
 
-See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `skills/` (no leading dot). End users install to:
+完整安裝方式請見 `skills/neoapi-python/INSTALL.md`。本 repo 採用 `skills/`（非 `.skills/`）目錄。一般使用者建議安裝到：
 
 - Windows: `%USERPROFILE%\.codex\skills\public\neoapi-python`
 - macOS/Linux: `~/.codex/skills/public/neoapi-python`
 
-## Versioning
+## 版本管理
 
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.22` (Beta 1.0.0).
+Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.22`（Beta 1.0.0）。
 
-## Multi-Agent Adapters
+## 多代理 Adapter
 
-Root-level adapter files are provided for major agents, with Chinese-first guidance and English supplement:
+根目錄提供主要代理平台的 adapter（中文優先、英文補充）：
 
 - `CLAUDE.md`
 - `GEMINI.md`
 - `AGENTS.md`
 
-These adapters point to `skills/neoapi-python/` as the canonical source.
+以上 adapter 皆以 `skills/neoapi-python/` 為單一真實來源（source of truth）。
 
-## LLM Docs (Online)
+## LLM 文件（線上）
 
-The official LLM-oriented pages and `llms*.txt` endpoints are available online and should be treated as primary references:
+以下官方頁面與 `llms*.txt` 為優先參考來源：
 
 - `https://www.fbs.com.tw/TradeAPI/docs/welcome/build-with-llm`
 - `https://www.fbs.com.tw/TradeAPI/en/docs/welcome/build-with-llm/`
@@ -48,11 +50,11 @@ The official LLM-oriented pages and `llms*.txt` endpoints are available online a
 - `https://www.fbs.com.tw/TradeAPI/en/llms.txt`
 - `https://www.fbs.com.tw/TradeAPI/en/llms-full.txt`
 
-## Updating from GitHub
+## 從 GitHub 更新
 
-The update scripts download the repo zip from GitHub, copy `skills/neoapi-python` into the install location, and compare `VERSION` to skip if already up to date.
+更新腳本會下載 repo zip，複製 `skills/neoapi-python` 到本機安裝路徑，並比較 `VERSION`，若已是最新版則跳過。
 
-Example:
+範例：
 
 ```powershell
 .\update-skill.ps1 -Repo phenomenoner/neoapi-skill
@@ -62,39 +64,39 @@ Example:
 ./update-skill.sh phenomenoner/neoapi-skill
 ```
 
-## Local Regression Testing
+## 本地回歸測試
 
-- Local integrated runner: `.test/test_runner.py` (not included in published skill bundle).
-- Logs are written to `.test/logs/` as both text and JSON summaries.
-- Suites:
-  - `smoke`: basic login + market/trade sanity checks
-  - `complex`: multi-symbol marketdata matrix + dual-order lifecycle
-  - `all`: full coverage (includes complex checks)
+- 本地整合測試 runner：`.test/test_runner.py`（不包含於對外發佈 skill 包）
+- 測試輸出：`.test/logs/`（文字 log + JSON summary）
+- Suites：
+  - `smoke`：基本登入與交易/行情健檢
+  - `complex`：多標的行情矩陣 + 雙訂單生命週期整合測試
+  - `all`：完整覆蓋（包含 complex）
 
-## Changelog
+## 變更紀錄
 
-- 2026-01-26: 1.0.0-beta.1 - Initial beta version, add update scripts, VERSION, and repo metadata.
-- 2026-01-26: 1.0.0-beta.1 - Clarify install paths and cross-platform compatibility notes.
-- 2026-01-26: 1.0.0-beta.1 - Initialize GitHub repo and set default update script repo.
-- 2026-01-26: 1.0.0-beta.2 - Add test environment reference doc and sandbox setup notes.
-- 2026-01-26: 1.0.0-beta.2 - Add local smoke test script under `.test` (ignored).
-- 2026-01-26: 1.0.0-beta.3 - Document SDK download/install (wheel) and test bundle details.
-- 2026-01-26: 1.0.0-beta.4 - Record local test validation results.
-- 2026-01-26: 1.0.0-beta.5 - Add SDK install snippet and Python version guidance.
-- 2026-01-26: 1.0.0-beta.6 - Add SDK install quick note to SKILL.md.
-- 2026-01-26: 1.0.0-beta.7 - Add skill validation test cases and contribution guidance.
-- 2026-01-26: 1.0.0-beta.8 - Record skill test run results.
-- 2026-01-26: 1.0.0-beta.9 - Add order placement test results to skill tests.
-- 2026-01-26: 1.0.0-beta.10 - Add examples guidance doc and link it in SKILL/doc index; update TODO.
-- 2026-01-26: 1.0.0-beta.11 - Note .md URL deprecation; rely on llms.txt/llms-full.txt.
-- 2026-01-27: 1.0.0-beta.12 - Clarify market data init and test-vs-prod limit price guidance.
-- 2026-01-27: 1.0.0-beta.13 - Clarify intraday.ticker usage and order status behavior in test env.
-- 2026-01-27: 1.0.0-beta.14 - Update doc paths (no .md) and add integrated test result notes.
-- 2026-02-03: 1.0.0-beta.15 - Add Usage Cheat Sheet to SKILL.md (Quickstart, Enums) and Shioaji migration guide.
-- 2026-02-03: 1.0.0-beta.16 - Add "Crafting Migration Experience" log and "Agent Instruction for Migration" guide.
-- 2026-02-03: 1.0.0-beta.17 - Add Localization and Bilingual Terminology to SKILL.md.
-- 2026-02-09: 1.0.0-beta.18 - Add Build-with-LLM links and prioritize online llms*.txt endpoints in skill docs.
-- 2026-02-09: 1.0.0-beta.19 - Refresh bundled llms*.txt from official endpoints and normalize doc paths to extensionless format.
-- 2026-02-09: 1.0.0-beta.20 - Add root adapters (CLAUDE.md, GEMINI.md, AGENTS.md) for multi-agent support.
-- 2026-02-09: 1.0.0-beta.21 - Add local regression suite documentation and record full-suite validation.
-- 2026-02-09: 1.0.0-beta.22 - Add advanced integrated test documentation (dual-order lifecycle, multi-symbol marketdata matrix, invalid symbol rejection) and record successful runs for 2883/2881.
+- 2026-01-26: 1.0.0-beta.1 - 初始 beta，加入更新腳本、VERSION 與專案基礎檔。
+- 2026-01-26: 1.0.0-beta.1 - 補充安裝路徑與跨平台相容性說明。
+- 2026-01-26: 1.0.0-beta.1 - 初始化 GitHub repo，更新預設更新來源。
+- 2026-01-26: 1.0.0-beta.2 - 新增測試環境說明文件與 sandbox 備註。
+- 2026-01-26: 1.0.0-beta.2 - 新增本地 smoke 測試腳本（`.test`，不納入發布）。
+- 2026-01-26: 1.0.0-beta.3 - 補充 SDK wheel 下載/安裝與測試包資訊。
+- 2026-01-26: 1.0.0-beta.4 - 紀錄本地測試驗證結果。
+- 2026-01-26: 1.0.0-beta.5 - 新增 SDK 安裝片段與 Python 版本建議。
+- 2026-01-26: 1.0.0-beta.6 - 在 `SKILL.md` 增加 SDK install 快速提示。
+- 2026-01-26: 1.0.0-beta.7 - 新增 skill 驗證測試案例與投稿格式。
+- 2026-01-26: 1.0.0-beta.8 - 紀錄 skill 測試結果。
+- 2026-01-26: 1.0.0-beta.9 - 補充下單 + callback 測試結果。
+- 2026-01-26: 1.0.0-beta.10 - 新增 examples-guidance 並更新索引/TODO。
+- 2026-01-26: 1.0.0-beta.11 - 標註 `.md` URL 技巧失效，改以 `llms.txt/llms-full.txt` 為主。
+- 2026-01-27: 1.0.0-beta.12 - 釐清行情初始化與測試/正式環境價位差異。
+- 2026-01-27: 1.0.0-beta.13 - 釐清 `intraday.ticker` 用法與訂單狀態判讀。
+- 2026-01-27: 1.0.0-beta.14 - 更新無副檔名路徑寫法，補充整合測試紀錄。
+- 2026-02-03: 1.0.0-beta.15 - `SKILL.md` 新增快速用法（Quickstart/Enums）與 Shioaji 遷移指南。
+- 2026-02-03: 1.0.0-beta.16 - 新增遷移實作紀錄與代理操作指南。
+- 2026-02-03: 1.0.0-beta.17 - 新增本地化與中英術語對照。
+- 2026-02-09: 1.0.0-beta.18 - 補充 Build-with-LLM 連結並提高線上 `llms*.txt` 優先序。
+- 2026-02-09: 1.0.0-beta.19 - 更新內建 `llms*.txt` 並統一路徑為無副檔名。
+- 2026-02-09: 1.0.0-beta.20 - 新增多代理 root adapters（`CLAUDE.md`/`GEMINI.md`/`AGENTS.md`）。
+- 2026-02-09: 1.0.0-beta.21 - 補充本地回歸測試文件與完整跑測紀錄。
+- 2026-02-09: 1.0.0-beta.22 - 新增進階整合測試文件（雙訂單生命週期、多標的行情矩陣、無效代號拒絕）並紀錄 2883/2881 成功結果。
