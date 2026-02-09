@@ -90,6 +90,7 @@ Topics covered:
 
 - `references/test-environment.md` (summary from official PDF in the test bundle)
 - `references/skill-tests.md` (validation checklist for skill consumers)
+- `references/tested-cases.zh.md` (tested-case summary in Chinese)
 
 ## Search Hints
 
