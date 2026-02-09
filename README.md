@@ -25,7 +25,17 @@ See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `ski
 
 ## Versioning
 
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.19` (Beta 1.0.0).
+The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.20` (Beta 1.0.0).
+
+## Multi-Agent Adapters
+
+Root-level adapter files are provided for major agents, with Chinese-first guidance and English supplement:
+
+- `CLAUDE.md`
+- `GEMINI.md`
+- `AGENTS.md`
+
+These adapters point to `skills/neoapi-python/` as the canonical source.
 
 ## LLM Docs (Online)
 
@@ -76,3 +86,4 @@ Example:
 - 2026-02-03: 1.0.0-beta.17 - Add Localization and Bilingual Terminology to SKILL.md.
 - 2026-02-09: 1.0.0-beta.18 - Add Build-with-LLM links and prioritize online llms*.txt endpoints in skill docs.
 - 2026-02-09: 1.0.0-beta.19 - Refresh bundled llms*.txt from official endpoints and normalize doc paths to extensionless format.
+- 2026-02-09: 1.0.0-beta.20 - Add root adapters (CLAUDE.md, GEMINI.md, AGENTS.md) for multi-agent support.
