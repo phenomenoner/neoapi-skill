@@ -60,14 +60,15 @@ api.place_order(contract, order)
 from fubon_neo.sdk import Order
 from fubon_neo.constant import BSAction, PriceType, TimeInForce, MarketType, OrderType
 
+# Keyword form recommended (matches official docs); positional form also works.
 order = Order(
-    BSAction.Buy,
-    "2330",
-    1000,              # FubonNeo quantity is always SHARES. 3000 = 3 lots.
-    MarketType.Common, # Specify lot type here
-    PriceType.Limit,
-    TimeInForce.ROD,
-    OrderType.Stock,
+    buy_sell=BSAction.Buy,
+    symbol="2330",
+    quantity=1000,              # FubonNeo quantity is always SHARES. 3000 = 3 lots.
+    market_type=MarketType.Common,  # Specify lot type here
+    price_type=PriceType.Limit,
+    time_in_force=TimeInForce.ROD,
+    order_type=OrderType.Stock,
     price="580"
 )
 sdk.stock.place_order(active_acc, order)

@@ -1,5 +1,6 @@
 ---
 name: neoapi-python
+version: 1.0.0-beta.23
 description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused on trading and market data workflows, including login, market data access, order placement, and locating the right docs/llms outputs. Use when prompts mention FubonNeo API or the Python SDK."
 ---
 
@@ -7,7 +8,25 @@ description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused
 
 ## Overview
 
-Use this skill to answer questions or write code with the Fubon Neo Python SDK, prioritizing trading and market data. Keep solutions OS-agnostic (Windows/Linux/macOS) and align with Python 3.12–3.13 for SDK >= 2.x (avoid 3.14), and SDK ~2.2.7 unless the user specifies otherwise.
+本 skill 教導 AI 編程代理使用 **Fubon Neo Python SDK** 進行台股**證券交易**與**行情資料**存取。適用 Python 3.12–3.13、SDK >= 2.x（避免 3.14）。預設 SDK ~2.2.7，除非使用者另外指定。
+
+> **TL;DR** — 三大工作流程：
+> 1. **登入** → `sdk.login(ID, PWD, cert, cert_pwd)` 取得帳號清單
+> 2. **下單** → 建構 `Order(...)` → `sdk.stock.place_order(acc, order)`
+> 3. **行情** → `sdk.init_realtime()` → `sdk.marketdata.rest_client.stock.intraday.*`
+
+## 常見錯誤（Common Mistakes）
+
+| 錯誤 | 正確做法 |
+| :--- | :--- |
+| `pip install fubon-neo` | SDK 不在 PyPI，需從[官方頁面](https://www.fbs.com.tw/TradeAPI/docs/sdk/python/download?type=download)下載 `.whl` 安裝 |
+| 在測試環境用 `intraday.quote` 判斷可下單價格 | 測試環境應用 `sdk.stock.query_symbol_quote(acc, symbol)` |
+| SDK >= 2.2.1 仍用 `FubonSDK()` 初始化 | 需用 `FubonSDK(30, 2)` （或含 `url=` 參數） |
+| 下單後找不到已刪的單 | 已刪單仍在 `get_order_results` 中，status=30 |
+| 登入後直接用 `sdk.marketdata.rest_client` | 需先呼叫 `sdk.init_realtime()` |
+| `user_def` 字串過長 | 建議 10 字元以內，過長會被截斷 |
+| 在 Python 3.14 使用 SDK v2 | SDK v2 僅支援 3.12–3.13 |
+| 數量填「張數」而非「股數」 | FubonNeo 數量一律為**股數**（1 張 = 1000 股） |
 
 ## Public Docs Access
 
@@ -33,12 +52,18 @@ from fubon_neo.constant import BSAction, MarketType, PriceType, TimeInForce, Ord
 # Init & Login
 sdk = FubonSDK()  # Use FubonSDK(30, 2) if on SDK 2.2.1+
 accounts = sdk.login("ID", "PWD", "C:/path/to/cert.pfx", "CertPWD")
-acc = accounts.data[0] # Pick stock account
+acc = accounts.data[0]  # Pick stock account
 
 # Place Order (Buy 1000 shares of 2330 at Limit 580)
+# Keyword form recommended (matches official docs); positional form also works.
 order = Order(
-    BSAction.Buy, "2330", 1000,
-    MarketType.Common, PriceType.Limit, TimeInForce.ROD, OrderType.Stock,
+    buy_sell=BSAction.Buy,
+    symbol="2330",
+    quantity=1000,
+    market_type=MarketType.Common,
+    price_type=PriceType.Limit,
+    time_in_force=TimeInForce.ROD,
+    order_type=OrderType.Stock,
     price="580"
 )
 res = sdk.stock.place_order(acc, order)
@@ -69,13 +94,36 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 - **REST**: 300 req/min (IP-based).
 - **WebSocket**: 200 subscriptions per connection.
 
-## Workflow Decision Tree
+## SDK 版本相容性（Version Compatibility）
 
-1. **Identify scope**: trading vs market data.
-2. **Confirm environment**: test vs production, credentials, API keys, and certificates.
-3. **Confirm SDK constraints**: Python version, SDK version, OS.
-4. **Locate the right doc** (see `references/doc-index.md`).
-5. **Draft code**: minimal, runnable example; call out required configuration.
+| SDK Version | Python | Constructor | 備註 |
+| :--- | :--- | :--- | :--- |
+| >= 2.2.6 | 3.12–3.13 | `FubonSDK(30, 2)` | 下單錯誤拋出 `FugleAPIError` |
+| 2.2.1–2.2.5 | 3.12–3.13 | `FubonSDK(30, 2)` | 錯誤在 response 物件中 |
+| <= 2.2.0 | 3.12–3.13 | `FubonSDK()` | 無位置參數 |
+| 1.3.1–1.x | 3.8–3.12 | `FubonSDK()` | 測試環境最低要求 |
+
+測試環境一律加 `url="wss://neoapitest.fbs.com.tw/TASP/XCPXWS"` 參數。
+
+## 工作流程決策樹（Workflow Decision Tree）
+
+```
+需求是什麼？
+├── 交易（Trading）
+│   ├── 下單 / 改單 / 刪單
+│   │   ├── 測試環境？→ FubonSDK(30, 2, url=test_url) + query_symbol_quote 取價格
+│   │   └── 正式環境？→ FubonSDK(30, 2) + intraday.ticker 取漲跌停
+│   ├── 查詢帳務 → sdk.stock.get_order_results / get_inventories
+│   └── 當沖（Day Trade）→ 見下方「當沖」章節
+├── 行情（Market Data）
+│   ├── 即時快照 → HTTP: intraday.quote（成交）/ intraday.ticker（參考價/漲跌停）
+│   ├── 歷史資料 → HTTP: historical
+│   └── 即時串流 → WebSocket: sdk.init_realtime() + subscribe
+└── 環境確認
+    ├── SDK 版本 → 見上方「版本相容性」
+    ├── 安裝方式 → 官方 .whl（非 PyPI）
+    └── 文件查詢 → references/doc-index.md
+```
 
 ## Trading Workflow
 
@@ -93,6 +141,30 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 - Mention connection setup and rate limits when relevant.
 - To use `sdk.marketdata.rest_client`, call `sdk.init_realtime()` after login.
 - For limit-up/limit-down prices in market data, use `intraday.ticker` (not `intraday.quote`).
+
+## 當沖（Day Trading）
+
+台股當沖分為：
+
+- **先買後賣**（現股當沖-買）：先以 `BSAction.Buy` 下單，同日再以 `BSAction.Sell` 賣出。使用 `OrderType.Stock`。
+- **先賣後買**（現股當沖-賣/融券當沖）：先以融券賣出，同日再買回。使用 `OrderType.ShortSelling`。
+
+### 關鍵判斷
+
+- 使用 `intraday.ticker` 回傳的 `canDayTrade` / `canBuyDayTrade` 欄位確認標的可否當沖。
+- 部位平倉（沖銷）：在收盤前以反向委託等量股數沖銷。
+
+### 條件單當沖
+
+SDK >= 2.2.4 支援條件單當沖（搜尋 llms-full.txt 中 `ConditionDayTrade` 或「當沖條件單」），可設定停損停利自動回補。
+
+### 參考實作
+
+- [StrategyExecutor_feather](https://github.com/phenomenoner/StrategyExecutor_feather)：現股當沖先賣的自動化策略範例。
+
+## 期貨 / 選擇權（Futures & Options）
+
+本 skill 目前以**證券（Stock）**交易與行情為主要範圍。SDK 支援期貨/選擇權帳號（`account_type == "futopt"`），但本 skill 尚未涵蓋對應的下單/行情 API。期貨條件單說明可搜尋 llms-full.txt 中「期貨條件單」。歡迎社群補充期貨/選擇權工作流程。
 
 ## Examples
 
@@ -119,23 +191,6 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 - Python SDK is not on PyPI. Download the wheel from the official page and install locally.
 - SDK >= v2 works on Python 3.12–3.13 (avoid 3.14 for now).
 
-## Using llms.txt Outputs
-
-Prefer public URLs as the primary source. Use bundled files as offline fallback:
-
-- Public:
-  - <https://www.fbs.com.tw/TradeAPI/llms.txt>
-  - <https://www.fbs.com.tw/TradeAPI/llms-full.txt>
-  - <https://www.fbs.com.tw/TradeAPI/en/llms.txt>
-  - <https://www.fbs.com.tw/TradeAPI/en/llms-full.txt>
-- Bundled (offline):
-  - `llms.txt`
-  - `llms-full.txt`
-  - `llms.en.txt`
-  - `llms-full.en.txt`
-
-Use `llms.txt` for navigation and `llms-full.txt` for exact parameter details or examples. If the files are missing or stale, fall back to the source docs in `docs/`.
-
 ## Implementation Patterns
 
 For production-tested patterns, see `references/implementation-practices.md`. Key topics:
@@ -145,27 +200,14 @@ For production-tested patterns, see `references/implementation-practices.md`. Ke
 - **Async Patterns**: ThreadPoolExecutor for blocking calls, per-symbol locking
 - **Error Handling**: FugleAPIError compatibility for old/new SDK versions
 - **Order Placement**: Order creation, placement, and fill handling
+- **Strategy Patterns**: Tick-to-decision pipeline, stop loss, position sizing
+- **Error & Status Codes**: Order status codes, HTTP errors, common rejection reasons
 
 ## References
 
 - **Doc index**: `references/doc-index.md`
 - **Implementation practices**: `references/implementation-practices.md`
+- **Response shapes**: `references/response-shapes.md`
 - **Source docs (maintainers)**: `docs/` and `i18n/en/docusaurus-plugin-content-docs/current`
 
 When code or docs need updating, mirror changes in the English localization if the content is user-facing.
-
-## Language & Localization
-
-- **Source of Truth**: The primary documentation `llms-full.txt` is in **Traditional Chinese**.
-- **Response Style**:
-  - If the user asks in Chinese, answer in Chinese with English code comments.
-  - If the user asks in English, answer in English but provide the Chinese Terminology in parenthesis for clarity (e.g., "ROD (當日有效)").
-- **Terminology Mapping**:
-  - **Limit Order**: 限價 (LMT)
-  - **Market Order**: 市價 (MKT)
-  - **ROD**: 當日有效
-  - **IOC**: 立即成交否則取消
-  - **FOK**: 全部成交否則取消
-  - **Margin Trading**: 融資
-  - **Short Selling**: 融券
-  - **Day Trade**: 當沖

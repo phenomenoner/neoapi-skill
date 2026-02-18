@@ -43,6 +43,10 @@ search in `llms-full.txt` for the exact parameters and return types.
 
 ## Trading (Python)
 
+> **Note**: 以下路徑為官方網站 URL 結構（如 `docs/trading/prepare` 對應
+> `https://www.fbs.com.tw/TradeAPI/docs/trading/prepare`），並非本地檔案路徑。
+> 查詢時建議搜尋 `llms-full.txt` 或直接開啟對應網址。
+
 - Setup & onboarding:
   - `docs/trading/prepare`
   - `docs/trading/quickstart`
@@ -85,6 +89,10 @@ Topics covered:
 ## Examples
 
 - `references/examples-guidance.md` (code reading + modification checklist)
+
+## Response Shapes
+
+- `references/response-shapes.md` (API 回傳格式參考，含 TODO 待驗證欄位)
 
 ## Test Environment (Sandbox)
 

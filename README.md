@@ -27,7 +27,7 @@
 
 ## 版本管理
 
-Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.22`（Beta 1.0.0）。
+Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.23`（Beta 1.0.0）。
 
 ## 多代理 Adapter
 
@@ -100,3 +100,4 @@ Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本�
 - 2026-02-09: 1.0.0-beta.20 - 新增多代理 root adapters（`CLAUDE.md`/`GEMINI.md`/`AGENTS.md`）。
 - 2026-02-09: 1.0.0-beta.21 - 補充本地回歸測試文件與完整跑測紀錄。
 - 2026-02-09: 1.0.0-beta.22 - 新增進階整合測試文件（雙訂單生命週期、多標的行情矩陣、無效代號拒絕）並紀錄 2883/2881 成功結果。
+- 2026-02-18: 1.0.0-beta.23 - 精簡 SKILL.md 結構（TL;DR、常見錯誤表、具體決策樹、版本相容性矩陣）；統一 Order 建構為 keyword 形式；新增回傳格式參考（response-shapes.md）、當沖工作流程、策略模式參考、錯誤與狀態碼表；本地化規則移至各 adapter 檔；標註期貨/選擇權範圍。

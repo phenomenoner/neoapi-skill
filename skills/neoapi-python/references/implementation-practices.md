@@ -335,3 +335,110 @@ async def fetch_all_tickers(self, symbols):
 | **Order Tracking** | Use `user_def` field for identification |
 | **Logging** | Guard expensive log formatting |
 | **Serialization** | Consider `orjson` for performance |
+
+---
+
+## 9. 策略模式參考（Strategy Pattern Reference）
+
+以下為 [StrategyExecutor_feather](https://github.com/phenomenoner/StrategyExecutor_feather) 專案中提煉的高階模式，供策略開發者參考。
+
+### Architecture: Tick-to-Decision Pipeline
+
+```text
+WebSocket tick
+  → 快照更新（update snapshot）
+    → 指標計算（calculate indicators）
+      → 策略判斷（evaluate signal）
+        → 下單執行（execute order）
+```
+
+### Key Principles
+
+- **策略邏輯應為純函式（Stateless）**：接收行情快照與指標，回傳進出場決策。不直接操作 SDK。
+- **進出場條件與部位管理分離**：Strategy 負責「該不該做」，TradingEngine 負責「怎麼做」。
+- **Per-symbol isolation**：每個標的獨立的 lock 與狀態，避免競爭。
+
+### Entry / Exit Decision
+
+```python
+class Strategy:
+    def evaluate(self, symbol: str, snapshot: dict) -> Decision:
+        """Pure function: snapshot in, decision out."""
+        if self._entry_condition(snapshot):
+            return Decision(action="buy", reason="entry signal")
+        if self._exit_condition(snapshot):
+            return Decision(action="sell", reason="exit signal")
+        return Decision(action=None)
+```
+
+### Position Sizing
+
+- 單一標的最大曝險比例（如總資金 5%）
+- 分批進出場（scale-in / scale-out）
+- 每日最大委託次數限制（在策略層而非 SDK 層控制）
+
+### Stop Loss / Take Profit
+
+| 類型 | 說明 | 實作方式 |
+| :--- | :--- | :--- |
+| 固定金額停損 | 虧損達固定金額即出場 | 策略層判斷後下反向委託 |
+| 追蹤停損（Trailing Stop） | 獲利回吐超過設定比例即出場 | 持續更新最高價，監控回撤 |
+| SDK 條件單 TPSL | 自動化停損停利 | 搜尋 llms-full.txt 中 `TPSLOrder` |
+
+### Code Sketch: Tick Processing
+
+```python
+async def on_tick(self, symbol: str, tick: dict):
+    async with self._locks[symbol]:
+        self._update_snapshot(symbol, tick)
+        indicators = self._calc_indicators(symbol)
+        decision = self.strategy.evaluate(symbol, indicators)
+        if decision.action:
+            await self._execute(symbol, decision)
+```
+
+---
+
+## 10. 錯誤與狀態碼（Error & Status Codes）
+
+### HTTP / REST 錯誤碼
+
+| 狀態碼 | 說明 | 處理建議 |
+| :--- | :--- | :--- |
+| 429 | Rate limit exceeded | 等待 60 秒後重試 |
+| 401 | Unauthorized | 重新登入（token 可能過期） |
+
+### 訂單狀態碼（Order Status）
+
+| 狀態碼 | 說明 |
+| :--- | :--- |
+| 30 | 已刪單（canceled） |
+| [TODO] | 待補充其他常見狀態碼（需從測試環境擷取） |
+
+### FugleAPIError (SDK >= 2.2.6)
+
+SDK >= 2.2.6 將部分錯誤以 exception 形式拋出：
+
+```python
+from fubon_neo.sdk import FugleAPIError  # ImportError if SDK < 2.2.6
+
+try:
+    response = sdk.stock.place_order(acc, order)
+except FugleAPIError as e:
+    print(f"Status: {e.status_code}, Detail: {e.response_text}")
+```
+
+| 屬性 | 型別 | 說明 |
+| :--- | :--- | :--- |
+| `status_code` | `int` | HTTP 狀態碼（如 429） |
+| `response_text` | `str` | JSON 格式的錯誤訊息 |
+
+### 常見下單錯誤
+
+| 情境 | 錯誤表現 | 處理建議 |
+| :--- | :--- | :--- |
+| 價格超出漲跌停 | `is_success=False` 或 `FugleAPIError` | 用 `query_symbol_quote` 取得有效價格範圍 |
+| 無效商品代號 | `is_success=False` | 確認商品代號正確 |
+| 測試環境交易時段外 | 下單失敗 | 測試時段 09:30–19:00 |
+| 數量不符規則 | [TODO: capture exact message] | 整股以 1000 的倍數為單位 |
+| 重複刪單 | [TODO] | 先查詢 `get_order_results` 確認狀態 |
