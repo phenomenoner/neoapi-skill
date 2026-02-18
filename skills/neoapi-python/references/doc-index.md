@@ -94,6 +94,10 @@ Topics covered:
 
 - `references/response-shapes.md` (API 回傳格式參考，含 TODO 待驗證欄位)
 
+## Skill Effectiveness Testing
+
+- `references/skill-effectiveness-tests.md` (Tier 1-5 ablation test suite for measuring skill value)
+
 ## Test Environment (Sandbox)
 
 - `references/test-environment.md` (summary from official PDF in the test bundle)
