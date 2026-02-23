@@ -180,10 +180,34 @@ SDK >= 2.2.4 支援條件單當沖（搜尋 llms-full.txt 中 `ConditionDayTrade
 - See `references/test-environment.md` for operational notes (trading hours, shared account caveats).
 - Python SDK is downloaded from the official site (not PyPI); install the wheel locally.
 - Skill validation checklist: `references/skill-tests.md`.
-- Local integrated runner (maintainer/local): `.test/test_runner.py`
-  - `--suite smoke`: basic login + market/trade sanity checks
-  - `--suite complex`: multi-symbol marketdata + dual-order lifecycle + callback coverage
-  - `--suite all`: full coverage (includes complex checks)
+
+- Local integrated runner (maintainer-only; may be absent in some distributed skill copies): `.test/test_runner.py`
+  - If present, it can run:
+    - `--suite smoke`: basic login + market/trade sanity checks
+    - `--suite complex`: multi-symbol marketdata + dual-order lifecycle + callback coverage
+    - `--suite all`: full coverage (includes complex checks)
+  - If it is missing, use the minimal smoke snippet below (login → logout; no orders).
+
+Minimal smoke (test env, no orders):
+```python
+from fubon_neo.sdk import FubonSDK
+import os
+
+URL = os.getenv("NEOAPI_TEST_URL", "wss://neoapitest.fbs.com.tw/TASP/XCPXWS")
+# SDK v2.2.1+: use FubonSDK(30, 2, url=...)
+sdk = FubonSDK(30, 2, url=URL)
+
+accounts = sdk.login(
+    os.getenv("NEOAPI_TEST_ID"),
+    os.getenv("NEOAPI_TEST_PASSWORD"),
+    os.getenv("NEOAPI_TEST_CERT_PATH"),
+    os.getenv("NEOAPI_TEST_CERT_PASSWORD"),
+)
+print("login_ok=", bool(getattr(accounts, "is_success", True)))
+
+sdk.logout()
+```
+
 - For limit-down/limit-up in test env, prefer `sdk.stock.query_symbol_quote` (test environment data). `intraday.quote` uses market data (prod) and may differ.
 
 ## SDK Install (Quick Note)

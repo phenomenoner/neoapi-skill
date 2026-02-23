@@ -30,6 +30,17 @@ Source: `test_environment.zip` from the official SDK sample link.
 - **Certificate password** = `12345678`.
 - In the sample bundle, the `.pfx` filenames are the IDs (e.g., `41610792.pfx`).
 
+## Environment variables (for automation / smoke tests)
+
+Required:
+- `NEOAPI_TEST_ID`
+- `NEOAPI_TEST_PASSWORD`
+- `NEOAPI_TEST_CERT_PATH`
+- `NEOAPI_TEST_CERT_PASSWORD`
+
+Optional:
+- `NEOAPI_TEST_URL` (default: `wss://neoapitest.fbs.com.tw/TASP/XCPXWS`)
+
 ## Behavior Notes
 
 - You can test market data and order placement after login.

@@ -33,8 +33,12 @@ This folder contains a skill for AI coding assistants (Claude Code, Codex) that 
 ### Step 1: Navigate to the skill folder (if using this repo)
 
 ```bash
-# From project root
-# This repo uses "skills/" (no leading dot).
+# From project root (macOS/Linux)
+cd ./skills/neoapi-python
+```
+
+```powershell
+# From project root (Windows PowerShell)
 cd .\skills\neoapi-python
 ```
 
