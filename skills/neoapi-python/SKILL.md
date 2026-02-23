@@ -141,6 +141,7 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 - Mention connection setup and rate limits when relevant.
 - To use `sdk.marketdata.rest_client`, call `sdk.init_realtime()` after login.
 - For limit-up/limit-down prices in market data, use `intraday.ticker` (not `intraday.quote`).
+- Trading hours reference (Taiwan cash equities): `references/twse-trading-hours.md` (Asia/Taipei)
 
 ## 當沖（Day Trading）
 
