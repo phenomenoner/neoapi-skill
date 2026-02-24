@@ -152,7 +152,33 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 
 ### 關鍵判斷
 
-- 使用 `intraday.ticker` 回傳的 `canDayTrade` / `canBuyDayTrade` 欄位確認標的可否當沖。
+- 使用 `intraday.ticker` 回傳的 `canDayTrade` / `canBuyDayTrade` 欄位確認標的可否當沖（行情端的快速旗標）。
+- 若你要更精確地判斷「先買後賣」vs「先賣後買」能不能做，建議查交易端的 **status bitmask**：
+  - 來源常見於：
+    - `sdk.stock.query_symbol_quote(acc, symbol)` 回傳的 `data.status`
+    - `sdk.stock.daytrade_and_stock_info(acc, symbol)` 回傳的 `data.status`（有些 wrapper 會叫 `disposition_status`）
+  - **bitmask 定義（加總）**：
+    - `1`：平盤下可融券賣出
+    - `2`：平盤下可借券賣出
+    - `4`：可先買後賣當沖（buy-first daytrade）
+    - `8`：可先賣後買當沖（sell-first daytrade / daytrade short）
+  - 判斷請用 **位元運算**，不要用 `>=`：
+
+```python
+def decode_daytrade_status(status: int) -> dict[str, bool]:
+    return {
+        "can_short_sell_below_flat": bool(status & 1),
+        "can_borrow_sell_below_flat": bool(status & 2),
+        "can_daytrade_buy_first": bool(status & 4),
+        "can_daytrade_sell_first": bool(status & 8),
+    }
+
+# examples
+# status=15 -> all True (1+2+4+8)
+# status=3  -> only the first two True (1+2)
+# status=8  -> sell-first daytrade only
+```
+
 - 部位平倉（沖銷）：在收盤前以反向委託等量股數沖銷。
 
 ### 條件單當沖
