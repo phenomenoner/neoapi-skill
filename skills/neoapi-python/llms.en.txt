@@ -56,6 +56,7 @@
 - [TP & SL Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/advance/TPSL-introduce.md): Fubon Neo API supports TP & SL orders.
 - [Trail Profit Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/advance/TrailProfit-introduce.md): Fubon Neo API supports trail profit orders.
 - [條件單使用說明](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/Agreements.md): 本公司為服務投資人，提供網路下單客戶得預先設定下單條件之條件下單功能服務（以下簡稱本功能或本服務）。本服務不收取任何費用，但本公司保留得隨時調整、修正、暫停或終止此項服務之權利；為確保使用者權益及網路交易安全秩序，請投資人於啟用本功能前，詳細閱讀以下條款，以保障投資人的權利，在投資人點選本使用同意書下方之同意鈕，即視為已經詳閱並接受本同意書之內容。.
+- [Error Codes & Status Reference](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/error-codes.md): Condition Order Status Codes and History Status Codes Reference
 - [Fubon Neo API Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/introduction.md): API reference for Introduction (-----).
 - [Cancel Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/CancelCondition.md): API reference for Cancel Condition Order (cancel_condition_orders).
 - [Get Day Trade Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition/library/cpp/daytrade/GetDayTradeConditionById.md): API reference for Get Day Trade Condition Order (get_condition_daytrade_by_id).
@@ -130,6 +131,7 @@
 - [TP & SL Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/advance/TPSL-introduce.md): Fubon Neo API supports TP & SL orders.
 - [Trail Profit Condition](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/advance/TrailProfit-introduce.md): Fubon Neo API supports trail profit orders.
 - [Condition Order Agreements](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/Agreements.md): 本公司為服務投資人，提供網路下單客戶得預先設定下單條件之條件下單功能服務（以下簡稱本功能或本服務）。本服務不收取任何費用，但本公司保留得隨時調整、修正、暫停或終止此項服務之權利；為確保使用者權益及網路交易安全秩序，請投資人於啟用本功能前，詳細閱讀以下條款，以保障投資人的權利，在投資人點選本使用同意書下方之同意鈕，即視為已經詳閱並接受本同意書之內容。.
+- [Error Codes & Status Reference](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/error-codes.md): Future Condition Order Status Codes and History Status Codes Reference
 - [Fubon Neo API Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/introduction.md): API reference for Introduction (-----).
 - [Cancel Condition Order](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/CancelCondition.md): API reference for Cancel Condition Order (CancelConditionOrder).
 - [List of Enumerations](https://www.fbs.com.tw/TradeAPI/en/docs/smart-condition-future/library/csharp/EnumMatrix.md): API reference for Enumerations (Class).
@@ -183,6 +185,7 @@
 - [WebSocket Parameter Setting](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/ping_pong.md): Fubon Neo API SDK leverages WebSocket to connect with Fubon servers, the standard ping/pong control frame mechanism is adopted and implemented. By default, a ping frame would be sent to the server every 30 seconds, and if pong response is not received for two cconsecutive attempts, the connection quality is judged to be weak and the connection would be dropped.
 - [Python Callback Exception Handling](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/python_callback_decorator.md): When using Python callback functions, because they run in a separate thread, if an error occurs during the execution, the error message will not be automatically thrown back, which may cause obstacles in debugging.
 - [Reconnect](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/advance/reconnect.md): The following is a simple demonstration that automatically reconnects the trading socket when a disconnection event is detected using a callback:.
+- [Error Codes & Status Reference](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/error-codes.md): API Error Codes, Status Codes, and Event Codes Reference
 - [Event/Notification Callback](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/report_example.md): API reference for Event/Notification Callback (--------).
 - [Trade](https://www.fbs.com.tw/TradeAPI/en/docs/trading/guide/trade_example.md): API reference for Trade (--------).
 - [Fubon Neo API](https://www.fbs.com.tw/TradeAPI/en/docs/trading/introduction.md): API reference for Introduce (-----).
@@ -338,6 +341,7 @@
 - [Unblock Order](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/advance/asyn_order.md): First, let's begin by understanding the concepts of block and unblock.
 - [Python Callback Exception Handling](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/advance/python_callback_decorator.md): When using Python callback functions, because they run in a separate thread, if an error occurs during the execution, the error message will not be automatically thrown back, which may cause obstacles in debugging.
 - [Reconnect](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/advance/reconnect.md): The following is a simple demonstration that automatically reconnects the trading socket when a disconnection event is detected using a callback:.
+- [Error Codes & Status Reference](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/error-codes.md): API Error Codes, Status Codes, and Event Codes Reference
 - [Event/Notification Callback](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/report_example.md): API reference for Event/Notification Callback (--------).
 - [Trade](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/guide/trade_example.md): API reference for Trade (--------).
 - [Fubon Neo API](https://www.fbs.com.tw/TradeAPI/en/docs/trading-future/introduction.md): API reference for Introduce (-----).

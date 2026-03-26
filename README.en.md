@@ -27,7 +27,7 @@ See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `ski
 
 ## Versioning
 
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.23` (Beta 1.0.0).
+The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.24` (Beta 1.0.0).
 
 ## Multi-Agent Adapters
 
@@ -49,6 +49,8 @@ The official LLM-oriented pages and `llms*.txt` endpoints are available online a
 - `https://www.fbs.com.tw/TradeAPI/llms-full.txt`
 - `https://www.fbs.com.tw/TradeAPI/en/llms.txt`
 - `https://www.fbs.com.tw/TradeAPI/en/llms-full.txt`
+
+The bundled `llms*.txt` files are offline snapshots. When the official endpoints change, refresh the repo copies and bump `VERSION`; otherwise the update scripts will treat the installed bundle as unchanged.
 
 ## Updating from GitHub
 
@@ -101,3 +103,4 @@ Example:
 - 2026-02-09: 1.0.0-beta.21 - Add local regression suite documentation and record full-suite validation.
 - 2026-02-09: 1.0.0-beta.22 - Add advanced integrated test documentation (dual-order lifecycle, multi-symbol marketdata matrix, invalid symbol rejection) and record successful runs for 2883/2881.
 - 2026-02-18: 1.0.0-beta.23 - Restructure SKILL.md (TL;DR, common mistakes table, concrete decision tree, version compatibility matrix); canonicalize Order to keyword form; add response-shapes.md, day trading workflow, strategy pattern reference, error/status code table; move localization rules to adapter files; note futures/options scope.
+- 2026-03-26: 1.0.0-beta.24 - Refresh bundled official `llms.txt` / `llms-full.txt` snapshots (zh/en) so the offline skill bundle matches the latest Fubon LLM docs outputs.

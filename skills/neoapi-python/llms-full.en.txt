@@ -282,6 +282,10 @@ npm install
 1. Download the `.nupkg`.
 2. Install via Visual Studio NuGet Package Manager or a local NuGet source.
 
+info
+
+For detail intruction, please refer to [Quick Start](https://www.fbs.com.tw/TradeAPI/en/docs/trading/quickstart.md)
+
 ##### C++[​](#c-1 "Direct link to C++")
 
 1. Download the C++ SDK and sample code.
@@ -335,6 +339,10 @@ Available since v2.2.7
 Web Certificate Export
 
 Starting from v2.2.8, exporting credentials after logging in on this page can be used to login API.
+
+Connection Test
+
+For the first time connection test, you must use a regular account/password plus a certificate. The API key login method **cannot** be used for the connection test.
 
 <!-- -->
 
@@ -8480,6 +8488,44 @@ sdk.Stock.TrailProfit(target_account, "20240427","20240516", StopSign.Full, trai
 7. 請留意，使用條件單訂閱功能時，待觸發送單後才會與本公司後台風控進行比對。
 8. 請留意，證期權多條件長效單、移動鎖利條件單、庫存停損利條件單之效期最長為3個月，定時定額條件單效期最長為6個月。
 9. 其餘未盡事宜請參閱各條件單介面下方注意事項，確認閱讀內容完畢後始得訂閱條件單。
+
+
+---
+
+### Error Codes & Status Reference
+
+This page compiles common status codes in the Fubon Neo API (Smart Condition), allowing developers to quickly retrieve them when encountering issues or determining states.
+
+#### Condition Order Status (ConditionStatus)[​](#condition-order-status-conditionstatus "Direct link to Condition Order Status (ConditionStatus)")
+
+The current status of a condition order.
+
+| Status Name | Description                    |
+| ----------- | ------------------------------ |
+| `Type1`     | Today's related queries        |
+| `Type2`     | Still valid orders             |
+| `Type3`     | Condition matching in progress |
+| `Type4`     | Order processing               |
+| `Type5`     | Order successful               |
+| `Type6`     | Notified                       |
+| `Type7`     | Order failed                   |
+| `Type8`     | Already filled                 |
+| `Type9`     | Deletion successful            |
+| `Type10`    | Abnormal                       |
+| `Type11`    | Invalid                        |
+
+#### History Condition Order Status (HistoryStatus)[​](#history-condition-order-status-historystatus "Direct link to History Condition Order Status (HistoryStatus)")
+
+The status of historical condition orders.
+
+| Status Name | Description                                          |
+| ----------- | ---------------------------------------------------- |
+| `Type1`     | All condition orders (excluding deleted and invalid) |
+| `Type2`     | Fully filled orders within the selected period       |
+| `Type3`     | Partially filled orders within the selected period   |
+| `Type4`     | Deleted orders within the selected period            |
+| `Type5`     | Invalid orders within the selected period            |
+| `Type6`     | Triggered records within the selected period         |
 
 
 ---
@@ -18209,6 +18255,44 @@ sdk.FutOpt.TrailProfit(target_account, "20240427","20240516", StopSign.Full, tra
 
 ---
 
+### Error Codes & Status Reference
+
+This page compiles common status codes in the Fubon Neo API (Future Smart Condition), allowing developers to quickly retrieve them when encountering issues or determining states.
+
+#### Condition Order Status (ConditionStatus)[​](#condition-order-status-conditionstatus "Direct link to Condition Order Status (ConditionStatus)")
+
+The current status of a condition order.
+
+| Status Name | Description                    |
+| ----------- | ------------------------------ |
+| `Type1`     | Today's related queries        |
+| `Type2`     | Still valid orders             |
+| `Type3`     | Condition matching in progress |
+| `Type4`     | Order processing               |
+| `Type5`     | Order successful               |
+| `Type6`     | Notified                       |
+| `Type7`     | Order failed                   |
+| `Type8`     | Already filled                 |
+| `Type9`     | Deletion successful            |
+| `Type10`    | Abnormal                       |
+| `Type11`    | Invalid                        |
+
+#### History Condition Order Status (HistoryStatus)[​](#history-condition-order-status-historystatus "Direct link to History Condition Order Status (HistoryStatus)")
+
+The status of historical condition orders.
+
+| Status Name | Description                                          |
+| ----------- | ---------------------------------------------------- |
+| `Type1`     | All condition orders (excluding deleted and invalid) |
+| `Type2`     | Fully filled orders within the selected period       |
+| `Type3`     | Partially filled orders within the selected period   |
+| `Type4`     | Deleted orders within the selected period            |
+| `Type5`     | Invalid orders within the selected period            |
+| `Type6`     | Triggered records within the selected period         |
+
+
+---
+
 ### Fubon Neo API Condition Order
 
 ***
@@ -23787,7 +23871,7 @@ order = Order(
     price_type = PriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = OrderType.Stock,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 ) 
 
 sdk.stock.place_order(accounts.data[0], order)  #Place Order
@@ -23809,7 +23893,7 @@ const order = {
   priceType: PriceType.Limit,
   timeInForce: TimeInForce.ROD,
   orderType: OrderType.Stock,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 
 sdk.stock.placeOrder(accounts.data[0], order); 
@@ -23861,7 +23945,7 @@ order = Order(
     price_type = PriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = OrderType.Stock,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 ) 
 
 sdk.stock.place_order(accounts.data[0], order, True)  #Place Order
@@ -23880,7 +23964,7 @@ const order = {
   priceType: PriceType.Limit,
   timeInForce: TimeInForce.ROD,
   orderType: OrderType.Stock,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 
 sdk.stock.placeOrder(accounts.data[0], order, true);
@@ -23933,7 +24017,7 @@ order = Order(
     price_type = PriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = OrderType.Stock,
-    user_def = "From_Py" # optional
+    user_def = "FromPy" # optional
 )
 
 # Place orders
@@ -23962,7 +24046,7 @@ const order = {
   priceType: PriceType.Limit,
   timeInForce: TimeInForce.ROD,
   orderType: OrderType.Stock,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 
 // Place orders
@@ -30015,6 +30099,64 @@ class Program
 
 ---
 
+### Error Codes & Status Reference
+
+This page compiles common status codes, function types, and event codes in the Fubon Neo API (Stock Trading), allowing developers to quickly retrieve them when encountering issues or determining states.
+
+#### Order Status (Status)[​](#order-status-status "Direct link to Order Status (Status)")
+
+The current status of an order, which can be queried via `GetOrderResult` or obtained from active reports.
+
+| Status Name                          | Status Code (Value) | Description                                                                              |
+| ------------------------------------ | ------------------- | ---------------------------------------------------------------------------------------- |
+| Pre-order                            | `0`                 | Pre-order                                                                                |
+| System sent order to backend         | `4`                 | Please use `GetOrderResult` to query status                                              |
+| Backend transmitting                 | `8`                 | Please use `GetOrderResult` to query status                                              |
+| Connection timeout                   | `9`                 | Please use `GetOrderResult` to query status later or contact your broker                 |
+| Order successful                     | `10`                | Order successful                                                                         |
+| Unfilled order canceled successfully | `30`                | Unfilled order canceled successfully                                                     |
+| Partially filled, remainder canceled | `40`                | Partially filled, remainder canceled                                                     |
+| Fully filled                         | `50`                | Fully filled                                                                             |
+| Failed                               | `90`                | Failed                                                                                   |
+| Order history query indicator        | `14`, `24`, `34`    | `14` - Price modification ACK, `24` - Quantity modification ACK, `34` - Cancellation ACK |
+| Price modification successful        | `15`                | Historical order query                                                                   |
+| Quantity modification successful     | `20`                | Historical order query                                                                   |
+| Price modification failed            | `19`                | Active report                                                                            |
+| Quantity modification failed         | `29`                | Active report                                                                            |
+| Cancellation failed                  | `39`                | Active report                                                                            |
+
+#### Function Type[​](#function-type "Direct link to Function Type")
+
+Indicates the operation type of the report or query result.
+
+| Function Name       | Code (Value) | Description             |
+| ------------------- | ------------ | ----------------------- |
+| New order           | `0`          | New order               |
+| New order execution | `10`         | New order execution     |
+| Modify price        | `15`         | Modify price            |
+| Modify quantity     | `20`         | Modify quantity         |
+| Cancel order        | `30`         | Cancel order            |
+| Fully filled        | `50`         | for order history query |
+| Failed              | `90`         | Failed                  |
+
+#### Event Code[​](#event-code "Direct link to Event Code")
+
+When subscribing to event notifications via `on_event`, the system will return the following codes.
+
+| Return Code | Meaning                                                           |
+| ----------- | ----------------------------------------------------------------- |
+| `100`       | Connection established successfully                               |
+| `200`       | Login successful                                                  |
+| `201`       | Login warning (e.g., password not changed for 90 days)            |
+| `300`       | Disconnected                                                      |
+| `301`       | Connection pong not received                                      |
+| `302`       | User logged out and disconnected                                  |
+| `304`       | API Key changed (Revoked), forced logout (Added in version 2.2.7) |
+| `500`       | Error                                                             |
+
+
+---
+
 ### Event/Notification Callback
 
 ***
@@ -30700,7 +30842,7 @@ order = Order(
     price_type = PriceType.Limit,
     time_in_force= TimeInForce.ROD,
     order_type = OrderType.Stock,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 ) 
 
 
@@ -30730,7 +30872,7 @@ const order = {
   priceType: PriceType.Limit,
   timeInForce: TimeInForce.ROD,
   orderType: OrderType.Stock,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 
 sdk.stock.placeOrder(accounts.data[0],order);
@@ -30995,7 +31137,7 @@ order = Order(
     price_type = PriceType.Limit,
     time_in_force= TimeInForce.ROD,
     order_type = OrderType.Stock,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 ) 
 
 
@@ -31013,7 +31155,7 @@ order = {
   priceType: PriceType.Limit,
   timeInForce: TimeInForce.ROD,
   orderType: OrderType.Stock,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 
 sdk.stock.placeOrder(accounts.data[0],order)
@@ -32646,7 +32788,7 @@ else {
                 filledMoney = 0,           // Filled Amount (int)
                 beforeQty = 2000,          // Quantity Before Mod (int)
                 beforePrice = ,            // Price Before Mod (double)
-                userDef = batch 2,         // User Defined Field (string)
+                userDef = batch2,         // User Defined Field (string)
                 lastTime = 12:21:51.023,   // Last Modified Time (string)
                 details = ,                // Order History (list)
                 errorMessage =             // Error Message (string)
@@ -32678,7 +32820,7 @@ else {
                 filledMoney = 0,           // Filled Amount (int)
                 beforeQty = 2000,          // Quantity Before Mod (int)
                 beforePrice = ,            // Price Before Mod (double)
-                userDef = batch 1,         // User Defined Field (string)
+                userDef = batch1,         // User Defined Field (string)
                 lastTime = 12:21:51.023,   // Last Modified Time (string)
                 errorMessage =             // Error Message (string)
             }
@@ -33903,6 +34045,10 @@ askVolume = 4169
 
 query\_symbol\_snapshot
 
+tip
+
+This feature is for querying product information such as daily upper and lower price limits and does not include real-time quote updates.
+
 #### Input Parameters[​](#input-parameters "Direct link to Input Parameters")
 
 | Parameter    | Type                                                                                                                              | Description                                             |
@@ -34266,7 +34412,7 @@ QuerySettlement
 | Parameter | Type           | Meaning                                         |
 | --------- | -------------- | ----------------------------------------------- |
 | isSuccess | bool           | Interface result                                |
-| data      | SettlementData | SettlementResponse is returned                  |
+| data      | SettlementData | Settlement data                                 |
 | message   | string         | isSuccess = False error description is returned |
 
 ##### SettlementData Parameter[​](#settlementdata--parameter "Direct link to SettlementData  Parameter")
@@ -35530,7 +35676,7 @@ Console.WriteLine(batch_modify_qty);
                 filledMoney = 0,           // Filled Value (int)
                 beforeQty = 2000,          // Before the Quantity Modification (int)
                 beforePrice = ,            // Before the Price Modification (string)
-                userDef = batch 2,         // Custom Fields (string)
+                userDef = batch2,         // Custom Fields (string)
                 lastTime = 12:21:51.023,   // Last Modification Time (string)
                 details = ,                       // Order Process (list)
                 errorMessage =             // Error Message (string)
@@ -35562,7 +35708,7 @@ Console.WriteLine(batch_modify_qty);
                 filledMoney = 0,           // Filled Value (int)
                 beforeQty = 2000,          // Before the Quantity Modification (int)
                 beforePrice = ,            // Before the Price Modification (string)
-                userDef = batch 1,         // Custom Fields (string)
+                userDef = batch1,         // Custom Fields (string)
                 lastTime = 12:21:51.023,   // Last Modification Time (string)
                 details = ,                       // Order Process (list)
                 errorMessage =             // Error Message (string)
@@ -37173,6 +37319,10 @@ QuerySymbolSnapshot
 info
 
 For version >=2.2.5
+
+tip
+
+This feature is for querying product information such as daily upper and lower price limits and does not include real-time quote updates.
 
 #### Input Parameters[​](#input-parameters "Direct link to Input Parameters")
 
@@ -39082,7 +39232,7 @@ Result{
             StockNo:        "2881",               // Stock Symbol
             BeforeQty:      2000,                 // Effective Qty Before Change
             AfterQty:       1000,                 // Effective Order Quantity (After modification)
-            UserDef:        "batch 2",            // User Defined Field
+            UserDef:        "batch2",            // User Defined Field
             // ... Other fields
         },
         // ... More modification results
@@ -41320,6 +41470,10 @@ if err != nil {
 
 query\_symbol\_snapshot
 
+tip
+
+This feature is for querying product information such as daily upper and lower price limits and does not include real-time quote updates.
+
 #### Input Parameters[​](#input-parameters "Direct link to Input Parameters")
 
 | Parameter    | Type                                                                                                                              | Description                                                                                         |
@@ -41725,11 +41879,11 @@ querySettlement
 
 #### Result Response[​](#result-response "Direct link to Result Response")
 
-| Parameter | Type                | Meaning                                         |
-| --------- | ------------------- | ----------------------------------------------- |
-| isSuccess | bool                | Interface result                                |
-| data      | Object              | Settlement list is returned                     |
-| message   | string ? (optional) | isSuccess = False error description is returned |
+| Parameter | Type                     | Meaning                                         |
+| --------- | ------------------------ | ----------------------------------------------- |
+| isSuccess | bool                     | Interface result                                |
+| data      | Object \<SettlementData> | Settlement list is returned                     |
+| message   | string ? (optional)      | isSuccess = False error description is returned |
 
 ##### SettlementData Parameter[​](#settlementdata-parameter "Direct link to SettlementData Parameter")
 
@@ -43740,7 +43894,7 @@ console.log(orders);
       afterQty: 2000,                        // Valid order quantity (number)
       filledQty: 0,                          // Filled quantity (number)
       filledMoney: 0,                       // Filled Value (number)
-      userDef: 'from Js',                   // Custom fields (string)
+      userDef: 'fromJs',                   // Custom fields (string)
       lastTime: '10:26:22.140'              // Last modification time (string)
 
     }, 
@@ -43854,7 +44008,7 @@ console.log(orders);
       afterQty: 2000,                        // Valid order quantity (number)
       filledQty: 0,                          // Filled quantity (number)
       filledMoney: 0,                       // Filled Value (number)
-      userDef: 'from Js',                   // Custom fields (string)
+      userDef: 'fromJs',                   // Custom fields (string)
       lastTime: '10:26:22.140'              // Last modification time (string)
       details: [
         {
@@ -44285,7 +44439,7 @@ console.log(orderHistory);
       afterQty: 2000,           // Valid order quantity (number)
       filledQty: 0,             // Filled quantity (number)
       filledMoney: 0,           // Filled Value (number)
-      userDef: 'From Js',       // Custom fields (string)
+      userDef: 'FromJs',       // Custom fields (string)
       lastTime: '11:25:08.761'  // Last modification time (string)
       details: [
         {
@@ -44375,7 +44529,7 @@ const order = {
   priceType: PriceType.Limit,
   timeInForce: TimeInForce.ROD,
   orderType: OrderType.Stock,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 
 sdk.stock.placeOrder(accounts.data[0],order,false);
@@ -44414,7 +44568,7 @@ sdk.stock.placeOrder(accounts.data[0],order,false);
       filledMoney: 0,                       // Filled Value (number)
       beforeQty: 0,                         // Before the quantity modification (number)
       beforePrice: 9,                       // Before the price modification (number)
-      userDef: 'from Js',                   // Custom fields (string)
+      userDef: 'fromJs',                   // Custom fields (string)
       lastTime: '13:36:38.317'              // Last modification time (string)
   }
 }
@@ -44541,6 +44695,10 @@ querySymbolSnapshot
 info
 
 For version >=2.2.5
+
+tip
+
+This feature is for querying product information such as daily upper and lower price limits and does not include real-time quote updates.
 
 #### Input Parameters[​](#input-parameters "Direct link to Input Parameters")
 
@@ -46070,7 +46228,7 @@ Below example only extract data content
                 asset_type: 0,              # Asset Type (int)
                 market: TAIEX,              # Market Type (string)
                 market_type: Common,        # Trading Session Type (MarketType)
-                stock_no: 1101,             # Symbol (string)
+                stock_no: "1101",             # Symbol (string)
                 buy_sell: Sell,             # Buy/Sell Type (BSAction)
                 price_type: Limit,          # Original Order Price Type (PriceType)
                 price: 41.2,                # Order Price (float)
@@ -46087,7 +46245,7 @@ Below example only extract data content
                 filled_money: 0,            # Filled Value (int)
                 before_qty: None,           # Before the Quantity Modification (int)
                 before_price: 41.3,         # Before the Price Modification (float)
-                user_def: 12345678,         # Custom Fields (string)
+                user_def: "12345678",         # Custom Fields (string)
                 last_time: "10:56:57.713",  # Last Modification Time (string)
                 details: None,               # Order Process (list)
                 error_message: None         # Error Message (string)
@@ -46102,7 +46260,7 @@ OrderResult({
                 asset_type: 0,              # Asset Type (int)
                 market: TAIEX,              # Market Type (string)
                 market_type: Common,        # Trading Session Type (MarketType)
-                stock_no: 1101,             # Symbol (string)
+                stock_no: "1101",             # Symbol (string)
                 buy_sell: Sell,             # Buy/Sell Type (BSAction)
                 price_type: Limit,          # Original Order Price Type (PriceType)
                 price: 41.2,                # Order Price (float)
@@ -46221,7 +46379,7 @@ Result {
                 asset_type: 0,              # Asset Type (int)
                 market: TAIEX,              # Market Type (string)
                 market_type: Common,        # Trading Session Type (MarketType)
-                stock_no: 2881,             # Symbol (string)
+                stock_no: "2881",             # Symbol (string)
                 buy_sell: Buy,              # Buy/Sell Type (BSAction)
                 price_type: Limit,          # Original Order Price Type (PriceType)
                 price: 66,                  # Price (float)
@@ -46238,7 +46396,7 @@ Result {
                 filled_money: 0,            # Filled Value (int)
                 before_qty: 2000,           # Before the Quantity Modification (int)
                 before_price: None,         # Before the Price Modification (string)
-                user_def: "batch 2",        # Custom Fields (string)
+                user_def: "batch2",        # Custom Fields (string)
                 last_time: "12:21:51.023",  # Last Modification Time (string)
                 details: None,               # Order Process (list)
                 error_message: None         # Error Message (string)
@@ -46253,7 +46411,7 @@ Result {
                 asset_type: 0,              # Asset Type: Stock (int)
                 market: TAIEX,              # Market Type (string)
                 market_type: Common,        # Trading Session Type (MarketType)
-                stock_no: 2881,             # Symbol (string)
+                stock_no: "2881",             # Symbol (string)
                 buy_sell: Buy,              # Buy/Sell Type (BSAction)
                 price_type: Limit,          # Original Order Price Type (PriceType)
                 price: 66,                  # Price (float)
@@ -46312,7 +46470,7 @@ OrderResult({
                 asset_type: 0,              # Asset Type (int)
                 market: "TAIEX",            # Market Type (string)
                 market_type: Common,        # Trading Session Type (MarketType)
-                stock_no: 2881,             # Symbol (string)
+                stock_no: "2881",             # Symbol (string)
                 buy_sell: Buy,              # Buy/Sell Type (BSAction)
                 price_type: Limit,          # Original Order Price Type (PriceType)
                 price: 66,                  # Order Price (float)
@@ -46611,7 +46769,7 @@ orders = [
     price_type = PriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = OrderType.Stock,
-    user_def = "batch 1" # optional field
+    user_def = "batch1" # optional field
 ), Order(
     buy_sell = BSAction.Buy,
     symbol = "2881",
@@ -46621,7 +46779,7 @@ orders = [
     price_type = PriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = OrderType.Stock,
-    user_def = "batch 2" # optional field
+    user_def = "batch2" # optional field
 ) ]
 
 sdk.stock.batch_place_order(target_user, orders)
@@ -46662,7 +46820,7 @@ Result {
                 filled_money: 0,              # Filled Value (int)
                 before_qty: 0,                # Before the Quantity Modification (int)
                 before_price: 66,            # Before the Price Modification (float)
-                user_def: "batch 1",          # Custom Fields (string)
+                user_def: "batch1",          # Custom Fields (string)
                 last_time: "13:33:21.817",     # Last Modification Time (string)
                 details: None,                 # Order Process (list)
                 error_message: None           # Error Message (string)
@@ -46694,7 +46852,7 @@ Result {
                 filled_money: 0,              # Filled Value (int)
                 before_qty: 0,                # Before the Quantity Modification (int)
                 before_price: 66.1,            # Before the Price Modification (float)
-                user_def: "batch 2",          # Custom Fields (string)
+                user_def: "batch2",          # Custom Fields (string)
                 last_time: "13:33:21.817",     # Last Modification Time (string)
                 details: None,                    # Order Process (list)
                 error_message: None            # Error Message (string)
@@ -47726,7 +47884,7 @@ order = Order(
     price_type = PriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = OrderType.Stock,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 )
 
 
@@ -47768,7 +47926,7 @@ Result {
             filled_money: 0,                 # Filled Value (int)
             before_qty: 0,                   # Before the quantity modification (int)
             before_price: 8.9,               # Before the price modification (float)
-            user_def: "From_Py",         # Custom fields (string)
+            user_def: "FromPy",         # Custom fields (string)
             last_time: "14:05:12.085",        # Last modification time (string)
             details: None,                    # Order Process (list)
             error_message: None              # Error Message (string)
@@ -47896,6 +48054,10 @@ query\_symbol\_snapshot
 info
 
 For version >=2.2.5
+
+tip
+
+This feature is for querying product information such as daily upper and lower price limits and does not include real-time quote updates.
 
 #### Input Parameters[​](#input-parameters "Direct link to Input Parameters")
 
@@ -48275,7 +48437,7 @@ order = Order(
   price_type = PriceType.Limit,
   time_in_force= TimeInForce.ROD,
   order_type = OrderType.Stock,
-  user_def = "From_Py"
+  user_def = "FromPy"
 )
 
 # Place an order
@@ -48287,7 +48449,7 @@ print(order_res[0])
 Congratulations <!-- -->🎊<!-- --> after placing your order, you will be able to see the system's response.
 
 ```python
-Result {  is_success: True, message: None, data : { date: "2023/10/13", seq_no: "00000000015", branch_no: "6460", account: "26", order_no: "bA626", asset_type: 0, market: "TAIEX", market_type: Common, stock_no: "2881", buy_sell: Buy, price_type: Limit, price: 66.0, quantity: 2000, time_in_force: ROD, order_type: Stock, is_pre_order: false, status: 10, after_price_type: Limit, after_price: 66.0, unit: 1000, after_qty: 2000, filled_qty: 0, filled_money: 0, before_qty: 0, before_price: 66.0, user_def: "From_Py", last_time: "16:48:09.247", error_message: None} }
+Result {  is_success: True, message: None, data : { date: "2023/10/13", seq_no: "00000000015", branch_no: "6460", account: "26", order_no: "bA626", asset_type: 0, market: "TAIEX", market_type: Common, stock_no: "2881", buy_sell: Buy, price_type: Limit, price: 66.0, quantity: 2000, time_in_force: ROD, order_type: Stock, is_pre_order: false, status: 10, after_price_type: Limit, after_price: 66.0, unit: 1000, after_qty: 2000, filled_qty: 0, filled_money: 0, before_qty: 0, before_price: 66.0, user_def: "FromPy", last_time: "16:48:09.247", error_message: None} }
 
 ```
 
@@ -48312,7 +48474,7 @@ marketType: MarketType.Common,
 priceType: PriceType.Limit,
 timeInForce: TimeInForce.ROD,
 orderType: OrderType.DayTrade,
-userDef: "from Js"
+userDef: "fromJs"
 };
 
 // Place an order
@@ -48323,7 +48485,7 @@ sdk.stock.placeOrder(acc, order);
 Congratulations <!-- -->🎊<!-- --> after placing your order, you will be able to see the system's response.
 
 ```js
-{ isSuccess: true, data: { date : "2023/10/13", seqNo : "00000000016", branchNo : "6460", account : "26", orderNo : "bA627", assetType : 0, market : "TAIEX", marketType : "Common", stockNo : "2881", buySell : "Buy", priceType : "Limit", price : 66, "quantity" : 2000, timeInForce : "ROD", orderType : "DayTrade", isPreOrder : false, "status" : 10, afterPriceType : "Limit", afterPrice : 66, unit : 1000, afterQty : 2000, filledQty : 0, filledMoney : 0, beforeQty : 0, beforePrice : 66, userDef : "From JS", lastTime : "17:19:06.048" } }
+{ isSuccess: true, data: { date : "2023/10/13", seqNo : "00000000016", branchNo : "6460", account : "26", orderNo : "bA627", assetType : 0, market : "TAIEX", marketType : "Common", stockNo : "2881", buySell : "Buy", priceType : "Limit", price : 66, "quantity" : 2000, timeInForce : "ROD", orderType : "DayTrade", isPreOrder : false, "status" : 10, afterPriceType : "Limit", afterPrice : 66, unit : 1000, afterQty : 2000, filledQty : 0, filledMoney : 0, beforeQty : 0, beforePrice : 66, userDef : "FromJS", lastTime : "17:19:06.048" } }
 
 ```
 
@@ -48351,7 +48513,7 @@ var order = new Order(
   PriceType.Limit,
   TimeInForce.ROD,
   OrderType.DayTrade,
-  "From C#"
+  "FromCS"
 );
 
 // Place an order
@@ -48363,7 +48525,7 @@ Console.WriteLine(order_res.data[0]);
 Congratulations <!-- -->🎊<!-- --> after placing your order, you will be able to see the system's response.
 
 ```cs
-{   isSuccess = True,  message = , data = OrderResult{date = 2023/10/13, seqNo = 00000000016, branchNo = 6460, account = 26, orderNo = bA627, assetType = 0, market = TAIEX, marketType = Common, stockNo = 2881, buySell = 1, priceType = Limit, price = 66, quantity = 2000, timeInForce = ROD, orderType = DayTrade, isPreOrder = False, status = 10, afterPriceType = Limit, afterPrice = 66, unit = 1000, afterQty = 2000, filledQty = 0, filledMoney = 0, beforeQty = 0, beforePrice = 66, userDef = From C#, lastTime = 17:19:06.048, errorMessage =  } }
+{   isSuccess = True,  message = , data = OrderResult{date = 2023/10/13, seqNo = 00000000016, branchNo = 6460, account = 26, orderNo = bA627, assetType = 0, market = TAIEX, marketType = Common, stockNo = 2881, buySell = 1, priceType = Limit, price = 66, quantity = 2000, timeInForce = ROD, orderType = DayTrade, isPreOrder = False, status = 10, afterPriceType = Limit, afterPrice = 66, unit = 1000, afterQty = 2000, filledQty = 0, filledMoney = 0, beforeQty = 0, beforePrice = 66, userDef = FromC#, lastTime = 17:19:06.048, errorMessage =  } }
 
 ```
 
@@ -48658,7 +48820,7 @@ const order = {
   priceType: PriceType.LimitDown,
   timeInForce: TimeInForce.ROD,
   orderType: OrderType.Stock,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 //
 sdk.stock.placeOrder(acc, order);
@@ -49054,7 +49216,7 @@ order = FutOptOrder(
     price_type = FutOptPriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = FutOptOrderType.Auto,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 ) 
 
 sdk.stock.place_order(accounts.data[0], order)  #Place Order
@@ -49075,7 +49237,7 @@ const order = {
   priceType: FutOptPriceType.Limit,
   timeInForce: TimeInForce.ROD,
   orderType: FutureOrderType.Auto,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 
 sdk.futopt.placeOrder(accounts.data[0], order); 
@@ -49127,7 +49289,7 @@ order = FutOptOrder(
     price_type = FutOptPriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = FutOptOrderType.Auto,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 ) 
 
 sdk.futopt.place_order(accounts.data[0], order, True) #Place Order
@@ -49145,7 +49307,7 @@ const order = {
   priceType: FutOptPriceType.Limit,
   timeInForce: TimeInForce.ROD,
   orderType: FutureOrderType.Auto,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 
 sdk.futopt.placeOrder(accounts.data[0], order, true);
@@ -49336,6 +49498,58 @@ var callback = new MyCallback(ref sdk);
 sdk.RegisterCallback(callback);
 
 ```
+
+
+---
+
+### Error Codes & Status Reference
+
+This page compiles common status codes, function types, and event codes in the Fubon Neo API (Future Trading), allowing developers to quickly retrieve them when encountering issues or determining states.
+
+#### Order Status (Status)[​](#order-status-status "Direct link to Order Status (Status)")
+
+The current status of an order, which can be queried via `GetOrderResult` or obtained from active reports.
+
+| Status Name                  | Status Code (Value) | Description                                                              |
+| ---------------------------- | ------------------- | ------------------------------------------------------------------------ |
+| Pre-order                    | `0`                 | Pre-order                                                                |
+| Middle office received order | `4`                 | Please use `GetOrderResult` to query status                              |
+| Backend connection timeout   | `9`                 | Please use `GetOrderResult` to query status later or contact your broker |
+| Order successful             | `10`                | Order successful                                                         |
+| Cancellation successful      | `30`                | Cancellation successful                                                  |
+| Fully filled                 | `50`                | Fully filled                                                             |
+| Price modification failed    | `19`                | Price modification failed                                                |
+| Quantity modification failed | `29`                | Quantity modification failed                                             |
+| Cancellation failed          | `39`                | Cancellation failed                                                      |
+| Failed                       | `90`                | Failed                                                                   |
+
+#### Function Type[​](#function-type "Direct link to Function Type")
+
+Indicates the operation type of the report or query result.
+
+| Function Name       | Code (Value) | Description         |
+| ------------------- | ------------ | ------------------- |
+| New order           | `0`          | New order           |
+| New order execution | `10`         | New order execution |
+| Modify price        | `15`         | Modify price        |
+| Modify quantity     | `20`         | Modify quantity     |
+| Cancel order        | `30`         | Cancel order        |
+| Failed              | `90`         | Failed              |
+
+#### Event Code[​](#event-code "Direct link to Event Code")
+
+When subscribing to event notifications via `on_event`, the system will return the following codes.
+
+| Return Code | Meaning                                                           |
+| ----------- | ----------------------------------------------------------------- |
+| `100`       | Connection established successfully                               |
+| `200`       | Login successful                                                  |
+| `201`       | Login warning (e.g., password not changed for 90 days)            |
+| `300`       | Disconnected                                                      |
+| `301`       | Connection pong not received                                      |
+| `302`       | User logged out and disconnected                                  |
+| `304`       | API Key changed (Revoked), forced logout (Added in version 2.2.7) |
+| `500`       | Error                                                             |
 
 
 ---
@@ -49810,7 +50024,7 @@ order = FutOptOrder(
     price_type = FutOptPriceType.Limit,
     time_in_force= TimeInForce.ROD,
     order_type = FutOptOrderType.Auto,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 ) 
 
 
@@ -49836,7 +50050,7 @@ const order = {
   priceType: FutOptPriceType.Limit,
   timeInForce: TimeInForce.ROD,
   orderType: FutOptOrderType.Auto,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 
 sdk.futopt.placeOrder(accounts.data[0],order);
@@ -50095,7 +50309,7 @@ order = FutOptOrder(
     price_type = FuturePriceType.Limit,
     time_in_force= TimeInForce.ROD,
     order_type = FutureOrderType.Auto,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 ) 
 
 
@@ -50113,7 +50327,7 @@ order = {
   priceType: FuturePriceType.Limit,
   timeInForce: TimeInForce.ROD,
   orderType: FutureOrderType.Auto,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 
 sdk.futopt.placeOrder(accounts.data[0],order)
@@ -52582,7 +52796,7 @@ order = FutOptOrder(
     PriceType.Limit,
     TimeInForce.Rod,
     OrderType.Auto,
-    "From csharp" // optional field
+    "FromCS" // optional field
 )
 
 
@@ -53496,7 +53710,7 @@ var order = new FutOptOrder(
     FutOptPriceType.Limit,
     TimeInForce.Rod,
     FutOptOrderType.Auto,
-    "From csharp" // optional field
+    "FromCS" // optional field
 )
 
 sdk.FutOpt.PlaceOrder(account, order)
@@ -53513,7 +53727,7 @@ var order = new FutOptOrder(
     FutOptPriceType.Limit,
     TimeInForce.Ioc,
     FutOptOrderType.Auto,
-    "From csharp"   // optional field
+    "FromCS"   // optional field
 )
 
 
@@ -55794,7 +56008,7 @@ order = FutOptOrder(
     PriceType.Limit,
     TimeInForce.ROD,
     OrderType.Auto,
-    "From nodejs" // optional field
+    "FromCS" // optional field
 )
 
 
@@ -58928,7 +59142,7 @@ orders = [
     price_type = FutOptPriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = FutOptOrderType.Auto,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 ), FutOptOrder(
     buy_sell = BSAction.Buy,
     symbol = "TXO20000E4",
@@ -58938,7 +59152,7 @@ orders = [
     price_type = FutOptPriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = FutOptOrderType.Auto,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 ) ]
 
 sdk.futopt.batch_place_order(target_user, orders)
@@ -58988,7 +59202,7 @@ Result {
             filled_money: 0,                       # Filled Value (int)
             before_lot: 0,                         # Before the Lot Modification (int)
             before_price: 530,                     # Before the Price Modification (float)
-            user_def: "From_Py",               # Custom Fields (string)
+            user_def: "FromPy",               # Custom Fields (string)
             last_time: "11:50:58",                 # Last Modification Time (string)
             details: None,                          # Order Process (list)
             error_message: None                    # Error Message (string)
@@ -59029,7 +59243,7 @@ Result {
             filled_money: 0,                       # Filled Value (int)
             before_lot: 0,                         # Before the Lot Modification (int)
             before_price: 530,                     # Before the Price Modification (float)
-            user_def: "From_Py",               # Custom Fields (string)
+            user_def: "FromPy",               # Custom Fields (string)
             last_time: "11:50:58",                 # Last Modification Time (string)
             details: None,                           # Order Process (list)
             error_message: None                    # Error Message (string)
@@ -59257,7 +59471,7 @@ order = FutOptOrder(
     price_type = FutOptPriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = FutOptOrderType.New,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 );
 
 sdk.futopt.query_estimate_margin(accounts.data[0], order)
@@ -60164,7 +60378,7 @@ order = FutOptOrder(
     price_type = FutOptPriceType.Limit,
     time_in_force = TimeInForce.ROD,
     order_type = FutOptOrderType.Auto,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 )
 
 sdk.futopt.place_order(account, order)
@@ -60181,7 +60395,7 @@ order = Order(
     price_type = FutOptPriceType.Limit,
     time_in_force = TimeInForce.IOC,
     order_type = FutOptOrderType.Auto,
-    user_def = "From_Py" # optional field
+    user_def = "FromPy" # optional field
 )
 
 
@@ -60233,7 +60447,7 @@ Result {
             filled_money: 0,                       # Filled Value (int)
             before_lot: 0,                         # Before the Lot Modification (int)
             before_price: 530,                     # Before the Price Modification (float)
-            user_def: "From_Py",               # Custom Fields (string)
+            user_def: "FromPy",               # Custom Fields (string)
             last_time: "11:50:08",                 # Last Modification Time (string)
             details: None,                          # Order Process (list)
             error_message: None                    # Error Message (string)
@@ -60502,7 +60716,7 @@ print(order_res)
 Congratulations <!-- -->🎊<!-- --> after placing your order, you will be able to see the system's response.
 
 ```python
-Result {  is_success: True, message: None, data : { function_type: 0, date :  "2023/10/13", seq_no :  "00000000016", branch_no :  "6460", account :  "26", order_no : "bA627", asset_type : 1, market : "TAIMEX", market_type : Future, symbol : "FITX", unit : 1 , currency : "TWD", expiry_date : "202404",  strike_price : , call_put : , buy_sell : Buy , price_type : Limit, price : 20800, lot : 3, time_in_force : ROD, order_type : Auto, is_pre_order : False, status : 10, after_price_type : Limit, afterPrice : 20800,  after_lot : 2000, filled_lot : 0, filled_money : 0, ... , user_def : "From Pyhton", last_time : "12:19:06.048", error_message :  } }
+Result {  is_success: True, message: None, data : { function_type: 0, date :  "2023/10/13", seq_no :  "00000000016", branch_no :  "6460", account :  "26", order_no : "bA627", asset_type : 1, market : "TAIMEX", market_type : Future, symbol : "FITX", unit : 1 , currency : "TWD", expiry_date : "202404",  strike_price : , call_put : , buy_sell : Buy , price_type : Limit, price : 20800, lot : 3, time_in_force : ROD, order_type : Auto, is_pre_order : False, status : 10, after_price_type : Limit, afterPrice : 20800,  after_lot : 2000, filled_lot : 0, filled_money : 0, ... , user_def : "FromPyhton", last_time : "12:19:06.048", error_message :  } }
 
 ```
 
@@ -60527,7 +60741,7 @@ marketType: FutOptMarketType.Future,
 priceType: FutOptPriceType.Limit,
 timeInForce: TimeInForce.ROD,
 orderType: FutOptOrderType.Auto,
-userDef: "from Js"
+userDef: "fromJs"
 };
 
 // Place an order
@@ -60538,7 +60752,7 @@ sdk.futopt.placeOrder(acc,order);
 Congratulations <!-- -->🎊<!-- --> after placing your order, you will be able to see the system's response.
 
 ```js
-{ isSuccess: true, data: { functionType :  0, date :  '2023/10/13', seqNo :  '00000000016', branchNo :  '6460', account :  '26', orderNo :  'bA627', assetType :  1, market :  'TAIMEX', marketType :  Future, symbol :  'FITX', unit :  1 , currency :  'TWD', expiryDate :  '202404'  , buySell :  Buy , priceType :  Limit, price :  20800, lot :  3, timeInForce :  ROD, orderType :  Auto, isPreOrder :  False, status :  10, afterPriceType :  Limit, afterPrice :  20800,  afterLot :  3, filledLot :  0, filledMoney :  0, ... , userDef :  'From JS', lastTime :  '12:19:06.048', errorMessage :   } }
+{ isSuccess: true, data: { functionType :  0, date :  '2023/10/13', seqNo :  '00000000016', branchNo :  '6460', account :  '26', orderNo :  'bA627', assetType :  1, market :  'TAIMEX', marketType :  Future, symbol :  'FITX', unit :  1 , currency :  'TWD', expiryDate :  '202404'  , buySell :  Buy , priceType :  Limit, price :  20800, lot :  3, timeInForce :  ROD, orderType :  Auto, isPreOrder :  False, status :  10, afterPriceType :  Limit, afterPrice :  20800,  afterLot :  3, filledLot :  0, filledMoney :  0, ... , userDef :  'FromJS', lastTime :  '12:19:06.048', errorMessage :   } }
 
 ```
 
@@ -60566,7 +60780,7 @@ var order = new FutOptOrder(
   FutOptPriceType.Limit,
   TimeInForce.Rod,
   FutOptOrderType.Auto,
-  "From C#"
+  "FromCS"
 );
 
 // Place an order
@@ -60578,7 +60792,7 @@ Console.WriteLine(order_res);
 Congratulations <!-- -->🎊<!-- --> after placing your order, you will be able to see the system's response.
 
 ```cs
-{   isSuccess = True,  message = , data = FutOptOrderResult{functionType: 0, date = 2023/10/13, seqNo = 00000000016, branchNo = 6460, account = 26, orderNo = bA627, assetType = 1, market = TAIMEX, marketType = Future, symbol = FITX, unit = 1 , currency = TWD, expiryDate = 202404,  strikePrice = , callPut = , buySell = Buy , priceType = Limit, price = 20800, lot = 3, timeInForce = ROD, orderType = Auto, isPreOrder = False, status = 10, afterPriceType = Limit, afterPrice = 66,  afterLot = 2000, filledLot = 0, filledMoney = 0, ... , userDef = From C#, lastTime = 12:19:06.048, errorMessage =  } }
+{   isSuccess = True,  message = , data = FutOptOrderResult{functionType: 0, date = 2023/10/13, seqNo = 00000000016, branchNo = 6460, account = 26, orderNo = bA627, assetType = 1, market = TAIMEX, marketType = Future, symbol = FITX, unit = 1 , currency = TWD, expiryDate = 202404,  strikePrice = , callPut = , buySell = Buy , priceType = Limit, price = 20800, lot = 3, timeInForce = ROD, orderType = Auto, isPreOrder = False, status = 10, afterPriceType = Limit, afterPrice = 66,  afterLot = 2000, filledLot = 0, filledMoney = 0, ... , userDef = FromC#, lastTime = 12:19:06.048, errorMessage =  } }
 
 ```
 
@@ -60861,7 +61075,7 @@ const order = {
   priceType: FutOptPriceType.Limit,
   timeInForce: TimeInForce.ROD,
   orderType: FutOptOrderType.Auto,
-  userDef: "from Js"
+  userDef: "fromJs"
 };
 
 sdk.futopt.placeOrder(acc,order);
@@ -60880,7 +61094,7 @@ var order = new FutOptOrder(
     FutOptPriceType.Limit,
     TimeInForce.Rod,
     FutOptOrderType.Auto,
-    "From C#"
+    "FromCS"
 );
 sdk.FutOpt.PlaceOrder(acc, order);
 
