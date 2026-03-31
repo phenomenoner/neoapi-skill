@@ -39,7 +39,7 @@ description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused
   - <https://www.fbs.com.tw/TradeAPI/llms-full.txt>
   - <https://www.fbs.com.tw/TradeAPI/en/llms.txt>
   - <https://www.fbs.com.tw/TradeAPI/en/llms-full.txt>
-- Note: The `.md` URL trick is no longer supported; rely on `llms.txt` and `llms-full.txt`.
+- Note: The `.md` URL trick is no longer supported; use `.txt` instead. Every page under `/TradeAPI/docs/` or `/TradeAPI/en/docs/` can be accessed as plain text by appending `.txt` (e.g., `https://www.fbs.com.tw/TradeAPI/docs/trading/introduction.txt`). Use `llms.txt` to find the page paths.
 
 ## Usage Cheat Sheet
 

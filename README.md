@@ -27,7 +27,7 @@
 
 ## 版本管理
 
-Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.25`（Beta 1.0.0）。
+Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.26`（Beta 1.0.0）。
 
 ## 多代理 Adapter
 
@@ -105,3 +105,4 @@ Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本�
 - 2026-02-18: 1.0.0-beta.23 - 精簡 SKILL.md 結構（TL;DR、常見錯誤表、具體決策樹、版本相容性矩陣）；統一 Order 建構為 keyword 形式；新增回傳格式參考（response-shapes.md）、當沖工作流程、策略模式參考、錯誤與狀態碼表；本地化規則移至各 adapter 檔；標註期貨/選擇權範圍。
 - 2026-03-26: 1.0.0-beta.24 - 同步官方最新 `llms.txt` / `llms-full.txt`（中英）內容，讓 skill 內建離線副本與富邦官網的 LLM 文件輸出對齊。
 - 2026-03-31: 1.0.0-beta.25 - 修正 Python SDK 下載連結：將 4 處錯誤的 `/docs/sdk/python/download?type=download`（回傳 403）替換為正確的 `/docs/download/download-sdk`。
+- 2026-03-31: 1.0.0-beta.26 - 更新文件存取說明：`.md` URL 已棄用，改為 `.txt` URL（`/TradeAPI/docs/` 及 `/TradeAPI/en/docs/` 下每頁皆可加 `.txt` 取得純文字版）。

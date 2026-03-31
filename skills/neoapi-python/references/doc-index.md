@@ -22,7 +22,7 @@ LLM-friendly outputs generated from the site build.
 - Python SDK download page:
   - https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk
 
-Markdown access via `.md` URL is no longer supported. Use `llms.txt` and `llms-full.txt` instead.
+Markdown access via `.md` URL is no longer supported. Use `.txt` instead: every page under `/TradeAPI/docs/` or `/TradeAPI/en/docs/` can be accessed as plain text by appending `.txt` (e.g., `https://www.fbs.com.tw/TradeAPI/docs/trading/introduction.txt`). Use `llms.txt` to find the page paths.
 
 ## Bundled (offline)
 
