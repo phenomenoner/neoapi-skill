@@ -19,7 +19,7 @@ description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused
 
 | 錯誤 | 正確做法 |
 | :--- | :--- |
-| `pip install fubon-neo` | SDK 不在 PyPI，需從[官方頁面](https://www.fbs.com.tw/TradeAPI/docs/sdk/python/download?type=download)下載 `.whl` 安裝 |
+| `pip install fubon-neo` | SDK 不在 PyPI，需從[官方頁面](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk)下載 `.whl` 安裝 |
 | 在測試環境用 `intraday.quote` 判斷可下單價格 | 測試環境應用 `sdk.stock.query_symbol_quote(acc, symbol)` |
 | SDK >= 2.2.1 仍用 `FubonSDK()` 初始化 | 需用 `FubonSDK(30, 2)` （或含 `url=` 參數） |
 | 下單後找不到已刪的單 | 已刪單仍在 `get_order_results` 中，status=30 |

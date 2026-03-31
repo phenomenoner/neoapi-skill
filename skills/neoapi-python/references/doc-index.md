@@ -20,7 +20,7 @@ LLM-friendly outputs generated from the site build.
 - Test environment bundle (zip):
   - https://www.fbs.com.tw/TradeAPI_SDK/sample_code/test_environment.zip
 - Python SDK download page:
-  - https://www.fbs.com.tw/TradeAPI/docs/sdk/python/download?type=download
+  - https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk
 
 Markdown access via `.md` URL is no longer supported. Use `llms.txt` and `llms-full.txt` instead.
 

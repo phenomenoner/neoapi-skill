@@ -98,7 +98,7 @@ The NeoAPI Python SDK is **not** published on PyPI. Download the `.whl` from the
 
 Official download page:
 
-- `https://www.fbs.com.tw/TradeAPI/docs/sdk/python/download?type=download`
+- `https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk`
 
 Example (Windows, using `uv`):
 

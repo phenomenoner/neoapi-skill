@@ -16,7 +16,7 @@ Source: `test_environment.zip` from the official SDK sample link.
 ## SDK Download & Install (Python)
 
 - The Python SDK is **not** published on PyPI; download the official wheel from:
-  - https://www.fbs.com.tw/TradeAPI/docs/sdk/python/download?type=download
+  - https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk
 - Windows wheel example: `fubon_neo-2.2.7-cp37-abi3-win_amd64.whl`
 - Install into a virtual environment (recommended):
   - `uv venv .test\.venv`
