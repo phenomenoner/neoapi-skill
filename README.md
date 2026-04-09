@@ -27,7 +27,7 @@
 
 ## 版本管理
 
-Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.26`（Beta 1.0.0）。
+Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.27`（Beta 1.0.0）。
 
 ## 多代理 Adapter
 
@@ -106,3 +106,4 @@ Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本�
 - 2026-03-26: 1.0.0-beta.24 - 同步官方最新 `llms.txt` / `llms-full.txt`（中英）內容，讓 skill 內建離線副本與富邦官網的 LLM 文件輸出對齊。
 - 2026-03-31: 1.0.0-beta.25 - 修正 Python SDK 下載連結：將 4 處錯誤的 `/docs/sdk/python/download?type=download`（回傳 403）替換為正確的 `/docs/download/download-sdk`。
 - 2026-03-31: 1.0.0-beta.26 - 更新文件存取說明：`.md` URL 已棄用，改為 `.txt` URL（`/TradeAPI/docs/` 及 `/TradeAPI/en/docs/` 下每頁皆可加 `.txt` 取得純文字版）。
+- 2026-04-09: 1.0.0-beta.27 - 修正 `response-shapes.md` 欄位名稱錯誤：交易端 `OrderResult` 商品代號欄位為 `stock_no`（非 `symbol`）；補齊 `get_order_results` 完整欄位清單（30 欄）；驗證 callback `on_order`/`on_order_changed`/`on_event` 欄位並標記 `[verified]`。驗證環境：SDK 2.2.8 + Python 3.13 + 測試環境。

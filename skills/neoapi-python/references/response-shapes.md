@@ -2,7 +2,7 @@
 
 本文件記錄 SDK 主要方法的回傳結構。已驗證欄位標記 **[verified]**；待測試驗證標記 **[TODO]**。
 
-> 驗證環境：SDK 2.2.7 + Python 3.12 + 測試環境（2026-02-09）
+> 驗證環境：SDK 2.2.8 + Python 3.13 + 測試環境（2026-04-09）
 
 ---
 
@@ -45,18 +45,42 @@ response = sdk.stock.place_order(account, order)
 response = sdk.stock.get_order_results(account)
 ```
 
+回傳 `data` 為 `OrderResult` 物件清單，每筆包含以下欄位：
+
 | 欄位 | 型別 | 說明 | 狀態 |
 | :--- | :--- | :--- | :--- |
 | `is_success` | `bool` | 是否成功 | [verified] |
 | `data` | `list` | 委託清單 | [verified] |
 | `data[].order_no` | `str` | 委託書號 | [verified] |
-| `data[].status` | `int` | 狀態碼（如 `30` = 已刪單） | [verified] |
-| `data[].buy_sell` | `str` | 買賣方向 | [TODO: verify field name] |
-| `data[].symbol` | `str` | 商品代號 | [TODO] |
-| `data[].price` | `str` | 委託價格 | [TODO] |
-| `data[].quantity` | `int` | 委託股數 | [TODO] |
-| `data[].filled_qty` | `int` | 已成交股數 | [TODO] |
+| `data[].seq_no` | `str` | 序號 | [verified] |
+| `data[].stock_no` | `str` | 商品代號（注意：非 `symbol`） | [verified] |
+| `data[].status` | `int` | 狀態碼（10=委託成功, 30=已刪單, 90=失敗） | [verified] |
+| `data[].buy_sell` | `BSAction` | 買賣方向（`BSAction.Buy` / `BSAction.Sell`） | [verified] |
+| `data[].price` | `str` | 委託價格 | [verified] |
+| `data[].quantity` | `int` | 委託股數 | [verified] |
+| `data[].filled_qty` | `int` | 已成交股數 | [verified] |
+| `data[].filled_money` | `int` | 已成交金額 | [verified] |
+| `data[].price_type` | `PriceType` | 價格類型 | [verified] |
+| `data[].market_type` | `MarketType` | 市場類型 | [verified] |
+| `data[].order_type` | `OrderType` | 委託類型 | [verified] |
+| `data[].time_in_force` | `TimeInForce` | 有效期別 | [verified] |
 | `data[].user_def` | `str` | 自訂標籤 | [verified] |
+| `data[].account` | `str` | 帳號 | [verified] |
+| `data[].branch_no` | `str` | 分公司代號 | [verified] |
+| `data[].market` | `str` | 市場別（如 `"TAIEX"`） | [verified] |
+| `data[].date` | `str` | 日期（如 `"2026/04/09"`） | [verified] |
+| `data[].last_time` | `str` | 最後更新時間 | [verified] |
+| `data[].unit` | `int` | 交易單位 | [verified] |
+| `data[].is_pre_order` | `bool` | 是否為預約單 | [verified] |
+| `data[].asset_type` | `int` | 資產類型 | [verified] |
+| `data[].function_type` | `str\|None` | 功能類型 | [verified] |
+| `data[].after_price` | `str\|None` | 改價後價格 | [verified] |
+| `data[].after_price_type` | `str\|None` | 改價後價格類型 | [verified] |
+| `data[].after_qty` | `int` | 改量後數量 | [verified] |
+| `data[].before_price` | `str\|None` | 改價前價格 | [verified] |
+| `data[].before_qty` | `str\|None` | 改量前數量 | [verified] |
+| `data[].details` | `object\|None` | 明細 | [verified] |
+| `data[].error_message` | `str\|None` | 錯誤訊息 | [verified] |
 
 ---
 
@@ -168,6 +192,32 @@ result = sdk.marketdata.rest_client.stock.intraday.ticker(symbol=symbol)
 
 ---
 
+## Callback: on_order / on_order_changed
+
+```python
+def on_order(code, content):
+    # Triggered on new order placement
+def on_order_changed(code, content):
+    # Triggered on order modification or cancellation
+```
+
+callback 的 `content` 為 `OrderResult` 物件，與 `get_order_results` 回傳的結構相同。
+
+| 欄位 | 型別 | 說明 | 狀態 |
+| :--- | :--- | :--- | :--- |
+| `code` | `None\|int` | 回報代碼（實測為 `None`） | [verified] |
+| `content.order_no` | `str` | 委託書號 | [verified] |
+| `content.stock_no` | `str` | 商品代號（注意：非 `symbol`） | [verified] |
+| `content.status` | `int` | 狀態碼（10=成功, 30=已刪單） | [verified] |
+| `content.buy_sell` | `BSAction` | 買賣方向 | [verified] |
+| `content.price` | `str` | 委託價格 | [verified] |
+| `content.quantity` | `int` | 委託股數 | [verified] |
+| `content.user_def` | `str` | 自訂標籤 | [verified] |
+| `content.after_price` | `str\|None` | 改價後價格（on_order_changed） | [verified] |
+| `content.after_qty` | `int` | 改量後數量（on_order_changed） | [verified] |
+
+---
+
 ## Callback: on_filled
 
 ```python
@@ -179,26 +229,33 @@ def on_filled(code, content):
 | :--- | :--- | :--- | :--- |
 | `code` | `int` | 回報代碼 | [TODO] |
 | `content.order_no` | `str` | 委託書號 | [TODO] |
-| `content.symbol` | `str` | 商品代號 | [TODO] |
+| `content.stock_no` | `str` | 商品代號（注意：非 `symbol`） | [TODO: inferred from OrderResult pattern] |
 | `content.filled_price` | `float` | 成交價 | [TODO] |
 | `content.filled_qty` | `int` | 成交數量 | [TODO] |
 | `content.user_def` | `str` | 自訂標籤 | [TODO] |
 
 ---
 
-## Callback: on_order / on_order_changed
+## Callback: on_event
 
 ```python
-def on_order(code, content):
-    # Triggered on order events (placement, modification, cancellation)
+def on_event(code, content):
+    # code: int, content: str
 ```
 
 | 欄位 | 型別 | 說明 | 狀態 |
 | :--- | :--- | :--- | :--- |
-| `code` | `int` | 回報代碼 | [TODO] |
-| `content.order_no` | `str` | 委託書號 | [verified: appears in callback logs] |
-| `content.status` | `int` | 狀態碼 | [TODO] |
-| `content.user_def` | `str` | 自訂標籤 | [TODO] |
+| `code` | `int` | 事件代碼 | [verified] |
+| `content` | `str` | 事件訊息 | [verified] |
+
+常見事件代碼：
+
+| code | 說明 |
+| :--- | :--- |
+| 100 | connected |
+| 200 | logged in |
+| 201 | 登入警告（如密碼過期提醒） |
+| 300 | disconnected |
 
 ---
 

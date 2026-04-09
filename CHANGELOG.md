@@ -3,6 +3,13 @@
 This changelog is a **minimal index** derived from the version notes already present in `README.md`.
 If details diverge, treat `README.md` + `skills/neoapi-python/VERSION` as the source of truth.
 
+## 1.0.0-beta.27 — 2026-04-09
+
+- Fixed field name errors in `response-shapes.md`: trading `OrderResult` uses `stock_no` (not `symbol`) for stock identifier.
+- Expanded `get_order_results` section with all 30 fields, verified against SDK 2.2.8 + Python 3.13.
+- Verified and documented callback fields for `on_order`, `on_order_changed`, and `on_event`.
+- Added `on_event` reference section with common event codes (100/200/201/300).
+
 ## 1.0.0-beta.24 — 2026-03-26
 
 - Refreshed bundled official `llms.txt` / `llms-full.txt` snapshots for both zh and en variants.
