@@ -3,6 +3,20 @@
 This changelog is a **minimal index** derived from the version notes already present in `README.md`.
 If details diverge, treat `README.md` + `skills/neoapi-python/VERSION` as the source of truth.
 
+## 1.0.0-beta.28 — 2026-04-09
+
+- **All `response-shapes.md` fields now verified** — zero `[TODO]` remaining.
+- `place_order()` / `modify_price()` / `cancel_order()`: return full `OrderResult` (not just `order_no` / `is_success`).
+- `modify_price()` / `modify_quantity()`: corrected API signature — must call `make_modify_price_obj()` / `make_modify_quantity_obj()` first.
+- `on_filled` callback: `content` is `FillResult` (not `OrderResult`), with `filled_avg_price`, `filled_no`, `filled_time`.
+- `on_event` callback: `code` is `str` (not `int`).
+- `login()`: account name field is `name` (not `account_name`); also has `branch_no`.
+- `query_symbol_quote()`: fully documented all 25 `SymbolQuote` fields; confirmed `reference_price` field name.
+- `intraday.quote()`: added `total`, `lastTrade`, `lastTrial`, `change`, `changePercent`, `avgPrice`, etc.
+- `intraday.ticker()`: added `industry`, `securityType`, `canBelowFlatMarginShortSell`, `boardLot`, etc.
+- `implementation-practices.md`: filled in order status codes (10/30/90) and error messages for invalid quantity, out-of-range price, and duplicate cancel.
+- Added error message reference table to `response-shapes.md`.
+
 ## 1.0.0-beta.27 — 2026-04-09
 
 - Fixed field name errors in `response-shapes.md`: trading `OrderResult` uses `stock_no` (not `symbol`) for stock identifier.

@@ -27,7 +27,7 @@
 
 ## 版本管理
 
-Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.27`（Beta 1.0.0）。
+Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.28`（Beta 1.0.0）。
 
 ## 多代理 Adapter
 
@@ -107,3 +107,4 @@ Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本�
 - 2026-03-31: 1.0.0-beta.25 - 修正 Python SDK 下載連結：將 4 處錯誤的 `/docs/sdk/python/download?type=download`（回傳 403）替換為正確的 `/docs/download/download-sdk`。
 - 2026-03-31: 1.0.0-beta.26 - 更新文件存取說明：`.md` URL 已棄用，改為 `.txt` URL（`/TradeAPI/docs/` 及 `/TradeAPI/en/docs/` 下每頁皆可加 `.txt` 取得純文字版）。
 - 2026-04-09: 1.0.0-beta.27 - 修正 `response-shapes.md` 欄位名稱錯誤：交易端 `OrderResult` 商品代號欄位為 `stock_no`（非 `symbol`）；補齊 `get_order_results` 完整欄位清單（30 欄）；驗證 callback `on_order`/`on_order_changed`/`on_event` 欄位並標記 `[verified]`。驗證環境：SDK 2.2.8 + Python 3.13 + 測試環境。
+- 2026-04-09: 1.0.0-beta.28 - 完成 `response-shapes.md` 所有欄位驗證（0 個 TODO 殘留）。重大修正：`place_order`/`modify_price`/`cancel_order` 回傳完整 `OrderResult`；`modify_price`/`modify_quantity` API 簽名修正（需先呼叫 `make_modify_*_obj`）；`on_filled` 為 `FillResult` 物件（含 `filled_avg_price`/`filled_no`/`filled_time`）；`on_event.code` 為 `str`；`login` 帳號名稱為 `name`（非 `account_name`）；補完 `query_symbol_quote` 全 25 欄、`intraday.quote` 全欄位、`intraday.ticker` 全欄位。補完 `implementation-practices.md` 錯誤訊息表。

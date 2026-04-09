@@ -27,7 +27,7 @@ See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `ski
 
 ## Versioning
 
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.27` (Beta 1.0.0).
+The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.28` (Beta 1.0.0).
 
 ## Multi-Agent Adapters
 
@@ -107,3 +107,4 @@ Example:
 - 2026-03-31: 1.0.0-beta.25 - Fix Python SDK download link: replace 4 incorrect `/docs/sdk/python/download?type=download` URLs (returning 403) with correct `/docs/download/download-sdk`.
 - 2026-03-31: 1.0.0-beta.26 - Update doc access notes: `.md` URLs deprecated, use `.txt` URLs (`/TradeAPI/docs/` and `/TradeAPI/en/docs/` pages support `.txt` suffix for plain-text).
 - 2026-04-09: 1.0.0-beta.27 - Fix `response-shapes.md` field name errors: trading `OrderResult` uses `stock_no` (not `symbol`); expand `get_order_results` to full 30-field list; verify callback fields for `on_order`/`on_order_changed`/`on_event`. Verified with SDK 2.2.8 + Python 3.13.
+- 2026-04-09: 1.0.0-beta.28 - Complete all `response-shapes.md` field verification (0 TODOs remaining). Major fixes: `place_order`/`modify_price`/`cancel_order` return full `OrderResult`; `modify_price`/`modify_quantity` require `make_modify_*_obj` helper; `on_filled` content is `FillResult` (not `OrderResult`); `on_event.code` is `str` (not `int`); `login` account name field is `name` (not `account_name`). Fully document `query_symbol_quote` (25 fields), `intraday.quote`, `intraday.ticker`. Add error message table to `implementation-practices.md`.

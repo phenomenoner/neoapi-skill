@@ -1,68 +1,35 @@
 # TODO — neoapi-python skill
 
-上次更新：2026-04-09（beta.27）
+上次更新：2026-04-09（beta.28）
 
 ---
 
-## 1. Response Shapes 驗證（需測試環境 09:30–19:00）
+## ~~1. Response Shapes 驗證~~ ✅ 已完成
 
-`references/response-shapes.md` 中仍有部分 `[TODO]` 欄位待驗證。beta.27 已完成 `get_order_results`（30 欄）、`on_order`/`on_order_changed`/`on_event` callback 驗證。
+`references/response-shapes.md` 所有欄位已驗證完畢（beta.28）。
 
-### 高優先（交易流程核心）
+重大修正：
 
-- [ ] `sdk.stock.place_order()` — `data.price` 格式、`data.quantity`
-- [x] `sdk.stock.get_order_results()` — 全 30 欄已驗證（beta.27）；欄位為 `stock_no`（非 `symbol`）
-- [ ] `sdk.stock.modify_price()` — `data.order_no`
-- [ ] `sdk.stock.modify_quantity()` — `message`
-- [ ] `sdk.stock.cancel_order()` — `message`
-- [ ] `sdk.stock.query_symbol_quote()` — `reference_price` 欄位名稱
-
-### 中優先（行情資料）
-
-- [ ] `intraday.quote()` — 全部 16 個欄位（date, type, exchange, prices, bids, asks 等）
-- [ ] `intraday.ticker()` — `symbol`, `canDayTrade`, `canBuyDayTrade`
-
-### 中優先（Callbacks）
-
-- [ ] `on_filled` callback — `code`, `content.order_no`, `content.stock_no`, `content.filled_price`, `content.filled_qty`, `content.user_def`
-- [x] `on_order` / `on_order_changed` callback — `code`, `content.status`, `content.user_def`（beta.27 已驗證）
-- [x] `on_event` callback — `code`（int）, `content`（str）, 常見代碼 100/200/201/300（beta.27 已驗證）
-
-### 低優先
-
-- [ ] `sdk.login()` — `data[].account_name`
-
-### 驗證方法
-
-```python
-# 在每個 API 呼叫後加這段，擷取完整結構
-import json
-response = sdk.stock.place_order(acc, order)
-print(type(response))
-print(vars(response) if hasattr(response, '__dict__') else response)
-if hasattr(response, 'data') and response.data:
-    print(type(response.data))
-    print(vars(response.data) if hasattr(response.data, '__dict__') else response.data)
-```
+- `place_order()` 回傳完整 `OrderResult`（非僅 `order_no`），`price` 為 `float`（非 `str`）
+- `modify_price()` / `modify_quantity()` 需先呼叫 `make_modify_price_obj` / `make_modify_quantity_obj`（API 簽名已修正）
+- `cancel_order()` 回傳完整 `OrderResult`
+- `query_symbol_quote()` 回傳完整 `SymbolQuote`（25 個欄位），`reference_price` 欄位名正確
+- `on_filled` callback 的 `content` 為 `FillResult`（非 `OrderResult`），含 `filled_avg_price`、`filled_no`、`filled_time` 等欄位
+- `on_event` 的 `code` 為 `str`（非 `int`）
+- `login()` 帳號名稱欄位為 `name`（非 `account_name`），另有 `branch_no`
+- `intraday.quote()` 額外欄位：`total`, `lastTrade`, `lastTrial`, `avgPrice`, `change`, `changePercent` 等
+- `intraday.ticker()` 額外欄位：`industry`, `securityType`, `canBelowFlatMarginShortSell` 等
 
 ---
 
-## 2. Error / Status Code 知識庫（需測試環境）
+## ~~2. Error / Status Code 知識庫~~ ✅ 已完成
 
-`implementation-practices.md` §10 有 **3 個 [TODO]**：
+`implementation-practices.md` 的 3 個 TODO 已全部補完（beta.28）：
 
-- [ ] 訂單狀態碼：補充 status 30 以外的常見狀態（如「已成交」「部分成交」等）
-- [ ] 數量不符規則的 exact error message
-- [ ] 重複刪單的 error 行為
-
-### 收集方法
-
-在測試環境中故意觸發各種錯誤情境：
-- 下單數量非 1000 倍數
-- 對已刪的單再刪一次
-- 超出漲跌停價格下單
-- 非交易時段下單
-- 觀察各情境的 `is_success`、`message`、`FugleAPIError` 內容
+- [x] 訂單狀態碼：10=委託成功, 30=已刪單, 90=委託失敗
+- [x] 數量不符規則：`"Quantity must be multiply of 1000, input is {n}"`
+- [x] 重複刪單：`"證券委託目前狀態取消單已不允許取消交易"`
+- [x] 超出價格範圍：`"單價輸入錯誤[4385715]"`
 
 ---
 
@@ -98,7 +65,7 @@ if hasattr(response, 'data') and response.data:
 
 ## 5. 更多交易情境覆蓋
 
-- [ ] 反向單配對成交（兩筆反向委託撮合）
+- [x] 反向單配對成交（兩筆反向委託撮合）— beta.28 驗證成功（`on_filled` callback 觸發）
 - [ ] 部分成交情境
 - [ ] 不同 `MarketType`（`IntradayOdd` 盤中零股、`Odd` 盤後零股）行為
 - [ ] 不同 `TimeInForce`（`IOC`、`FOK`）測試
@@ -110,7 +77,7 @@ if hasattr(response, 'data') and response.data:
 
 - [ ] 期貨 / 選擇權（Futures & Options）工作流程：如有社群貢獻或需求，補充 futopt 下單/行情範例
 - [ ] 條件單（ConditionOrder / TPSL）完整範例：目前僅在 §當沖 提及，可補獨立章節
-- [ ] `.skill` archive 重新打包：beta.23 內容變更後需重建 `neoapi-python.skill`
+- [ ] `.skill` archive 重新打包：beta.28 內容變更後需重建 `neoapi-python.skill`
 
 ---
 
@@ -124,13 +91,13 @@ if hasattr(response, 'data') and response.data:
 
 ## 優先順序建議
 
-| 優先 | 項目 | 依賴 |
-| :--- | :--- | :--- |
-| **P0** | #1 Response Shapes 驗證 | 測試環境 |
-| **P0** | #2 Error Code 知識庫 | 測試環境 |
-| **P1** | #3 Effectiveness 測試（Tier 1-2, 4-5） | 無（可隨時跑） |
-| **P1** | #3 Effectiveness 測試（Tier 3, B5） | 測試環境 |
-| **P2** | #4 13:30 後行情 | 測試環境（13:30 後） |
-| **P2** | #5 更多交易情境 | 測試環境 |
-| **P3** | #6 Skill 內容改善 | 社群需求 |
-| **P3** | #7 跨代理驗證 | 各平台 access |
+| 優先 | 項目 | 依賴 | 狀態 |
+| :--- | :--- | :--- | :--- |
+| ~~**P0**~~ | ~~#1 Response Shapes 驗證~~ | ~~測試環境~~ | ✅ beta.28 |
+| ~~**P0**~~ | ~~#2 Error Code 知識庫~~ | ~~測試環境~~ | ✅ beta.28 |
+| **P1** | #3 Effectiveness 測試（Tier 1-2, 4-5） | 無（可隨時跑） | |
+| **P1** | #3 Effectiveness 測試（Tier 3, B5） | 測試環境 | |
+| **P2** | #4 13:30 後行情 | 測試環境（13:30 後） | |
+| **P2** | #5 更多交易情境 | 測試環境 | |
+| **P3** | #6 Skill 內容改善 | 社群需求 | |
+| **P3** | #7 跨代理驗證 | 各平台 access | |

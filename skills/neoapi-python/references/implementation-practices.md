@@ -412,8 +412,9 @@ async def on_tick(self, symbol: str, tick: dict):
 
 | 狀態碼 | 說明 |
 | :--- | :--- |
+| 10 | 委託成功（active） |
 | 30 | 已刪單（canceled） |
-| [TODO] | 待補充其他常見狀態碼（需從測試環境擷取） |
+| 90 | 委託失敗（rejected） |
 
 ### FugleAPIError (SDK >= 2.2.6)
 
@@ -440,5 +441,5 @@ except FugleAPIError as e:
 | 價格超出漲跌停 | `is_success=False` 或 `FugleAPIError` | 用 `query_symbol_quote` 取得有效價格範圍 |
 | 無效商品代號 | `is_success=False` | 確認商品代號正確 |
 | 測試環境交易時段外 | 下單失敗 | 測試時段 09:30–19:00 |
-| 數量不符規則 | [TODO: capture exact message] | 整股以 1000 的倍數為單位 |
-| 重複刪單 | [TODO] | 先查詢 `get_order_results` 確認狀態 |
+| 數量不符規則 | `is_success=False`, `message="Quantity must be multiply of 1000, input is {n}"` | 整股以 1000 的倍數為單位 |
+| 重複刪單 | `is_success=False`, `message="證券委託目前狀態取消單已不允許取消交易"` | 先查詢 `get_order_results` 確認 `status != 30` |

@@ -1,6 +1,6 @@
 ---
 name: neoapi-python
-version: 1.0.0-beta.27
+version: 1.0.0-beta.28
 description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused on trading and market data workflows, including login, market data access, order placement, and locating the right docs/llms outputs. Use when prompts mention FubonNeo API or the Python SDK."
 ---
 
