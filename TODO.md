@@ -1,17 +1,17 @@
 # TODO — neoapi-python skill
 
-上次更新：2026-02-18（beta.23）
+上次更新：2026-04-09（beta.27）
 
 ---
 
 ## 1. Response Shapes 驗證（需測試環境 09:30–19:00）
 
-`references/response-shapes.md` 中有 **42 個 [TODO] 欄位**待驗證。在測試環境中執行 API 呼叫，印出回傳結構後逐一確認。
+`references/response-shapes.md` 中仍有部分 `[TODO]` 欄位待驗證。beta.27 已完成 `get_order_results`（30 欄）、`on_order`/`on_order_changed`/`on_event` callback 驗證。
 
 ### 高優先（交易流程核心）
 
 - [ ] `sdk.stock.place_order()` — `data.price` 格式、`data.quantity`
-- [ ] `sdk.stock.get_order_results()` — `buy_sell`、`symbol`、`price`、`quantity`、`filled_qty` 欄位名稱與型別
+- [x] `sdk.stock.get_order_results()` — 全 30 欄已驗證（beta.27）；欄位為 `stock_no`（非 `symbol`）
 - [ ] `sdk.stock.modify_price()` — `data.order_no`
 - [ ] `sdk.stock.modify_quantity()` — `message`
 - [ ] `sdk.stock.cancel_order()` — `message`
@@ -24,8 +24,9 @@
 
 ### 中優先（Callbacks）
 
-- [ ] `on_filled` callback — `code`, `content.order_no`, `content.symbol`, `content.filled_price`, `content.filled_qty`, `content.user_def`
-- [ ] `on_order` / `on_order_changed` callback — `code`, `content.status`, `content.user_def`
+- [ ] `on_filled` callback — `code`, `content.order_no`, `content.stock_no`, `content.filled_price`, `content.filled_qty`, `content.user_def`
+- [x] `on_order` / `on_order_changed` callback — `code`, `content.status`, `content.user_def`（beta.27 已驗證）
+- [x] `on_event` callback — `code`（int）, `content`（str）, 常見代碼 100/200/201/300（beta.27 已驗證）
 
 ### 低優先
 

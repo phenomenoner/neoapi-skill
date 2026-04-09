@@ -10,6 +10,14 @@ If details diverge, treat `README.md` + `skills/neoapi-python/VERSION` as the so
 - Verified and documented callback fields for `on_order`, `on_order_changed`, and `on_event`.
 - Added `on_event` reference section with common event codes (100/200/201/300).
 
+## 1.0.0-beta.26 — 2026-03-31
+
+- Updated doc access notes: `.md` URLs deprecated; use `.txt` suffix for plain-text access under `/TradeAPI/docs/` and `/TradeAPI/en/docs/`.
+
+## 1.0.0-beta.25 — 2026-03-31
+
+- Fixed Python SDK download link: replaced 4 incorrect `/docs/sdk/python/download?type=download` URLs (returning 403) with correct `/docs/download/download-sdk`.
+
 ## 1.0.0-beta.24 — 2026-03-26
 
 - Refreshed bundled official `llms.txt` / `llms-full.txt` snapshots for both zh and en variants.

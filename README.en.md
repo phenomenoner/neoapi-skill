@@ -27,7 +27,7 @@ See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `ski
 
 ## Versioning
 
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.24` (Beta 1.0.0).
+The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.27` (Beta 1.0.0).
 
 ## Multi-Agent Adapters
 
@@ -104,3 +104,6 @@ Example:
 - 2026-02-09: 1.0.0-beta.22 - Add advanced integrated test documentation (dual-order lifecycle, multi-symbol marketdata matrix, invalid symbol rejection) and record successful runs for 2883/2881.
 - 2026-02-18: 1.0.0-beta.23 - Restructure SKILL.md (TL;DR, common mistakes table, concrete decision tree, version compatibility matrix); canonicalize Order to keyword form; add response-shapes.md, day trading workflow, strategy pattern reference, error/status code table; move localization rules to adapter files; note futures/options scope.
 - 2026-03-26: 1.0.0-beta.24 - Refresh bundled official `llms.txt` / `llms-full.txt` snapshots (zh/en) so the offline skill bundle matches the latest Fubon LLM docs outputs.
+- 2026-03-31: 1.0.0-beta.25 - Fix Python SDK download link: replace 4 incorrect `/docs/sdk/python/download?type=download` URLs (returning 403) with correct `/docs/download/download-sdk`.
+- 2026-03-31: 1.0.0-beta.26 - Update doc access notes: `.md` URLs deprecated, use `.txt` URLs (`/TradeAPI/docs/` and `/TradeAPI/en/docs/` pages support `.txt` suffix for plain-text).
+- 2026-04-09: 1.0.0-beta.27 - Fix `response-shapes.md` field name errors: trading `OrderResult` uses `stock_no` (not `symbol`); expand `get_order_results` to full 30-field list; verify callback fields for `on_order`/`on_order_changed`/`on_event`. Verified with SDK 2.2.8 + Python 3.13.
