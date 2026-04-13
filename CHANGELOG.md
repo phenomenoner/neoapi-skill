@@ -3,6 +3,12 @@
 This changelog is a **minimal index** derived from the version notes already present in `README.md`.
 If details diverge, treat `README.md` + `skills/neoapi-python/VERSION` as the source of truth.
 
+## 1.0.0-beta.29 — 2026-04-13
+
+- Added WebSocket message-envelope guidance and `on_message` parsing examples.
+- Clarified that real trade fields such as `symbol`, `price`, and `size` live under `message["data"]`, not on the top-level WebSocket envelope.
+- Synced `README.md` and `README.en.md` changelog entries with the beta.29 release note.
+
 ## 1.0.0-beta.28 — 2026-04-09
 
 - **All `response-shapes.md` fields now verified** — zero `[TODO]` remaining.
