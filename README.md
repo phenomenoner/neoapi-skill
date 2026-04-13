@@ -27,7 +27,7 @@
 
 ## 版本管理
 
-Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.28`（Beta 1.0.0）。
+Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.29`（Beta 1.0.0）。
 
 ## 多代理 Adapter
 
@@ -77,6 +77,7 @@ Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本�
 
 ## 變更紀錄
 
+- 2026-04-13: 1.0.0-beta.29 - 補充 WebSocket 訊息 envelope 格式與 `on_message` 解析指引，明確說明實際交易資料位於 `message["data"]`，避免直接對 envelope 存取 `symbol` / `price` / `size` 導致取值錯誤。
 - 2026-01-26: 1.0.0-beta.1 - 初始 beta，加入更新腳本、VERSION 與專案基礎檔。
 - 2026-01-26: 1.0.0-beta.1 - 補充安裝路徑與跨平台相容性說明。
 - 2026-01-26: 1.0.0-beta.1 - 初始化 GitHub repo，更新預設更新來源。

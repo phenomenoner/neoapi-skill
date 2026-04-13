@@ -27,7 +27,7 @@ See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `ski
 
 ## Versioning
 
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.28` (Beta 1.0.0).
+The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.29` (Beta 1.0.0).
 
 ## Multi-Agent Adapters
 
@@ -77,6 +77,7 @@ Example:
 
 ## Changelog
 
+- 2026-04-13: 1.0.0-beta.29 - Add WebSocket message-envelope guidance and `on_message` parsing examples, clarifying that the actual trade payload lives under `message["data"]` rather than on the top-level envelope.
 - 2026-01-26: 1.0.0-beta.1 - Initial beta version, add update scripts, VERSION, and repo metadata.
 - 2026-01-26: 1.0.0-beta.1 - Clarify install paths and cross-platform compatibility notes.
 - 2026-01-26: 1.0.0-beta.1 - Initialize GitHub repo and set default update script repo.
