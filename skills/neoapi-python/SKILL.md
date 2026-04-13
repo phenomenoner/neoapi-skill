@@ -27,6 +27,7 @@ description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused
 | `user_def` 字串過長 | 建議 10 字元以內，過長會被截斷 |
 | 在 Python 3.14 使用 SDK v2 | SDK v2 僅支援 3.12–3.13 |
 | 數量填「張數」而非「股數」 | FubonNeo 數量一律為**股數**（1 張 = 1000 股） |
+| WebSocket `on_message` 直接取 `message["price"]` | 訊息是 envelope 結構，交易資料在 `message["data"]` 內，需先檢查 `message["event"] == "data"` |
 
 ## Public Docs Access
 

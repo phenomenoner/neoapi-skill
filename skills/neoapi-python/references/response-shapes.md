@@ -296,6 +296,74 @@ result = sdk.marketdata.rest_client.stock.intraday.ticker(symbol=symbol)
 
 ---
 
+## WebSocket: Message Envelope
+
+WebSocket `on("message", handler)` 收到的是 **JSON 字串**，解析後為一個信封（envelope）物件，實際交易資料在 `data` 欄位內。
+
+```python
+# Raw message 範例（trades channel）:
+{
+    "event": "data",
+    "data": {
+        "symbol": "2881",
+        "type": "EQUITY",
+        "exchange": "TWSE",
+        "market": "TSE",
+        "price": 87,
+        "size": 2,
+        "bid": 87,
+        "ask": 87.1,
+        "volume": 7064,
+        "isContinuous": true,
+        "time": 1776051059944654,
+        "serial": 9245571
+    },
+    "id": "Eo9PE2VN2NUL...",
+    "channel": "trades"
+}
+```
+
+### Envelope 欄位
+
+| 欄位 | 型別 | 說明 | 狀態 |
+| :--- | :--- | :--- | :--- |
+| `event` | `str` | 事件類型（見下方列表） | [verified] |
+| `data` | `dict` | 事件資料（交易資料、心跳等） | [verified] |
+| `id` | `str` | 訂閱 ID（僅 `event="data"` 時出現） | [verified] |
+| `channel` | `str` | 頻道名稱（僅 `event="data"` 時出現） | [verified] |
+
+### Event 類型
+
+| event | 說明 | 處理建議 |
+| :--- | :--- | :--- |
+| `"authenticated"` | WebSocket 認證成功 | 忽略或 log |
+| `"pong"` | 心跳回應 | 忽略 |
+| `"heartbeat"` | 伺服器心跳 | 忽略 |
+| `"subscribed"` | 訂閱確認 | 忽略或 log |
+| `"data"` | **實際行情資料** | 解析 `data` 欄位處理 |
+
+### 正確的 message handler 寫法
+
+```python
+import json
+
+def on_message(raw: str):
+    envelope = json.loads(raw)
+
+    # 只處理實際行情資料
+    if envelope.get("event") != "data":
+        return
+
+    trade = envelope["data"]
+    print(f"{trade['symbol']} @ {trade['price']} x {trade['size']}")
+```
+
+> **常見錯誤**：直接對 envelope 取 `symbol` / `price`，會拿到 `None`。必須先取 `envelope["data"]` 再存取交易欄位。
+
+> 驗證環境：SDK 2.2.8 + Python 3.13 + 測試環境（2026-04-13）
+
+---
+
 ## Callback: on_order / on_order_changed
 
 ```python

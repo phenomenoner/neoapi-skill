@@ -77,6 +77,29 @@ def terminate(self):
 
 ## 2. WebSocket Management
 
+### Message Parsing
+
+WebSocket messages arrive as JSON strings wrapped in an envelope. Always parse the envelope first and extract `data` for the actual trade/quote payload:
+
+```python
+import json
+
+def on_message(raw: str):
+    envelope = json.loads(raw)
+
+    # Skip non-data events (authenticated, pong, heartbeat, subscribed)
+    if envelope.get("event") != "data":
+        return
+
+    trade = envelope["data"]
+    symbol = trade["symbol"]
+    price = trade["price"]
+    size = trade["size"]
+    # ... process trade
+```
+
+> **Pitfall**: The `on("message", handler)` callback receives the raw envelope, not the inner trade data. Accessing `message["price"]` directly on the envelope returns `None`.
+
 ### The 200-Symbol Limit
 
 Each WebSocket connection supports up to **200 subscriptions**. For larger symbol lists, use multiple connections with load balancing.
