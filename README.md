@@ -77,35 +77,6 @@ Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本�
 
 ## 變更紀錄
 
-- 2026-04-13: 1.0.0-beta.29 - 補充 WebSocket 訊息 envelope 格式與 `on_message` 解析指引，明確說明實際交易資料位於 `message["data"]`，避免直接對 envelope 存取 `symbol` / `price` / `size` 導致取值錯誤。
-- 2026-01-26: 1.0.0-beta.1 - 初始 beta，加入更新腳本、VERSION 與專案基礎檔。
-- 2026-01-26: 1.0.0-beta.1 - 補充安裝路徑與跨平台相容性說明。
-- 2026-01-26: 1.0.0-beta.1 - 初始化 GitHub repo，更新預設更新來源。
-- 2026-01-26: 1.0.0-beta.2 - 新增測試環境說明文件與 sandbox 備註。
-- 2026-01-26: 1.0.0-beta.2 - 新增本地 smoke 測試腳本（`.test`，不納入發布）。
-- 2026-01-26: 1.0.0-beta.3 - 補充 SDK wheel 下載/安裝與測試包資訊。
-- 2026-01-26: 1.0.0-beta.4 - 紀錄本地測試驗證結果。
-- 2026-01-26: 1.0.0-beta.5 - 新增 SDK 安裝片段與 Python 版本建議。
-- 2026-01-26: 1.0.0-beta.6 - 在 `SKILL.md` 增加 SDK install 快速提示。
-- 2026-01-26: 1.0.0-beta.7 - 新增 skill 驗證測試案例與投稿格式。
-- 2026-01-26: 1.0.0-beta.8 - 紀錄 skill 測試結果。
-- 2026-01-26: 1.0.0-beta.9 - 補充下單 + callback 測試結果。
-- 2026-01-26: 1.0.0-beta.10 - 新增 examples-guidance 並更新索引/TODO。
-- 2026-01-26: 1.0.0-beta.11 - 標註 `.md` URL 技巧失效，改以 `llms.txt/llms-full.txt` 為主。
-- 2026-01-27: 1.0.0-beta.12 - 釐清行情初始化與測試/正式環境價位差異。
-- 2026-01-27: 1.0.0-beta.13 - 釐清 `intraday.ticker` 用法與訂單狀態判讀。
-- 2026-01-27: 1.0.0-beta.14 - 更新無副檔名路徑寫法，補充整合測試紀錄。
-- 2026-02-03: 1.0.0-beta.15 - `SKILL.md` 新增快速用法（Quickstart/Enums）與 Shioaji 遷移指南。
-- 2026-02-03: 1.0.0-beta.16 - 新增遷移實作紀錄與代理操作指南。
-- 2026-02-03: 1.0.0-beta.17 - 新增本地化與中英術語對照。
-- 2026-02-09: 1.0.0-beta.18 - 補充 Build-with-LLM 連結並提高線上 `llms*.txt` 優先序。
-- 2026-02-09: 1.0.0-beta.19 - 更新內建 `llms*.txt` 並統一路徑為無副檔名。
-- 2026-02-09: 1.0.0-beta.20 - 新增多代理 root adapters（`CLAUDE.md`/`GEMINI.md`/`AGENTS.md`）。
-- 2026-02-09: 1.0.0-beta.21 - 補充本地回歸測試文件與完整跑測紀錄。
-- 2026-02-09: 1.0.0-beta.22 - 新增進階整合測試文件（雙訂單生命週期、多標的行情矩陣、無效代號拒絕）並紀錄 2883/2881 成功結果。
-- 2026-02-18: 1.0.0-beta.23 - 精簡 SKILL.md 結構（TL;DR、常見錯誤表、具體決策樹、版本相容性矩陣）；統一 Order 建構為 keyword 形式；新增回傳格式參考（response-shapes.md）、當沖工作流程、策略模式參考、錯誤與狀態碼表；本地化規則移至各 adapter 檔；標註期貨/選擇權範圍。
-- 2026-03-26: 1.0.0-beta.24 - 同步官方最新 `llms.txt` / `llms-full.txt`（中英）內容，讓 skill 內建離線副本與富邦官網的 LLM 文件輸出對齊。
-- 2026-03-31: 1.0.0-beta.25 - 修正 Python SDK 下載連結：將 4 處錯誤的 `/docs/sdk/python/download?type=download`（回傳 403）替換為正確的 `/docs/download/download-sdk`。
-- 2026-03-31: 1.0.0-beta.26 - 更新文件存取說明：`.md` URL 已棄用，改為 `.txt` URL（`/TradeAPI/docs/` 及 `/TradeAPI/en/docs/` 下每頁皆可加 `.txt` 取得純文字版）。
-- 2026-04-09: 1.0.0-beta.27 - 修正 `response-shapes.md` 欄位名稱錯誤：交易端 `OrderResult` 商品代號欄位為 `stock_no`（非 `symbol`）；補齊 `get_order_results` 完整欄位清單（30 欄）；驗證 callback `on_order`/`on_order_changed`/`on_event` 欄位並標記 `[verified]`。驗證環境：SDK 2.2.8 + Python 3.13 + 測試環境。
-- 2026-04-09: 1.0.0-beta.28 - 完成 `response-shapes.md` 所有欄位驗證（0 個 TODO 殘留）。重大修正：`place_order`/`modify_price`/`cancel_order` 回傳完整 `OrderResult`；`modify_price`/`modify_quantity` API 簽名修正（需先呼叫 `make_modify_*_obj`）；`on_filled` 為 `FillResult` 物件（含 `filled_avg_price`/`filled_no`/`filled_time`）；`on_event.code` 為 `str`；`login` 帳號名稱為 `name`（非 `account_name`）；補完 `query_symbol_quote` 全 25 欄、`intraday.quote` 全欄位、`intraday.ticker` 全欄位。補完 `implementation-practices.md` 錯誤訊息表。
+完整版本歷程統一維護於 [CHANGELOG.md](CHANGELOG.md)。
+
+目前最新版本為 `1.0.0-beta.29`，重點更新為補充 WebSocket 訊息 envelope 與 `on_message` 解析指引，明確說明實際交易資料位於 `message["data"]`。
