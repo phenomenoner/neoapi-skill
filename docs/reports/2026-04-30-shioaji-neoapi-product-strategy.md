@@ -1,74 +1,77 @@
-# Shioaji vs NeoAPI：本機 Gateway 與 AI Agent 介面的產品策略對比
+# Shioaji vs NeoAPI：從「SDK」到「本機交易入口」的產品策略差異
 
 Date: 2026-04-30
 
-## Executive summary
+## 先講結論
 
-rshioaji / shioaji 不只是在重做 Python SDK。它其實把證券 API 包成兩個產品面：
+rshioaji / shioaji 比較有意思的地方，不是它用 Rust 重寫了 Shioaji，而是它把券商 API 包成了兩種更容易被使用的產品面：
 
-1. **本機 API Gateway**：用 `shioaji server start` 在使用者自己的電腦上開一個 localhost REST/SSE server，解決跨語言整合問題。
-2. **CLI / Agent tool surface**：用 `shioaji auth/data/order/portfolio/...` 與 `/openapi.json`，讓 shell scripts、CI、自動化工具、AI Agent 都能更可靠地理解與操作 API。
+1. **本機 Gateway**：使用者在自己電腦上跑 `shioaji server start`，就得到一個 localhost REST/SSE server。其他語言不用直接接 Python/Rust binding，打 HTTP 就能用。
+2. **CLI / Agent 操作面**：`shioaji auth/data/order/portfolio/...` 這些命令，讓人、shell script、CI、AI Agent 都能用同一組穩定指令操作 API。
 
-相對之下，Fubon NeoAPI 目前比較像「每個語言各自發一包 SDK」：Python、Node、Go、C#、C++ 各自下載、各自包裝、各自文件。這個策略乾淨、直覺，但在 AI Agent 與跨語言整合時代會遇到三個問題：
+NeoAPI 目前比較像傳統 SDK 策略：Python、Node、Go、C#、C++ 各自提供一包。這條路乾淨，也符合既有開發者習慣；但缺點是每個語言都要各自學一次、各自維護文件，AI Agent 也很難直接「看懂」整個 API。
 
-- 每種語言都要重複學一次 SDK。
-- 沒有統一的本機 HTTP 介面給非 Python / 非特定 SDK 使用者。
-- 沒有足夠 self-describing 的 metadata / stubs / OpenAPI / CLI schema，AI 和 IDE 都比較難可靠操作。
+所以 NeoAPI 最值得吸收的，不是立刻複製 rshioaji 的完整 server / dashboard，而是先補三件事：
 
-高 ROI 的方向不是立刻複製 rshioaji 全套，而是先補三層：
+- 讓 SDK 變得更自我描述：`.pyi`、`py.typed`、metadata、SBOM、下載 manifest。
+- 做一個可機器讀取的操作面：CLI `--json`、`doctor/status/version`、OpenAPI schema。
+- 中期再考慮最小本機 Gateway，先支援行情、帳戶、查單、下單驗證這幾個高頻場景。
 
-1. **讓 SDK 更容易被工具理解**：`.pyi` stubs、`py.typed`、SBOM、rich metadata、標準 package index。
-2. **提供最小本機 Gateway / OpenAPI**：先讓核心行情、下單、查單、帳務能透過 REST JSON 被呼叫。
-3. **把 CLI 當正式產品面**：提供 `doctor/status/version/order/data` 等可機器讀取的 CLI，而不是只靠程式碼範例。
+簡單說：**rshioaji 在賣的不只是 SDK，而是一個本機交易入口。NeoAPI 現在還比較像一組語言 SDK。**
 
-## 一、兩個產品面：rshioaji 真正埋的是什麼
+## 一、rshioaji 做了哪兩個產品面
 
-### 1. 本機 server：把 SDK 變成 localhost API gateway
+### 1. 本機 server：把交易 API 包成 localhost gateway
 
-白話說，rshioaji 安裝後不只是：
+一般 Python SDK 是這樣用：
 
 ```python
 import shioaji
+api = shioaji.Shioaji()
+api.login(...)
 ```
 
-它還附了一個 `shioaji` executable。使用者可以：
+rshioaji 多做了一步：wheel 裡還放了一個 `shioaji` executable。使用者可以直接跑：
 
 ```bash
 shioaji server start
 ```
 
-然後在本機得到：
+跑起來後，本機會有一個 HTTP API：
 
 ```text
 http://127.0.0.1:8080/api/v1/...
 ```
 
-這代表任何語言都可以改成打 HTTP：
+這件事的產品意義很大。它等於把「只有 Python/Rust binding 能用」改成「任何會打 HTTP 的東西都能用」。
+
+可以接的就不只 Python，而是：
 
 - JavaScript / TypeScript
 - Go
 - C#
 - Java
 - curl / Postman
-- Low-code / no-code 工具
+- Low-code 工具
+- 內部後台
 - AI Agent tool runner
 
-不用每個語言都直接 link native SDK。
+文件裡列出的 server 能力也不只是 health check，而是已經做到相當完整：
 
-目前文件列出的 server 能力包含：
-
-- REST endpoints：auth、market data、order、portfolio、watchlist、apps
-- SSE streaming：tick、bidask、quote、order events
-- `/openapi.json`：機器可讀 OpenAPI spec
+- REST：auth、market data、order、portfolio、watchlist、apps
+- SSE：tick、bidask、quote、order events
+- `/openapi.json`：機器可讀 API 規格
 - `/docs`：互動式 API 文件
 - dashboard / custom app hosting
-- localhost 預設，simulation 預設，production 需要明確啟動
+- 預設 localhost、預設 simulation；production 需要明確開啟
 
-產品含義：**rshioaji 把 Python wheel 變成本機交易 gateway 的配送管道。**
+這個設計的本質是：**用 Python wheel 配送一個本機 trading gateway**。
 
-### 2. CLI / Agent surface：把 API 變成工具可以操作的命令面
+它的好處是跨語言整合變簡單；代價是 wheel 變大，部署和安全審查範圍也變大。
 
-rshioaji 同時提供 CLI 指令：
+### 2. CLI：把交易 API 變成工具可以操作的命令
+
+rshioaji 也把常用操作做成 CLI：
 
 ```bash
 shioaji auth accounts
@@ -78,107 +81,112 @@ shioaji portfolio balance
 shioaji tree --all
 ```
 
-這件事對 AI Agent 很重要，因為 Agent 最怕的不是 API 很複雜，而是 API **不可發現、不可檢查、不可 dry-run、輸出不穩定**。
+這對 AI Agent 特別重要。
 
-CLI 如果設計得好，可以提供：
+Agent 最怕的不是 API 複雜，而是沒有穩定入口：文件散、欄位不明、輸出 shape 不固定、環境狀態查不到、production/test 不清楚。金融 API 又更敏感，因為錯一次可能是真錢。
 
-- 穩定命令名稱
-- `--json` 結構化輸出
-- `tree --all` / schema 類能力，讓 Agent 讀懂可用操作
-- `server check/status` 讓 Agent 先確認環境和 simulation/production
-- `utils api check` / token status / doctor 類診斷能力
+好的 CLI 可以先解掉很多問題：
 
-產品含義：**CLI 不是附屬工具，而是 API 給人類、自動化腳本、AI Agent 的共同操作面。**
+- 用 `server check/status` 確認現在是 simulation 還是 production。
+- 用 `--json` 讓腳本和 Agent 穩定解析結果。
+- 用 `tree --all` 或 schema 類輸出，讓工具知道有哪些命令可以用。
+- 用 `utils api check`、token status、doctor 類命令降低除錯成本。
 
-## 二、NeoAPI 現況：各語言 SDK 策略的優點與限制
+所以 CLI 不是附屬品。它是 API 給人、腳本、CI、Agent 共用的操作面。
 
-NeoAPI 現在的策略比較像：
+## 二、NeoAPI 現在的路線：各語言 SDK
+
+NeoAPI 目前比較像這樣：
 
 ```text
 Python SDK + Node SDK + Go SDK + C# SDK + C++ SDK
 ```
 
-這有明確優點：
+這條路有好處：
 
-- 各語言開發者可以用自己熟悉的語言原生 SDK。
-- Python wheel 小很多，封裝相對簡單。
-- 交易 core 與 market data 依賴可以分開維護。
-- 對傳統 SDK 使用者直覺。
+- 各語言開發者可以用原生 SDK。
+- Python wheel 比 rshioaji 小很多。
+- 交易 core 和 market data client 可以分開維護。
+- 對傳統程式開發者來說很直覺。
 
-但限制也很明顯：
+但如果從「跨語言」和「AI Agent」看，就會出現幾個洞：
 
-| 面向 | NeoAPI 現況 | 產品限制 |
+| 面向 | NeoAPI 現況 | 實際影響 |
 |---|---|---|
-| 跨語言整合 | 每種語言各自 SDK | 每多支援一種語言，就多一份維護與文件成本 |
-| Agent / automation | 沒有統一 CLI / OpenAPI gateway | Agent 需要自行讀文件、寫 wrapper、猜物件 shape |
-| Python discoverability | wheel 內沒有 `.pyi` | IDE / type checker / LLM 都不容易看出 native API surface |
-| 安裝分發 | 官網 zip + wheel | CI、pinning、自動化安裝比較麻煩 |
-| 供應鏈透明度 | 未見 SBOM | 企業導入與安全審查較弱 |
-| 版本索引 | 網頁列表為主 | 機器難以自動追蹤各平台版本 |
+| 跨語言整合 | 各語言各自 SDK | 每個語言都要各自學、各自維護、各自踩坑 |
+| Agent / automation | 沒有統一 CLI / Gateway | Agent 要讀文件、猜 API、自己包 wrapper |
+| Python 可發現性 | wheel 內沒有 `.pyi` | IDE、type checker、LLM 都看不清 native API surface |
+| 安裝分發 | 官網 zip + wheel | CI pinning、自動化安裝比較不順 |
+| 供應鏈透明度 | 未見 SBOM | 企業導入和資安審查比較吃力 |
+| 版本索引 | 網頁列表為主 | 機器不容易追蹤各平台最新版本 |
 
-## 三、AI Agent 需求分析
+這不是說 NeoAPI 現在做錯，而是它還停在「SDK 交付」視角。rshioaji 已經往「本機 API 產品」移動了。
 
-AI Agent 要可靠使用金融 API，最需要的不是「範例很多」，而是：
+## 三、AI Agent 真正在意什麼
 
-1. **機器可讀 API contract**
-   - OpenAPI / JSON Schema / typed stubs。
-   - 不然 Agent 很容易編出不存在的欄位或 endpoint。
+Agent 要用金融 API，最需要的不是更多範例，而是更清楚的 contract。
 
-2. **可檢查的操作面**
-   - `status`、`check`、`doctor`、`--json`、`dry-run`。
-   - 金融 API 尤其需要先確認 production / simulation。
+幾個關鍵需求：
 
-3. **穩定輸入輸出**
-   - REST JSON、CLI JSON，比 SDK object 更容易被工具鏈解析。
+1. **機器可讀的 API 規格**
+   - OpenAPI、JSON Schema、`.pyi` stubs 都算。
+   - 沒有這些，Agent 很容易編出不存在的 endpoint 或欄位。
+
+2. **可檢查的環境狀態**
+   - `status`、`check`、`doctor`、`version --verbose`。
+   - 尤其要清楚標出 test / production。
+
+3. **穩定輸出**
+   - REST JSON、CLI `--json` 比 SDK object 更容易被工具鏈解析。
 
 4. **短 feedback loop**
-   - 最好的體驗是：start server → curl → 看 JSON → 修正。
-   - 最差的體驗是：讀文件 → 猜 SDK object → 寫腳本 → crash → 再猜。
+   - 好體驗：start server → curl → 看 JSON → 修正。
+   - 壞體驗：讀文件 → 猜 SDK object → 寫腳本 → crash → 再猜。
 
-5. **事件流標準化**
-   - SSE / WebSocket schema 要明確。
-   - callback-only 對人寫程式可接受，對 Agent 生成工具比較難。
+5. **事件流要有 schema**
+   - SSE / WebSocket message shape 要清楚。
+   - callback-only 對人寫程式還可以，對 Agent 生成工具比較麻煩。
 
-rshioaji 的 server + CLI + OpenAPI 剛好把這些面補起來。NeoAPI 若要在 Agent 時代更好用，重點就是補足這些 self-describing surfaces。
+rshioaji 的 server + CLI + OpenAPI，剛好把這幾個洞補起來。NeoAPI 如果要對 Agent 更友善，應該先補 self-describing surface。
 
-## 四、產品策略對比
+## 四、策略對比
 
-| 策略問題 | rshioaji / shioaji | NeoAPI 現況 | NeoAPI 可吸收方向 |
+| 問題 | rshioaji / shioaji | NeoAPI 現況 | NeoAPI 可以怎麼吸收 |
 |---|---|---|---|
-| 非 Python 使用者怎麼接？ | 開 localhost REST/SSE server | 各語言各自 SDK | 先做核心 REST Gateway MVP |
-| Agent 怎麼知道有哪些 API？ | `/openapi.json` + `/docs` + CLI tree | 主要靠文件與範例 | 提供 OpenAPI / schema / CLI `--json` |
-| Shell/CI 怎麼操作？ | `shioaji order place ...` | 需要寫程式 | 提供 `neoapi doctor/status/data/order` CLI |
-| Python IDE/LLM 怎麼理解 native API？ | `_core.pyi` | 無 `.pyi` | 先補 stubs 和 `py.typed` |
+| 非 Python 使用者怎麼接？ | localhost REST/SSE server | 各語言各自 SDK | 做最小 REST Gateway MVP |
+| Agent 怎麼知道 API 長什麼樣？ | `/openapi.json`、`/docs`、CLI tree | 主要靠文件和範例 | 補 OpenAPI / schema / CLI `--json` |
+| Shell / CI 怎麼操作？ | `shioaji ...` 命令 | 通常要寫程式 | 補 `neoapi doctor/status/data/order` CLI |
+| IDE / LLM 怎麼看 native API？ | `_core.pyi` | 無 `.pyi` | 先補 stubs 和 `py.typed` |
 | 企業怎麼審供應鏈？ | wheel 內含 SBOM | 未見 SBOM | 加 CycloneDX SBOM |
-| 發行怎麼自動化？ | PyPI | 官網 zip | PyPI 或至少 package-index-compatible mirror |
+| 發行怎麼自動化？ | PyPI | 官網 zip | PyPI 或 package-index-compatible mirror |
 
 ## 五、NeoAPI 高 ROI 路線圖
 
-### P0：封裝與可發現性，最快見效
+### P0：先讓 package 變得「看得懂」
 
-這些不需要改交易 core，ROI 最高：
+這層最值得先做，因為不用改交易 core：
 
-1. **`.pyi` stubs for native extension**
-   - 讓 IDE、type checker、LLM 都能看懂 `FubonSDK`、`Order`、callback、回傳物件。
+1. **`.pyi` stubs**
+   - 讓 IDE、type checker、LLM 看懂 `FubonSDK`、`Order`、callback、回傳物件。
 
 2. **`py.typed`**
-   - 宣告 Python package 支援型別資訊。
+   - 宣告 package 支援型別資訊。
 
-3. **rich `METADATA`**
+3. **rich metadata**
    - 補 summary、license、homepage、docs URL、project URLs、platform info。
 
 4. **SBOM**
    - 在 wheel `dist-info/sboms/` 放 CycloneDX。
 
 5. **標準 package index 或 mirror**
-   - 至少讓 CI 可以穩定 pin：`pip install fubon-neo==2.2.8` 類體驗。
+   - 至少做到 CI 能穩定 pin 版本。
 
 6. **machine-readable download manifest**
-   - JSON 列出各平台、語言、版本、checksum、下載 URL。
+   - 用 JSON 列出平台、語言、版本、checksum、下載 URL。
 
-### P1：Agent-friendly CLI MVP
+### P1：先做診斷型 CLI，不急著做完整 server
 
-先不做完整 server，也可以先做 CLI：
+最小 CLI 可以先長這樣：
 
 ```bash
 neoapi version --verbose
@@ -188,54 +196,52 @@ neoapi data snapshot --symbol 2330 --json
 neoapi order validate --json
 ```
 
-高價值原因：
+這種 CLI 馬上有價值：
 
-- 降低客服與安裝除錯成本。
-- 讓 Agent 可以先確認環境、版本、憑證、連線模式。
-- 給自動化腳本一個穩定入口。
+- 客服和使用者都比較容易除錯。
+- Agent 可以先確認版本、憑證、連線模式。
+- 自動化腳本有穩定入口。
 
-### P2：OpenAPI / 本機 Gateway MVP
+### P2：再做最小 OpenAPI / Gateway
 
-不要一開始做大 dashboard。先做最小可用：
+不要一開始做 dashboard。先做最小可用：
 
 - `/health`
 - `/info`
 - `/openapi.json`
 - `/docs`
 - `/api/v1/data/snapshot`
-- `/api/v1/order/place`
+- `/api/v1/order/validate`
 - `/api/v1/order/results`
 - `/api/v1/account/accounts`
 
-先服務：
+先服務幾種人：
 
 - 非 Python 使用者
 - Agent / tool runner
-- Postman / curl / internal automation
+- Postman / curl / 內部 automation
 
-等有採用證據，再加 SSE、dashboard、custom app hosting。
+等真的有人用，再加 SSE、dashboard、custom app hosting。
 
-## 六、風險與取捨
+## 六、風險和取捨
 
-### 不要一開始就複製 rshioaji 全套
+### 不要一開始就照抄 rshioaji 全套
 
-rshioaji 的方向值得學，但 NeoAPI 不需要馬上做：
+rshioaji 的方向值得學，但 NeoAPI 不需要馬上做完整版本：
 
-- 完整 dashboard
+- dashboard
 - custom app hosting
 - 全 endpoint REST server
 - 跨語言 server 大重構
 
-這些都會增加維護與安全面。
+這些會放大維護成本，也會增加安全面。
 
-### 先補 self-describing，再補 gateway
-
-對 NeoAPI 來說，最低風險順序是：
+### 比較安全的順序
 
 1. 補 stubs / metadata / SBOM / manifest。
-2. 補 CLI doctor/status/version。
+2. 補 CLI doctor / status / version。
 3. 補 OpenAPI schema。
-4. 補最小本機 gateway。
+4. 補最小本機 Gateway。
 5. 最後才考慮 SSE / dashboard / apps。
 
 ### 安全預設要保守
@@ -243,9 +249,9 @@ rshioaji 的方向值得學，但 NeoAPI 不需要馬上做：
 如果做本機 server：
 
 - 預設只綁 `127.0.0.1`。
-- production / test mode 必須明確可見。
-- 下單 endpoint 要能 dry-run / validate。
-- OpenAPI docs 裡要明確標示會造成真實交易的 endpoint。
+- test / production 要非常明顯。
+- 下單相關 endpoint 先提供 validate / dry-run。
+- OpenAPI docs 裡要標示哪些 endpoint 會造成真實交易。
 
 ## 七、建議優先順序
 
@@ -261,7 +267,7 @@ rshioaji 的方向值得學，但 NeoAPI 不需要馬上做：
 
 1. CLI `--json` output contract
 2. core OpenAPI spec
-3. official examples generated from the same schema
+3. 從 schema 產生 official examples
 4. package-index-compatible distribution path
 
 ### 中期做
@@ -271,8 +277,8 @@ rshioaji 的方向值得學，但 NeoAPI 不需要馬上做：
 3. `/docs` interactive UI
 4. Agent tool schema generation
 
-## 八、一句話結論
+## 最後一句
 
-rshioaji 的關鍵啟示不是「SDK 要變很肥」，而是：**金融 API 在 AI Agent 時代需要從語言函式庫升級成可被工具理解、可被命令列操作、可被 HTTP 調用的產品面。**
+rshioaji 的啟示不是「SDK 要塞越多東西越好」。真正值得學的是：**金融 API 在 AI Agent 時代，不能只是一包語言函式庫；它要能被工具理解、被命令列操作、被 HTTP 呼叫，而且要有安全可檢查的邊界。**
 
-NeoAPI 最值得先吸收的是 self-describing package、diagnostic CLI、OpenAPI contract、最小本機 Gateway，而不是一口氣複製完整 dashboard/server。
+NeoAPI 最好的下一步，是先把 package 做得更 self-describing，再補診斷 CLI 和 OpenAPI。Gateway 可以做，但要從小做，不要一開始就把整台 dashboard/server 搬進來。
