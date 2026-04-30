@@ -51,6 +51,49 @@ Observed Linux dynamic dependencies:
 - `_core.abi3.so`: `libm`, `libc`, `ld-linux`, `libpthread`, `libdl`, `librt`
 - CLI binary: `libgcc_s`, `libm`, `libc`
 
+#### What the bundled `shioaji` CLI/server binary does
+
+The wheel does not only install `import shioaji`; it also installs a standalone executable named `shioaji` from `rshioaji-1.5.7.data/scripts/shioaji`. The rshioaji skill docs describe it as both:
+
+1. a command-line client for operational tasks, and
+2. a daemon HTTP API server started with `shioaji server start`.
+
+The implemented command tree in the skill documentation includes:
+
+- `shioaji server start/check/status/stop`
+- `shioaji auth accounts/usage`
+- `shioaji data ticks/kbars/scanner/stream/snapshots`
+- `shioaji order place/cancel/list/update-price/update-qty/events`
+- `shioaji portfolio balance/positions/margin`
+- `shioaji utils token ...` and `shioaji utils api check`
+- `shioaji tree` and shell `completions`
+
+The architecture is daemon-client:
+
+- Data-path commands (`auth`, `data`, `order`, `portfolio`) communicate with a local daemon over HTTP.
+- On Unix, the client prefers a Unix domain socket such as `~/.shioaji/sessions/server-{port}.sock`, falling back to TCP.
+- If no daemon is running, CLI docs say the command path can auto-start one through `ensure_daemon()`.
+- The server defaults to simulation mode; production requires `shioaji server start --production` or `SJ_PRODUCTION=true`.
+
+The HTTP server surface is substantial, not just a health endpoint. The documented default base URL is `http://127.0.0.1:8080` with API prefix `/api/v1/`. The reference lists endpoint families for:
+
+- health/info: `/api/v1/health`, `/api/v1/info`
+- auth/account usage
+- market data: snapshots, ticks, kbars, scanner, contracts, daily quotes, regulatory data
+- orders: place, cancel, update price/quantity, trades, combo orders, reserve/earmarking
+- portfolio: balance, margin, positions, settlements, limits, P&L
+- streaming: SSE subscribe/unsubscribe and data streams for stock/futures/options tick, bidask, quote, plus order events
+- watchlists
+- custom uploaded web apps
+
+It also documents OpenAPI and UI surfaces:
+
+- `/openapi.json` for generated OpenAPI 3.0 schema
+- `/docs` for Scalar interactive API documentation
+- a built-in dashboard and `/apps/{path}` custom app hosting path
+
+Packaging implication: rshioaji uses the Python wheel as a delivery vehicle for a full local trading gateway. That makes non-Python integration easy because other languages can call REST/SSE instead of linking native SDKs. The cost is wheel size, extra runtime/server surface, and a larger security/ops review boundary.
+
 ### Fubon Neo 2.2.8 Python SDK
 
 Linux wheel inspected:
