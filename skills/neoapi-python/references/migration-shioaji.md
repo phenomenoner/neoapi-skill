@@ -1,205 +1,193 @@
-# Migrating from Shioaji to FubonNeo
+# Migrating from Shioaji to Fubon Neo
 
-This guide helps developers migrate trading logic from **Sinotrade Shioaji (Shioaji)** to **Fubon Neo (fubon_neo)**.
+This note is for developers who already have working **Shioaji** code and want to port the same trading workflow to **Fubon Neo Python SDK**. Keep the migration mechanical: identify the old Shioaji pattern, map the account/order/quote behavior, then verify against official Fubon docs and the bundled `llms-full.txt` before running live.
 
-## Core Conceptual Differences
+> Migration posture: this is a compatibility aid for existing codebases, not a broker comparison. Do not imply equivalent behavior unless it is verified in current Neo SDK docs or in this skill's reference notes.
 
-| Feature | Shioaji (SinoPac) | FubonNeo (Fubon) |
+## First warnings to check
+
+| Topic | Migration rule |
+| :--- | :--- |
+| Environment | Shioaji often uses `simulation=True`; Neo uses SDK constructor / endpoint configuration. Test and production data can differ. See `test-environment.md`. |
+| Quantity | Shioaji examples commonly express regular stock orders in lots; Neo stock `quantity` is **shares**. 1 regular lot = 1000 shares. |
+| Account | Shioaji code often uses `api.stock_account`; Neo login returns account objects and you should choose the intended stock account explicitly. |
+| Modify / cancel | Do not reuse a stale local object blindly. Query current order results and pass the current order object / modify object. |
+| Source of truth | Use official Fubon docs, bundled `llms-full.txt`, `response-shapes.md`, and `implementation-practices.md`; mark uncertain mappings as `TODO verify`. |
+
+## Task routing
+
+| If the user asks to... | Load / check |
+| :--- | :--- |
+| Port Shioaji login / CA code | This file → [Auth / CA](#auth--ca) |
+| Port stock order placement | This file → [Orders](#orders) + `implementation-practices.md` |
+| Map Shioaji constants | [Constant mapping table](#constant-mapping-table) |
+| Port modify / cancel logic | [Order lifecycle](#order-lifecycle) + `response-shapes.md` |
+| Port quote callbacks / subscriptions | [Market data and callbacks](#market-data-and-callbacks) + `examples-guidance.md` |
+| Explain test vs production mismatch | `test-environment.md` |
+| Verify exact return fields | `response-shapes.md` |
+
+## Core conceptual differences
+
+| Feature | Shioaji | Fubon Neo |
 | :--- | :--- | :--- |
-| **Entry Point** | `import shioaji as sj` `api = sj.Shioaji()` | `from fubon_neo.sdk import FubonSDK` `sdk = FubonSDK()` |
-| **Login** | `api.login(key, secret)` Separate `api.activate_ca(...)` | `sdk.login(id, pwd, cert_path, cert_pwd)` All-in-one authentication. |
-| **Order Object** | `api.Order(...)` | `sdk.stock.Order(...)` |
-| **Place Order** | `api.place_order(contract, order)` | `sdk.stock.place_order(account, order)` |
-| **Contracts** | `api.Contracts.Stocks["2330"]` | Pass raw string `"2330"` directly. |
+| Entry point | `import shioaji as sj`; `api = sj.Shioaji(...)` | `from fubon_neo.sdk import FubonSDK`; `sdk = FubonSDK(...)` |
+| Login / cert | `api.login(...)` then `api.activate_ca(...)` | `sdk.login(id, pwd, cert_path, cert_pwd)` returns accounts |
+| Account | Often `api.stock_account` | Select an account object from `accounts.data` |
+| Contract / symbol | `api.Contracts.Stocks["2330"]` contract object | Stock orders commonly pass `symbol="2330"` |
+| Order object | `api.Order(...)` | `Order(...)` from `fubon_neo.sdk` |
+| Place order | `api.place_order(contract, order)` | `sdk.stock.place_order(account, order)` |
+| Status tracking | `Trade` object + `api.update_status(...)` | Query order results and match by order number / stock fields |
+| Realtime shape | Typed callback objects | WebSocket / callback envelopes; check event/data shape |
 
-## Quick Translation
+## Auth / CA
 
-### 1. Initialization & Login
-
-#### Shioaji (Init)
+### Shioaji pattern
 
 ```python
 import shioaji as sj
-api = sj.Shioaji()
+
+api = sj.Shioaji(simulation=True)
 api.login("API_KEY", "SECRET")
 api.activate_ca("path/to/cert.pfx", "CA_PWD")
+account = api.stock_account
 ```
 
-#### FubonNeo (Init)
+### Neo pattern
 
 ```python
 from fubon_neo.sdk import FubonSDK
-sdk = FubonSDK()
-# Login returns all accounts immediately
+
+# SDK 2.2.1+ examples in this skill usually use FubonSDK(30, 2).
+# For test environment, pass the documented test URL; see test-environment.md.
+sdk = FubonSDK(30, 2)
 accounts = sdk.login("ID", "PWD", "path/to/cert.pfx", "CA_PWD")
-active_acc = accounts.data[0]
+
+# Pick the intended stock account explicitly. Do not assume index 0 is always right.
+# response-shapes.md verifies account_type is usually "stock" or "futopt".
+stock_accounts = [acc for acc in accounts.data if getattr(acc, "account_type", "") == "stock"]
+acc = stock_accounts[0] if stock_accounts else accounts.data[0]
 ```
 
-### 2. Placing a Limit Buy Order
+If account fields are uncertain in a user's SDK version, inspect `accounts.data` and the official account docs instead of inventing field names.
 
-#### Shioaji (Order)
+## Orders
+
+### Shioaji regular-stock example
 
 ```python
 contract = api.Contracts.Stocks["2330"]
 order = api.Order(
     price=580,
-    quantity=1, # 1 unit = 1 share or 1 lot depending on config? 
-                # Shioaji uses 1 = 1 share for IntradayOdd?
+    quantity=1,  # common Shioaji regular-lot code: 1 lot
     action=sj.constant.Action.Buy,
     price_type=sj.constant.StockPriceType.LMT,
     order_type=sj.constant.OrderType.ROD,
-    order_lot=sj.constant.StockOrderLot.Common, 
-    account=api.stock_account
+    order_lot=sj.constant.StockOrderLot.Common,
+    account=api.stock_account,
 )
-api.place_order(contract, order)
+trade = api.place_order(contract, order)
 ```
 
-#### FubonNeo (Order)
+### Neo regular-stock equivalent
 
 ```python
 from fubon_neo.sdk import Order
-from fubon_neo.constant import BSAction, PriceType, TimeInForce, MarketType, OrderType
+from fubon_neo.constant import BSAction, MarketType, PriceType, TimeInForce, OrderType
 
-# Keyword form recommended (matches official docs); positional form also works.
 order = Order(
     buy_sell=BSAction.Buy,
     symbol="2330",
-    quantity=1000,              # FubonNeo quantity is always SHARES. 3000 = 3 lots.
-    market_type=MarketType.Common,  # Specify lot type here
+    quantity=1000,                 # Neo uses shares: 1000 shares = 1 regular lot
+    market_type=MarketType.Common,
     price_type=PriceType.Limit,
     time_in_force=TimeInForce.ROD,
     order_type=OrderType.Stock,
-    price="580"
+    price="580",
 )
-sdk.stock.place_order(active_acc, order)
+res = sdk.stock.place_order(acc, order)
 ```
 
-> **Important**: FubonNeo `quantity` is always in **shares**. Shioaji may vary by `order_lot` context, but Fubon is explicit.
->
-> - 1 Lot (MarketType.Common) = 1000 shares.
-> - 1 Share (MarketType.IntradayOdd) = 1 share.
-> In FubonNeo `Order(..., 1000, MarketType.Common)` means 1000 shares (1 lot).
+Before placing a test-environment order, prefer `sdk.stock.query_symbol_quote(acc, symbol)` for valid order prices. In production examples, `intraday.ticker` may be useful for display/reference prices, but order validity should still be checked against the trading-side behavior documented for the current environment.
 
-## Constant Mapping Table
+## Constant mapping table
 
-| Value Type | Shioaji (`sj.constant`) | FubonNeo (`fubon_neo.constant`) |
+| Intent | Shioaji | Fubon Neo |
 | :--- | :--- | :--- |
-| **Buy** | `Action.Buy` | `BSAction.Buy` |
-| **Sell** | `Action.Sell` | `BSAction.Sell` |
-| **ROD** | `OrderType.ROD` | `TimeInForce.ROD` |
-| **IOC** | `OrderType.IOC` | `TimeInForce.IOC` |
-| **FOK** | `OrderType.FOK` | `TimeInForce.FOK` |
-| **Limit** | `StockPriceType.LMT` | `PriceType.Limit` |
-| **Market** | `StockPriceType.MKT` | `PriceType.Market` |
-| **Common/Lot** | `StockOrderLot.Common` | `MarketType.Common` |
-| **Odd** | `StockOrderLot.IntradayOdd` | `MarketType.IntradayOdd` |
+| Buy | `sj.constant.Action.Buy` | `BSAction.Buy` |
+| Sell | `sj.constant.Action.Sell` | `BSAction.Sell` |
+| Limit price | `sj.constant.StockPriceType.LMT` | `PriceType.Limit` |
+| Market price | `sj.constant.StockPriceType.MKT` | `PriceType.Market` |
+| ROD | `sj.constant.OrderType.ROD` | `TimeInForce.ROD` |
+| IOC | `sj.constant.OrderType.IOC` | `TimeInForce.IOC` |
+| FOK | `sj.constant.OrderType.FOK` | `TimeInForce.FOK` |
+| Regular lot | `sj.constant.StockOrderLot.Common` | `MarketType.Common` with quantity in shares |
+| Intraday odd lot | `sj.constant.StockOrderLot.IntradayOdd` | `MarketType.IntradayOdd` |
+| Cash stock | commonly implicit in stock order | `OrderType.Stock` |
+| Margin / short | Shioaji constants vary by order intent | Check Neo `OrderType.MarginTrading` / `OrderType.ShortSelling` examples before use |
 
-## Market Data (WebSocket)
+## Order lifecycle
 
-### Shioaji (Callback Style)
+Shioaji code often keeps a `trade` object and calls `api.update_status(trade)`. Neo examples should prefer a query-before-action pattern.
+
+```python
+def find_order(sdk, acc, order_no: str):
+    results = sdk.stock.get_order_results(acc)
+    if not results.data:
+        return None
+    return next((o for o in results.data if getattr(o, "order_no", None) == order_no), None)
+
+# Place
+place_res = sdk.stock.place_order(acc, order)
+order_no = place_res.data.order_no
+
+# Query current state before modify/cancel
+current = find_order(sdk, acc, order_no)
+if current is None:
+    raise RuntimeError(f"order_not_found:{order_no}")
+
+# Modify price / quantity: build the SDK modify object first.
+modify_price_obj = sdk.stock.make_modify_price_obj(current, "579")
+modify_res = sdk.stock.modify_price(acc, modify_price_obj)
+
+# Re-query before cancel to avoid stale local state.
+current = find_order(sdk, acc, order_no)
+if current is not None:
+    cancel_res = sdk.stock.cancel_order(acc, current)
+```
+
+For exact fields and return shapes, use `response-shapes.md`; do not assume Shioaji `Trade.status` names carry over.
+
+## Market data and callbacks
+
+### Shioaji callback style
 
 ```python
 @api.on_quote
 def quote_callback(topic, quote):
-    print(quote)
+    print(topic, quote)
 
-api.quote.subscribe(contract)
+api.quote.subscribe(api.Contracts.Stocks["2330"])
 ```
 
-### FubonNeo (Callback Style)
+### Neo callback / market-data posture
 
 ```python
-def on_message(code, content):
-    print(content)
+sdk.init_realtime()
 
-sdk.init_realtime() # Connect WS
-sdk.set_on_quote(on_message) # Set global handler
+# Trading callbacks are set on the SDK; see implementation-practices.md / examples-guidance.md.
+def on_filled(code, content):
+    print(code, content)
 
-rest_client = sdk.marketdata.rest_client
-rest_client.stock.intraday.ticker(symbol="2330") # triggers auto-subscription if configured
-# OR explicitly subscribe if using raw notification channels
+sdk.set_on_filled(on_filled)
+
+# Market data examples often use REST client snapshots or WebSocket envelopes.
+quote = sdk.marketdata.rest_client.stock.intraday.quote(symbol="2330")
 ```
 
-## Advanced Patterns
+For WebSocket message parsing, do not read trade fields from the top-level envelope. Check event type first and read payload fields from `message["data"]` when applicable. If porting Shioaji's `on_tick` / `on_bidask` style code, verify the Neo market-data channel and message schema from official docs before writing production logic.
 
-### Checking Order Status
+## Scope notes
 
-**Shioaji (In-Place Mutation)**
-Shioaji updates the local `trade` object directly.
-
-```python
-api.update_status(trade)
-print(trade.status.status) # e.g. Filled
-```
-
-**FubonNeo (Poll & Search)**
-FubonNeo returns a fresh list of orders. You must find your order by `order_no`.
-
-```python
-results = sdk.stock.get_order_results(acc)
-my_order = next((o for o in results.data if o.order_no == "ORDER123"), None)
-if my_order:
-    print(my_order.status)
-```
-
-### Connection Health & Reconnection
-
-**Shioaji**
-Manual handling of `TokenError` and event codes (0=Up, 12=Reconnecting).
-
-```python
-@api.quote.on_event
-def event_callback(code, event):
-    if code == 12: print("Reconnecting...")
-```
-
-**FubonNeo**
-The SDK manages token lifecycle internally for the most part. Monitor via `on_event`.
-
-```python
-def on_event(code, content):
-    print(f"Event: {code}, Msg: {content}")
-
-sdk.set_on_event(on_event)
-```
-
-## Migration Recipe: The "Worker" Wrapper
-
-Shioaji users often create a `TradingWorker` class. Here is the equivalent pattern in FubonNeo, handling the valid "Polling" strategy for order status.
-
-```python
-import time
-from fubon_neo.sdk import FubonSDK, Order
-from fubon_neo.constant import BSAction, MarketType, PriceType, TimeInForce, OrderType
-
-class FubonWorker:
-    def __init__(self):
-        self.sdk = FubonSDK()
-        self.account = None
-
-    def login(self, user_id, pwd, cert_path, cert_pwd):
-        accounts = self.sdk.login(user_id, pwd, cert_path, cert_pwd)
-        self.account = accounts.data[0]
-        self.sdk.init_realtime() # Connect WS
-
-    def place_order(self, symbol, price, qty):
-        order = Order(
-            BSAction.Buy, symbol, qty,
-            MarketType.Common, PriceType.Limit, TimeInForce.ROD, OrderType.Stock,
-            price=price
-        )
-        res = self.sdk.stock.place_order(self.account, order)
-        return res.data.order_no if res.data else None
-
-    def get_order(self, order_no):
-        """Replacement for shioaji's trade update mechanism"""
-        results = self.sdk.stock.get_order_results(self.account)
-        if results.data:
-            return next((o for o in results.data if o.order_no == order_no), None)
-        return None
-
-    def cancel(self, order_no):
-        order = self.get_order(order_no)
-        if order:
-            self.sdk.stock.cancel_order(self.account, order)
-```
+- This file is stock/cash-equity focused unless another reference has verified futures/options behavior.
+- Do not port futures/options/combo Shioaji examples by analogy alone.
+- For every migration row, prefer `[verified]` examples from existing references; if not verified, label it `TODO verify`.

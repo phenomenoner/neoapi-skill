@@ -3,6 +3,11 @@
 This changelog is a **minimal index** derived from the version notes already present in `README.md`.
 If details diverge, treat `README.md` + `skills/neoapi-python/VERSION` as the source of truth.
 
+
+## Unreleased
+
+- Refined Shioaji migration guidance for existing codebases: clearer account selection, share-vs-lot quantity notes, order lifecycle checks, and neutral task routing for agents assisting with ports.
+
 ## 1.0.0-beta.29 — 2026-04-13
 
 - Added WebSocket message-envelope guidance and `on_message` parsing examples.

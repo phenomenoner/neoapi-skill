@@ -15,6 +15,20 @@ description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused
 > 2. **下單** → 建構 `Order(...)` → `sdk.stock.place_order(acc, order)`
 > 3. **行情** → `sdk.init_realtime()` → `sdk.marketdata.rest_client.stock.intraday.*`
 
+
+## Shioaji migration routing
+
+When the user asks to migrate or port existing Shioaji code, keep the tone practical and neutral: help them translate working code safely; do not frame the answer as a broker comparison. Load `references/migration-shioaji.md` first, then add the narrow reference below when needed.
+
+| Migration task | Load / check |
+| :--- | :--- |
+| Login / CA / account selection | `references/migration-shioaji.md` + official login docs |
+| Stock order placement | `references/migration-shioaji.md` + `references/implementation-practices.md` |
+| Modify / cancel / status tracking | `references/migration-shioaji.md` + `references/response-shapes.md` |
+| Quantity or lot-size confusion | `references/migration-shioaji.md` (Neo quantity is shares) |
+| Test vs production behavior | `references/test-environment.md` |
+| WebSocket / callback migration | `references/migration-shioaji.md` + `references/examples-guidance.md` |
+
 ## 常見錯誤（Common Mistakes）
 
 | 錯誤 | 正確做法 |
