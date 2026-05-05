@@ -298,7 +298,77 @@ def on_filled(self, code, data):
 
 ---
 
-## 6. REST API Best Practices
+## 6. Fill Handling: Active Callback First, Readback Safe-net
+
+For live trading, split fill handling into two complementary paths:
+
+1. **Primary low-latency path:** `sdk.set_on_filled(on_filled)` receives `FilledData`.
+2. **Safe-net reconciliation path:** `sdk.stock.get_order_results(account)` runs periodically (for example every ~30 seconds) to catch missed callbacks or process restarts.
+
+Do **not** compute P/L from submitted limit prices (`price`, `after_price`, limit-up/down). Those are order constraints, not execution prices. Position entry/exit price must come from fills:
+
+- `FilledData.filled_avg_price` when present
+- otherwise aggregate `FilledData.filled_price * FilledData.filled_qty` across partial fills
+- as readback reconciliation, `OrderResult.filled_money / OrderResult.filled_qty`
+
+### Minimal synchronous ledger sketch
+
+```python
+from collections import defaultdict
+from dataclasses import dataclass
+
+@dataclass
+class FillAccumulator:
+    qty: int = 0
+    money: float = 0.0
+
+    @property
+    def avg_price(self) -> float | None:
+        return self.money / self.qty if self.qty else None
+
+positions = defaultdict(FillAccumulator)
+seen_fills: set[tuple[str, str, str]] = set()
+
+def on_filled(code, content):
+    # FilledData: order_no, seq_no, filled_no, stock_no, buy_sell,
+    # filled_avg_price, filled_price, filled_qty, filled_time, user_def
+    key = (content.order_no, content.seq_no, content.filled_no)
+    if key in seen_fills:
+        return
+    seen_fills.add(key)
+
+    qty = int(content.filled_qty)
+    price = (
+        float(content.filled_avg_price)
+        if getattr(content, "filled_avg_price", None) is not None
+        else float(content.filled_price)
+    )
+    pos = positions[content.stock_no]
+    pos.qty += qty
+    pos.money += price * qty
+    # pos.avg_price is now the execution-derived average.
+```
+
+### Periodic readback safe-net
+
+```python
+def reconcile_order_results(account):
+    result = sdk.stock.get_order_results(account)
+    for row in result.data or []:
+        filled_qty = int(getattr(row, "filled_qty", 0) or 0)
+        filled_money = float(getattr(row, "filled_money", 0) or 0)
+        if filled_qty <= 0:
+            continue
+        avg_price = filled_money / filled_qty
+        # Reconcile by order_no + seq_no when present. Do not double count
+        # fills already seen through on_filled. Record fill_source explicitly.
+```
+
+Operational rule: the callback path drives real-time exit logic; the readback path validates and heals state. If they disagree, stop using stale P/L, mark a reconciliation delta, and prefer broker readback for safety.
+
+---
+
+## 7. REST API Best Practices
 
 ### Rate Limit Awareness
 
@@ -323,7 +393,7 @@ async def fetch_all_tickers(self, symbols):
 
 ---
 
-## 7. Architecture Summary
+## 8. Architecture Summary
 
 ```text
 ┌────────────────────────────────────────────────────────┐
@@ -344,7 +414,7 @@ async def fetch_all_tickers(self, symbols):
 
 ---
 
-## 8. Best Practices Checklist
+## 9. Best Practices Checklist
 
 | Area | Practice |
 |------|----------|
@@ -361,7 +431,7 @@ async def fetch_all_tickers(self, symbols):
 
 ---
 
-## 9. 策略模式參考（Strategy Pattern Reference）
+## 10. 策略模式參考（Strategy Pattern Reference）
 
 以下為 [StrategyExecutor_feather](https://github.com/phenomenoner/StrategyExecutor_feather) 專案中提煉的高階模式，供策略開發者參考。
 
@@ -422,7 +492,7 @@ async def on_tick(self, symbol: str, tick: dict):
 
 ---
 
-## 10. 錯誤與狀態碼（Error & Status Codes）
+## 11. 錯誤與狀態碼（Error & Status Codes）
 
 ### HTTP / REST 錯誤碼
 

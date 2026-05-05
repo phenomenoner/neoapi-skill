@@ -1,6 +1,6 @@
 ---
 name: neoapi-python
-version: 1.0.0-beta.29
+version: 1.0.0-beta.30
 description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused on trading and market data workflows, including login, market data access, order placement, and locating the right docs/llms outputs. Use when prompts mention FubonNeo API or the Python SDK."
 ---
 
@@ -256,6 +256,24 @@ sdk.logout()
 
 - Python SDK is not on PyPI. Download the wheel from the official page and install locally.
 - SDK >= v2 works on Python 3.12–3.13 (avoid 3.14 for now).
+
+## 即時成交回報 + Safe-net Readback
+
+For live or latency-sensitive trading systems, treat **filled callbacks** as the primary fill source and `get_order_results` as a periodic reconciliation safe-net.
+
+- Register callbacks before login/re-login when possible:
+  - `sdk.set_on_order(on_order)` for order acknowledgements (`OrderResult`)
+  - `sdk.set_on_order_changed(on_order_changed)` for modify/cancel reports (`OrderResult`)
+  - `sdk.set_on_filled(on_filled)` for execution fills (`FilledData`)
+  - `sdk.set_on_event(on_event)` for connection/re-login events
+- Compute entry/exit average from execution data, not from submitted order price:
+  - preferred: `FilledData.filled_avg_price`
+  - otherwise aggregate `filled_price * filled_qty` across fills
+  - reconciliation fallback: `OrderResult.filled_money / filled_qty` from `sdk.stock.get_order_results(acc)`
+- Never use submitted limit price (`price`, `after_price`, limit-up/down) as P/L entry price fallback. If fill price is missing, mark the position as unresolved and reconcile.
+- Run `get_order_results` periodically (for example every ~30 seconds) to detect missed callbacks and reconcile `filled_qty`, `filled_money`, and status.
+- Reconcile records by `order_no` + `seq_no` when available; include `filled_no` for idempotent fill dedupe.
+- Record a `fill_source` in receipts/state, such as `active_filled_callback` or `order_results_readback`, so operators can tell whether the low-latency path or the safe-net supplied the fill.
 
 ## Implementation Patterns
 

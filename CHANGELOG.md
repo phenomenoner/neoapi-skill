@@ -8,6 +8,13 @@ If details diverge, treat `README.md` + `skills/neoapi-python/VERSION` as the so
 
 - Refined Shioaji migration guidance for existing codebases: clearer account selection, share-vs-lot quantity notes, order lifecycle checks, and neutral task routing for agents assisting with ports.
 
+## 1.0.0-beta.30 — 2026-05-05
+
+- Added live trading fill-handling guidance: `sdk.set_on_filled(on_filled)` is the primary low-latency execution-fill path.
+- Documented `get_order_results` as a periodic safe-net reconciliation path, e.g. every ~30 seconds, to catch missed callbacks and validate broker state.
+- Clarified P/L and position average-price rules: use `filled_avg_price`, aggregate `filled_price * filled_qty`, or reconcile from `filled_money / filled_qty`; never use submitted limit price as execution-price fallback.
+- Recommended explicit `fill_source` receipts (`active_filled_callback` vs `order_results_readback`) and idempotent fill keys (`order_no`, `seq_no`, `filled_no`).
+
 ## 1.0.0-beta.29 — 2026-04-13
 
 - Added WebSocket message-envelope guidance and `on_message` parsing examples.

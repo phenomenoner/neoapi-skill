@@ -27,7 +27,7 @@ See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `ski
 
 ## Versioning
 
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.29` (Beta 1.0.0).
+The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.30` (Beta 1.0.0).
 
 ## Multi-Agent Adapters
 
@@ -79,4 +79,4 @@ Example:
 
 The full release history is maintained in [CHANGELOG.md](CHANGELOG.md).
 
-The current latest version is `1.0.0-beta.29`, with the main update being WebSocket message-envelope and `on_message` parsing guidance, clarifying that the actual trade payload lives under `message["data"]`.
+The current latest version is `1.0.0-beta.30`, with the main update being live fill-handling guidance: use `set_on_filled` as the low-latency primary fill path, `get_order_results` as periodic safe-net reconciliation, and never fall back to submitted limit price for P/L.
