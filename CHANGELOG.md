@@ -6,6 +6,13 @@ If details diverge, treat `README.md` + `skills/neoapi-python/VERSION` as the so
 
 ## Unreleased
 
+## 1.0.0-beta.32 — 2026-07-17
+
+- Fixed Issue #1 guidance: certificates using the official default-password mode on SDK >= 1.3.2 must omit the fourth `login` argument instead of passing `cert_pass=""`.
+- Fixed Issue #2 guidance: WebSocket price fields are numeric and zero values must be decoded with the matching camelCase `isLimitUp*` / `isLimitDown*` flags, not string comparisons.
+- Clarified that public quote data does not prove the original order type and that omitted WebSocket boolean flags should be read as `False`.
+- Added regression prompt cases for both reported agent failure modes and synchronized all adapters and READMEs.
+
 ## 1.0.0-beta.31 — 2026-07-17
 
 - Refreshed all four bundled `llms*.txt` files from the official zh/en endpoints and pinned LF line endings for stable cross-platform byte comparisons.

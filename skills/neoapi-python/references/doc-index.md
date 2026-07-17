@@ -97,6 +97,7 @@ Topics covered:
 ## Response Shapes
 
 - `references/response-shapes.md` (API 回傳格式參考，含 TODO 待驗證欄位)
+- `references/guardrail_patterns.py` (可執行的預設憑證登入與 WebSocket 價格解碼模式)
 
 ## Skill Effectiveness Testing
 

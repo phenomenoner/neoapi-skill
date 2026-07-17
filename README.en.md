@@ -4,7 +4,7 @@
 
 Practical Fubon Neo Python SDK guidance for AI coding agents.
 
-[![Skill version](https://img.shields.io/badge/skill-v1.0.0--beta.31-2563eb)](skills/neoapi-python/VERSION)
+[![Skill version](https://img.shields.io/badge/skill-v1.0.0--beta.32-2563eb)](skills/neoapi-python/VERSION)
 [![SDK baseline](https://img.shields.io/badge/Fubon_Neo-v2.2.8-0f766e)](https://www.fbs.com.tw/TradeAPI/en/docs/download/download-sdk)
 [![Python](https://img.shields.io/badge/Python-3.8%E2%80%933.13-f59e0b)](https://www.fbs.com.tw/TradeAPI/en/docs/install-compatibility)
 
@@ -56,6 +56,8 @@ The default destination is `~/.codex/skills/public/neoapi-python`. Restart Codex
 | Canceled order remains visible | Status `30` in `get_order_results` means canceled |
 | Order quantity | Always use shares, not lots; one board lot is 1,000 shares |
 | Live fills | `set_on_filled` is primary; `get_order_results` is the periodic safe-net |
+| Default certificate password | On SDK >= 1.3.2, omit login's fourth argument; do not pass an empty string |
+| WebSocket zero price | Decode with `isLimitUp*` / `isLimitDown*` flags; never compare with `"market"` |
 | Python version | Officially supported: 3.8–3.13; 3.14 is unsupported |
 
 ## Documentation precedence
@@ -94,4 +96,4 @@ When docs or skill rules change:
 3. Rebuild `neoapi-python.skill` and verify archive contents and version parity.
 4. Run static checks or the `.test/test_runner.py` integration suites at the tier required by the change.
 
-Release `v1.0.0-beta.31` refreshes the official snapshots, corrects the SDK v2.2.8 / Python 3.8–3.13 baseline, and redesigns the README navigation. See [CHANGELOG.md](CHANGELOG.md) for the full history.
+Release `v1.0.0-beta.32` fixes default-certificate login and WebSocket zero-price / limit-flag handling for Issues #1 and #2. See [CHANGELOG.md](CHANGELOG.md) for the full history.

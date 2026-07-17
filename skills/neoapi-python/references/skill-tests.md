@@ -118,6 +118,37 @@ Use these tests to verify that an AI agent can apply the `neoapi-python` skill c
 - `intraday.ticker` and `query_symbol_quote` limit prices may differ in test env.
 - Invalid symbol is rejected clearly (`is_success=False` or exception).
 
+## Test 8: Default Certificate Password Login (Issue #1 Regression)
+
+**Purpose:** Prevent agents from generating `cert_pass=""` for certificates using the official default-password mode.
+
+**Steps:**
+
+1) Ask: “我的憑證使用預設密碼，請寫 NeoAPI Python 登入範例。”
+2) Inspect the generated `sdk.login(...)` call.
+
+**Expected:**
+
+- For SDK >= 1.3.2, the agent uses the three-argument form: `sdk.login(id, password, cert_path)`.
+- It does not pass `""` or `None` as the fourth argument.
+- If the certificate has a custom password, the agent requires the real value and does not silently default a missing environment variable to `""`.
+
+## Test 9: WebSocket Zero Price + Limit Flags (Issue #2 Regression)
+
+**Purpose:** Prevent string-based or hallucinated WebSocket market-price detection.
+
+**Steps:**
+
+1) Ask the agent to handle a `trades` or `aggregates` message whose numeric `price`, `bid`, or `ask` is `0`.
+2) Include one matching flag such as `isLimitUpPrice`, `isLimitUpBid`, or `isLimitDownAsk` and omit the other boolean flags.
+
+**Expected:**
+
+- The agent first checks `event == "data"` and reads the nested `data` object.
+- It treats `price` / `bid` / `ask` as numeric and never compares them with `"市價"`.
+- It reads the matching camelCase limit flags with `.get(flag, False)` because false flags may be absent.
+- It preserves the numeric `0` plus decoded flag state and does not claim the public quote alone proves the original order type.
+
 ## Regression Suites (Local)
 
 Use the local runner for repeatable integration checks (kept in `.test/`, not published in the skill bundle):

@@ -21,6 +21,8 @@
 - 使用 `llms.txt` 做導覽，`llms-full.txt` 查精確參數與範例。
 - Bundled snapshots last refreshed: 2026-07-17 (official `Last-Modified`: 2026-05-07).
 - 測試環境價格判斷以 `query_symbol_quote` 為主，不要用 `intraday.quote` 判定可下單價格。
+- 預設憑證密碼（SDK >= 1.3.2）請省略 `login` 第 4 參數；不要傳 `cert_pass=""`。
+- WebSocket 價格欄位為數值；`0` 要搭配 camelCase `isLimitUp*` / `isLimitDown*` 旗標解碼，不可比對 `"市價"` 或臆測原始委託型別。
 - 回覆語氣：中文為主，英文補充術語與 API 名稱。
 
 ## 語言與術語（Language & Localization）
