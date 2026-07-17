@@ -11,7 +11,7 @@
 
 執行重點（Chinese-first）：
 
-- 先確認環境（test/prod）、Python 版本（3.12–3.13）、SDK 版本（2.x）。
+- 先確認環境（test/prod）、Python 版本（3.8–3.13）、SDK 版本（目前官方 v2.2.8）。
 - 文件查詢優先線上：
   - `https://www.fbs.com.tw/TradeAPI/llms.txt`
   - `https://www.fbs.com.tw/TradeAPI/llms-full.txt`
@@ -19,6 +19,7 @@
   - `https://www.fbs.com.tw/TradeAPI/en/llms-full.txt`
 - Bundled（離線 fallback）：`llms.txt` / `llms-full.txt` / `llms.en.txt` / `llms-full.en.txt`
 - 使用 `llms.txt` 做導覽，`llms-full.txt` 查精確參數與範例。
+- Bundled snapshots last refreshed: 2026-07-17 (official `Last-Modified`: 2026-05-07).
 - 測試環境價格判斷以 `query_symbol_quote` 為主，不要用 `intraday.quote` 判定可下單價格。
 - 回覆語氣：中文為主，英文補充術語與 API 名稱。
 

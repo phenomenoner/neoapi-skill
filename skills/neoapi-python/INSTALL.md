@@ -109,7 +109,7 @@ uv pip install --python .test\.venv\Scripts\python.exe C:\path\to\fubon_neo-<ver
 
 Notes:
 
-- SDK >= v2 works on Python **3.12–3.13**; Python **3.14** is not supported yet.
+- SDK >= v2 works on Python **3.8–3.13**; Python **3.14** is not supported yet.
 
 ---
 

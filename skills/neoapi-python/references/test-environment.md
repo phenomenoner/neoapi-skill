@@ -17,11 +17,11 @@ Source: `test_environment.zip` from the official SDK sample link.
 
 - The Python SDK is **not** published on PyPI; download the official wheel from:
   - https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk
-- Windows wheel example: `fubon_neo-2.2.7-cp37-abi3-win_amd64.whl`
+- Windows wheel example: `fubon_neo-2.2.8-cp37-abi3-win_amd64.whl`
 - Install into a virtual environment (recommended):
   - `uv venv .test\.venv`
   - `uv pip install --python .test\.venv\Scripts\python.exe <path-to-wheel>`
-- SDK >= v2 works with Python **3.12–3.13**; Python **3.14** is not supported yet.
+- SDK >= v2 works with Python **3.8–3.13**; Python **3.14** is not supported yet.
 
 ## Credentials
 

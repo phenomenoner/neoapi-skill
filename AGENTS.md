@@ -23,6 +23,7 @@ This repository provides the `neoapi-python` skill for Fubon Neo API workflows.
 3. For test-environment order limits, use `sdk.stock.query_symbol_quote`.
 4. `intraday.ticker` is for limit-up/limit-down in market data; `intraday.quote` is trade-oriented.
 5. In `get_order_results`, status `30` means canceled order and can remain visible.
+6. Current official baseline: SDK v2.2.8 on Python 3.8–3.13; Python 3.14 is unsupported.
 
 ## 文件查詢（Using llms.txt）
 
@@ -38,6 +39,7 @@ This repository provides the `neoapi-python` skill for Fubon Neo API workflows.
   - `llms.en.txt` / `llms-full.en.txt`
 
 使用 `llms.txt` 做導覽，`llms-full.txt` 查精確參數與範例。
+Bundled snapshots last refreshed: 2026-07-17 (official `Last-Modified`: 2026-05-07).
 
 ## 語言與術語（Language & Localization）
 

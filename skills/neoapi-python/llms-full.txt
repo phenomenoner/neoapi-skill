@@ -49048,7 +49048,7 @@ npm install
 
   <ItemGroup>
     ...
-    <PackageReference Include="FubonNeo" Version="1.0.0" />
+    <PackageReference Include="FubonNeo" Version="1.0.0" />  
     ...
   </ItemGroup>
   ...
@@ -49101,7 +49101,7 @@ npm install
   ```xml
     ...
     <ItemGroup>
-      <PackageReference Include="FubonNeo" Version="1.0.0" />
+      <PackageReference Include="FubonNeo" Version="1.0.0" />   
     </ItemGroup>
     ...
 
