@@ -1,6 +1,6 @@
 ---
 name: neoapi-python
-version: 1.0.0-beta.31
+version: 1.0.0-beta.32
 description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused on trading and market data workflows, including login, market data access, order placement, and locating the right docs/llms outputs. Use when prompts mention FubonNeo API or the Python SDK."
 ---
 
@@ -36,12 +36,14 @@ When the user asks to migrate or port existing Shioaji code, keep the tone pract
 | `pip install fubon-neo` | SDK 不在 PyPI，需從[官方頁面](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk)下載 `.whl` 安裝 |
 | 在測試環境用 `intraday.quote` 判斷可下單價格 | 測試環境應用 `sdk.stock.query_symbol_quote(acc, symbol)` |
 | SDK >= 2.2.1 仍用 `FubonSDK()` 初始化 | 需用 `FubonSDK(30, 2)` （或含 `url=` 參數） |
+| 預設憑證密碼卻傳 `cert_pass=""` | SDK >= 1.3.2 應省略第 4 個參數：`sdk.login(id, pwd, cert_path)`；不要用空字串代替 |
 | 下單後找不到已刪的單 | 已刪單仍在 `get_order_results` 中，status=30 |
 | 登入後直接用 `sdk.marketdata.rest_client` | 需先呼叫 `sdk.init_realtime()` |
 | `user_def` 字串過長 | 建議 10 字元以內，過長會被截斷 |
 | 在 Python 3.14 使用 SDK v2 | 官方目前支援 Python 3.8–3.13，不支援 3.14 |
 | 數量填「張數」而非「股數」 | FubonNeo 數量一律為**股數**（1 張 = 1000 股） |
 | WebSocket `on_message` 直接取 `message["price"]` | 訊息是 envelope 結構，交易資料在 `message["data"]` 內，需先檢查 `message["event"] == "data"` |
+| 用 `data["price"] == "市價"` 判斷 WebSocket 價格狀態 | 價格欄位是數值；值為 `0` 時應搭配同欄位的 `isLimitUp*` / `isLimitDown*` 旗標解碼，不能比對字串或臆測原始委託型別 |
 
 ## Public Docs Access
 
@@ -84,6 +86,21 @@ order = Order(
 res = sdk.stock.place_order(acc, order)
 print(f"Order: {res.data.order_no}")
 ```
+
+### Certificate Password Login
+
+```python
+# Certificate with a user-defined password
+accounts = sdk.login(user_id, login_password, cert_path, cert_password)
+
+# Certificate using the official default-password mode (SDK >= 1.3.2)
+# Omit the fourth argument entirely; do not pass "" or None.
+accounts = sdk.login(user_id, login_password, cert_path)
+```
+
+若程式從環境變數讀取自訂憑證密碼，請在缺值時直接報錯，不要用 `os.getenv("CERT_PASSWORD", "")` 靜默退回空字串。測試環境的憑證密碼則依官方測試包為 `12345678`。
+
+官方依據：`https://www.fbs.com.tw/TradeAPI/docs/trading/quickstart.txt`。
 
 ### Critical Constants
 
@@ -156,7 +173,39 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 - Mention connection setup and rate limits when relevant.
 - To use `sdk.marketdata.rest_client`, call `sdk.init_realtime()` after login.
 - For limit-up/limit-down prices in market data, use `intraday.ticker` (not `intraday.quote`).
+- Raw WebSocket JSON uses camelCase flags such as `isLimitUpPrice` and `isLimitDownAsk`; these booleans may be omitted when the condition is false, so read them with `data.get(flag, False)`.
+- WebSocket `price` / `bid` / `ask` are numeric. If a price is `0`, decode it together with the matching field-specific limit flags; never compare it to the string `"市價"`, and do not claim the public quote reveals the original order type.
 - Trading hours reference (Taiwan cash equities): `references/twse-trading-hours.md` (Asia/Taipei)
+
+Official field definitions: `docs/market-data/websocket-api/market-data-channels/trades.txt` and `aggregates.txt`.
+
+```python
+def decode_ws_price_state(data: dict, field: str = "price") -> dict:
+    flag_names = {
+        "price": ("isLimitUpPrice", "isLimitDownPrice"),
+        "bid": ("isLimitUpBid", "isLimitDownBid"),
+        "ask": ("isLimitUpAsk", "isLimitDownAsk"),
+    }
+    if field not in flag_names:
+        raise ValueError(f"Unsupported WebSocket price field: {field}")
+    up_flag, down_flag = flag_names[field]
+    value = data.get(field)
+    if value is not None and (
+        not isinstance(value, (int, float)) or isinstance(value, bool)
+    ):
+        raise TypeError(f"WebSocket {field} must be numeric")
+    is_limit_up = bool(data.get(up_flag, False))
+    is_limit_down = bool(data.get(down_flag, False))
+    return {
+        "value": value,
+        "is_zero_encoded": value == 0,
+        "is_limit_up": is_limit_up,
+        "is_limit_down": is_limit_down,
+        "has_limit_marker": is_limit_up or is_limit_down,
+    }
+```
+
+可直接重用並測試的完整版本在 `references/guardrail_patterns.py`。
 
 ## 當沖（Day Trading）
 

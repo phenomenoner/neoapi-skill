@@ -12,6 +12,16 @@
 response = sdk.login(user_id, password, cert_path, cert_password)
 ```
 
+若憑證使用官方「預設密碼」模式且 SDK >= 1.3.2，應省略第 4 個參數：
+
+```python
+response = sdk.login(user_id, password, cert_path)
+```
+
+不要傳 `cert_password=""` 或 `None` 代替省略參數；自訂憑證密碼缺失時應直接報錯。
+
+官方依據：<https://www.fbs.com.tw/TradeAPI/docs/trading/quickstart.txt>。
+
 | 欄位 | 型別 | 說明 | 狀態 |
 | :--- | :--- | :--- | :--- |
 | `is_success` | `bool` | 登入是否成功 | [verified] |
@@ -359,6 +369,45 @@ def on_message(raw: str):
 ```
 
 > **常見錯誤**：直接對 envelope 取 `symbol` / `price`，會拿到 `None`。必須先取 `envelope["data"]` 再存取交易欄位。
+
+### WebSocket 價格與漲跌停旗標
+
+`trades` / `aggregates` 的 `price`、`bid`、`ask` 都是數值欄位，不會回傳字串 `"市價"`。原始 JSON 的旗標使用 camelCase，且官方文件註明布林旗標只在狀態發生時揭示；因此讀取時要用 `data.get(flag, False)`。
+
+官方欄位定義：<https://www.fbs.com.tw/TradeAPI/docs/market-data/websocket-api/market-data-channels/trades.txt>、<https://www.fbs.com.tw/TradeAPI/docs/market-data/websocket-api/market-data-channels/aggregates.txt>。
+
+| 價格欄位 | 漲停旗標 | 跌停旗標 |
+| :--- | :--- | :--- |
+| `price` | `isLimitUpPrice` | `isLimitDownPrice` |
+| `bid` | `isLimitUpBid` | `isLimitDownBid` |
+| `ask` | `isLimitUpAsk` | `isLimitDownAsk` |
+
+```python
+def decode_ws_price_state(data: dict, field: str = "price") -> dict:
+    flag_names = {
+        "price": ("isLimitUpPrice", "isLimitDownPrice"),
+        "bid": ("isLimitUpBid", "isLimitDownBid"),
+        "ask": ("isLimitUpAsk", "isLimitDownAsk"),
+    }
+    if field not in flag_names:
+        raise ValueError(f"Unsupported WebSocket price field: {field}")
+    up_flag, down_flag = flag_names[field]
+    value = data.get(field)
+    if value is not None and (
+        not isinstance(value, (int, float)) or isinstance(value, bool)
+    ):
+        raise TypeError(f"WebSocket {field} must be numeric")
+    return {
+        "value": value,
+        "is_zero_encoded": value == 0,
+        "is_limit_up": bool(data.get(up_flag, False)),
+        "is_limit_down": bool(data.get(down_flag, False)),
+}
+```
+
+可執行版本見 `references/guardrail_patterns.py`。
+
+> Issue #2 回報市價相關行情可能以數值 `0` 搭配上述旗標揭示。`0` 不應拿去和 `"市價"` 比較；也不要只憑公開行情斷言原始委託單是市價單。請保留原始數值與旗標，讓上層依資料頻道與業務需求顯示價格狀態。
 
 > 驗證環境：SDK 2.2.8 + Python 3.13 + 測試環境（2026-04-13）
 

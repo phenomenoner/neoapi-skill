@@ -14,6 +14,8 @@ Use this guide to help an AI agent understand existing NeoAPI Python code and ma
 ## 2) Locate Credentials & Certs
 
 - Login usually calls: `sdk.login(USER_ID, USER_PW, CERT_PATH, CERT_PW)`.
+- For a certificate using the official default-password mode on SDK >= 1.3.2, omit the fourth argument: `sdk.login(USER_ID, USER_PW, CERT_PATH)`.
+- Never substitute `cert_pass=""` or `None` for the omitted argument. For a custom certificate password, require the actual value and fail fast when it is missing.
 - In test env, **password and cert password are `12345678`** and ID is the cert filename.
 - Verify cert path and environment variables (common source of failure).
 
@@ -61,8 +63,9 @@ Missing callbacks often look like “silent success” without notifications.
 - **Price limits** in test env (use reference price first).
 - **Market data mismatch**: `intraday.quote` is trade data; use `intraday.ticker` for prod limit prices and `sdk.stock.query_symbol_quote` for test env limit prices.
 - **Trading hours** (test env 09:30–19:00).
-- **Python version**: SDK >= v2 supports 3.12–3.13, not 3.14.
+- **Python version**: SDK >= v2 supports 3.8–3.13, not 3.14.
 - **Order status**: canceled orders still appear in `get_order_results` with status `30`.
+- **WebSocket price semantics**: `price`, `bid`, and `ask` are numeric; never compare them with `"市價"`. When a value is `0`, inspect the matching camelCase flags (`isLimitUpPrice`, `isLimitDownPrice`, `isLimitUpBid`, etc.). Missing flags mean `False`; public quote data does not prove the original order type.
 
 ## 8) When Changing Examples
 

@@ -24,6 +24,8 @@ This repository provides the `neoapi-python` skill for Fubon Neo API workflows.
 4. `intraday.ticker` is for limit-up/limit-down in market data; `intraday.quote` is trade-oriented.
 5. In `get_order_results`, status `30` means canceled order and can remain visible.
 6. Current official baseline: SDK v2.2.8 on Python 3.8–3.13; Python 3.14 is unsupported.
+7. For default-password certificates on SDK >= 1.3.2, omit the fourth `login` argument; never pass `cert_pass=""`.
+8. WebSocket prices are numeric. Decode zero values with matching camelCase `isLimitUp*` / `isLimitDown*` flags; never compare with `"市價"` or infer the original order type.
 
 ## 文件查詢（Using llms.txt）
 

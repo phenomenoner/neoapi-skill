@@ -4,7 +4,7 @@
 
 給 AI 編碼代理使用的富邦新一代（Fubon Neo）Python SDK 實戰指南。
 
-[![Skill version](https://img.shields.io/badge/skill-v1.0.0--beta.31-2563eb)](skills/neoapi-python/VERSION)
+[![Skill version](https://img.shields.io/badge/skill-v1.0.0--beta.32-2563eb)](skills/neoapi-python/VERSION)
 [![SDK baseline](https://img.shields.io/badge/Fubon_Neo-v2.2.8-0f766e)](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk)
 [![Python](https://img.shields.io/badge/Python-3.8%E2%80%933.13-f59e0b)](https://www.fbs.com.tw/TradeAPI/docs/install-compatibility)
 
@@ -56,6 +56,8 @@ bash ./update-skill.sh
 | 取消單仍出現在查詢結果 | `get_order_results` 的 status `30` 代表已刪單 |
 | 訂單數量 | 一律填「股數」，不是張數；1 張 = 1000 股 |
 | 即時成交 | `set_on_filled` 為主路徑，`get_order_results` 作週期性 safe-net |
+| 預設憑證密碼 | SDK >= 1.3.2 省略 `login` 第 4 參數，不傳空字串 |
+| WebSocket 零價格 | 搭配 `isLimitUp*` / `isLimitDown*` 旗標解碼，不比對 `"市價"` |
 | Python 版本 | 官方目前支援 3.8–3.13；不支援 3.14 |
 
 ## 文件來源策略
@@ -94,4 +96,4 @@ bash ./update-skill.sh
 3. 重建 `neoapi-python.skill`，檢查封裝內容與版本一致。
 4. 依變更風險執行靜態檢查或 `.test/test_runner.py` 整合套件。
 
-本次 `v1.0.0-beta.31` 同步官方 snapshots、校正 SDK v2.2.8 / Python 3.8–3.13 基準，並重做 README 導覽。完整歷程請見 [CHANGELOG.md](CHANGELOG.md)。
+本次 `v1.0.0-beta.32` 修正預設憑證登入與 WebSocket 零價格／漲跌停旗標判讀，對應 Issues #1、#2。完整歷程請見 [CHANGELOG.md](CHANGELOG.md)。

@@ -17,6 +17,8 @@
 4) 取消單後在 `get_order_results` 看到狀態 `30` 屬正常（代表已刪單）。
 5) 回覆以中文為主，必要時補英文術語（English supplement）。
 6) 目前官方基準為 SDK v2.2.8、Python 3.8–3.13；Python 3.14 尚未支援。
+7) 預設憑證密碼（SDK >= 1.3.2）要省略 `login` 第 4 參數，不可傳 `cert_pass=""`。
+8) WebSocket 價格欄位是數值；遇到 `0` 要搭配 camelCase `isLimitUp*` / `isLimitDown*` 旗標解碼，不可和 `"市價"` 比較或臆測原始委託型別。
 
 ## 文件查詢（Using llms.txt）
 
