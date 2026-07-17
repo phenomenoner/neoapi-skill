@@ -1,82 +1,97 @@
-# Fubon NeoAPI Skill 精煉專案
+<div align="center">
 
-此儲存庫用於測試與持續優化 `neoapi-python` skill bundle，供 AI 編碼代理（如 Codex、Claude Code、Gemini）正確使用富邦新一代（Fubon Neo）Python SDK，涵蓋交易與行情工作流程。
+# Fubon NeoAPI Skill
 
-- English supplementary README: [README.en.md](README.en.md)
+給 AI 編碼代理使用的富邦新一代（Fubon Neo）Python SDK 實戰指南。
 
-## Repo 結構
+[![Skill version](https://img.shields.io/badge/skill-v1.0.0--beta.31-2563eb)](skills/neoapi-python/VERSION)
+[![SDK baseline](https://img.shields.io/badge/Fubon_Neo-v2.2.8-0f766e)](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk)
+[![Python](https://img.shields.io/badge/Python-3.8%E2%80%933.13-f59e0b)](https://www.fbs.com.tw/TradeAPI/docs/install-compatibility)
 
-- `skills/neoapi-python/` - Skill 主體（`SKILL.md`、`references/`、`llms*.txt`、`VERSION`、`INSTALL.md`）
-- `update-skill.ps1` - Windows 更新腳本（從 GitHub 下載後安裝到 `~/.codex/skills/public/`）
-- `update-skill.sh` - macOS/Linux 更新腳本
+[English](README.en.md) · [安裝指南](skills/neoapi-python/INSTALL.md) · [版本紀錄](CHANGELOG.md) · [官方文件](https://www.fbs.com.tw/TradeAPI/)
 
-## 相容性
+</div>
 
-本 skill 以純檔案形式（入口為 `SKILL.md`）發佈，方便跨平台與跨代理使用。若非 Codex 平台，請將安裝路徑改為目標代理的 skill/instruction 目錄（可透過更新腳本的 `INSTALL_DIR` 參數或環境變數調整）。
+> [!IMPORTANT]
+> 這是社群維護的 AI skill，不是富邦官方 SDK。交易程式上線前，請以官方文件、測試環境與券商回報為最終依據。
 
-## GitHub Repo
+## 這個 skill 解決什麼？
 
-- `https://github.com/phenomenoner/neoapi-skill`
+它把散落在官方文件、測試環境經驗與實務專案裡的 NeoAPI 知識，整理成 AI 可以穩定遵循的工作流程。
 
-## 安裝
+| 能力 | 內容 |
+| :--- | :--- |
+| 交易流程 | 登入、選帳號、下單、改單、刪單、成交回報與對帳 |
+| 行情資料 | HTTP 快照、歷史行情、WebSocket 訂閱與訊息 envelope |
+| 安全護欄 | 測試／正式環境分流、價格來源、股數單位、版本相容性 |
+| 遷移協助 | 將既有 Shioaji 程式逐步移植到 Fubon NeoAPI |
+| 離線文件 | 內建繁中／英文 `llms*.txt` 快照，斷線時仍可查詢 |
 
-完整安裝方式請見 `skills/neoapi-python/INSTALL.md`。本 repo 採用 `skills/`（非 `.skills/`）目錄。一般使用者建議安裝到：
+## 30 秒安裝
 
-- Windows: `%USERPROFILE%\.codex\skills\public\neoapi-python`
-- macOS/Linux: `~/.codex/skills/public/neoapi-python`
-
-## 版本管理
-
-Skill 版本存放於 `skills/neoapi-python/VERSION`（semver）。目前版本：`1.0.0-beta.30`（Beta 1.0.0）。
-
-## 多代理 Adapter
-
-根目錄提供主要代理平台的 adapter（中文優先、英文補充）：
-
-- `CLAUDE.md`
-- `GEMINI.md`
-- `AGENTS.md`
-
-以上 adapter 皆以 `skills/neoapi-python/` 為單一真實來源（source of truth）。
-
-## LLM 文件（線上）
-
-以下官方頁面與 `llms*.txt` 為優先參考來源：
-
-- `https://www.fbs.com.tw/TradeAPI/docs/welcome/build-with-llm`
-- `https://www.fbs.com.tw/TradeAPI/en/docs/welcome/build-with-llm/`
-- `https://www.fbs.com.tw/TradeAPI/llms.txt`
-- `https://www.fbs.com.tw/TradeAPI/llms-full.txt`
-- `https://www.fbs.com.tw/TradeAPI/en/llms.txt`
-- `https://www.fbs.com.tw/TradeAPI/en/llms-full.txt`
-
-內建於 skill bundle 的 `llms*.txt` 為離線快照；當官方端點更新時，應同步刷新 repo 內副本並 bump `VERSION`，否則更新腳本不會抓到這次變更。
-
-## 從 GitHub 更新
-
-更新腳本會下載 repo zip，複製 `skills/neoapi-python` 到本機安裝路徑，並比較 `VERSION`，若已是最新版則跳過。
-
-範例：
+### Windows / PowerShell
 
 ```powershell
-.\update-skill.ps1 -Repo phenomenoner/neoapi-skill
+git clone https://github.com/phenomenoner/neoapi-skill.git
+cd neoapi-skill
+.\update-skill.ps1
 ```
+
+### macOS / Linux
 
 ```bash
-./update-skill.sh phenomenoner/neoapi-skill
+git clone https://github.com/phenomenoner/neoapi-skill.git
+cd neoapi-skill
+bash ./update-skill.sh
 ```
 
-## 本地回歸測試
+預設會安裝到 `~/.codex/skills/public/neoapi-python`。完成後重啟 Codex 或其他支援本地 skill 的代理；自訂路徑與手動安裝方式請見 [INSTALL.md](skills/neoapi-python/INSTALL.md)。
 
-- 本地整合測試 runner：`.test/test_runner.py`（不包含於對外發佈 skill 包）
-- 測試輸出：`.test/logs/`（文字 log + JSON summary）
-- Suites：
-  - `smoke`：基本登入與交易/行情健檢
-  - `complex`：多標的行情矩陣 + 雙訂單生命週期整合測試
-  - `all`：完整覆蓋（包含 complex）
+## AI 會遵守的關鍵護欄
 
-## 變更紀錄
+| 情境 | 正確做法 |
+| :--- | :--- |
+| 測試環境判斷可下單價格 | 使用 `sdk.stock.query_symbol_quote(account, symbol)` |
+| 正式行情查漲跌停 | 使用 `intraday.ticker`；`intraday.quote` 偏成交行情 |
+| 取消單仍出現在查詢結果 | `get_order_results` 的 status `30` 代表已刪單 |
+| 訂單數量 | 一律填「股數」，不是張數；1 張 = 1000 股 |
+| 即時成交 | `set_on_filled` 為主路徑，`get_order_results` 作週期性 safe-net |
+| Python 版本 | 官方目前支援 3.8–3.13；不支援 3.14 |
 
-完整版本歷程統一維護於 [CHANGELOG.md](CHANGELOG.md)。
+## 文件來源策略
 
-目前最新版本為 `1.0.0-beta.30`，重點更新為補充即時成交回報設計：`set_on_filled` 作為低延遲成交主路徑，`get_order_results` 作為週期性 safe-net reconciliation，且 P/L 嚴禁使用 submitted limit price fallback。
+```text
+使用者問題
+  └─ 官方 llms.txt：快速找到正確頁面
+      └─ 官方頁面 .txt / llms-full.txt：核對參數與範例
+          └─ bundled llms*.txt：離線 fallback
+              └─ references/：測試環境與實務補充
+```
+
+線上官方文件永遠優先；bundle 內的四份 `llms*.txt` 是離線快照。本版於 **2026-07-17** 重新抓取，官方伺服器回報 `Last-Modified: 2026-05-07`。
+
+## Repo 地圖
+
+```text
+.
+├─ skills/neoapi-python/
+│  ├─ SKILL.md                 # AI 的主入口與決策規則
+│  ├─ references/              # 測試環境、回傳格式、實作指南
+│  ├─ llms*.txt                # 官方文件離線快照（zh/en）
+│  ├─ VERSION                  # skill 版本
+│  └─ neoapi-python.skill      # 本地建立的可攜式 ZIP bundle（git ignored）
+├─ AGENTS.md / CLAUDE.md / GEMINI.md
+├─ update-skill.ps1 / update-skill.sh
+└─ .test/                      # 維護者本地整合測試（不隨 bundle 發佈）
+```
+
+## 維護與驗證
+
+文件或 skill 規則更新時：
+
+1. 同步四個官方 zh/en `llms*.txt` 端點。
+2. 更新 `SKILL.md`、`VERSION`、references 與三份 adapter。
+3. 重建 `neoapi-python.skill`，檢查封裝內容與版本一致。
+4. 依變更風險執行靜態檢查或 `.test/test_runner.py` 整合套件。
+
+本次 `v1.0.0-beta.31` 同步官方 snapshots、校正 SDK v2.2.8 / Python 3.8–3.13 基準，並重做 README 導覽。完整歷程請見 [CHANGELOG.md](CHANGELOG.md)。

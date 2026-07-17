@@ -1,6 +1,6 @@
 ---
 name: neoapi-python
-version: 1.0.0-beta.30
+version: 1.0.0-beta.31
 description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused on trading and market data workflows, including login, market data access, order placement, and locating the right docs/llms outputs. Use when prompts mention FubonNeo API or the Python SDK."
 ---
 
@@ -8,7 +8,7 @@ description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused
 
 ## Overview
 
-本 skill 教導 AI 編程代理使用 **Fubon Neo Python SDK** 進行台股**證券交易**與**行情資料**存取。適用 Python 3.12–3.13、SDK >= 2.x（避免 3.14）。預設 SDK ~2.2.7，除非使用者另外指定。
+本 skill 教導 AI 編程代理使用 **Fubon Neo Python SDK** 進行台股**證券交易**與**行情資料**存取。適用 Python 3.8–3.13、SDK >= 2.x（避免 3.14）。預設 SDK ~2.2.8，除非使用者另外指定。
 
 > **TL;DR** — 三大工作流程：
 > 1. **登入** → `sdk.login(ID, PWD, cert, cert_pwd)` 取得帳號清單
@@ -39,7 +39,7 @@ When the user asks to migrate or port existing Shioaji code, keep the tone pract
 | 下單後找不到已刪的單 | 已刪單仍在 `get_order_results` 中，status=30 |
 | 登入後直接用 `sdk.marketdata.rest_client` | 需先呼叫 `sdk.init_realtime()` |
 | `user_def` 字串過長 | 建議 10 字元以內，過長會被截斷 |
-| 在 Python 3.14 使用 SDK v2 | SDK v2 僅支援 3.12–3.13 |
+| 在 Python 3.14 使用 SDK v2 | 官方目前支援 Python 3.8–3.13，不支援 3.14 |
 | 數量填「張數」而非「股數」 | FubonNeo 數量一律為**股數**（1 張 = 1000 股） |
 | WebSocket `on_message` 直接取 `message["price"]` | 訊息是 envelope 結構，交易資料在 `message["data"]` 內，需先檢查 `message["event"] == "data"` |
 
@@ -113,9 +113,9 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 
 | SDK Version | Python | Constructor | 備註 |
 | :--- | :--- | :--- | :--- |
-| >= 2.2.6 | 3.12–3.13 | `FubonSDK(30, 2)` | 下單錯誤拋出 `FugleAPIError` |
-| 2.2.1–2.2.5 | 3.12–3.13 | `FubonSDK(30, 2)` | 錯誤在 response 物件中 |
-| <= 2.2.0 | 3.12–3.13 | `FubonSDK()` | 無位置參數 |
+| >= 2.2.6 | 3.8–3.13 | `FubonSDK(30, 2)` | 下單錯誤拋出 `FugleAPIError` |
+| 2.2.1–2.2.5 | 3.8–3.13 | `FubonSDK(30, 2)` | 錯誤在 response 物件中 |
+| 2.0–2.2.0 | 3.8–3.13 | `FubonSDK()` | 無位置參數 |
 | 1.3.1–1.x | 3.8–3.12 | `FubonSDK()` | 測試環境最低要求 |
 
 測試環境一律加 `url="wss://neoapitest.fbs.com.tw/TASP/XCPXWS"` 參數。
@@ -255,7 +255,7 @@ sdk.logout()
 ## SDK Install (Quick Note)
 
 - Python SDK is not on PyPI. Download the wheel from the official page and install locally.
-- SDK >= v2 works on Python 3.12–3.13 (avoid 3.14 for now).
+- SDK >= v2 works on Python 3.8–3.13 (avoid 3.14 for now).
 
 ## 即時成交回報 + Safe-net Readback
 

@@ -6,7 +6,13 @@ If details diverge, treat `README.md` + `skills/neoapi-python/VERSION` as the so
 
 ## Unreleased
 
+## 1.0.0-beta.31 — 2026-07-17
+
+- Refreshed all four bundled `llms*.txt` files from the official zh/en endpoints and pinned LF line endings for stable cross-platform byte comparisons.
+- Confirmed that the official index content is unchanged; the zh full export only changed trailing whitespace, while the server reports `Last-Modified: 2026-05-07`.
+- Updated the current SDK baseline to v2.2.8 and corrected Python support to 3.8–3.13 (3.14 remains unsupported).
 - Refined Shioaji migration guidance for existing codebases: clearer account selection, share-vs-lot quantity notes, order lifecycle checks, and neutral task routing for agents assisting with ports.
+- Redesigned the Chinese and English READMEs around quick installation, safety guardrails, documentation precedence, and maintainer workflow.
 
 ## 1.0.0-beta.30 — 2026-05-05
 

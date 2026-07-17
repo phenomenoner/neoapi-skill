@@ -1,82 +1,97 @@
-# Fubon NeoAPI Skill Refinement
+<div align="center">
 
-Primary README (Chinese): [README.md](README.md)
+# Fubon NeoAPI Skill
 
-This repository is used to test and refine the `neoapi-python` skill bundle for AI coding assistants (Codex, Claude Code). The skill provides guidance for the Fubon Neo Python SDK, including trading and market data workflows.
+Practical Fubon Neo Python SDK guidance for AI coding agents.
 
-## Repo Layout
+[![Skill version](https://img.shields.io/badge/skill-v1.0.0--beta.31-2563eb)](skills/neoapi-python/VERSION)
+[![SDK baseline](https://img.shields.io/badge/Fubon_Neo-v2.2.8-0f766e)](https://www.fbs.com.tw/TradeAPI/en/docs/download/download-sdk)
+[![Python](https://img.shields.io/badge/Python-3.8%E2%80%933.13-f59e0b)](https://www.fbs.com.tw/TradeAPI/en/docs/install-compatibility)
 
-- `skills/neoapi-python/` - The skill bundle (SKILL.md, references, llms*.txt, VERSION, INSTALL.md)
-- `update-skill.ps1` - Windows update helper (pulls from GitHub and installs to `~/.codex/skills/public/`)
-- `update-skill.sh` - macOS/Linux update helper
+[繁體中文](README.md) · [Install guide](skills/neoapi-python/INSTALL.md) · [Changelog](CHANGELOG.md) · [Official docs](https://www.fbs.com.tw/TradeAPI/en/)
 
-## Compatibility
+</div>
 
-The skill is packaged as plain files with a `SKILL.md` entry point. This keeps the bundle portable across AI platforms that accept local skill bundles or custom instruction folders. For non-Codex platforms, set the install destination to that platform’s skill/instruction folder (use the `INSTALL_DIR` parameter or env var in the update scripts).
+> [!IMPORTANT]
+> This is a community-maintained AI skill, not the official Fubon SDK. Before live trading, treat the official documentation, test environment, and broker responses as authoritative.
 
-## GitHub Repo
+## What does this skill solve?
 
-- `https://github.com/phenomenoner/neoapi-skill`
+It turns NeoAPI documentation, sandbox findings, and production-oriented patterns into workflows an AI agent can follow consistently.
 
-## Install
+| Capability | Coverage |
+| :--- | :--- |
+| Trading | Login, account selection, place/modify/cancel, fills, and reconciliation |
+| Market data | HTTP snapshots, historical data, WebSocket subscriptions, and envelopes |
+| Guardrails | Test/prod separation, valid price sources, share units, and compatibility |
+| Migration | Step-by-step help porting existing Shioaji code to Fubon NeoAPI |
+| Offline docs | Bundled Traditional Chinese and English `llms*.txt` snapshots |
 
-See `skills/neoapi-python/INSTALL.md` for full instructions. This repo uses `skills/` (no leading dot). End users install to:
+## Install in 30 seconds
 
-- Windows: `%USERPROFILE%\.codex\skills\public\neoapi-python`
-- macOS/Linux: `~/.codex/skills/public/neoapi-python`
-
-## Versioning
-
-The skill version is stored in `skills/neoapi-python/VERSION` using semver. Current version: `1.0.0-beta.30` (Beta 1.0.0).
-
-## Multi-Agent Adapters
-
-Root-level adapter files are provided for major agents, with Chinese-first guidance and English supplement:
-
-- `CLAUDE.md`
-- `GEMINI.md`
-- `AGENTS.md`
-
-These adapters point to `skills/neoapi-python/` as the canonical source.
-
-## LLM Docs (Online)
-
-The official LLM-oriented pages and `llms*.txt` endpoints are available online and should be treated as primary references:
-
-- `https://www.fbs.com.tw/TradeAPI/docs/welcome/build-with-llm`
-- `https://www.fbs.com.tw/TradeAPI/en/docs/welcome/build-with-llm/`
-- `https://www.fbs.com.tw/TradeAPI/llms.txt`
-- `https://www.fbs.com.tw/TradeAPI/llms-full.txt`
-- `https://www.fbs.com.tw/TradeAPI/en/llms.txt`
-- `https://www.fbs.com.tw/TradeAPI/en/llms-full.txt`
-
-The bundled `llms*.txt` files are offline snapshots. When the official endpoints change, refresh the repo copies and bump `VERSION`; otherwise the update scripts will treat the installed bundle as unchanged.
-
-## Updating from GitHub
-
-The update scripts download the repo zip from GitHub, copy `skills/neoapi-python` into the install location, and compare `VERSION` to skip if already up to date.
-
-Example:
+### Windows / PowerShell
 
 ```powershell
-.\update-skill.ps1 -Repo phenomenoner/neoapi-skill
+git clone https://github.com/phenomenoner/neoapi-skill.git
+cd neoapi-skill
+.\update-skill.ps1
 ```
+
+### macOS / Linux
 
 ```bash
-./update-skill.sh phenomenoner/neoapi-skill
+git clone https://github.com/phenomenoner/neoapi-skill.git
+cd neoapi-skill
+bash ./update-skill.sh
 ```
 
-## Local Regression Testing
+The default destination is `~/.codex/skills/public/neoapi-python`. Restart Codex or another local-skill-compatible agent after installation. See [INSTALL.md](skills/neoapi-python/INSTALL.md) for custom destinations and manual installation.
 
-- Local integrated runner: `.test/test_runner.py` (not included in published skill bundle).
-- Logs are written to `.test/logs/` as both text and JSON summaries.
-- Suites:
-  - `smoke`: basic login + market/trade sanity checks
-  - `complex`: multi-symbol marketdata matrix + dual-order lifecycle
-  - `all`: full coverage (includes complex checks)
+## Safety guardrails the agent follows
 
-## Changelog
+| Situation | Correct behavior |
+| :--- | :--- |
+| Valid test-environment order prices | Use `sdk.stock.query_symbol_quote(account, symbol)` |
+| Production limit-up / limit-down | Use `intraday.ticker`; `intraday.quote` is trade-oriented |
+| Canceled order remains visible | Status `30` in `get_order_results` means canceled |
+| Order quantity | Always use shares, not lots; one board lot is 1,000 shares |
+| Live fills | `set_on_filled` is primary; `get_order_results` is the periodic safe-net |
+| Python version | Officially supported: 3.8–3.13; 3.14 is unsupported |
 
-The full release history is maintained in [CHANGELOG.md](CHANGELOG.md).
+## Documentation precedence
 
-The current latest version is `1.0.0-beta.30`, with the main update being live fill-handling guidance: use `set_on_filled` as the low-latency primary fill path, `get_order_results` as periodic safe-net reconciliation, and never fall back to submitted limit price for P/L.
+```text
+User question
+  └─ Official llms.txt: locate the right page
+      └─ Official page .txt / llms-full.txt: verify parameters and examples
+          └─ Bundled llms*.txt: offline fallback
+              └─ references/: sandbox and implementation notes
+```
+
+Official online documentation always takes precedence. The four bundled `llms*.txt` files are offline snapshots, refreshed on **2026-07-17**; the server reported `Last-Modified: 2026-05-07`.
+
+## Repository map
+
+```text
+.
+├─ skills/neoapi-python/
+│  ├─ SKILL.md                 # Agent entry point and decision rules
+│  ├─ references/              # Sandbox, response-shape, and implementation guides
+│  ├─ llms*.txt                # Offline official docs snapshots (zh/en)
+│  ├─ VERSION                  # Skill version
+│  └─ neoapi-python.skill      # Locally built portable ZIP bundle (git ignored)
+├─ AGENTS.md / CLAUDE.md / GEMINI.md
+├─ update-skill.ps1 / update-skill.sh
+└─ .test/                      # Maintainer integration tests; not shipped in bundle
+```
+
+## Maintenance and verification
+
+When docs or skill rules change:
+
+1. Sync all four official zh/en `llms*.txt` endpoints.
+2. Update `SKILL.md`, `VERSION`, references, and all three adapters.
+3. Rebuild `neoapi-python.skill` and verify archive contents and version parity.
+4. Run static checks or the `.test/test_runner.py` integration suites at the tier required by the change.
+
+Release `v1.0.0-beta.31` refreshes the official snapshots, corrects the SDK v2.2.8 / Python 3.8–3.13 baseline, and redesigns the README navigation. See [CHANGELOG.md](CHANGELOG.md) for the full history.

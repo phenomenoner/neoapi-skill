@@ -16,6 +16,7 @@
 3) `intraday.quote` 偏即時成交資料；需查漲跌停請改用 `intraday.ticker`。
 4) 取消單後在 `get_order_results` 看到狀態 `30` 屬正常（代表已刪單）。
 5) 回覆以中文為主，必要時補英文術語（English supplement）。
+6) 目前官方基準為 SDK v2.2.8、Python 3.8–3.13；Python 3.14 尚未支援。
 
 ## 文件查詢（Using llms.txt）
 
@@ -31,6 +32,7 @@
   - `llms.en.txt` / `llms-full.en.txt`
 
 使用 `llms.txt` 做導覽，`llms-full.txt` 查精確參數與範例。若檔案缺失或過時，回退至 `docs/` 來源文件。
+Bundled snapshots last refreshed: 2026-07-17 (official `Last-Modified`: 2026-05-07).
 
 ## 語言與術語（Language & Localization）
 
