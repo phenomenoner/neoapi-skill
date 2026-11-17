@@ -19,6 +19,7 @@
 6) 目前官方基準為 SDK v2.5.0、Python 3.8–3.13；Python 3.14 尚未支援。
 7) 預設憑證密碼（SDK >= 1.3.2）要省略 `login` 第 4 參數，不可傳 `cert_pass=""`。
 8) WebSocket 價格欄位是數值；遇到 `0` 要搭配 camelCase `isLimitUp*` / `isLimitDown*` 旗標解碼，不可和 `"市價"` 比較或臆測原始委託型別。
+9) Windows SAC 或原生簽章問題請讀 `skills/neoapi-python/references/windows-signatures.md`，保留版本、查核日期、發行檔及 `NOT_TESTED` 範圍。
 
 ## 文件查詢（Using llms.txt）
 

@@ -59,6 +59,7 @@ bash ./update-skill.sh
 | 預設憑證密碼 | SDK >= 1.3.2 省略 `login` 第 4 參數，不傳空字串 |
 | WebSocket 零價格 | 搭配 `isLimitUp*` / `isLimitDown*` 旗標解碼，不比對 `"市價"` |
 | Python 版本 | 官方目前支援 3.8–3.13；不支援 3.14 |
+| Windows SAC／原生簽章 | 區分官網與 PyPI 的實際發行檔；依[簽章查核紀錄](skills/neoapi-python/references/windows-signatures.md)保留版本、日期及尚未實測 SAC 的界線 |
 
 ## 文件來源策略
 
@@ -96,4 +97,4 @@ bash ./update-skill.sh
 3. 重建 `neoapi-python.skill`，檢查封裝內容與版本一致。
 4. 依變更風險執行靜態檢查或 `.test/test_runner.py` 整合套件。
 
-`v1.0.0-beta.33` 更新 SDK 2.5.0 與 PyPI 安裝資訊、修正建構子指引並更新官方離線文件。完整歷程請見 [CHANGELOG.md](CHANGELOG.md)。
+`v1.0.0-beta.33` 更新 SDK 2.5.0 與 PyPI 安裝資訊、修正建構子指引並更新官方離線文件。2026-11-17 同版補充官網／PyPI Windows wheel 的簽章差異與 SAC 尚未實測的說明；已安裝同版本時，需重新安裝更新封裝，版本號檢查可能略過這次文件補充。完整歷程請見 [CHANGELOG.md](CHANGELOG.md)。

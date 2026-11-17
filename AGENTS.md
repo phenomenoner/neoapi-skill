@@ -26,6 +26,7 @@ This repository provides the `neoapi-python` skill for Fubon Neo API workflows.
 6. Current official baseline: SDK v2.5.0 on Python 3.8–3.13; Python 3.14 is unsupported.
 7. For default-password certificates on SDK >= 1.3.2, omit the fourth `login` argument; never pass `cert_pass=""`.
 8. WebSocket prices are numeric. Decode zero values with matching camelCase `isLimitUp*` / `isLimitDown*` flags; never compare with `"市價"` or infer the original order type.
+9. For Windows SAC or native-signature questions, read `skills/neoapi-python/references/windows-signatures.md`; preserve its version, date, artifact and `NOT_TESTED` scope.
 
 ## 文件查詢（Using llms.txt）
 

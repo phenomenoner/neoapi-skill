@@ -59,6 +59,7 @@ The default destination is `~/.codex/skills/public/neoapi-python`. Restart Codex
 | Default certificate password | On SDK >= 1.3.2, omit login's fourth argument; do not pass an empty string |
 | WebSocket zero price | Decode with `isLimitUp*` / `isLimitDown*` flags; never compare with `"market"` |
 | Python version | Officially supported: 3.8–3.13; 3.14 is unsupported |
+| Windows SAC / native signatures | Distinguish actual website and PyPI artifacts; retain the version, date and untested SAC status in the [signature snapshot](skills/neoapi-python/references/windows-signatures.md) |
 
 ## Documentation precedence
 
@@ -96,4 +97,4 @@ When docs or skill rules change:
 3. Rebuild `neoapi-python.skill` and verify archive contents and version parity.
 4. Run static checks or the `.test/test_runner.py` integration suites at the tier required by the change.
 
-Release `v1.0.0-beta.33` updates the SDK 2.5.0 and PyPI installation guidance, corrects constructor guidance, and refreshes the offline official docs. See [CHANGELOG.md](CHANGELOG.md) for the full history.
+Release `v1.0.0-beta.33` updates the SDK 2.5.0 and PyPI installation guidance, corrects constructor guidance, and refreshes the offline official docs. The same-version documentation supplement on 2026-11-17 records the website/PyPI Windows-wheel signature differences and explicitly untested SAC status. Existing installations of this version need to reinstall the updated bundle; version-only update checks may skip the supplement. See [CHANGELOG.md](CHANGELOG.md) for the full history.

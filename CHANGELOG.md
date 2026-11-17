@@ -11,6 +11,7 @@ If details diverge, treat `README.md` + `skills/neoapi-python/VERSION` as the so
 - Updated the SDK baseline to 2.5.0 and documented PyPI installation alongside official platform wheels, retaining the official Python 3.8–3.13 support range.
 - Corrected constructor guidance: `FubonSDK()` uses defaults; SDK 2.2.1+ also accepts explicit connection parameters.
 - Documented the 2.5.0 futures/options empty-result migration and refreshed all four official offline documentation snapshots.
+- Same-version documentation supplement, 2026-11-17: recorded the exact SDK 2.5.0 Windows x64 website/PyPI wheel and PYD hashes, locally `Valid` website signature versus `NotSigned` PyPI signature, and explicitly untested SAC status. Added verification guidance and synchronized agent routing and installation notes.
 
 ## 1.0.0-beta.32 — 2026-07-17
 

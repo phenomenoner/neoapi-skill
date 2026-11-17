@@ -306,6 +306,7 @@ sdk.logout()
 
 - Install with `pip install fubon-neo`, or download and install the platform wheel from the official SDK page.
 - SDK >= v2 works on Python 3.8–3.13 (avoid 3.14 for now).
+- Windows SAC／程式碼簽章問題：先讀 [Windows SDK 簽章查核](references/windows-signatures.md)。2026-11-17 查核的 SDK 2.5.0 Windows x64 官網版 PYD 本機簽章為 `Valid`，同版本 PyPI 版為 `NotSigned`；兩個發行檔不同，**SAC 尚未實測**。以該筆查核的版本、管道與雜湊為範圍，升級或更換發行檔後重新查驗。
 
 ## 即時成交回報 + Safe-net Readback
 
@@ -342,6 +343,7 @@ For production-tested patterns, see `references/implementation-practices.md`. Ke
 - **Doc index**: `references/doc-index.md`
 - **Implementation practices**: `references/implementation-practices.md`
 - **Response shapes**: `references/response-shapes.md`
+- **Windows wheel signatures / SAC evidence**: `references/windows-signatures.md`
 - **Source docs (maintainers)**: `docs/` and `i18n/en/docusaurus-plugin-content-docs/current`
 
 When code or docs need updating, mirror changes in the English localization if the content is user-facing.

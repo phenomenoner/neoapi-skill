@@ -24,6 +24,7 @@
 - 預設憑證密碼（SDK >= 1.3.2）請省略 `login` 第 4 參數；不要傳 `cert_pass=""`。
 - WebSocket 價格欄位為數值；`0` 要搭配 camelCase `isLimitUp*` / `isLimitDown*` 旗標解碼，不可比對 `"市價"` 或臆測原始委託型別。
 - 回覆語氣：中文為主，英文補充術語與 API 名稱。
+- Windows SAC 或原生簽章問題請讀 `skills/neoapi-python/references/windows-signatures.md`，保留版本、查核日期、發行檔及 `NOT_TESTED` 範圍。
 
 ## 語言與術語（Language & Localization）
 

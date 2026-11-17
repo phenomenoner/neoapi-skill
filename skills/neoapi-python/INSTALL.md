@@ -111,6 +111,10 @@ Notes:
 
 - SDK >= v2 works on Python **3.8–3.13**; Python **3.14** is not supported yet.
 
+### Windows wheel signatures and SAC
+
+The SDK 2.5.0 Windows x64 artifacts checked on **2026-11-17** differ by distribution route: the official website wheel contains a locally `Valid` Fubon/GlobalSign-signed PYD with a timestamp, while the PyPI wheel contains a `NotSigned` PYD. **SAC has not been tested.** Local Authenticode results do not establish SAC acceptance, and this snapshot does not describe future replacements or releases. See [Windows signature evidence](references/windows-signatures.md) for exact artifact hashes, sources and verification commands.
+
 ---
 
 ## Offline Docs
