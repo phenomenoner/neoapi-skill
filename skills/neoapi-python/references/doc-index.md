@@ -33,8 +33,8 @@ These files live next to `SKILL.md` in the shared bundle:
 - `llms.en.txt`
 - `llms-full.en.txt`
 
-Snapshot metadata: refreshed from the four official endpoints on 2026-07-17;
-the server reported `Last-Modified: 2026-05-07`. Files are stored with LF line
+Snapshot metadata: refreshed from the four official endpoints on 2026-11-17;
+the server reported `Last-Modified` on 2026-10-30. Files are stored with LF line
 endings so byte-level refresh checks are stable across platforms.
 
 ## Local Repo Paths (maintainers)

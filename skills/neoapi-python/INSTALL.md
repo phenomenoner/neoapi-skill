@@ -28,7 +28,7 @@ This folder contains a skill for AI coding assistants (Claude Code, Codex) that 
 - PowerShell (Windows) or Bash (macOS/Linux)
 - In this repo, the skill lives under `skills/` (not `.skills/`).
 - For other AI platforms, install the folder into that platform's skill/instruction directory.
-- Python SDK is distributed as a wheel from the official site (not PyPI).
+- Python SDK is available on PyPI as `fubon-neo`; platform wheels are also available from the official download page.
 
 ### Step 1: Navigate to the skill folder (if using this repo)
 
@@ -94,7 +94,7 @@ Restart Claude Code or Codex to load the new skill.
 
 ## SDK Install (Python)
 
-The NeoAPI Python SDK is **not** published on PyPI. Download the `.whl` from the official site (or use a user-provided wheel), then install locally.
+Install the Python SDK from PyPI with `python -m pip install fubon-neo`, or download the matching platform `.whl` from the official site and install it locally. The official SDK baseline is 2.5.0; use a version pin when reproducibility is required.
 
 Official download page:
 

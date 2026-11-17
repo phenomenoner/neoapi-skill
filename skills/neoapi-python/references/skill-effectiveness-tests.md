@@ -34,7 +34,7 @@
 ```
 | Test ID | Tier | Control | Treatment | Delta | Notes |
 |---------|------|---------|-----------|-------|-------|
-| K1      | 1    | 0       | 1         | +1    | Control suggested pip install |
+| K1      | 1    | 0       | 1         | +1    | Control omitted supported Python range |
 | ...     |      |         |           |       |       |
 ```
 
@@ -50,9 +50,8 @@
 
 - **Prompt**: `"How do I install the Fubon Neo Python SDK?"`
 - **Expected**:
-  - [ ] 明確說明 SDK **不在 PyPI** 上
-  - [ ] 提供官方下載頁面 URL 或提及從官方網站下載 `.whl`
-  - [ ] 給出安裝指令範例（如 `uv pip install <wheel>` 或 `pip install <wheel>`）
+  - [ ] 提供 `pip install fubon-neo`，並說明官方下載 wheel 的替代方式
+  - [ ] 以官方文件列出的 Python 3.8–3.13 為支援範圍，不以 PyPI metadata 推論支援 3.14
 - **Skill section tested**: SKILL.md §常見錯誤、§SDK Install
 
 ### K2: `intraday.quote` vs `intraday.ticker` 差異

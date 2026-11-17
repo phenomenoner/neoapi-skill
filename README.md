@@ -4,8 +4,8 @@
 
 給 AI 編碼代理使用的富邦新一代（Fubon Neo）Python SDK 實戰指南。
 
-[![Skill version](https://img.shields.io/badge/skill-v1.0.0--beta.32-2563eb)](skills/neoapi-python/VERSION)
-[![SDK baseline](https://img.shields.io/badge/Fubon_Neo-v2.2.8-0f766e)](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk)
+[![Skill version](https://img.shields.io/badge/skill-v1.0.0--beta.33-2563eb)](skills/neoapi-python/VERSION)
+[![SDK baseline](https://img.shields.io/badge/Fubon_Neo-v2.5.0-0f766e)](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk)
 [![Python](https://img.shields.io/badge/Python-3.8%E2%80%933.13-f59e0b)](https://www.fbs.com.tw/TradeAPI/docs/install-compatibility)
 
 [English](README.en.md) · [安裝指南](skills/neoapi-python/INSTALL.md) · [版本紀錄](CHANGELOG.md) · [官方文件](https://www.fbs.com.tw/TradeAPI/)
@@ -70,7 +70,7 @@ bash ./update-skill.sh
               └─ references/：測試環境與實務補充
 ```
 
-線上官方文件永遠優先；bundle 內的四份 `llms*.txt` 是離線快照。本版於 **2026-07-17** 重新抓取，官方伺服器回報 `Last-Modified: 2026-05-07`。
+線上官方文件永遠優先；bundle 內的四份 `llms*.txt` 是離線快照。本版於 **2026-11-17** 重新抓取，官方伺服器回報 `Last-Modified: 2026-10-30`。
 
 ## Repo 地圖
 
@@ -96,4 +96,4 @@ bash ./update-skill.sh
 3. 重建 `neoapi-python.skill`，檢查封裝內容與版本一致。
 4. 依變更風險執行靜態檢查或 `.test/test_runner.py` 整合套件。
 
-本次 `v1.0.0-beta.32` 修正預設憑證登入與 WebSocket 零價格／漲跌停旗標判讀，對應 Issues #1、#2。完整歷程請見 [CHANGELOG.md](CHANGELOG.md)。
+`v1.0.0-beta.33` 更新 SDK 2.5.0 與 PyPI 安裝資訊、修正建構子指引並更新官方離線文件。完整歷程請見 [CHANGELOG.md](CHANGELOG.md)。

@@ -1,6 +1,7 @@
 ---
 name: neoapi-python
-version: 1.0.0-beta.32
+metadata:
+  version: 1.0.0-beta.33
 description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused on trading and market data workflows, including login, market data access, order placement, and locating the right docs/llms outputs. Use when prompts mention FubonNeo API or the Python SDK."
 ---
 
@@ -8,7 +9,7 @@ description: "Fubon Neo (富邦新一代/富邦 API) Python SDK guidance focused
 
 ## Overview
 
-本 skill 教導 AI 編程代理使用 **Fubon Neo Python SDK** 進行台股**證券交易**與**行情資料**存取。適用 Python 3.8–3.13、SDK >= 2.x（避免 3.14）。預設 SDK ~2.2.8，除非使用者另外指定。
+本 skill 教導 AI 編程代理使用 **Fubon Neo Python SDK** 進行台股**證券交易**與**行情資料**存取。適用 Python 3.8–3.13、SDK >= 2.x（避免 3.14）。預設 SDK 2.5.0，除非使用者另外指定。
 
 > **TL;DR** — 三大工作流程：
 > 1. **登入** → `sdk.login(ID, PWD, cert, cert_pwd)` 取得帳號清單
@@ -33,9 +34,9 @@ When the user asks to migrate or port existing Shioaji code, keep the tone pract
 
 | 錯誤 | 正確做法 |
 | :--- | :--- |
-| `pip install fubon-neo` | SDK 不在 PyPI，需從[官方頁面](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk)下載 `.whl` 安裝 |
+| 把 PyPI 的 Python 版本 metadata 當成支援清單 | 可用 `pip install fubon-neo`，但仍以[官方支援清單](https://www.fbs.com.tw/TradeAPI/docs/install-compatibility)的 Python 3.8–3.13 為準；也可安裝官方下載的 wheel |
 | 在測試環境用 `intraday.quote` 判斷可下單價格 | 測試環境應用 `sdk.stock.query_symbol_quote(acc, symbol)` |
-| SDK >= 2.2.1 仍用 `FubonSDK()` 初始化 | 需用 `FubonSDK(30, 2)` （或含 `url=` 參數） |
+| 誤以為 SDK >= 2.2.1 必須傳入連線參數 | 官方快速上手使用 `FubonSDK()`；`FubonSDK(30, 2)` 可明示預設值，自訂連線參數時依官方文件調整 |
 | 預設憑證密碼卻傳 `cert_pass=""` | SDK >= 1.3.2 應省略第 4 個參數：`sdk.login(id, pwd, cert_path)`；不要用空字串代替 |
 | 下單後找不到已刪的單 | 已刪單仍在 `get_order_results` 中，status=30 |
 | 登入後直接用 `sdk.marketdata.rest_client` | 需先呼叫 `sdk.init_realtime()` |
@@ -67,7 +68,7 @@ from fubon_neo.sdk import FubonSDK, Order, Mode
 from fubon_neo.constant import BSAction, MarketType, PriceType, TimeInForce, OrderType
 
 # Init & Login
-sdk = FubonSDK()  # Use FubonSDK(30, 2) if on SDK 2.2.1+
+sdk = FubonSDK()  # SDK 2.2.1+: FubonSDK(30, 2) explicitly sets the defaults
 accounts = sdk.login("ID", "PWD", "C:/path/to/cert.pfx", "CertPWD")
 acc = accounts.data[0]  # Pick stock account
 
@@ -130,10 +131,10 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 
 | SDK Version | Python | Constructor | 備註 |
 | :--- | :--- | :--- | :--- |
-| >= 2.2.6 | 3.8–3.13 | `FubonSDK(30, 2)` | 下單錯誤拋出 `FugleAPIError` |
-| 2.2.1–2.2.5 | 3.8–3.13 | `FubonSDK(30, 2)` | 錯誤在 response 物件中 |
-| 2.0–2.2.0 | 3.8–3.13 | `FubonSDK()` | 無位置參數 |
-| 1.3.1–1.x | 3.8–3.12 | `FubonSDK()` | 測試環境最低要求 |
+| >= 2.2.6 | 3.8–3.13 | `FubonSDK()` 或 `FubonSDK(30, 2)` | 現行基準為 2.5.0；期貨空資料回傳規則見下節 |
+| 2.2.1–2.2.5 | 視各版本支援情況 | `FubonSDK()` 或 `FubonSDK(30, 2)` | 可自訂連線參數 |
+| 2.0–2.2.0 | 視各版本支援情況 | `FubonSDK()` | 無位置參數 |
+| 1.3.1–1.x | 視各版本支援情況 | `FubonSDK()` | 測試環境最低要求 |
 
 測試環境一律加 `url="wss://neoapitest.fbs.com.tw/TASP/XCPXWS"` 參數。
 
@@ -144,7 +145,7 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 ├── 交易（Trading）
 │   ├── 下單 / 改單 / 刪單
 │   │   ├── 測試環境？→ FubonSDK(30, 2, url=test_url) + query_symbol_quote 取價格
-│   │   └── 正式環境？→ FubonSDK(30, 2) + intraday.ticker 取漲跌停
+│   │   └── 正式環境？→ FubonSDK() + intraday.ticker 取漲跌停
 │   ├── 查詢帳務 → sdk.stock.get_order_results / get_inventories
 │   └── 當沖（Day Trade）→ 見下方「當沖」章節
 ├── 行情（Market Data）
@@ -153,7 +154,7 @@ Real-time quotes (`intraday.quote`) may differ from valid order prices (especial
 │   └── 即時串流 → WebSocket: sdk.init_realtime() + subscribe
 └── 環境確認
     ├── SDK 版本 → 見上方「版本相容性」
-    ├── 安裝方式 → 官方 .whl（非 PyPI）
+    ├── 安裝方式 → PyPI fubon-neo 或官方下載的 .whl
     └── 文件查詢 → references/doc-index.md
 ```
 
@@ -255,7 +256,7 @@ SDK >= 2.2.4 支援條件單當沖（搜尋 llms-full.txt 中 `ConditionDayTrade
 
 ## 期貨 / 選擇權（Futures & Options）
 
-本 skill 目前以**證券（Stock）**交易與行情為主要範圍。SDK 支援期貨/選擇權帳號（`account_type == "futopt"`），但本 skill 尚未涵蓋對應的下單/行情 API。期貨條件單說明可搜尋 llms-full.txt 中「期貨條件單」。歡迎社群補充期貨/選擇權工作流程。
+本 skill 以**證券（Stock）**交易與行情為主要範圍。期貨／選擇權 API 請依官方文件查核。SDK 2.5.0 起，期貨帳務單式部位、平倉查詢及期貨期權批次委託列表在查無資料時回傳成功與空清單；先檢查失敗，再判斷 `data` 是否為空，不可把 `is_success` 當成有資料的判斷。2.5.0 亦新增期貨／選擇權歷史日行情及選擇權歷史 K 線；2.4.0 新增證券三大法人、集保股權分散及董監持股查詢。細節見[官方版本遷移資訊](https://www.fbs.com.tw/TradeAPI/docs/download/download-sdk)。
 
 ## Examples
 
@@ -269,7 +270,7 @@ SDK >= 2.2.4 支援條件單當沖（搜尋 llms-full.txt 中 `ConditionDayTrade
 - SDK v2.2.1 and later: `FubonSDK(30, 2, url=...)` (30/2 are reference values).
 - Test credentials: ID from certificate; login password and cert password are `12345678`.
 - See `references/test-environment.md` for operational notes (trading hours, shared account caveats).
-- Python SDK is downloaded from the official site (not PyPI); install the wheel locally.
+- Install the Python SDK from PyPI (`pip install fubon-neo`) or an official downloaded wheel.
 - Skill validation checklist: `references/skill-tests.md`.
 
 - Local integrated runner (maintainer-only; may be absent in some distributed skill copies): `.test/test_runner.py`
@@ -303,7 +304,7 @@ sdk.logout()
 
 ## SDK Install (Quick Note)
 
-- Python SDK is not on PyPI. Download the wheel from the official page and install locally.
+- Install with `pip install fubon-neo`, or download and install the platform wheel from the official SDK page.
 - SDK >= v2 works on Python 3.8–3.13 (avoid 3.14 for now).
 
 ## 即時成交回報 + Safe-net Readback

@@ -6,6 +6,12 @@ If details diverge, treat `README.md` + `skills/neoapi-python/VERSION` as the so
 
 ## Unreleased
 
+## 1.0.0-beta.33 — 2026-11-17
+
+- Updated the SDK baseline to 2.5.0 and documented PyPI installation alongside official platform wheels, retaining the official Python 3.8–3.13 support range.
+- Corrected constructor guidance: `FubonSDK()` uses defaults; SDK 2.2.1+ also accepts explicit connection parameters.
+- Documented the 2.5.0 futures/options empty-result migration and refreshed all four official offline documentation snapshots.
+
 ## 1.0.0-beta.32 — 2026-07-17
 
 - Fixed Issue #1 guidance: certificates using the official default-password mode on SDK >= 1.3.2 must omit the fourth `login` argument instead of passing `cert_pass=""`.

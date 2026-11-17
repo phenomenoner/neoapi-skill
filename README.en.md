@@ -4,8 +4,8 @@
 
 Practical Fubon Neo Python SDK guidance for AI coding agents.
 
-[![Skill version](https://img.shields.io/badge/skill-v1.0.0--beta.32-2563eb)](skills/neoapi-python/VERSION)
-[![SDK baseline](https://img.shields.io/badge/Fubon_Neo-v2.2.8-0f766e)](https://www.fbs.com.tw/TradeAPI/en/docs/download/download-sdk)
+[![Skill version](https://img.shields.io/badge/skill-v1.0.0--beta.33-2563eb)](skills/neoapi-python/VERSION)
+[![SDK baseline](https://img.shields.io/badge/Fubon_Neo-v2.5.0-0f766e)](https://www.fbs.com.tw/TradeAPI/en/docs/download/download-sdk)
 [![Python](https://img.shields.io/badge/Python-3.8%E2%80%933.13-f59e0b)](https://www.fbs.com.tw/TradeAPI/en/docs/install-compatibility)
 
 [繁體中文](README.md) · [Install guide](skills/neoapi-python/INSTALL.md) · [Changelog](CHANGELOG.md) · [Official docs](https://www.fbs.com.tw/TradeAPI/en/)
@@ -70,7 +70,7 @@ User question
               └─ references/: sandbox and implementation notes
 ```
 
-Official online documentation always takes precedence. The four bundled `llms*.txt` files are offline snapshots, refreshed on **2026-07-17**; the server reported `Last-Modified: 2026-05-07`.
+Official online documentation always takes precedence. The four bundled `llms*.txt` files are offline snapshots, refreshed on **2026-11-17**; the server reported `Last-Modified: 2026-10-30`.
 
 ## Repository map
 
@@ -96,4 +96,4 @@ When docs or skill rules change:
 3. Rebuild `neoapi-python.skill` and verify archive contents and version parity.
 4. Run static checks or the `.test/test_runner.py` integration suites at the tier required by the change.
 
-Release `v1.0.0-beta.32` fixes default-certificate login and WebSocket zero-price / limit-flag handling for Issues #1 and #2. See [CHANGELOG.md](CHANGELOG.md) for the full history.
+Release `v1.0.0-beta.33` updates the SDK 2.5.0 and PyPI installation guidance, corrects constructor guidance, and refreshes the offline official docs. See [CHANGELOG.md](CHANGELOG.md) for the full history.

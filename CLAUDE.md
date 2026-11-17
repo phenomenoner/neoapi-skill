@@ -16,7 +16,7 @@
 3) `intraday.quote` 偏即時成交資料；需查漲跌停請改用 `intraday.ticker`。
 4) 取消單後在 `get_order_results` 看到狀態 `30` 屬正常（代表已刪單）。
 5) 回覆以中文為主，必要時補英文術語（English supplement）。
-6) 目前官方基準為 SDK v2.2.8、Python 3.8–3.13；Python 3.14 尚未支援。
+6) 目前官方基準為 SDK v2.5.0、Python 3.8–3.13；Python 3.14 尚未支援。
 7) 預設憑證密碼（SDK >= 1.3.2）要省略 `login` 第 4 參數，不可傳 `cert_pass=""`。
 8) WebSocket 價格欄位是數值；遇到 `0` 要搭配 camelCase `isLimitUp*` / `isLimitDown*` 旗標解碼，不可和 `"市價"` 比較或臆測原始委託型別。
 
@@ -34,7 +34,7 @@
   - `llms.en.txt` / `llms-full.en.txt`
 
 使用 `llms.txt` 做導覽，`llms-full.txt` 查精確參數與範例。若檔案缺失或過時，回退至 `docs/` 來源文件。
-Bundled snapshots last refreshed: 2026-07-17 (official `Last-Modified`: 2026-05-07).
+Bundled snapshots last refreshed: 2026-11-17 (official `Last-Modified`: 2026-10-30).
 
 ## 語言與術語（Language & Localization）
 

@@ -8,7 +8,7 @@ Use these tests to verify that an AI agent can apply the `neoapi-python` skill c
 
 **Steps:**
 
-1) Install the SDK from the official wheel (not PyPI).
+1) Install the SDK from PyPI (`pip install fubon-neo`) or an official downloaded wheel.
 2) Use the test environment URL and credentials:
    - URL: `wss://neoapitest.fbs.com.tw/TASP/XCPXWS`
    - ID: from test certificate (e.g., `41610792.pfx` → `41610792`)
@@ -36,9 +36,9 @@ Use these tests to verify that an AI agent can apply the `neoapi-python` skill c
 
 - The agent distinguishes the two signatures and explains when each applies.
 
-## Test 3: SDK Install Guidance (Wheel Only)
+## Test 3: SDK Install Guidance
 
-**Purpose:** Confirm the agent does not recommend PyPI and points to the official wheel download.
+**Purpose:** Confirm the agent gives current installation and supported-Python guidance.
 
 **Steps:**
 
@@ -46,8 +46,8 @@ Use these tests to verify that an AI agent can apply the `neoapi-python` skill c
 
 **Expected:**
 
-- The agent says the SDK is not on PyPI.
-- It provides the official download URL and a local install example (e.g., `uv pip install <wheel>`).
+- The agent gives `pip install fubon-neo` and the official wheel download as an alternative.
+- It states the official supported Python range is 3.8–3.13 rather than inferring support from package metadata.
 
 ## Test 4: Market Data Reference Price Caveat
 
@@ -194,7 +194,7 @@ Keep tests small and focused. Prefer one concept per test.
 - 2026-01-26:
   - Test 1: Pass (login OK, accounts returned)
   - Test 2: Pass (constructed SDK with both signatures using SDK 2.2.7)
-  - Test 3: Pass (PyPI resolution fails; wheel install required)
+  - Test 3: Historical pass in 2026-01 (PyPI resolution failed at that time); superseded by the PyPI release in November 2026.
   - Test 4: Pass (validated against official test-environment PDF notes)
   - Test 5: Pass (order placed for 2881 with PriceType.Reference; order callback received; reference price returned 46)
     - Note: user_def length over 10 triggers a warning and is truncated by the system.

@@ -11,7 +11,7 @@
 
 執行重點（Chinese-first）：
 
-- 先確認環境（test/prod）、Python 版本（3.8–3.13）、SDK 版本（目前官方 v2.2.8）。
+- 先確認環境（test/prod）、Python 版本（3.8–3.13）、SDK 版本（目前官方 v2.5.0）。
 - 文件查詢優先線上：
   - `https://www.fbs.com.tw/TradeAPI/llms.txt`
   - `https://www.fbs.com.tw/TradeAPI/llms-full.txt`
@@ -19,7 +19,7 @@
   - `https://www.fbs.com.tw/TradeAPI/en/llms-full.txt`
 - Bundled（離線 fallback）：`llms.txt` / `llms-full.txt` / `llms.en.txt` / `llms-full.en.txt`
 - 使用 `llms.txt` 做導覽，`llms-full.txt` 查精確參數與範例。
-- Bundled snapshots last refreshed: 2026-07-17 (official `Last-Modified`: 2026-05-07).
+- Bundled snapshots last refreshed: 2026-11-17 (official `Last-Modified`: 2026-10-30).
 - 測試環境價格判斷以 `query_symbol_quote` 為主，不要用 `intraday.quote` 判定可下單價格。
 - 預設憑證密碼（SDK >= 1.3.2）請省略 `login` 第 4 參數；不要傳 `cert_pass=""`。
 - WebSocket 價格欄位為數值；`0` 要搭配 camelCase `isLimitUp*` / `isLimitDown*` 旗標解碼，不可比對 `"市價"` 或臆測原始委託型別。
